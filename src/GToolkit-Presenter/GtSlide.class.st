@@ -1,0 +1,28 @@
+Class {
+	#name : #GtSlide,
+	#superclass : #BrStencil,
+	#instVars : [
+		'cachedElement'
+	],
+	#category : #'GToolkit-Presenter'
+}
+
+{ #category : #accessing }
+GtSlide >> asCachedElement [
+	^ cachedElement ifNil: [ cachedElement := self asElement ]
+]
+
+{ #category : #accessing }
+GtSlide >> name [
+	^ (self class name gtRemovePrefix: 'Gt') gtRemoveSuffix: 'Slide'
+]
+
+{ #category : #accessing }
+GtSlide >> nextStepWith: aSlider [
+	aSlider showSlideAfter: self
+]
+
+{ #category : #accessing }
+GtSlide >> previousStepWith: aSlider [
+	aSlider showSlideBefore: self
+]
