@@ -13,9 +13,9 @@ GtCustomViewsSlide >> create [
 			c vertical fitContent ];
 		layout: (BlGridLayout new columnCount: 3).
 	{(21/2 gtPreviewFor: GtPhlowView empty) . 
-	(Color red gtPreviewFor: GtPhlowView empty) . 
 	(FileLocator imageDirectory asFileReference gtItemsFor: GtPhlowView empty) . 
 	((GtIcebergUtility documentAtPath: (Path * 'feenkcom' / 'gtoolkit' / 'doc' / 'gtoolkit.png')) gtFigureFor: GtPhlowView empty) . 
+	BlBezierElementExamples new curveWithAnchors gtLiveFor: GtPhlowView empty.
 	(GtGraphCircleNeighbourhoodExamples new emptyNeighborhoodWithThreeCirclesAndSpace gtPreviewFor: GtPhlowView empty) . 
 	(GtWhatMakesBlocSpecialExplanation new sampleText gtTreeFor: GtPhlowView empty)} do: [:view | 
 		container addChild: (( view

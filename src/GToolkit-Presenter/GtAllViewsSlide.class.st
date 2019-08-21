@@ -13,9 +13,9 @@ GtAllViewsSlide >> create [
 			c vertical fitContent ];
 		layout: (BlGridLayout new columnCount: 3).
 	{21/2 . 
-	Color red . 
 	FileLocator imageDirectory asFileReference .
 	GtIcebergUtility documentAtPath: (Path * 'feenkcom' / 'gtoolkit' / 'doc' / 'gtoolkit.png').
+	BlBezierElementExamples new curveWithAnchors.
 	GtGraphCircleNeighbourhoodExamples new emptyNeighborhoodWithThreeCirclesAndSpace .
 	GtWhatMakesBlocSpecialExplanation new sampleText} do: [:x | 
 		container addChild: (((x gtViewsFor: GtPhlowView empty) 
