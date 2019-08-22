@@ -191,17 +191,12 @@ GtSlideShow >> slidesDropdown [
 				when: BlClickEvent do: [:e | self showSlide: each])
 		 ].
 	^ dropdown
-		layout: BlLinearLayout vertical;
-		constraintsDo: [ :c | 
-			c horizontal fitContent.
-			c vertical fitContent.
-			c linear horizontal alignRight ];
+		constraintsDo: [ :c | c linear horizontal alignRight ];
 		padding: (BlInsets all: 10);
-		in: [ :aDropdown | 
-			aDropdown
-				toggle: [ BrButton new
-						look: BrGlamorousButtonWithIconLook;
-						icon: (BrGlamorousIcons hamburger asElement) ] ];
+		toggle: [
+			BrButton new
+				look: BrGlamorousButtonWithIconLook + BrGlamorousDropdownToggleLook;
+				icon: (BrGlamorousIcons hamburger asElement) ];
 		popup: [ 
 			aToolbar := BrToolbar new.
 			aToolbar look: BrGlamorousToolbarLook.
