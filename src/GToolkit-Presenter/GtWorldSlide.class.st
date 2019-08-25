@@ -11,7 +11,7 @@ GtWorldSlide >> create [
 		constraintsDo: [:c |
 			c horizontal matchParent.
 			c vertical matchParent ];
-		margin: (BlInsets all: 10);
+		margin: (BlInsets all: 50);
 		background: Color white;
 		look: BrShadowLook;
 		addChild: GtWorldElement new
