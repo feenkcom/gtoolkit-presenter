@@ -14,5 +14,5 @@ GtWorldSlide >> create [
 		margin: (BlInsets all: 10);
 		background: Color white;
 		look: BrShadowLook;
-		addChild: (GtWorld new root children first removeFromParent)
+		addChild: GtWorldElement new
 ]
