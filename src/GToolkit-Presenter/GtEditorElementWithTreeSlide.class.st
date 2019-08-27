@@ -11,11 +11,11 @@ GtEditorElementWithTreeSlide >> create [
    	constraintsDo: [:c |
    		c vertical matchParent.
    		c horizontal matchParent ];
-		layout: BlLinearLayout vertical.
+		layout: BlLinearLayout vertical alignTopCenter.
 	element := GtWhatMakesBlocSpecialExplanation new editorOnSampleText
 		constraintsDo: [:c |
-			c vertical matchParent.
-			c horizontal matchParent. ];
+			c vertical fitContent.
+			c horizontal fitContent. ];
 		margin: (BlInsets all: 10);
 		padding: (BlInsets all: 10);
 		look: BrShadowLook;
