@@ -14,14 +14,16 @@ GtParagraphSlide >> create [
 	^BlElement new 
 			constraintsDo: [ :c |
 				c horizontal matchParent.
-				c vertical matchParent ];
+				c vertical matchParent.
+				c frame horizontal alignCenter ];
 			layout: BlLinearLayout horizontal;
 			addChild: (BrEditorElement new 
 				padding: (BlInsets all: 10);
+				"layout: BlLinearLayout horizontal alignCenter;"
 				constraintsDo: [ :c | 
-					c horizontal matchParent.
-					c vertical matchParent.
-					"c horizontal alignCenter." ];
+					c horizontal fitContent.
+					c vertical fitContent.
+					c linear horizontal alignCenter. ];
 				editor: (BrTextEditor new 
 					text: self fullText)).
 ]
