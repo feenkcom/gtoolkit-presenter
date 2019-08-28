@@ -20,7 +20,7 @@ GtLiveElementTreeSlide >> create [
 	container := BlElement new 
 		layout: BlLinearLayout horizontal;
 		constraintsDo: [:c |c horizontal matchParent. c vertical matchParent].
-	targetElement removeFromParent.
+"	targetElement removeFromParent."
 	targetContainer addChild: (targetElement constraintsDo: [:c |c horizontal matchParent. c vertical matchParent]).
 	container addChild: targetContainer.
 
@@ -63,7 +63,7 @@ GtLiveElementTreeSlide >> create [
 					nodeElement background: BrGlamorousColors textHighlightColor] ] ].
 			event consumed: true ]]].
 
-	container
+	^ container
 ]
 
 { #category : #accessing }
