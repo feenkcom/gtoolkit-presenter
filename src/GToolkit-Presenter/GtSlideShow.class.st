@@ -8,7 +8,8 @@ Class {
 		'slideElement',
 		'nextArrow',
 		'previousArrow',
-		'arrowsAreVisible'
+		'arrowsAreVisible',
+		'title'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -121,6 +122,7 @@ GtSlideShow >> openInSpace [
 	| space |
 	space := BlSpace new.
 	space extent: 800@500.
+	space title: self title.
 	space root addChild: self asElement.
 	space root addShortcut: (BlShortcut new 
 		repeatable: false;
@@ -219,6 +221,16 @@ GtSlideShow >> slidesDropdown [
 				addChild: aToolbar.
 			  ];
 		look: BrGlamorousDropdownLook new
+]
+
+{ #category : #accessing }
+GtSlideShow >> title [
+	^ title ifNil: [ 'Gt Slide Show' ]
+]
+
+{ #category : #accessing }
+GtSlideShow >> title: anObject [
+	title := anObject
 ]
 
 { #category : #accessing }
