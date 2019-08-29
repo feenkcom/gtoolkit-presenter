@@ -9,7 +9,8 @@ Class {
 		'nextArrow',
 		'previousArrow',
 		'arrowsAreVisible',
-		'title'
+		'title',
+		'background'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -19,12 +20,24 @@ GtSlideShow >> addSlide: aSlide [
 	slides add: aSlide
 ]
 
+{ #category : #accessing }
+GtSlideShow >> background [
+	^ background
+]
+
+{ #category : #accessing }
+GtSlideShow >> background: anObject [
+	background := anObject
+]
+
 { #category : #'api - instantiation' }
 GtSlideShow >> create [
 	| previousElement nextElement container |
 	
 	container := BlElement new.
-	container constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
+	container 
+		background: self background;
+		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
 		layout: BlLinearLayout vertical.
 	slideElement := BlElement new
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
@@ -103,7 +116,8 @@ GtSlideShow >> hasPreviousSlide [
 GtSlideShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
-	arrowsAreVisible := false
+	arrowsAreVisible := false.
+	background := Color white
 ]
 
 { #category : #accessing }
