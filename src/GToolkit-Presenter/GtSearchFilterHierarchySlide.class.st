@@ -6,5 +6,5 @@ Class {
 
 { #category : #'api - instantiation' }
 GtSearchFilterHierarchySlide >> create [
-	^ (GtSearchFilter gtHierarchyFor: GtPhlowView empty) asElementDo: [ :e | e ]
+	^ (GtSearchMethodsFilter gtHierarchyFor: GtPhlowView empty) asElementDo: [ :e | e ]
 ]
