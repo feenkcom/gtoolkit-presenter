@@ -8,7 +8,9 @@ Class {
 		'slideElement',
 		'nextArrow',
 		'previousArrow',
-		'arrowsAreVisible'
+		'arrowsAreVisible',
+		'title',
+		'background'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -18,12 +20,24 @@ GtSlideShow >> addSlide: aSlide [
 	slides add: aSlide
 ]
 
+{ #category : #accessing }
+GtSlideShow >> background [
+	^ background
+]
+
+{ #category : #accessing }
+GtSlideShow >> background: anObject [
+	background := anObject
+]
+
 { #category : #'api - instantiation' }
 GtSlideShow >> create [
 	| previousElement nextElement container |
 	
 	container := BlElement new.
-	container constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
+	container 
+		background: self background;
+		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
 		layout: BlLinearLayout vertical.
 	slideElement := BlElement new
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
@@ -102,7 +116,8 @@ GtSlideShow >> hasPreviousSlide [
 GtSlideShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
-	arrowsAreVisible := false
+	arrowsAreVisible := false.
+	background := Color white
 ]
 
 { #category : #accessing }
@@ -121,6 +136,7 @@ GtSlideShow >> openInSpace [
 	| space |
 	space := BlSpace new.
 	space extent: 800@500.
+	space title: self title.
 	space root addChild: self asElement.
 	space root addShortcut: (BlShortcut new 
 		repeatable: false;
@@ -219,6 +235,16 @@ GtSlideShow >> slidesDropdown [
 				addChild: aToolbar.
 			  ];
 		look: BrGlamorousDropdownLook new
+]
+
+{ #category : #accessing }
+GtSlideShow >> title [
+	^ title ifNil: [ 'Gt Slide Show' ]
+]
+
+{ #category : #accessing }
+GtSlideShow >> title: anObject [
+	title := anObject
 ]
 
 { #category : #accessing }

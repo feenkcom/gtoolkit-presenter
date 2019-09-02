@@ -9,21 +9,27 @@ Class {
 }
 
 { #category : #'api - instantiation' }
-GtParagraphSlide >> create [ 
-
-	^BlElement new 
+GtParagraphSlide >> create [
+	^  BlElement new 
 			constraintsDo: [ :c |
 				c horizontal matchParent.
 				c vertical matchParent ];
 			layout: BlLinearLayout horizontal;
-			addChild: (BrEditorElement new 
-				padding: (BlInsets all: 10);
-				constraintsDo: [ :c | 
-					c horizontal matchParent.
-					c vertical matchParent.
-					"c horizontal alignCenter." ];
-				editor: (BrTextEditor new 
-					text: self fullText)).
+				addChild: (
+					BlElement new
+						constraintsDo: [ :c |
+							c horizontal matchParent.
+							c vertical fitContent.
+							c linear vertical alignCenter ];
+						layout: BlLinearLayout vertical;
+						addChild: (BrEditorElement new 
+							size: 700@400;
+							constraintsDo: [ :c |
+								c linear horizontal alignCenter ];
+							padding: (BlInsets all: 10);
+							editor: (BrTextEditor new 
+								text: self fullText))).
+
 ]
 
 { #category : #accessing }
