@@ -2,18 +2,35 @@ Class {
 	#name : #GtFilePictureSlide,
 	#superclass : #GtSlide,
 	#instVars : [
-		'fileReference'
+		'fileReference',
+		'background'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
+{ #category : #accessing }
+GtFilePictureSlide >> background [
+	^ background ifNil: [ background := Color white ]
+]
+
+{ #category : #accessing }
+GtFilePictureSlide >> background: anObject [
+	background := anObject
+]
+
 { #category : #'api - instantiation' }
 GtFilePictureSlide >> create [
-	| form |
+	| form container |
+	container := BlElement new 
+		constraintsDo: [ :c | 
+			c horizontal matchParent.
+			c vertical matchParent ];
+		background: self background;
+		layout: BlLinearLayout new.
 	form := PNGReadWriter formFromFileNamed: self fileReference fullName.
-	^ (BlElement new 
-			size: form extent;
-			background: (BlImageBackground new image: form)) asPannableElement
+	^ container addChild: (BlElement new 
+		size: form extent;
+		background: (BlImageBackground new image: form)) asPannableElement
 ]
 
 { #category : #accessing }

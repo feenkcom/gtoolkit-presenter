@@ -43,9 +43,10 @@ GtArrowHeadWithEmbeddedWorldSlide >> create [
 				in: [ :anEditor | TBlDrawingCache disableDrawingCacheFor: anEditor ];
 				size: 1100@1100;
 				transformDo: [ :t | t scaleBy: 0.01 ]))).
-	curve toHead:  (BlArrowheadCircle new
-		background: headerFillColor;
-		border: (BlBorder paint: headColor)).
+	curve toHead:  (BlArrowheadSimpleArrow new
+		background: headColor;
+		arrowNoseAngle: 45;
+		border: (BlBorder paint: headColor width: 30)).
 
 	curve border: (BlBorder paint: curveColor width: curveWidth).
 

@@ -6,5 +6,6 @@ Class {
 
 { #category : #'api - instantiation' }
 GtConnectorForExampleSlide >> create [
-	^ GtInspector createOn: (BlFrameLayoutCompositionExamples>>#example) gtExample
+	^ ((BlFrameLayoutCompositionExamples>>#example) gtExample gtConnectionsFor: GtPhlowEmptyView new)
+		asElementDo: [ :anElement | ^ anElement  ]
 ]
