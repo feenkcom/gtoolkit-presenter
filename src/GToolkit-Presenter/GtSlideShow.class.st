@@ -10,14 +10,17 @@ Class {
 		'previousArrow',
 		'arrowsAreVisible',
 		'title',
-		'background'
+		'background',
+		'previews',
+		'previewsContainer'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
 GtSlideShow >> addSlide: aSlide [
-	slides add: aSlide
+	slides add: aSlide.
+	previews add: nil.
 ]
 
 { #category : #accessing }
@@ -33,7 +36,8 @@ GtSlideShow >> background: anObject [
 { #category : #'api - instantiation' }
 GtSlideShow >> create [
 	| previousElement nextElement container |
-	
+
+	StringSignal emit: 'GtSlideShow>>create'.
 	container := BlElement new.
 	container 
 		background: self background;
@@ -78,6 +82,7 @@ GtSlideShow >> create [
 		addChild: previousElement;
 		addChild: slideElement;
 		addChild: nextElement.
+	self slides do: [ :slide | slide queueCacheElementIn: self ].
 	self showSlide: self slides first.
 	container addChild: slidesContainer.
 	container addChild: self slidesDropdown.
@@ -90,6 +95,7 @@ GtSlideShow >> create [
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowLeft build;
 		action: [ self previousStep ]).
+	StringSignal emit: 'GtSlideShow>>create created'.
 	^ container
 ]
 
@@ -116,6 +122,7 @@ GtSlideShow >> hasPreviousSlide [
 GtSlideShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
+	previews := OrderedCollection new.
 	arrowsAreVisible := false.
 	background := Color white
 ]
@@ -147,6 +154,16 @@ GtSlideShow >> openInSpace [
 		combination: (BlSingleKeyCombination new key: BlKeyboardKey pageUp);
 			action: [ self previousStep ]).
 	space show
+]
+
+{ #category : #accessing }
+GtSlideShow >> previews [
+	^ previews
+]
+
+{ #category : #accessing }
+GtSlideShow >> previewsContainer [
+	^ previewsContainer
 ]
 
 { #category : #'api - instantiation' }
@@ -198,14 +215,18 @@ GtSlideShow >> slidesDropdown [
 				constraintsDo: [:c |
 					c vertical fitContent. c horizontal matchParent ];
 				padding: (BlInsets all: 10).
-	self slides do: [:each | 
+	"self slides do: [:each | 
 			container addChild: (each asCachedElement asSpartaForm asElement asPannableElement
 				background: Color white;
 				look: BrShadowLook new;
 				margin: (BlInsets all: 10);
 				constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
-				when: BlClickEvent do: [:e | self showSlide: each])
-		 ].
+				when: BlClickEvent do: [:e | self showSlide: each])""
+		 ]."
+	self slides do: [ :each |
+		container addChild: (each asPreviewElement
+			when: BlClickEvent do: [:e | self showSlide: each]) ].
+	previewsContainer := container.
 	^ dropdown
 		constraintsDo: [ :c | c linear horizontal alignRight ];
 		padding: (BlInsets all: 10);
@@ -213,7 +234,7 @@ GtSlideShow >> slidesDropdown [
 			BrButton new
 				look: BrGlamorousButtonWithIconLook + BrGlamorousDropdownToggleLook;
 				icon: (BrGlamorousIcons hamburger asElement) ];
-		popup: [ 
+		popup: [ | el |
 			aToolbar := BrToolbar new.
 			aToolbar look: BrGlamorousToolbarLook.
 
@@ -228,11 +249,14 @@ GtSlideShow >> slidesDropdown [
 					when: BrToggleDeactivatedEvent do: [ :anEvent | 
 						arrowsAreVisible := false.
 						self updateArrows. ]).
-			BlElement new 
+			el := BlElement new 
 				size: 400@250;
 				layout: BlLinearLayout vertical;
 				addChild: (container asScrollableElement);
 				addChild: aToolbar.
+			el asBeaconSignal emit.
+			ContextStackSignal emit.
+			el
 			  ];
 		look: BrGlamorousDropdownLook new
 ]
@@ -255,4 +279,14 @@ GtSlideShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasNextSlide ])
 		ifTrue: [ nextArrow visibility: BlVisibility visible ]
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
+]
+
+{ #category : #'api - instantiation' }
+GtSlideShow >> updateSlide: aSlide [
+	| slideContentElement |
+	currentSlide = aSlide ifFalse: [ ^ self ].
+	slideContentElement := aSlide asCachedElement.
+	slideElement removeChildren.
+	slideElement addChild: slideContentElement.
+	self updateArrows
 ]

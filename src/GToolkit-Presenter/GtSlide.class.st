@@ -2,14 +2,68 @@ Class {
 	#name : #GtSlide,
 	#superclass : #BrStencil,
 	#instVars : [
-		'cachedElement'
+		'slideShow',
+		'cachedElement',
+		'previewElement'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
 GtSlide >> asCachedElement [
-	^ cachedElement ifNil: [ cachedElement := self asElement ]
+	"Answer the receiver's cached element.
+	If the contents hasn't yet been generated, answer the rendering element.
+	Must be called from the UI process."
+
+	cachedElement hasChildren ifFalse: [ cachedElement addChild: self renderingElement ].
+	^ cachedElement
+]
+
+{ #category : #accessing }
+GtSlide >> asPreviewElement [
+	"Answer the receiver's preview element.
+	If the contents hasn't yet been generated, answer the rendering element.
+	Must be called from the UI process."
+
+	previewElement hasChildren ifFalse: [ previewElement addChild: self renderingElement ].
+	^ previewElement
+
+]
+
+{ #category : #accessing }
+GtSlide >> cachedElement: aBlElement [
+	"Set the cached element.
+	May be called outside the UI process."
+
+	cachedElement enqueueTask: (BlTaskAction new action: [
+		cachedElement
+			removeChildren;
+			addChild: aBlElement;
+			invalidate.
+		slideShow updateSlide: self. ]).
+
+]
+
+{ #category : #private }
+GtSlide >> generateElements [
+	"Generate the receiver's element and preview"
+
+	"5 seconds wait."
+	self cachedElement: self asElement.
+	self setPreviewElement.
+]
+
+{ #category : #initialization }
+GtSlide >> initialize [
+
+	super initialize.
+	cachedElement := BlElement new
+		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
+		yourself.
+	previewElement := BlElement new
+		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
+		yourself.
+
 ]
 
 { #category : #accessing }
@@ -25,4 +79,63 @@ GtSlide >> nextStepWith: aSlider [
 { #category : #accessing }
 GtSlide >> previousStepWith: aSlider [
 	aSlider showSlideBefore: self
+]
+
+{ #category : #private }
+GtSlide >> queueCacheElementIn: aGtSlideShow [
+	"Submit a task to cache the receiver's element"
+
+	| task |
+	slideShow := aGtSlideShow.
+	task := [ self generateElements ] asBlTktCommand asBlTktSingleCommand.
+	task identifier: self.
+	task := task asBlTktLoggingCommand.
+
+	BlTktWorkerProvider highUICPUBoundPool schedule: task.
+]
+
+{ #category : #private }
+GtSlide >> renderingElement [
+	"Answer an element that can be added as a child and displays the standard 'rendering' image"
+
+	| rendering element backgroundPaint container |
+
+	rendering := 'Rendering...' asRopedText 
+			foreground: Color gray lighter;
+			fontSize: 12.
+	element := (BlTextElement new 
+				text: rendering;
+				geometry: (BlRectangle cornerRadius: 7);
+				padding: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
+				constraintsDo: [ :c | 
+					c frame horizontal alignCenter.
+					c frame vertical alignCenter ]).
+	backgroundPaint := BlLinearGradientPaint new
+						stops:
+							{(0.0 -> Color white ).
+							(0.25 -> Color white darker).
+							(1.0 -> Color white)};
+						start: 0@0;
+						end: 1@1.
+	element background: backgroundPaint.
+	container := BlElement new
+		layout: BlFrameLayout new;
+		constraintsDo: [ :c | 
+			c horizontal matchParent.
+			c vertical matchParent ];
+		addChild: element.
+	^container
+]
+
+{ #category : #accessing }
+GtSlide >> setPreviewElement [
+	"Set the preview element.
+	May be called outside the UI process."
+
+	previewElement enqueueTask: (BlTaskAction new action: [
+		previewElement
+			removeChildren;
+			addChild: cachedElement asSpartaForm asElement asPannableElement;
+			invalidate ]).
+
 ]
