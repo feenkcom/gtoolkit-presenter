@@ -58,6 +58,9 @@ GtSlide >> initialize [
 		yourself.
 	previewElement := BlElement new
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
+		background: Color white;
+		look: BrShadowLook new;
+		margin: (BlInsets all: 10);
 		yourself.
 
 ]
