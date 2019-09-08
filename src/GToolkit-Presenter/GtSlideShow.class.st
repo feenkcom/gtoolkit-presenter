@@ -99,6 +99,12 @@ GtSlideShow >> create [
 	^ container
 ]
 
+{ #category : #'api - tasks' }
+GtSlideShow >> enqueueTask: aTask [
+
+	slidesContainer enqueueTask: aTask
+]
+
 { #category : #accessing }
 GtSlideShow >> gtSlidesFor: aView [
 	<gtView>

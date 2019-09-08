@@ -30,27 +30,23 @@ GtSlide >> asPreviewElement [
 
 ]
 
-{ #category : #accessing }
-GtSlide >> cachedElement: aBlElement [
-	"Set the cached element.
-	May be called outside the UI process."
-
-	cachedElement enqueueTask: (BlTaskAction new action: [
-		cachedElement
-			removeChildren;
-			addChild: aBlElement;
-			invalidate.
-		slideShow updateSlide: self. ]).
-
-]
-
 { #category : #private }
 GtSlide >> generateElements [
 	"Generate the receiver's element and preview"
 
+	| element formElement |
+
 	"5 seconds wait."
-	self cachedElement: self asElement.
-	self setPreviewElement.
+	element := self asElement.
+	formElement := element asSpartaForm asElement asPannableElement.
+	slideShow enqueueTask: (BlTaskAction new action: [
+		cachedElement
+			removeChildren;
+			addChild: element.
+		slideShow updateSlide: self.
+		previewElement
+			removeChildren;
+			addChild: formElement ]).
 ]
 
 { #category : #initialization }
@@ -125,20 +121,4 @@ GtSlide >> renderingElement [
 			c vertical matchParent ];
 		addChild: element.
 	^container
-]
-
-{ #category : #accessing }
-GtSlide >> setPreviewElement [
-	"Set the preview element.
-	May be called outside the UI process."
-
-	| formElement |
-
-	formElement := self asElement asSpartaForm asElement asPannableElement.
-	previewElement enqueueTask: (BlTaskAction new action: [
-		previewElement
-			removeChildren;
-			addChild: formElement ";
-			invalidate". ]).
-
 ]
