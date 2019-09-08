@@ -132,10 +132,13 @@ GtSlide >> setPreviewElement [
 	"Set the preview element.
 	May be called outside the UI process."
 
+	| formElement |
+
+	formElement := self asElement asSpartaForm asElement asPannableElement.
 	previewElement enqueueTask: (BlTaskAction new action: [
 		previewElement
 			removeChildren;
-			addChild: cachedElement asSpartaForm asElement asPannableElement;
-			invalidate ]).
+			addChild: formElement ";
+			invalidate". ]).
 
 ]
