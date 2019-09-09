@@ -30,6 +30,16 @@ GtSlide >> asPreviewElement [
 
 ]
 
+{ #category : #accessing }
+GtSlide >> cachedElement [
+	^ cachedElement
+]
+
+{ #category : #accessing }
+GtSlide >> cachedElement: anObject [
+	cachedElement := anObject
+]
+
 { #category : #private }
 GtSlide >> generateElements [
 	"Generate the receiver's element and preview"
@@ -73,6 +83,16 @@ GtSlide >> name [
 { #category : #accessing }
 GtSlide >> nextStepWith: aSlider [
 	aSlider showSlideAfter: self
+]
+
+{ #category : #accessing }
+GtSlide >> previewElement [
+	^ previewElement
+]
+
+{ #category : #accessing }
+GtSlide >> previewElement: anObject [
+	previewElement := anObject
 ]
 
 { #category : #accessing }
@@ -124,4 +144,14 @@ GtSlide >> renderingElement [
 			c vertical matchParent ];
 		addChild: element.
 	^container
+]
+
+{ #category : #accessing }
+GtSlide >> slideShow [
+	^ slideShow
+]
+
+{ #category : #accessing }
+GtSlide >> slideShow: anObject [
+	slideShow := anObject
 ]
