@@ -2,17 +2,22 @@ Class {
 	#name : #GtElementSlide,
 	#superclass : #GtSlide,
 	#instVars : [
-		'element'
+		'elementBlock'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
 GtElementSlide >> create [
-	^ element margin: (BlInsets all: 50)
+	^ elementBlock value margin: (BlInsets all: 50)
 ]
 
 { #category : #accessing }
-GtElementSlide >> element: anObject [
-	element := anObject
+GtElementSlide >> element: aBlock [
+	elementBlock := aBlock
+]
+
+{ #category : #accessing }
+GtElementSlide >> stencil: aBlock [
+	elementBlock := aBlock
 ]
