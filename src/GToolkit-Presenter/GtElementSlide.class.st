@@ -9,10 +9,10 @@ Class {
 
 { #category : #'api - instantiation' }
 GtElementSlide >> create [
-	^ element margin: (BlInsets all: 50)
+	^ element value margin: (BlInsets all: 50)
 ]
 
 { #category : #accessing }
-GtElementSlide >> element: anObject [
-	element := anObject
+GtElementSlide >> element: aBlock [
+	element := aBlock
 ]
