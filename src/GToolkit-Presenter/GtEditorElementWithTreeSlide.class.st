@@ -6,31 +6,48 @@ Class {
 
 { #category : #accessing }
 GtEditorElementWithTreeSlide >> create [
-	| container element preview |
-	container := BlElement new 
-   	constraintsDo: [:c |
-   		c vertical matchParent.
-   		c horizontal matchParent ];
+	| container element preview editorElement |
+	container := BlElement new
+		constraintsDo: [ :c | 
+			c vertical matchParent.
+			c horizontal matchParent ];
 		layout: BlLinearLayout vertical alignTopCenter.
-	element := GtWhatMakesBlocSpecialExplanation new editorOnSampleText
-		constraintsDo: [:c |
+	editorElement := GtWhatMakesBlocSpecialExplanation new editorOnSampleText
+		constraintsDo: [ :c | 
 			c vertical fitContent.
-			c horizontal fitContent. ];
+			c horizontal fitContent ];
 		margin: (BlInsets all: 10);
 		padding: (BlInsets all: 10);
 		look: BrShadowLook;
 		background: Color white;
-		addShortcut: (BlShortcut new
-			combination: BlKeyCombination primaryG;
-			action: [ 
-				| m |
-				preview removeChildren. 
-				m := GtMondrian new.
-				element paintEditorElementsWith: m.
-				preview addChild: (m asElement) ]).
+		addShortcut:
+			(BlShortcut new
+				combination: BlKeyCombination primaryG;
+				action: [ | m |
+					preview removeChildren.
+					m := GtMondrian new.
+					editorElement paintEditorElementsWith: m.
+					preview addChild: m asElement ]).
+	element := BlElement new
+		constraintsDo: [ :c | 
+			c vertical fitContent.
+			c horizontal fitContent ];
+		layout: BlLinearLayout vertical alignCenter;
+		addChild: editorElement;
+		addChild:
+			(BrLabel new
+				constraintsDo: [ :c | 
+					c vertical fitContent.
+					c horizontal fitContent ];
+				look: BrGlamorousLabelLook;
+				text:
+					(('Press ' , BlKeyCombination primaryG printString
+						, ' to see the element tree behind the editor') asRopedText
+						glamorousRegularSmallSize;
+						foreground: Color gray)).
 	container addChild: element.
 	preview := BlElement new
-		constraintsDo: [:c |
+		constraintsDo: [ :c | 
 			c vertical matchParent.
 			c horizontal matchParent ].
 	container addChild: preview.
