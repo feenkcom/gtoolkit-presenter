@@ -66,6 +66,19 @@ GtLiveElementTreeSlide >> create [
 	^ container
 ]
 
+{ #category : #initialization }
+GtLiveElementTreeSlide >> initialize [ 
+	| text styler |
+	super initialize.
+	text := (Number >> #printString) sourceCode asRopedText.
+	styler := BrRBTextStyler new.
+	styler classOrMetaClass: OrderedCollection.
+	styler style: text.
+	
+	targetElement := (text gtTreeFor: GtPhlowEmptyView new) asElementDo: #yourself.
+	targetElement forceLayout.
+]
+
 { #category : #accessing }
 GtLiveElementTreeSlide >> targetElement [
 	^ targetElement
