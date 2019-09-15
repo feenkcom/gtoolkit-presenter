@@ -6,13 +6,20 @@ Class {
 
 { #category : #'api - instantiation' }
 GtSpotterSlide >> create [
-	| aSpotter aSpotterElement | 
+	| aSpotter aSpotterElement container |
 	aSpotter := GtSpotter new.
 	aSpotterElement := GtSpotterElementWithPreview new.
 	aSpotterElement spotterModel: aSpotter.
 	aSpotterElement searchField requestFocus.
-	aSpotterElement 
+	aSpotterElement 	
+		size: 600@400;
 		look: BrShadowLook;
-		margin: (BlInsets all: 10).
-	^ aSpotterElement
+		margin: (BlInsets all: 20).
+	container := BlElement new
+		constraintsDo: [ :c | 
+			c vertical matchParent.
+			c horizontal matchParent ];
+		layout: BlLinearLayout new alignCenter;
+		addChild: aSpotterElement.
+	^ container
 ]

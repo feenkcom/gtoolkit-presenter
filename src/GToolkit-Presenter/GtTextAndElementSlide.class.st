@@ -31,8 +31,6 @@ GtTextAndElementSlide >> create [
 				ct vertical matchParent.
 				ct horizontal matchParent ];
 			layout: BlLinearLayout vertical;
-			look: BrShadowLook;
-			background: Color white;
 			margin: (BlInsets all: 20);
 			addChild: (elementBlock value constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ])).
 	^ container
