@@ -14,6 +14,7 @@ GtPlaygroundSlide >> create [
 
 { #category : #initialization }
 GtPlaygroundSlide >> initialize [
+	super initialize.
 	playbook := GtPlayBook newDefault.
 ]
 
