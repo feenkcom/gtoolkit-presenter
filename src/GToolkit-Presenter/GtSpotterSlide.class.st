@@ -8,7 +8,7 @@ Class {
 GtSpotterSlide >> create [
 	| aSpotter aSpotterElement container |
 	aSpotter := GtSpotter new.
-	aSpotterElement := GtSpotterElementWithPreview new.
+	aSpotterElement := GtSpotterElement new.
 	aSpotterElement spotterModel: aSpotter.
 	aSpotterElement searchField requestFocus.
 	aSpotterElement 	
