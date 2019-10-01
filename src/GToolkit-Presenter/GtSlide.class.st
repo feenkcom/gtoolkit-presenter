@@ -3,6 +3,7 @@ Class {
 	#superclass : #BrStencil,
 	#instVars : [
 		'slideShow',
+		'slideIndex',
 		'cachedElement',
 		'previewElement'
 	],
@@ -104,13 +105,10 @@ GtSlide >> previousStepWith: aSlider [
 GtSlide >> queueCacheElementIn: aGtSlideShow [
 	"Submit a task to cache the receiver's element"
 
-	| task |
 	slideShow := aGtSlideShow.
-	task := [ self generateElements ] asBlTktCommand asBlTktSingleCommand.
-	task identifier: self.
-	task := task asBlTktLoggingCommand.
-
-	BlTktWorkerProvider highUICPUBoundPool schedule: task.
+	(GtSlideCommand new slide: self)
+		asBlTktLoggingCommand
+			scheduleInUIPool.
 ]
 
 { #category : #private }
@@ -144,6 +142,16 @@ GtSlide >> renderingElement [
 			c vertical matchParent ];
 		addChild: element.
 	^container
+]
+
+{ #category : #accessing }
+GtSlide >> slideIndex [
+	^ slideIndex
+]
+
+{ #category : #accessing }
+GtSlide >> slideIndex: anObject [
+	slideIndex := anObject
 ]
 
 { #category : #accessing }
