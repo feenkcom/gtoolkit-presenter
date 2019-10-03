@@ -37,7 +37,7 @@ GtSlideShow >> background: anObject [
 GtSlideShow >> create [
 	| previousElement nextElement container |
 
-	container := BlElement new.
+	container := GtSlideShowElement new.
 	container 
 		background: self background;
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
