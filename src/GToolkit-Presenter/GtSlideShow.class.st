@@ -11,8 +11,8 @@ Class {
 		'arrowsAreVisible',
 		'title',
 		'background',
-		'previews',
-		'previewsContainer'
+		'previewsContainer',
+		'dropdown'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -20,7 +20,7 @@ Class {
 { #category : #accessing }
 GtSlideShow >> addSlide: aSlide [
 	slides add: aSlide.
-	previews add: nil.
+
 ]
 
 { #category : #accessing }
@@ -37,8 +37,7 @@ GtSlideShow >> background: anObject [
 GtSlideShow >> create [
 	| previousElement nextElement container |
 
-	StringSignal emit: 'GtSlideShow>>create'.
-	container := BlElement new.
+	container := GtSlideShowElement new.
 	container 
 		background: self background;
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
@@ -82,7 +81,10 @@ GtSlideShow >> create [
 		addChild: previousElement;
 		addChild: slideElement;
 		addChild: nextElement.
-	self slides do: [ :slide | slide queueCacheElementIn: self ].
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideIndex: index;
+			queueCacheElementIn: self ].
 	self showSlide: self slides first.
 	container addChild: slidesContainer.
 	container addChild: self slidesDropdown.
@@ -95,8 +97,23 @@ GtSlideShow >> create [
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowLeft build;
 		action: [ self previousStep ]).
-	StringSignal emit: 'GtSlideShow>>create created'.
 	^ container
+]
+
+{ #category : #accessing }
+GtSlideShow >> currentSlideIndex [
+	"Answer the index of the currently displayed slide.
+	nil if the slides aren't yet displayed"
+
+	^currentSlide
+		ifNil: [ nil ] 
+		ifNotNil: [ currentSlide slideIndex ]
+]
+
+{ #category : #accessing }
+GtSlideShow >> dropdown [ 
+
+	^dropdown
 ]
 
 { #category : #'api - tasks' }
@@ -128,7 +145,6 @@ GtSlideShow >> hasPreviousSlide [
 GtSlideShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
-	previews := OrderedCollection new.
 	arrowsAreVisible := false.
 	background := Color white
 ]
@@ -163,11 +179,6 @@ GtSlideShow >> openInSpace [
 ]
 
 { #category : #accessing }
-GtSlideShow >> previews [
-	^ previews
-]
-
-{ #category : #accessing }
 GtSlideShow >> previewsContainer [
 	^ previewsContainer
 ]
@@ -192,12 +203,13 @@ GtSlideShow >> showSlide: aSlide [
 
 { #category : #'api - instantiation' }
 GtSlideShow >> showSlideAfter: aSlide [
-	self showSlide: (self slides after: currentSlide)
+
+	self showSlide: (self slides at: currentSlide slideIndex + 1)
 ]
 
 { #category : #'api - instantiation' }
 GtSlideShow >> showSlideBefore: aSlide [
-	self showSlide: (self slides before: currentSlide)
+	self showSlide: (self slides at: currentSlide slideIndex - 1)
 ]
 
 { #category : #accessing }
@@ -210,9 +222,15 @@ GtSlideShow >> slides: anObject [
 	slides := anObject
 ]
 
+{ #category : #accessing }
+GtSlideShow >> slidesContainer [
+
+	^slidesContainer
+]
+
 { #category : #'api - instantiation' }
 GtSlideShow >> slidesDropdown [
-	| dropdown container aToolbar |
+	| container aToolbar |
 				
 	dropdown := BrDropdown new.
 	container := BlElement new.
@@ -221,14 +239,6 @@ GtSlideShow >> slidesDropdown [
 				constraintsDo: [:c |
 					c vertical fitContent. c horizontal matchParent ];
 				padding: (BlInsets all: 10).
-	"self slides do: [:each | 
-			container addChild: (each asCachedElement asSpartaForm asElement asPannableElement
-				background: Color white;
-				look: BrShadowLook new;
-				margin: (BlInsets all: 10);
-				constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
-				when: BlClickEvent do: [:e | self showSlide: each])""
-		 ]."
 	self slides do: [ :each |
 		container addChild: (each asPreviewElement
 			when: BlClickEvent do: [:e | self showSlide: each]) ].
@@ -260,8 +270,6 @@ GtSlideShow >> slidesDropdown [
 				layout: BlLinearLayout vertical;
 				addChild: (container asScrollableElement);
 				addChild: aToolbar.
-			el asBeaconSignal emit.
-			ContextStackSignal emit.
 			el
 			  ];
 		look: BrGlamorousDropdownLook new
