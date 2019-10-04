@@ -37,7 +37,7 @@ GtSlideShow >> background: anObject [
 GtSlideShow >> create [
 	| previousElement nextElement container |
 
-	container := GtSlideShowElement new.
+	container := GtSlideShowElement new slideShow: self.
 	container 
 		background: self background;
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
@@ -83,8 +83,8 @@ GtSlideShow >> create [
 		addChild: nextElement.
 	self slides withIndexDo: [ :slide :index | 
 		slide 
-			slideIndex: index;
-			queueCacheElementIn: self ].
+			slideShow: self;
+			slideIndex: index ].
 	self showSlide: self slides first.
 	container addChild: slidesContainer.
 	container addChild: self slidesDropdown.
@@ -158,6 +158,13 @@ GtSlideShow >> makeArrowsVisible [
 GtSlideShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self
+]
+
+{ #category : #'hooks - children' }
+GtSlideShow >> onAddedToSceneGraph [ 
+	"If my element has been added to a scene graph ensure the slides have been generated"
+
+	self slides do: [ :each | each queueAsyncUpdate ].
 ]
 
 { #category : #'api - instantiation' }

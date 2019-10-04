@@ -13,11 +13,10 @@ Class {
 { #category : #accessing }
 GtSlide >> asCachedElement [
 	"Answer the receiver's cached element.
-	If the contents hasn't yet been generated, answer the rendering element.
+	If the contents hasn't yet been generated, display the rendering element.
 	Must be called from the UI process."
 
-	cachedElement hasChildren ifFalse: [ cachedElement addChild: self renderingElement ].
-	^ cachedElement
+	^ cachedElement withRendering
 ]
 
 { #category : #accessing }
@@ -26,7 +25,7 @@ GtSlide >> asPreviewElement [
 	If the contents hasn't yet been generated, answer the rendering element.
 	Must be called from the UI process."
 
-	previewElement hasChildren ifFalse: [ previewElement addChild: self renderingElement ].
+	previewElement hasChildren ifFalse: [ previewElement addChild: self cachedElement renderingElement ].
 	^ previewElement
 
 ]
@@ -52,8 +51,7 @@ GtSlide >> generateElements [
 	formElement := element asSpartaForm asElement asPannableElement.
 	slideShow enqueueTask: (BlTaskAction new action: [
 		cachedElement
-			removeChildren;
-			addChild: element.
+			slideElement: element.
 		slideShow updateSlide: self.
 		previewElement
 			removeChildren;
@@ -64,8 +62,9 @@ GtSlide >> generateElements [
 GtSlide >> initialize [
 
 	super initialize.
-	cachedElement := BlElement new
+	cachedElement := GtSlideElement new
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
+		slide: self;
 		yourself.
 	previewElement := BlElement new
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
@@ -79,6 +78,12 @@ GtSlide >> initialize [
 { #category : #accessing }
 GtSlide >> name [
 	^ (self class name gtRemovePrefix: 'Gt') gtRemoveSuffix: 'Slide'
+]
+
+{ #category : #testing }
+GtSlide >> needsUpdate [ 
+
+	^cachedElement needsUpdate
 ]
 
 { #category : #accessing }
@@ -102,46 +107,13 @@ GtSlide >> previousStepWith: aSlider [
 ]
 
 { #category : #private }
-GtSlide >> queueCacheElementIn: aGtSlideShow [
-	"Submit a task to cache the receiver's element"
+GtSlide >> queueAsyncUpdate [
+	"Submit a task to cache the receiver's elements"
 
-	slideShow := aGtSlideShow.
-	(GtSlideCommand new slide: self)
-		asBlTktLoggingCommand
-			scheduleInUIPool.
-]
-
-{ #category : #private }
-GtSlide >> renderingElement [
-	"Answer an element that can be added as a child and displays the standard 'rendering' image"
-
-	| rendering element backgroundPaint container |
-
-	rendering := 'Rendering...' asRopedText 
-			foreground: Color gray lighter;
-			fontSize: 12.
-	element := (BlTextElement new 
-				text: rendering;
-				geometry: (BlRectangle cornerRadius: 7);
-				padding: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
-				constraintsDo: [ :c | 
-					c frame horizontal alignCenter.
-					c frame vertical alignCenter ]).
-	backgroundPaint := BlLinearGradientPaint new
-						stops:
-							{(0.0 -> Color white ).
-							(0.25 -> Color white darker).
-							(1.0 -> Color white)};
-						start: 0@0;
-						end: 1@1.
-	element background: backgroundPaint.
-	container := BlElement new
-		layout: BlFrameLayout new;
-		constraintsDo: [ :c | 
-			c horizontal matchParent.
-			c vertical matchParent ];
-		addChild: element.
-	^container
+	cachedElement needsUpdate ifTrue: [ 
+		(GtSlideCommand new slide: self)
+			asBlTktLoggingCommand
+				scheduleInUIPool ].
 ]
 
 { #category : #accessing }
