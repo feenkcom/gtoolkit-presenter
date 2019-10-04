@@ -46,8 +46,8 @@ GtSlideCommand >> entryPriority [
 GtSlideCommand >> execute [ 
 	"Generate the receiver's slide's bloc elements"
 
-"	self slideShow slidesContainer isAttachedToSceneGraph ifFalse: [ ^self ]."
-	slide generateElements
+	slide needsUpdate ifTrue:
+		[ slide generateElements ]
 ]
 
 { #category : #testing }
