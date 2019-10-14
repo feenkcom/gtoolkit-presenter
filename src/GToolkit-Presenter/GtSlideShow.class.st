@@ -238,7 +238,6 @@ GtSlideShow >> slidesContainer [
 { #category : #'api - instantiation' }
 GtSlideShow >> slidesDropdown [
 	| container aToolbar |
-	dropdown := BrButton new.
 	container := BlElement new.
 	container
 		layout: BlFlowLayout new;
@@ -254,43 +253,45 @@ GtSlideShow >> slidesDropdown [
 						when: BlClickEvent
 						do: [ :e | self showSlide: each ]) ].
 	previewsContainer := container.
-	^ dropdown
-		look:
+	^ dropdown := BrButton new 
+		margin: (BlInsets all: 10);
+		icon: BrGlamorousIcons hamburger asElement;
+		label: 'Slides';
+		look: 
 			BrGlamorousButtonWithIconLook
-				+
-					(BrGlamorousWithDropdownLook
-						handle: [ BrButton new
-								look:
-									BrGlamorousButtonWithIconLook - BrGlamorousWithLabelTooltipLook
-										- BrGlamorousButtonExteriorLook;
-								icon: BrGlamorousIcons hamburger asElement;
-								yourself ]
-						content: [ | el |
-							aToolbar := BrToolbar new.
-							aToolbar look: BrGlamorousToolbarLook.
-							aToolbar
-								addItem:
-									(BrToggle new
-										beSmall;
-										look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
-										icon: BrGlamorousIcons edit asElement;
-										when: BrToggleActivatedEvent
-											do: [ :anEvent | 
-											arrowsAreVisible := true.
-											self updateArrows ];
-										when: BrToggleDeactivatedEvent
-											do: [ :anEvent | 
-											arrowsAreVisible := false.
-											self updateArrows ]).
-							el := BlElement new
-								size: 400 @ 250;
-								layout: BlLinearLayout vertical;
-								addChild: container asScrollableElement;
-								addChild: aToolbar.
-							el ]);
-		constraintsDo: [ :c | c linear horizontal alignRight ];
-		padding: (BlInsets all: 10);
-		yourself
+			+ (BrGlamorousWithDropdownLook
+				handle: [ BrButton new
+						look: BrGlamorousButtonWithIconLook 
+							- BrGlamorousWithLabelTooltipLook
+							- BrGlamorousButtonExteriorLook;
+						icon: BrGlamorousIcons hamburger asElement;
+						yourself ]
+				content: [ | el |
+					aToolbar := BrToolbar new.
+					aToolbar look: BrGlamorousToolbarLook.
+					aToolbar
+						addItem:
+							(BrToggle new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
+								icon: BrGlamorousIcons edit asElement;
+								when: BrToggleActivatedEvent
+									do: [ :anEvent | 
+									arrowsAreVisible := true.
+									self updateArrows ];
+								when: BrToggleDeactivatedEvent
+									do: [ :anEvent | 
+									arrowsAreVisible := false.
+									self updateArrows ]).
+					el := BlElement new
+						size: 400 @ 250;
+						layout: BlLinearLayout vertical;
+						addChild: container asScrollableElement;
+						addChild: aToolbar.
+					el ]);
+			constraintsDo: [ :c | c linear horizontal alignRight ];
+			padding: (BlInsets all: 10);
+			yourself.
 ]
 
 { #category : #accessing }
