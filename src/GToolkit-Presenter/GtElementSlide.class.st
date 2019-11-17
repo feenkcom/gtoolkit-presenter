@@ -9,7 +9,7 @@ Class {
 
 { #category : #'api - instantiation' }
 GtElementSlide >> create [
-	^ elementBlock value margin: (BlInsets all: 50)
+	^ elementBlock value
 ]
 
 { #category : #accessing }
