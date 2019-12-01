@@ -9,7 +9,7 @@ Class {
 
 { #category : #'api - instantiation' }
 GtPlaygroundSlide >> create [
-	^ GtInspector createOnPlayBook: playbook
+	^ GtInspector withToolOn: playbook
 ]
 
 { #category : #initialization }
