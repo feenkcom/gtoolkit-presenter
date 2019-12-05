@@ -110,10 +110,12 @@ GtSlide >> previousStepWith: aSlider [
 GtSlide >> queueAsyncUpdate [
 	"Submit a task to cache the receiver's elements"
 
-	cachedElement needsUpdate ifTrue: [ 
-		(GtSlideCommand new slide: self)
-			asBlTktLoggingCommand
-				scheduleInUIPool ].
+	| aCommand |
+	cachedElement needsUpdate ifFalse: [ ^ self ].
+	aCommand := GtSlideCommand new slide: self.
+	BlUseAsyncFeatures 
+		ifEnabledDo: [ aCommand asBlTktLoggingCommand scheduleInUIPool ] 
+		otherwise: [ aCommand execute ]
 ]
 
 { #category : #accessing }
