@@ -123,6 +123,19 @@ GtSlideShow >> enqueueTask: aTask [
 ]
 
 { #category : #accessing }
+GtSlideShow >> exportSlides [
+	self slides
+		withIndexDo: [ :eachSlide :anIndex |	
+			| eachCachedElement eachSlideElement |		
+
+			eachCachedElement := eachSlide asCachedElement.
+			eachSlideElement := eachCachedElement slideElement
+				ifNil: [ eachCachedElement ].
+			eachSlideElement asSpartaForm
+				writePNGFileNamed: self title, ' - ', anIndex asString, '.png' ]
+]
+
+{ #category : #accessing }
 GtSlideShow >> gtSlidesFor: aView [
 	<gtView>
 	^ aView list 
@@ -282,7 +295,13 @@ GtSlideShow >> slidesDropdown [
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent | 
 									arrowsAreVisible := false.
-									self updateArrows ]).
+									self updateArrows ]);
+						addItem:
+							(BrButton new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook;
+								icon: BrGlamorousIcons save asElement;
+								action: [ self exportSlides ]).
 					el := BlElement new
 						size: 400 @ 250;
 						layout: BlLinearLayout vertical;
