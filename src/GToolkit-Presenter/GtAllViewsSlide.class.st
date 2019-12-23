@@ -14,7 +14,7 @@ GtAllViewsSlide >> create [
 		layout: (BlGridLayout new columnCount: 3).
 	{21/2 . 
 	FileLocator imageDirectory asFileReference .
-	GtIcebergUtility documentAtPath: (Path * 'feenkcom' / 'gtoolkit' / 'doc' / 'gtoolkit.png').
+	GtIcebergUtility resourceAtPath: (Path * 'feenkcom' / 'gtoolkit' / 'doc' / 'gtoolkit.png').
 	BlBezierElementExamples new curveWithAnchors.
 	GtGraphCircleNeighbourhoodExamples new emptyNeighborhoodWithThreeCirclesAndSpace .
 	GtWhatMakesBlocSpecialExplanation new sampleText} do: [:x | 
