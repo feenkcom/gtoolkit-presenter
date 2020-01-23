@@ -65,8 +65,7 @@ GtSlide >> initialize [
 		yourself.
 	previewElement := BlLazyElement new
 		withGlamorousPreview;
-		updateWhenInScene;
-		elementBuilder: [ self asElement ];
+		neverUpdate; "I will be updated by the cached element"
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
 		background: Color white;
 		look: BrShadowLook new;
@@ -93,6 +92,7 @@ GtSlide >> nextStepWith: aSlider [
 
 { #category : #accessing }
 GtSlide >> previewElement [
+	previewElement hasChildren ifFalse: [ previewElement schedulePreview ].
 	^ previewElement
 ]
 
