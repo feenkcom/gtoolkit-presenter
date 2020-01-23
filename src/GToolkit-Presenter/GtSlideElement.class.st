@@ -54,13 +54,6 @@ GtSlideElement >> queueEntry [
 	^self shouldNotImplement 
 ]
 
-{ #category : #'async preview' }
-GtSlideElement >> schedulePreviewIn: anElement [
-	"schedule a preview display"
-	self flag: 'this method should not exist, we need to rework the slide'.
-	self previewStrategy schedulePreviewIn: anElement
-]
-
 { #category : #accessing }
 GtSlideElement >> slide [
 	^ slide

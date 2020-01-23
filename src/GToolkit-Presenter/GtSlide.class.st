@@ -21,12 +21,9 @@ GtSlide >> asCachedElement [
 { #category : #accessing }
 GtSlide >> asPreviewElement [
 	"Answer the receiver's preview element.
-	If the contents hasn't yet been generated, answer the rendering element.
 	Must be called from the UI process."
 
-	previewElement hasChildren ifFalse: [ self cachedElement schedulePreviewIn: previewElement ].
 	^ previewElement
-
 ]
 
 { #category : #accessing }
@@ -62,10 +59,12 @@ GtSlide >> initialize [
 
 	super initialize.
 	cachedElement := GtSlideElement new
+		withGlamorousPreview;
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
 		slide: self;
 		yourself.
-	previewElement := BlElement new
+	previewElement := BlAsyncElement new
+		withGlamorousPreview;
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
 		background: Color white;
 		look: BrShadowLook new;
