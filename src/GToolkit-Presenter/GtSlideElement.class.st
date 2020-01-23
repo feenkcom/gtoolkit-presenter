@@ -8,6 +8,11 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
+{ #category : #initialization }
+GtSlideElement >> defaultPreviewStrategy [
+	^ BlAsyncPreviewStrategy delayedStencil: BrGlamorousAsyncElementProgressPreviewStencil new
+]
+
 { #category : #drawing }
 GtSlideElement >> drawOnSpartaCanvas: aCanvas [
 
@@ -49,6 +54,13 @@ GtSlideElement >> queueEntry [
 	^self shouldNotImplement 
 ]
 
+{ #category : #'async preview' }
+GtSlideElement >> schedulePreviewIn: anElement [
+	"schedule a preview display"
+	self flag: 'this method should not exist, we need to rework the slide'.
+	self previewStrategy schedulePreviewIn: anElement
+]
+
 { #category : #accessing }
 GtSlideElement >> slide [
 	^ slide
@@ -82,12 +94,4 @@ GtSlideElement >> slideShowIsAttachedToSceneGraph [
 	The receiver will only be attached to a scene graph while it is the current slide."
 
 	^self slide slideShow slidesContainer isAttachedToSceneGraph
-]
-
-{ #category : #accessing }
-GtSlideElement >> withRendering [
-	"Answer the receiver and add the Rendering element if the slide hasn't yet been generated"
-
-	slideElement ifNil: [ self addChild: self renderingElement ].
-	^self
 ]
