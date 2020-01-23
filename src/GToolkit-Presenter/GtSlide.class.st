@@ -13,10 +13,9 @@ Class {
 { #category : #accessing }
 GtSlide >> asCachedElement [
 	"Answer the receiver's cached element.
-	If the contents hasn't yet been generated, display the rendering element.
 	Must be called from the UI process."
 
-	^ cachedElement withRendering
+	^ cachedElement
 ]
 
 { #category : #accessing }
@@ -25,7 +24,7 @@ GtSlide >> asPreviewElement [
 	If the contents hasn't yet been generated, answer the rendering element.
 	Must be called from the UI process."
 
-	previewElement hasChildren ifFalse: [ previewElement addChild: self cachedElement renderingElement ].
+	previewElement hasChildren ifFalse: [ self cachedElement schedulePreviewIn: previewElement ].
 	^ previewElement
 
 ]
