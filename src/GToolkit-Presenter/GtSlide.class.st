@@ -63,8 +63,10 @@ GtSlide >> initialize [
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
 		slide: self;
 		yourself.
-	previewElement := BlAsyncElement new
+	previewElement := BlLazyElement new
 		withGlamorousPreview;
+		updateWhenInScene;
+		elementBuilder: [ self asElement ];
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
 		background: Color white;
 		look: BrShadowLook new;
