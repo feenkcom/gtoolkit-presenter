@@ -52,16 +52,21 @@ GtLabelAndElementSlide >> initialize [
 ]
 
 { #category : #accessing }
+GtLabelAndElementSlide >> newText: aText [
+	self newTextWithFormat: (aText asRopedText fontSize: 30; glamorousRegularFont)
+]
+
+{ #category : #'as yet unclassified' }
+GtLabelAndElementSlide >> newTextWithFormat: aText [
+	textPieces add: aText.
+]
+
+{ #category : #accessing }
 GtLabelAndElementSlide >> stencil: aBlock [
 	elementBlock := aBlock.
 ]
 
 { #category : #accessing }
 GtLabelAndElementSlide >> text: aText [
-	self textWithFormat: (aText asRopedText fontSize: 30; glamorousRegularFont)
-]
-
-{ #category : #'as yet unclassified' }
-GtLabelAndElementSlide >> textWithFormat: aText [
-	textPieces add: aText.
+	self newText: aText
 ]
