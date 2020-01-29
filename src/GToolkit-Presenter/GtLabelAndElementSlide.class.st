@@ -52,13 +52,18 @@ GtLabelAndElementSlide >> initialize [
 ]
 
 { #category : #accessing }
+GtLabelAndElementSlide >> newFadedText: aText [
+	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize; foreground: Color gray)
+]
+
+{ #category : #accessing }
 GtLabelAndElementSlide >> newText: aText [
-	self newTextWithFormat: (aText asRopedText fontSize: 30; glamorousRegularFont)
+	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize)
 ]
 
 { #category : #'as yet unclassified' }
 GtLabelAndElementSlide >> newTextWithFormat: aText [
-	textPieces add: aText.
+	textPieces add: aText asRopedText.
 ]
 
 { #category : #accessing }
