@@ -1,6 +1,9 @@
 Class {
 	#name : #GtMultipleViewsForOneObjectSlide,
 	#superclass : #GtInspectorViewsSlide,
+	#instVars : [
+		'containerLayout'
+	],
 	#category : #'GToolkit-Presenter'
 }
 
@@ -12,7 +15,7 @@ GtMultipleViewsForOneObjectSlide >> create [
 		constraintsDo: [:c |
 			c horizontal fitContent.
 			c vertical fitContent ];
-		layout: BlLinearLayout horizontal.
+		layout: containerLayout.
 	{
 		(object gtTextFor: GtPhlowView empty) . 
 		(object gtTreeFor: GtPhlowView empty) . 
@@ -36,4 +39,20 @@ GtMultipleViewsForOneObjectSlide >> create [
 							margin: (BlInsets all: 20);
 							addChild: e)])) ].
 	^ container asPannableElement
+]
+
+{ #category : #'api - instantiation' }
+GtMultipleViewsForOneObjectSlide >> grid [
+	containerLayout := BlGridLayout new columnCount: 2; cellSpacing: 10
+]
+
+{ #category : #'api - instantiation' }
+GtMultipleViewsForOneObjectSlide >> initialize [
+	super initialize.
+	containerLayout := BlLinearLayout horizontal
+]
+
+{ #category : #'api - instantiation' }
+GtMultipleViewsForOneObjectSlide >> vertical [
+	containerLayout := BlLinearLayout vertical
 ]
