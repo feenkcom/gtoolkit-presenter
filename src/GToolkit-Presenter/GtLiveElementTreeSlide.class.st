@@ -30,14 +30,14 @@ GtLiveElementTreeSlide >> create [
 		stencil: [:el | 
 			| nodeElement meta |
 			meta := el userData associations select: [:each | each value class name endsWith: 'Context'].
-			nodeElement := BlElement new background: Color white; look: BrShadowLook.
+			nodeElement := BlElement new background: Color white; look: BrShadowLook; margin: (BlInsets all: 10).
 			meta isEmpty 
 				ifTrue: [ nodeElement geometry: BlEllipse new; size: 10@10 ];
 				ifFalse: [ nodeElement 
 					constraintsDo: [:c | c vertical fitContent. c horizontal fitContent];
 					layout: BlLinearLayout vertical;
 					padding: (BlInsets all: 10). 
-					meta do: [:aMeta | nodeElement addChild: (BlTextElement new text: (aMeta key asRopedText glamorousRegularFont fontSize: 14; foreground: Color black); padding: (BlInsets left: 10 right: 10 ) ) ]].
+					meta do: [:aMeta | nodeElement addChild: (BlTextElement new text: (aMeta key asRopedText glamorousRegularFont fontSize: 14; foreground: Color black) ) ]].
 			el userData at: #nodeElement put: nodeElement ];
 		with: targetElement withAllChildrenBreadthFirst.
 	m edges 
