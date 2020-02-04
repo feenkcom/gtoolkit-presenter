@@ -41,11 +41,11 @@ GtLiveElementTreeSlide >> create [
 			el userData at: #nodeElement put: nodeElement ];
 		with: targetElement withAllChildrenBreadthFirst.
 	m edges 
-		stencil: [ BlLineElement new border: (BlBorder paint: (BrGlamorousColors defaultHeaderBackgroundColor alpha: 0.5)) ];
+		stencil: [ BlSigmoidElement new beHorizontal; sharpness: 0.1; border: (BlBorder paint: (BrGlamorousColors defaultHeaderBackgroundColor alpha: 0.5) width: 3) ];
 		fromRightCenter;
 		toLeftCenter;
 		connectFrom: #parent.
-	m layout horizontalTree levelDistance: 10; nodeDistance: 10.
+	m layout horizontalTree levelDistance: 30; nodeDistance: 10.
 	treeElement := m asElement.
 	container addChild: (treeElement constraintsDo: [:c |
 		c horizontal matchParent.
