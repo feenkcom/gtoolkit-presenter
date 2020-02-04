@@ -20,7 +20,6 @@ GtLiveElementTreeSlide >> create [
 	container := BlElement new 
 		layout: BlLinearLayout horizontal;
 		constraintsDo: [:c |c horizontal matchParent. c vertical matchParent].
-"	targetElement removeFromParent."
 	targetContainer addChild: (targetElement constraintsDo: [:c |c horizontal matchParent. c vertical matchParent]).
 	container addChild: targetContainer.
 
@@ -31,14 +30,14 @@ GtLiveElementTreeSlide >> create [
 		stencil: [:el | 
 			| nodeElement meta |
 			meta := el userData associations select: [:each | each value class name endsWith: 'Context'].
-			nodeElement := BlElement new background: BrGlamorousColors defaultHeaderBackgroundColor.
+			nodeElement := BlElement new background: Color white; look: BrShadowLook.
 			meta isEmpty 
-				ifTrue: [ nodeElement geometry: BlEllipse new; size: 20@20 ];
+				ifTrue: [ nodeElement geometry: BlEllipse new; size: 10@10 ];
 				ifFalse: [ nodeElement 
 					constraintsDo: [:c | c vertical fitContent. c horizontal fitContent];
 					layout: BlLinearLayout vertical;
 					padding: (BlInsets all: 10). 
-					meta do: [:aMeta | nodeElement addChild: (BlTextElement new text: (aMeta key asRopedText glamorousRegularFont fontSize: 10; foreground: Color black ))  ]].
+					meta do: [:aMeta | nodeElement addChild: (BlTextElement new text: (aMeta key asRopedText glamorousRegularFont fontSize: 14; foreground: Color black); padding: (BlInsets left: 10 right: 10 ) ) ]].
 			el userData at: #nodeElement put: nodeElement ];
 		with: targetElement withAllChildrenBreadthFirst.
 	m edges 
@@ -46,7 +45,7 @@ GtLiveElementTreeSlide >> create [
 		fromRightCenter;
 		toLeftCenter;
 		connectFrom: #parent.
-	m layout horizontalTree levelDistance: 1.
+	m layout horizontalTree levelDistance: 10; nodeDistance: 10.
 	treeElement := m asElement.
 	container addChild: (treeElement constraintsDo: [:c |
 		c horizontal matchParent.
@@ -55,7 +54,7 @@ GtLiveElementTreeSlide >> create [
 	targetElement withAllChildrenBreadthFirst do: [:el | 
 		el when: BlMouseEnterEvent do: [:event | 
 			treeElement allChildrenBreadthFirstDetect: [:node | node graph model = el] ifFound: [:node |
-			highlighted do: [:each | each background: BrGlamorousColors defaultHeaderBackgroundColor].
+			highlighted do: [:each | each background: Color white].
 			highlighted := OrderedCollection new.
 			el withAllParents do: [:toHighlight | 
 				toHighlight userData at: #nodeElement ifPresent: [ :nodeElement | nodeElement graph model notNil ifTrue: [
