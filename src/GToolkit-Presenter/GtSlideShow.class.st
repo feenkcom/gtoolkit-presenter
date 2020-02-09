@@ -303,7 +303,7 @@ GtSlideShow >> slidesDropdown [
 								icon: BrGlamorousIcons save asElement;
 								action: [ self exportSlides ]).
 					el := BlElement new
-						size: 400 @ 250;
+						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
 						addChild: container asScrollableElement;
 						addChild: aToolbar.
