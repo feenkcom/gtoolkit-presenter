@@ -12,6 +12,6 @@ GtBlocSpecialClassHierarchyWithEdgesAndLinesSlide >> create [
 			example: (GtWhatMakesBlocSpecialExplanation >> #classHierarchyWithEdgesAndLines) gtExample;
 			codeExpanded: false;
 			previewExpanded: true;
-			previewHeight: 500) asElement
+			previewHeight: 300) asElement
 				margin: (BlInsets top: 20)
 ]
