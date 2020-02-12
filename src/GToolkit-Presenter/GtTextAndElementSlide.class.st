@@ -26,8 +26,8 @@ GtTextAndElementSlide >> create [
 		layout: BlLinearLayout vertical alignCenter.
 	texts do: [ :aText |
 		textContainer addChild: (BrEditor new
-				look: (BrGlamorousEditorLook new lineSpacing: 3);
-				margin: (BlInsets all: 10);
+				look: (BrGlamorousEditorLook new lineSpacing: 5);
+				margin: (BlInsets top: 10 left: 10 bottom: 10 right: 20);
 				hMatchParent;
 				vFitContent;
 				text: aText )].
