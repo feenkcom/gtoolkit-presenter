@@ -28,9 +28,9 @@ GtFilePictureSlide >> create [
 		background: self background;
 		layout: BlLinearLayout new.
 	form := PNGReadWriter formFromFileNamed: self fileReference fullName.
-	^ container addChild: (BlElement new 
+	^ container addChild: ((BlElement new 
 		size: form extent;
-		background: (BlImageBackground new image: form)) asPannableElement
+		background: (BlImageBackground new image: form)) asScalableElement maxScale: 1)
 ]
 
 { #category : #accessing }
