@@ -24,13 +24,12 @@ GtTextAndElementSlide >> create [
 			c vertical matchParent.
 			c horizontal matchParent ];
 		layout: BlLinearLayout vertical alignCenter.
-	texts do: [ :aText |
-		textContainer addChild: (BrEditor new
+		textContainer addChild: ((BrEditor new
 				look: (BrGlamorousEditorLook new lineSpacing: 5);
 				margin: (BlInsets top: 10 left: 10 bottom: 10 right: 20);
 				hMatchParent;
 				vFitContent;
-				text: aText )].
+				text: (texts inject: '' asRopedText into: [:each :all | all, String cr asRopedText, (each attributes: {BrTextParagraphMarginAttribute paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})])) asScalableElement maxScale: 1).
 	container 
 		addChild: textContainer;
 		addChild: (elementStencil value constraintsDo: [:c |
@@ -38,6 +37,7 @@ GtTextAndElementSlide >> create [
 			c frame horizontal alignRight.
 			c vertical matchParent.
 			c horizontal matchParent ]).
+	container explainer isExplanationHolder: true.
 	^ container
 ]
 
