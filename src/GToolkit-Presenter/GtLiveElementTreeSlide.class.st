@@ -30,7 +30,11 @@ GtLiveElementTreeSlide >> create [
 		stencil: [:el | 
 			| nodeElement meta |
 			meta := el userData associations select: [:each | each value class name endsWith: 'Context'].
-			nodeElement := BlElement new background: Color white; look: BrShadowLook; margin: (BlInsets all: 10).
+			nodeElement := BlElement new 
+				background: Color white; 
+				look: BrShadowLook; 
+				margin: (BlInsets all: 10);
+				when: BlClickEvent do: [:e | e target phlow spawnObject: el].
 			meta isEmpty 
 				ifTrue: [ nodeElement geometry: BlEllipse new; size: 10@10 ];
 				ifFalse: [ nodeElement 
