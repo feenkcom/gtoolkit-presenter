@@ -66,5 +66,5 @@ GtTextAndElementSlide >> newText: aRopedText [
 
 { #category : #'api - instantiation' }
 GtTextAndElementSlide >> newTextWithFormat: aRopedText [
-	texts add: aRopedText asRopedText
+	texts addFirst: aRopedText asRopedText
 ]
