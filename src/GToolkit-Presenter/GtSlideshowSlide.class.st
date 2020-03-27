@@ -3,7 +3,8 @@ Class {
 	#superclass : #GtSlide,
 	#instVars : [
 		'text',
-		'slideshow'
+		'slideshow',
+		'title'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -63,7 +64,13 @@ GtSlideshowSlide >> initialize [
 
 { #category : #accessing }
 GtSlideshowSlide >> slideshow: aSlideshow [
+	self slideshow: aSlideshow withTitle: 'Slideshow'.
+]
+
+{ #category : #accessing }
+GtSlideshowSlide >> slideshow: aSlideshow withTitle: aTitle [
 	slideshow := aSlideshow.
+	title := aTitle.
 ]
 
 { #category : #accessing }
