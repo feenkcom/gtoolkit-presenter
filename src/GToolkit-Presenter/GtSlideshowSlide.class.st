@@ -11,30 +11,32 @@ Class {
 
 { #category : #'api - instantiation' }
 GtSlideshowSlide >> create [
-	| mainContainer textContainer previewContainer |
+	| mainContainer textContainer previewContainer previewHeader previewContent |
 	
-	previewContainer := BlElement new
-		layout: BlFlowLayout new;
-		background: Color white;
-		look: BrShadowLook;
-		constraintsDo: [ :c |
-			c linear horizontal alignCenter ];
-		size: 500 @ 350;
-		padding: (BlInsets all: 10);
-		margin: (BlInsets top: 20 left: 5 bottom: 20 right: 5).
+	previewHeader := BlElement new
+		constraintsDo: [:c | c horizontal matchParent. c vertical fitContent ];
+		layout: BlLinearLayout vertical;
+		background: BrGlamorousColors defaultButtonBorderColor;
+		addChild: (BrLabel new look: (BrGlamorousLabelLook new fontSize: 15);
+		text: 'Slideshow').
 	
-	previewContainer addChild: (slideshow value slides first create
+	previewContent := (slideshow value slides first create
 		constraintsDo: [ :c | 
 			c horizontal exact: 800.
 			c vertical exact: 600 ];
 		padding: (BlInsets all: 10)) asScalableElement.
-	"slideshow value slides
-		do: [ :each |
-			previewContainer
-				addChild: (each asPreviewElement) ]."
 	
-	previewContainer when: BlClickEvent do: [ :e | 
-		GtHomeSection new showSpaceWithTitle: 'InspectorViews' with: slideshow value from: previewContainer ].
+	previewContainer := BrButton new
+		size: 500 @ 350;
+		layout: BlLinearLayout vertical;
+		constraintsDo: [ :c |
+			c linear horizontal alignCenter ];
+		look: BrGlamorousButtonExteriorLook new;
+		padding: (BlInsets all: 1);
+		margin: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
+		geometry: (BlRectangle cornerRadius: 4);
+		action: [ :card |
+			GtHomeSection new showSpaceWithTitle: title with: slideshow value from: card ].
 	
 	textContainer := BlTextElement new
 		constraintsDo: [:c |
@@ -49,11 +51,14 @@ GtSlideshowSlide >> create [
 			c horizontal matchParent.
 			c vertical matchParent ];
 		layout: BlLinearLayout vertical.
+		
+	previewContainer
+		addChild: (previewHeader preventMeAndChildrenMouseEvents);
+		addChild: (previewContent preventMeAndChildrenMouseEvents).
 	
-	mainContainer addChild: textContainer.
-	mainContainer addChild: previewContainer.
-	
-	^ mainContainer.
+	^ mainContainer
+			addChild: textContainer;
+			addChild: previewContainer.
 ]
 
 { #category : #'as yet unclassified' }
