@@ -29,14 +29,19 @@ GtSlideshowSlide >> create [
 	previewContainer := BrButton new
 		size: 500 @ 350;
 		layout: BlLinearLayout vertical;
-		constraintsDo: [ :c |
-			c linear horizontal alignCenter ];
+		constraintsDo: [ :c | c linear horizontal alignCenter ];
 		look: BrGlamorousButtonExteriorLook new;
 		padding: (BlInsets all: 1);
 		margin: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
 		geometry: (BlRectangle cornerRadius: 4);
 		action: [ :card |
-			GtHomeSection new showSpaceWithTitle: title with: slideshow value from: card ].
+			| aSpace |
+			aSpace := BlSpace new.
+			aSpace title: title.
+			aSpace extent: 1200@600.
+			aSpace addChild: slideshow value makeArrowsVisible asElement.
+			aSpace withHalos.
+			card showSpace: aSpace ].
 	
 	textContainer := BlTextElement new
 		constraintsDo: [:c |
@@ -50,7 +55,7 @@ GtSlideshowSlide >> create [
 		constraintsDo: [:c |
 			c horizontal matchParent.
 			c vertical matchParent ];
-		layout: BlLinearLayout vertical.
+		layout: BlLinearLayout vertical alignCenter.
 		
 	previewContainer
 		addChild: (previewHeader preventMeAndChildrenMouseEvents);
