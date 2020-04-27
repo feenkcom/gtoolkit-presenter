@@ -24,13 +24,14 @@ GtExampleSlide >> create [
 	coderElement
 		forceLayout;
 		vMatchParent;
+		margin: (BlInsets top: 5 right: 15 bottom: 5 left: 5);
 		hMatchParent.
 	
 	inspectorContainer := BlElement new
 		constraintsDo: [ :c |
 			c vertical matchParent.
 			c horizontal matchParent ];
-		margin: (BlInsets all: 5);
+		margin: (BlInsets top: 5 right: 5 bottom: 5 left: 15);
 		layout: BlLinearLayout horizontal;
 		background: Color white;
 		look: BrShadowLook.
