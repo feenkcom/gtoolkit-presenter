@@ -28,7 +28,8 @@ GtTextSlide >> create [
 				margin: (BlInsets all: 10);
 				hMatchParent;
 				vFitContent;
-				text: aText )].
+				text: aText;
+				beReadOnlyWithSelection)].
 	container addChild: textContainer.
 	^ container
 ]

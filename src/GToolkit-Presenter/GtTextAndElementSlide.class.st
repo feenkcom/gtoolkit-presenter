@@ -29,7 +29,9 @@ GtTextAndElementSlide >> create [
 				margin: (BlInsets top: 10 left: 10 bottom: 10 right: 20);
 				hMatchParent;
 				vFitContent;
-				text: (texts inject: '' asRopedText into: [:each :all | all, String cr asRopedText, (each attributes: {BrTextParagraphMarginAttribute paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})])) asScalableElement maxScale: 1).
+				text: (texts inject: '' asRopedText into: [:each :all | all, String cr asRopedText, (each attributes: {BrTextParagraphMarginAttribute paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})]);
+				beReadOnlyWithSelection) 
+			asScalableElement maxScale: 1) .
 	container 
 		addChild: textContainer;
 		addChild: (elementStencil value constraintsDo: [:c |
