@@ -7,13 +7,12 @@ Class {
 { #category : #'api - instantiation' }
 GtPlaygroundOnDictionarySlide >> create [
 	| book |
-	book := GtPlayBook newDefault.
-	book pages first snippets first sourceCode: '{
+	book := GtPlayBook newWithCodeSnippetContent: '{
 	#number -> (21/2) . 
 	#color -> Color cyan.
 	#string -> ''A string is a basic data structure.
 What could we possibly see different about it?''. 
 	 } 
 		asDictionary'.	
-	^ GtInspector createOnPlayBook: book
+	^ GtPlayground createOn: book
 ]

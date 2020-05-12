@@ -7,7 +7,6 @@ Class {
 { #category : #'api - instantiation' }
 GtAnyModelSlide >> create [
 	| book |
-	book := GtPlayBook newDefault.
-	book pages first snippets first sourceCode: 'MooseModel root allModels first'.
-	^ GtInspector createOnPlayBook: book
+	book := GtPlayBook newWithCodeSnippetContent: 'MooseModel root allModels first'.
+	^ GtPlayground createOn: book
 ]

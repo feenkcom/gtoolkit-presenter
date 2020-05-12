@@ -6,5 +6,6 @@ Class {
 
 { #category : #'api - instantiation' }
 GtEmptyDocumenterSlide >> create [
-	^ GtInspector createOnPlayBook: (GtDocument new)
+	^ GtPager new 
+		createWrappedOn: GtDocument new
 ]

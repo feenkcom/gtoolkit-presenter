@@ -6,5 +6,5 @@ Class {
 
 { #category : #'api - instantiation' }
 GtBaselineOfGToolkitCommentSlide >> create [
-	^ GtInspector createOnPlayBook: (GtDocument forClass: BaselineOfGToolkit)
+	^ GtPager createWrappedOn: (GtDocument forClass: BaselineOfGToolkit)
 ]
