@@ -16,5 +16,5 @@ GtDebuggerOnJSParserSlide >> create [
 		startedAt: process suspendedContext).
 	[ SmaCCParserDebugSession handlesContext: debuggingSession context ]
 		whileFalse: [ debuggingSession stepInto ].
-	^ (GtMoldableDebuggerElement on: debuggingSession) inInspector
+	^ (GtMoldableDebuggerElement on: debuggingSession) inPager
 ]
