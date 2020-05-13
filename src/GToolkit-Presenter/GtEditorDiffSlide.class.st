@@ -15,5 +15,5 @@ GtEditorDiffSlide >> create [
 	 model allReferencesTo: #isNil do: [:method |
 	     (rewriter executeTree: method ast) ifTrue: [method compileTree: rewriter tree
 	 ]].
-	 ^ Gt2Inspector createOn: model changes
+	 ^ GtInspector createOn: model changes
 ]
