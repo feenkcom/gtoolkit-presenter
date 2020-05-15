@@ -16,5 +16,5 @@ GtDebuggerOnRopeSlide >> create [
 		startedAt: process suspendedContext).
 	6 timesRepeat: [ 
 		debuggingSession stepInto ].
-	^ (GtExpandableDebuggerElement on: debuggingSession) inInspector
+	^ (GtExpandableDebuggerElement on: debuggingSession) inPager
 ]

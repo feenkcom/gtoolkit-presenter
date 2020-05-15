@@ -9,7 +9,7 @@ Class {
 
 { #category : #'api - instantiation' }
 GtPlaygroundSlide >> create [
-	^ GtInspector withToolOn: playbook
+	^ GtPlayground createOn: playbook
 ]
 
 { #category : #initialization }
@@ -25,8 +25,7 @@ GtPlaygroundSlide >> playbook: aBlock [
 
 { #category : #accessing }
 GtPlaygroundSlide >> snippets: aCollection [
-	playbook := GtPlayBook newDefault.
-	playbook pages first snippets first sourceCode: aCollection first.
+	playbook := GtPlayBook newWithCodeSnippetContent: aCollection first.
 	aCollection allButFirst do: [:el |
 		playbook pages first addSnippet: GtCoderSnippet new.
 		playbook pages last snippets last sourceCode: el]
