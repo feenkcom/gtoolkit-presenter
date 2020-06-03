@@ -275,7 +275,7 @@ GtSlideShow >> slidesDropdown [
 			+ (BrGlamorousWithDropdownLook
 				handle: [ BrButton new
 						look: BrGlamorousButtonWithIconLook 
-							- BrGlamorousWithLabelTooltipLook
+							- BrGlamorousButtonWithLabelTooltipLook
 							- BrGlamorousButtonExteriorLook;
 						icon: BrGlamorousIcons hamburger asElement;
 						yourself ]
