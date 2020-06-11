@@ -68,7 +68,7 @@ GtElementAndElementSlide >> leftElement: anElement [
 
 { #category : #accessing }
 GtElementAndElementSlide >> newText: aText [
-	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize)
+	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize; foreground: Color gray)
 ]
 
 { #category : #accessing }
