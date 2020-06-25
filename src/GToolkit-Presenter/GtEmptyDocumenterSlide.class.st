@@ -7,5 +7,5 @@ Class {
 { #category : #'api - instantiation' }
 GtEmptyDocumenterSlide >> create [
 	^ GtPager new 
-		createWrappedOn: GtDocument new
+		createWrappedOn: GtDocumenter new
 ]
