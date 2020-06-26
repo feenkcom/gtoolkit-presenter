@@ -9,7 +9,7 @@ BaselineOfGToolkitPresenter >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
 		spec baseline: 'Bloc' with: [
-				spec repository: 'github://feenkcom/Bloc:v0.7.464/src' ].
+				spec repository: 'github://feenkcom/Bloc:v0.7.465/src' ].
 		spec package: 'GToolkit-Presenter' with: [
 				spec requires: #('Bloc' ). ]. ].
 
