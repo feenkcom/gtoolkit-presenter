@@ -11,7 +11,7 @@ Class {
 GtSlideShowElement >> onAddedToSceneGraph [
 
 	super onAddedToSceneGraph.
-	self slideShow onAddedToSceneGraph
+	self slideShow onAddedToSceneGraph: self space
 ]
 
 { #category : #accessing }

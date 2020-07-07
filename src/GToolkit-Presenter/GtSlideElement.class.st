@@ -15,11 +15,11 @@ GtSlideElement >> defaultPreviewStrategy [
 
 { #category : #drawing }
 GtSlideElement >> drawOnSpartaCanvas: aCanvas [
-
 	super drawOnSpartaCanvas: aCanvas.
+
 	"If the slide show was removed from a scene graph before all the slides were generated, 
 	and then added back in to a graph, we may need to generate our slide."
-	slideElement ifNil: [ self queueAsyncUpdate ].
+	slideElement ifNil: [ self queueAsyncUpdate ]
 ]
 
 { #category : #testing }
@@ -32,7 +32,7 @@ GtSlideElement >> needsUpdate [
 
 	"We don't need to update if there has been an exception, 
 	or our slide show isn't attached to a scene graph"
-	(asyncException isNil and: [ self slideShowIsAttachedToSceneGraph ])
+	(self exception isNil and: [ self slideShowIsAttachedToSceneGraph ])
 		ifFalse: [ ^false ].
 
 	^true
@@ -43,8 +43,10 @@ GtSlideElement >> queueAsyncUpdate [
 	"Queue a task to update the receiver's state.
 	Since slides generate their cached element and preview element together defer to the slide"
 
-	self needsUpdate ifFalse: [ ^self ].
-	self slide queueAsyncUpdate.
+	self needsUpdate
+		ifFalse: [ ^self ].
+
+	self slide queueAsyncUpdate: self space
 ]
 
 { #category : #'async processing' }

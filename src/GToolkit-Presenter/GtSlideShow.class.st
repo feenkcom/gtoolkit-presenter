@@ -174,10 +174,13 @@ GtSlideShow >> nextStep [
 ]
 
 { #category : #'hooks - children' }
-GtSlideShow >> onAddedToSceneGraph [ 
+GtSlideShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
-	self slides do: [ :each | each queueAsyncUpdate ].
+	self slides withIndexDo: [ :eachSlide :eachIndex |
+		aSpace telemetry
+			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
+			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
 ]
 
 { #category : #'api - instantiation' }
