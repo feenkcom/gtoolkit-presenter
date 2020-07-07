@@ -11,7 +11,16 @@ Class {
 
 { #category : #'api - instantiation' }
 GtTextAndElementSlide >> create [
-	| container textContainer |
+	| container textContainer completeText |
+	completeText := texts allButFirst 
+		inject: (texts first asRopedText attributes: {
+				BrTextParagraphMarginAttribute 
+					paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)}) 
+		into: [:all :each | 
+			all, String cr asRopedText, 
+			(each attributes: {
+				BrTextParagraphMarginAttribute 
+					paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})].
 	container := BlElement new
 		constraintsDo: [:c |
 			c horizontal matchParent.
@@ -29,9 +38,9 @@ GtTextAndElementSlide >> create [
 				margin: (BlInsets top: 10 left: 10 bottom: 10 right: 20);
 				hMatchParent;
 				vFitContent;
-				text: (texts inject: '' asRopedText into: [:each :all | all, String cr asRopedText, (each attributes: {BrTextParagraphMarginAttribute paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})]);
-				beReadOnlyWithSelection) 
-			asScalableElement maxScale: 1) .
+				text: completeText)
+				beReadOnlyWithSelection
+				asScalableElement maxScale: 1).
 	container 
 		addChild: textContainer;
 		addChild: (elementStencil value constraintsDo: [:c |
@@ -68,5 +77,5 @@ GtTextAndElementSlide >> newText: aRopedText [
 
 { #category : #'api - instantiation' }
 GtTextAndElementSlide >> newTextWithFormat: aRopedText [
-	texts addFirst: aRopedText asRopedText
+	texts add: aRopedText asRopedText
 ]
