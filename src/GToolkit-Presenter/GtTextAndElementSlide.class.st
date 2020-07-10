@@ -72,7 +72,7 @@ GtTextAndElementSlide >> initialize [
 
 { #category : #'api - instantiation' }
 GtTextAndElementSlide >> newText: aRopedText [
-	self newTextWithFormat: (aRopedText asRopedText fontSize: 20)
+	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
 { #category : #'api - instantiation' }

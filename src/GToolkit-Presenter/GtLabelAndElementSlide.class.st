@@ -53,7 +53,7 @@ GtLabelAndElementSlide >> initialize [
 
 { #category : #accessing }
 GtLabelAndElementSlide >> newFadedText: aText [
-	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize; foreground: Color gray)
+	self newTextWithFormat: (aText asRopedText glamorousRegularFont; fontSize: 16; foreground: Color gray)
 ]
 
 { #category : #accessing }
