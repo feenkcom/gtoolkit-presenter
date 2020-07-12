@@ -138,10 +138,10 @@ GtSlideShow >> exportSlides [
 { #category : #accessing }
 GtSlideShow >> gtSlidesFor: aView [
 	<gtView>
-	^ aView list 
+	^ aView list
 		title: 'Slides';
 		items: [ self slides ];
-		itemFormat: #name
+		itemText: #name
 ]
 
 { #category : #'api - instantiation' }
