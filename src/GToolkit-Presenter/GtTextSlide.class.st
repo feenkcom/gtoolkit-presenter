@@ -24,8 +24,8 @@ GtTextSlide >> create [
 		layout: BlLinearLayout vertical alignCenter.
 	texts do: [ :aText |
 		textContainer addChild: (BrEditor new
-				look: (BrGlamorousEditorLook new lineSpacing: 3);
-				margin: (BlInsets all: 10);
+				look: (BrGlamorousEditorLook new lineSpacing: 5);
+				margin: (BlInsets all: 50);
 				hMatchParent;
 				vFitContent;
 				text: aText;
@@ -42,7 +42,7 @@ GtTextSlide >> initialize [
 
 { #category : #'api - instantiation' }
 GtTextSlide >> newText: aRopedText [
-	self newTextWithFormat: (aRopedText asRopedText fontSize: 16)
+	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
 { #category : #'api - instantiation' }

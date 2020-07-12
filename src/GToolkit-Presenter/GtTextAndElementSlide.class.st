@@ -15,12 +15,12 @@ GtTextAndElementSlide >> create [
 	completeText := texts allButFirst 
 		inject: (texts first asRopedText attributes: {
 				BrTextParagraphMarginAttribute 
-					paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)}) 
+					paragraphMargin: (BlInsets top: 10 left: 0 bottom: 0 right: 0)}) 
 		into: [:all :each | 
 			all, String cr asRopedText, 
 			(each attributes: {
 				BrTextParagraphMarginAttribute 
-					paragraphMargin: (BlInsets top: 20 left: 0 bottom: 20 right: 0)})].
+					paragraphMargin: (BlInsets top: 10 left: 0 bottom: 0 right: 0)})].
 	container := BlElement new
 		constraintsDo: [:c |
 			c horizontal matchParent.
@@ -32,10 +32,10 @@ GtTextAndElementSlide >> create [
 			c frame horizontal weight: (1 - elementWeight). 
 			c vertical matchParent.
 			c horizontal matchParent ];
+		padding: (BlInsets top: 10 left: 50 bottom: 10 right: 50);
 		layout: BlLinearLayout vertical alignCenter.
 		textContainer addChild: ((BrEditor new
 				look: (BrGlamorousEditorLook new lineSpacing: 5);
-				margin: (BlInsets top: 10 left: 10 bottom: 10 right: 20);
 				hMatchParent;
 				vFitContent;
 				text: completeText)
@@ -72,7 +72,7 @@ GtTextAndElementSlide >> initialize [
 
 { #category : #'api - instantiation' }
 GtTextAndElementSlide >> newText: aRopedText [
-	self newTextWithFormat: (aRopedText asRopedText fontSize: 16)
+	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
 { #category : #'api - instantiation' }
