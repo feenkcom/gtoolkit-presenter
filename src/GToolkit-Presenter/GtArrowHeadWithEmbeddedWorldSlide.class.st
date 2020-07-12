@@ -9,7 +9,7 @@ GtArrowHeadWithEmbeddedWorldSlide >> create [
 	<return: #Object>
 	| container curve curveColor headColor headerFillColor curveWidth currentScale |
 	
-	container := BlParabollaExamples new relativeCurvatureWithoutDecorations.
+	container := BlParabollaArcElementExamples new relativeCurvatureWithoutDecorations.
 	container background: Color transparent.
 	container addEventHandler: BlSlideHandler new. 
 
