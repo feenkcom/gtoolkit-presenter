@@ -3,7 +3,8 @@ Class {
 	#superclass : #GtSlide,
 	#instVars : [
 		'fileReference',
-		'background'
+		'background',
+		'maxScale'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -30,7 +31,7 @@ GtFilePictureSlide >> create [
 	form := PNGReadWriter formFromFileNamed: self fileReference fullName.
 	^ container addChild: ((BlElement new 
 		size: form extent;
-		background: (BlImageBackground new image: form)) asScalableElement maxScale: 1)
+		background: (BlImageBackground new image: form)) asScalableElement maxScale: self maxScale)
 ]
 
 { #category : #accessing }
@@ -41,4 +42,20 @@ GtFilePictureSlide >> fileReference [
 { #category : #accessing }
 GtFilePictureSlide >> fileReference: aStringOrFileReference [
 	fileReference := aStringOrFileReference asFileReference 
+]
+
+{ #category : #accessing }
+GtFilePictureSlide >> initialize [
+	super initialize.
+	maxScale := 1.
+]
+
+{ #category : #accessing }
+GtFilePictureSlide >> maxScale [
+	^ maxScale
+]
+
+{ #category : #accessing }
+GtFilePictureSlide >> maxScale: aNumber [
+	maxScale := aNumber
 ]
