@@ -58,7 +58,10 @@ GtSlideShow >> create [
 					{(12 @ 0).
 					(0 @ 12).
 					(12 @ 24)});
-		background: ((Color fromHexString: #BDBDBD) alpha: 0.5).
+		look: (BrInteractiveCommonLook new
+				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
+				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
+		background: BrGlamorousColors defaultButtonBorderColor.
 	previousElement addChild: previousArrow.
 	nextElement := BlElement new 
 		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
@@ -73,7 +76,10 @@ GtSlideShow >> create [
 					{(0 @ 0).
 					(12 @ 12).
 					(0 @ 24)});
-		background: ((Color fromHexString: #BDBDBD) alpha: 0.5).
+		look: (BrInteractiveCommonLook new
+				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
+				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
+		background: BrGlamorousColors defaultButtonBorderColor.
 	nextElement addChild: nextArrow.
 	slidesContainer := BlElement new 
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
