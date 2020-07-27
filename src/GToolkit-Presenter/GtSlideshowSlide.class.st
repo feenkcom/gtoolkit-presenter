@@ -33,7 +33,7 @@ GtSlideshowSlide >> create [
 		look: BrGlamorousButtonExteriorLook new;
 		padding: (BlInsets all: 1);
 		margin: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
-		geometry: (BlRectangle cornerRadius: 4);
+		geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
 		action: [ :card |
 			| aSpace |
 			aSpace := BlSpace new.

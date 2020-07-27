@@ -39,7 +39,7 @@ GtArrowHeadWithEmbeddedWorldSlide >> create [
 				transformDo: [ :t | t scaleBy: 0.2 ];
 				padding: (BlInsets all: 70))))."
 			addChild: (GtWorldElement new
-				geometry: (BlRectangle cornerRadius: 4);
+				geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
 				in: [ :anEditor | TBlDrawingCache disableDrawingCacheFor: anEditor ];
 				size: 1100@1100;
 				transformDo: [ :t | t scaleBy: 0.01 ]))).
