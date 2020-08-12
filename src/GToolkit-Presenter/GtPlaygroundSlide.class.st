@@ -19,6 +19,35 @@ GtPlaygroundSlide >> initialize [
 ]
 
 { #category : #accessing }
+GtPlaygroundSlide >> inspectSnippetAt: aPosition [
+	| aScripter |
+	
+	aScripter := BlDevScripter new.
+	aScripter
+		substep: 'Playground Element'
+		do: [ :aStep | 
+			aStep set
+				label: 'Playground';
+				element: [ self asElement ] ].
+	aScripter
+		substep: 'Evaluate and inspect snippet'
+		do: [ :aStep | 
+			aStep click
+				label: 'Click on evaluate and inspect button';
+				onBreadthFirstChildOfClass: GtPlayground;
+				onChildNamed: #content;
+				onBreadthFirstChildOfClass: GtPageSnippetsElement;
+				onChildAt: aPosition;
+				onBreadthFirstChildOfClass: GtExpandableCoderElement;
+				onBreadthFirstChildOfClass: GtCoderActionsElement;
+				onBreadthFirstChildOfClass: BrToolbar;
+				onChildAt: 2.
+			aStep wait forEmptySpaceTaskQueue ].
+	aScripter syncContinue.
+	^ aScripter elementWithoutParent
+]
+
+{ #category : #accessing }
 GtPlaygroundSlide >> playbook: aBlock [
 	playbook := aBlock
 ]
