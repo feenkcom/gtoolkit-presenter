@@ -88,5 +88,5 @@ GtSlideElement >> slideShowIsAttachedToSceneGraph [
 	"Answer a boolean indicating whether the receiver's slide show is attached to a scene graph.
 	The receiver will only be attached to a scene graph while it is the current slide."
 
-	^self slide slideShow slidesContainer isAttachedToSceneGraph
+	^self slide slideShow slidesContainer topMostParent isAttachedToSceneGraph
 ]
