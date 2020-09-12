@@ -50,11 +50,19 @@ GtSlide >> generateElements [
 	slideShow enqueueTask: (BlTaskAction new action: [
 		cachedElement
 			slideElement: element.
-		cachedElement
-			when: BlElementAddedToSceneGraphEvent
-			do: [:anEvent |
-				anEvent consumed: true.
-				self performActionOn: element].
+		(self shouldPerformActionEveryTime)
+			ifTrue: [
+				cachedElement
+					when: BlElementAddedToSceneGraphEvent
+					do: [:anEvent |
+						anEvent consumed: true.
+						self performActionOn: element]]
+			ifFalse: [
+				cachedElement
+					when: BlElementAddedToSceneGraphEvent
+					doOnce: [:anEvent |
+						anEvent consumed: true.
+						self performActionOn: element]].
 		slideShow updateSlide: self.
 		previewElement
 			removeChildren;
@@ -118,8 +126,6 @@ GtSlide >> onFirstAddToSceneGraphDo: aBlock [
 { #category : #private }
 GtSlide >> performActionOn: element [
 	self onAddedToSceneGraphAction cull: element.
-	((shouldPerformActionEveryTime not) and: [onAddedToSceneGraphAction isNotNil])
-		ifTrue: [onAddedToSceneGraphAction := nil].
 ]
 
 { #category : #accessing }
@@ -161,6 +167,11 @@ GtSlide >> queueAsyncUpdate: aSpace [
 			aTelemetry
 				timeSync: [ 'Execute slide {1} update command directly' format: { self class name } ]
 				during: [ aCommand execute ] ]
+]
+
+{ #category : #private }
+GtSlide >> shouldPerformActionEveryTime [
+	^ shouldPerformActionEveryTime.
 ]
 
 { #category : #accessing }
