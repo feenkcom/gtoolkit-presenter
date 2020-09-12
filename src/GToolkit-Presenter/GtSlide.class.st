@@ -5,7 +5,9 @@ Class {
 		'slideShow',
 		'slideIndex',
 		'cachedElement',
-		'previewElement'
+		'previewElement',
+		'onAddedToSceneGraphAction',
+		'shouldPerformActionEveryTime'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -48,6 +50,11 @@ GtSlide >> generateElements [
 	slideShow enqueueTask: (BlTaskAction new action: [
 		cachedElement
 			slideElement: element.
+		cachedElement
+			when: BlElementAddedToSceneGraphEvent
+			do: [:anEvent |
+				anEvent consumed: true.
+				self performActionOn: element].
 		slideShow updateSlide: self.
 		previewElement
 			removeChildren;
@@ -58,6 +65,7 @@ GtSlide >> generateElements [
 GtSlide >> initialize [
 
 	super initialize.
+	shouldPerformActionEveryTime := true.
 	cachedElement := GtSlideElement new
 		withGlamorousPreview;
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
@@ -88,6 +96,30 @@ GtSlide >> needsUpdate [
 { #category : #accessing }
 GtSlide >> nextStepWith: aSlider [
 	aSlider showSlideAfter: self
+]
+
+{ #category : #private }
+GtSlide >> onAddedToSceneGraphAction [
+	^ onAddedToSceneGraphAction ifNil: [^[:anElement | ]].
+]
+
+{ #category : #accessing }
+GtSlide >> onEveryAddToSceneGraphDo: aBlock [
+	shouldPerformActionEveryTime := true.
+	onAddedToSceneGraphAction := aBlock.
+]
+
+{ #category : #accessing }
+GtSlide >> onFirstAddToSceneGraphDo: aBlock [
+	shouldPerformActionEveryTime := false.
+	onAddedToSceneGraphAction := aBlock.
+]
+
+{ #category : #private }
+GtSlide >> performActionOn: element [
+	self onAddedToSceneGraphAction cull: element.
+	((shouldPerformActionEveryTime not) and: [onAddedToSceneGraphAction isNotNil])
+		ifTrue: [onAddedToSceneGraphAction := nil].
 ]
 
 { #category : #accessing }
