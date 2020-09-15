@@ -2,14 +2,28 @@ Class {
 	#name : #GtProtoLiveSlide,
 	#superclass : #BrStencil,
 	#instVars : [
-		'priority'
+		'priority',
+		'definingMethod'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
+GtProtoLiveSlide >> definingMethod [
+	^ definingMethod.
+]
+
+{ #category : #accessing }
+GtProtoLiveSlide >> definingMethod: aCompiledMethod [
+	definingMethod := aCompiledMethod.
+]
+
+{ #category : #accessing }
 GtProtoLiveSlide >> element [
-	^ GtElementLiveSlide new.
+	^ GtElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
 ]
 
 { #category : #accessing }
@@ -24,10 +38,16 @@ GtProtoLiveSlide >> priority: anInteger [
 
 { #category : #accessing }
 GtProtoLiveSlide >> text [
-	^ GtTextLiveSlide new.
+	^ GtTextLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
 ]
 
 { #category : #accessing }
 GtProtoLiveSlide >> textAndElement [
-	^ GtTextAndElementLiveSlide new.
+	^ GtTextAndElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
 ]

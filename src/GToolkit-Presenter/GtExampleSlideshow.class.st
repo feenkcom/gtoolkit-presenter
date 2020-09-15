@@ -17,35 +17,8 @@ GtExampleSlideshow >> textAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide textAndElement
 		priority: 5;
-		newTextWithFormat: (('Ana ' asRopedText, ('has' asRopedText glamorousExplanationFor: #has), ' apple' asRopedText) asRopedText glamorousRegularFont; fontSize: 20);
-		element: [
-			| elementA elementB |
-			elementA := BlElement new
-				constraintsDo: [:c |
-					c vertical matchParent.
-					c horizontal matchParent];
-				background: Color red.
-			elementB := BlElement new
-				constraintsDo: [:c |
-					c vertical matchParent.
-					c horizontal matchParent];
-				background: Color blue.
-			elementA
-				addChild:
-					(BrButton new
-						constraintsDo: [ :c | c ignoreByLayout ];
-						size: 3 @ 3;
-						elevation: (BlRelativeElevation elevation: 10);
-						geometry: BlCircle new;
-						look: (GtExplainerTargetLook new explanationModel: #has);
-						relocate:
-							(100 @ 100)).
-			BlElement new
-				layout: BlLinearLayout horizontal;
-				constraintsDo: [:c |
-					c vertical matchParent.
-					c horizontal matchParent];
-				addChildren: {elementA. elementB}];
+		newTextWithFormat: (GtTour new playgroundExplanationWithLinksText);
+		element: [GtTour new playgroundExplanationWithLinks];
 		elementWeight: 0.6.
 ]
 
