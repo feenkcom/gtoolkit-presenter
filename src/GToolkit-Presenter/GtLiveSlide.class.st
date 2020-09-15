@@ -91,6 +91,11 @@ GtLiveSlide >> initialize [
 ]
 
 { #category : #accessing }
+GtLiveSlide >> name [
+	^ (self class name gtRemovePrefix: 'Gt').
+]
+
+{ #category : #accessing }
 GtLiveSlide >> needsUpdate [ 
 
 	^cachedElement needsUpdate
