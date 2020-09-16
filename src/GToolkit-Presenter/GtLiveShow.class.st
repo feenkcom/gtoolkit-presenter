@@ -147,6 +147,26 @@ GtLiveShow >> create [
 ]
 
 { #category : #accessing }
+GtLiveShow >> createNewEmptySlide [
+	| priority |
+	priority := ((self slides at: self currentSlideIndex) priority + 2) asString.
+	
+	self class
+		compile: ('newEmptySlideFor: aSlide
+	<gtSlide>
+	"Rename this method to be able to add others in the slideshow"
+	^ aSlide empty
+		priority: ', priority, '.')
+		classified: ''.
+		
+	self collectSlides.
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+]
+
+{ #category : #accessing }
 GtLiveShow >> currentSlideIndex [
 	"Answer the index of the currently displayed slide.
 	nil if the slides aren't yet displayed"
@@ -334,7 +354,14 @@ GtLiveShow >> slidesDropdown [
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Browse slide method' asString;
 								icon: BrGlamorousIcons browse asElement;
-								action: [ self changeCoderElementState ]).
+								action: [ self changeCoderElementState ]);
+						addItem:
+							(BrButton new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook;
+								label: 'Add new slide' asString;
+								icon: BrGlamorousIcons add asElement;
+								action: [ self createNewEmptySlide ]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;

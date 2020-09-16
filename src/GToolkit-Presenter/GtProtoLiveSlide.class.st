@@ -27,6 +27,14 @@ GtProtoLiveSlide >> element [
 ]
 
 { #category : #accessing }
+GtProtoLiveSlide >> empty [
+	^ GtEmptySlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #accessing }
 GtProtoLiveSlide >> priority [
 	^ priority.
 ]
