@@ -111,6 +111,17 @@ GtLiveSlide >> onAddedToSceneGraphAction [
 	^ onAddedToSceneGraphAction ifNil: [^[:anElement | ]].
 ]
 
+{ #category : #'private - event handling' }
+GtLiveSlide >> onDefiningMethodChange [
+	"I am called when the defining method has changed.
+	Subclasses may react to the method definition changes.
+	I may be called from a non-UI process.".
+	super onDefiningMethodChange.
+	
+	self slideShow ifNotNil: [ :aShow | 
+		aShow slideDefinitionChanged: self ]
+]
+
 { #category : #accessing }
 GtLiveSlide >> onEveryAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := true.
