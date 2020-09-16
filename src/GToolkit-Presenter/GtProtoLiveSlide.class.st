@@ -15,7 +15,9 @@ GtProtoLiveSlide >> definingMethod [
 
 { #category : #accessing }
 GtProtoLiveSlide >> definingMethod: aCompiledMethod [
+	self unsubscribeFromSystem.
 	definingMethod := aCompiledMethod.
+	self subscribeToSystem.
 ]
 
 { #category : #accessing }
@@ -34,6 +36,26 @@ GtProtoLiveSlide >> empty [
 			collect).
 ]
 
+{ #category : #'private - event handling' }
+GtProtoLiveSlide >> hasDefiningMethod [
+	^ self definingMethod isNotNil
+]
+
+{ #category : #'private - event handling' }
+GtProtoLiveSlide >> onDefiningMethodChange [
+	"I am called when the defining method has changed.
+	Subclasses may react to the method definition changes.
+	I may be called from a non-UI process."
+]
+
+{ #category : #'private - event handling' }
+GtProtoLiveSlide >> onMethodModified: aMethodModified [
+	self hasDefiningMethod ifFalse: [ ^ self ].
+	(self definingMethod gtPhlowIncludesCompiledMethod: aMethodModified methodAffected)
+		ifFalse: [ ^ self ].
+	self onDefiningMethodChange.
+]
+
 { #category : #accessing }
 GtProtoLiveSlide >> priority [
 	^ priority.
@@ -42,6 +64,14 @@ GtProtoLiveSlide >> priority [
 { #category : #accessing }
 GtProtoLiveSlide >> priority: anInteger [
 	priority := anInteger.
+]
+
+{ #category : #'private - subscriptions' }
+GtProtoLiveSlide >> subscribeToSystem [
+	SystemAnnouncer uniqueInstance weak
+		when: MethodModified
+		send: #onMethodModified:
+		to: self
 ]
 
 { #category : #accessing }
@@ -58,4 +88,9 @@ GtProtoLiveSlide >> textAndElement [
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
+]
+
+{ #category : #'private - subscriptions' }
+GtProtoLiveSlide >> unsubscribeFromSystem [
+	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]

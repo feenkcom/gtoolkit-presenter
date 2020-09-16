@@ -17,7 +17,7 @@ GtExampleSlideshow >> textAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide textAndElement
 		priority: 5;
-		newTextWithFormat: (GtTour new playgroundExplanationWithLinksText);
+		newTextWithFormat: 'b' asRopedText;
 		element: [GtTour new playgroundExplanationWithLinks];
 		elementWeight: 0.6.
 ]
