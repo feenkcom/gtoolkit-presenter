@@ -12,7 +12,9 @@ Class {
 		'slideElement',
 		'slidesContainer',
 		'currentSlide',
-		'slides'
+		'slides',
+		'coderElement',
+		'coderElementState'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -25,6 +27,36 @@ GtLiveShow >> background [
 { #category : #accessing }
 GtLiveShow >> background: anObject [
 	background := anObject.
+]
+
+{ #category : #accessing }
+GtLiveShow >> changeCoderElementState [
+	coderElementState
+		ifTrue: [
+			coderElement visibility: BlVisibility gone.
+			coderElementState := false]
+		ifFalse: [
+			coderElement visibility: BlVisibility visible.
+			coderElementState := true ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> coderElement [
+	coderElementState := false.
+	^ coderElement := BlElement new
+		constraintsDo: [:c |
+			c horizontal matchParent.
+			c vertical matchParent];
+		look: BrShadowLook;
+		background: self background;
+		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30);
+		addChild: ((GtMethodCoder new 
+			forMethod: self slides first definingMethod;
+			expanded: true;
+			asElement)
+				vMatchParent;
+				hMatchParent;
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
 ]
 
 { #category : #accessing }
@@ -99,7 +131,9 @@ GtLiveShow >> create [
 			slideIndex: index ].
 	self showSlide: self slides first.
 	container addChild: slidesContainer.
+	container addChild: self coderElement.
 	container addChild: self slidesDropdown.
+	coderElement visibility: BlVisibility gone.
 	
 	container addShortcut: (BlShortcut new
 		repeatable: false;
@@ -176,7 +210,8 @@ GtLiveShow >> makeArrowsVisible [
 { #category : #accessing }
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
-	currentSlide nextStepWith: self
+	currentSlide nextStepWith: self.
+	self updateCoderElement.
 ]
 
 { #category : #accessing }
@@ -192,7 +227,8 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 { #category : #accessing }
 GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
-	currentSlide previousStepWith: self
+	currentSlide previousStepWith: self.
+	self updateCoderElement.
 ]
 
 { #category : #accessing }
@@ -251,7 +287,10 @@ GtLiveShow >> slidesDropdown [
 						when: BlClickEvent
 						do: [ :e | self showSlide: each ]) ].
 	previewsContainer := container.
-	^ dropdown := BrButton new 
+	^ dropdown := BrButton new
+		constraintsDo: [:c |
+			c frame horizontal alignRight.
+			c frame vertical alignCenter];
 		margin: (BlInsets all: 10);
 		icon: BrGlamorousIcons hamburger asElement;
 		label: 'Slides';
@@ -273,6 +312,7 @@ GtLiveShow >> slidesDropdown [
 								beSmall;
 								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
 								icon: BrGlamorousIcons edit asElement;
+								label: 'Update arrows' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
 									arrowsAreVisible := true.
@@ -285,8 +325,16 @@ GtLiveShow >> slidesDropdown [
 							(BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
+								label: 'Export slides' asString;
 								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]).
+								action: [ self exportSlides ]);
+						addItem:
+							(BrButton new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook;
+								label: 'Browse slide method' asString;
+								icon: BrGlamorousIcons browse asElement;
+								action: [ self changeCoderElementState ]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
@@ -316,6 +364,21 @@ GtLiveShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasNextSlide ])
 		ifTrue: [ nextArrow visibility: BlVisibility visible ]
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
+]
+
+{ #category : #accessing }
+GtLiveShow >> updateCoderElement [
+	coderElementState := false.
+	coderElement children ifNotEmpty: [coderElement removeChildren].
+	coderElement
+		addChild: ((GtMethodCoder new 
+			forMethod: (self slides at: self currentSlideIndex) definingMethod;
+			expanded: true;
+			asElement)
+				vMatchParent;
+				hMatchParent;
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10));
+		visibility: BlVisibility gone.
 ]
 
 { #category : #accessing }
