@@ -169,6 +169,7 @@ GtLiveShow >> createNewEmptySlide [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
+	self nextStep.
 ]
 
 { #category : #accessing }
