@@ -20,6 +20,11 @@ Class {
 }
 
 { #category : #accessing }
+GtLiveShow >> addSlide: aSlide [
+	self slides add: aSlide.
+]
+
+{ #category : #accessing }
 GtLiveShow >> background [
 	^ background.
 ]
@@ -164,6 +169,7 @@ GtLiveShow >> createNewEmptySlide [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
+	self nextStep.
 ]
 
 { #category : #accessing }
@@ -293,11 +299,59 @@ GtLiveShow >> slideDefinitionChanged: aSlide [
 	"I am called from aSlide when the slide definition has changed.
 	My responsibility is to replace the slide with a new one."
 	<gtCollector>
-	| aNewSlide |
+	| aNewSlide currentIndex |
 	aNewSlide := self 
 		perform: aSlide definingMethod selector
 		with: GtEmptySlide new.
+	currentIndex := self currentSlideIndex.
+	
 	self replaceSlide: aSlide with: aNewSlide.
+	self sortSlidesByPriority.
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+	self showSlide: (self slides at: currentIndex).
+	(aNewSlide priority = currentSlide priority)
+		ifFalse: [ self updateCoderElement ].
+]
+
+{ #category : #'api - updating' }
+GtLiveShow >> slideDefinitionChangedFor: aSlide [
+	"I am called from aSlide when the slide definition has changed.
+	My responsibility is to replace the slide with a new one."
+	<gtCollector>
+	| aNewSlide currentIndex |
+	aNewSlide := self 
+		perform: aSlide definingMethod selector
+		with: GtEmptySlide new.
+	currentIndex := self currentSlideIndex.
+	
+	self replaceSlide: aSlide with: aNewSlide.
+	self sortSlidesByPriority.
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+	self showSlide: (self slides at: currentIndex).
+	(aNewSlide priority = currentSlide priority)
+		ifFalse: [ self updateCoderElement ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> slideDefinitionRemovedFor: aSlide [
+	"I am called from aSlide when the slide definition has been removed.
+	My responsibility is to remove the slide from the show."
+	self slides remove: aSlide ifAbsent: [ ^ self ].
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+	(aSlide slideIndex = 1)
+		ifTrue: [
+			self showSlide: self slides first.
+			self updateCoderElement]
+		ifFalse: [self previousStep].
 ]
 
 { #category : #accessing }
@@ -398,6 +452,11 @@ GtLiveShow >> slidesDropdown [
 			constraintsDo: [ :c | c linear horizontal alignRight ];
 			padding: (BlInsets all: 10);
 			yourself.
+]
+
+{ #category : #accessing }
+GtLiveShow >> sortSlidesByPriority [
+	self slides sort: [:a :b | a priority < b priority].
 ]
 
 { #category : #accessing }

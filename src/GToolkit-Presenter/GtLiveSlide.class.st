@@ -119,7 +119,18 @@ GtLiveSlide >> onDefiningMethodChange [
 	super onDefiningMethodChange.
 	
 	self slideShow ifNotNil: [ :aShow | 
-		aShow slideDefinitionChanged: self ]
+		aShow slideDefinitionChangedFor: self ]
+]
+
+{ #category : #accessing }
+GtLiveSlide >> onDefiningMethodRemoved [
+	"I am called when the defining method has changed.
+	Subclasses may react to the method definition changes.
+	I may be called from a non-UI process.".
+	
+	super onDefiningMethodRemoved.
+	self slideShow ifNotNil: [ :aShow | 
+		aShow slideDefinitionRemovedFor: self ]
 ]
 
 { #category : #accessing }

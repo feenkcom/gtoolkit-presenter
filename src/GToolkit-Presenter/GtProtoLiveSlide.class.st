@@ -48,12 +48,32 @@ GtProtoLiveSlide >> onDefiningMethodChange [
 	I may be called from a non-UI process."
 ]
 
+{ #category : #accessing }
+GtProtoLiveSlide >> onDefiningMethodRemoved [
+	"I am called when the defining method has been removed.
+	Subclasses may react to the method definition removal.
+	I may be called from a non-UI process."
+]
+
 { #category : #'private - event handling' }
 GtProtoLiveSlide >> onMethodModified: aMethodModified [
 	self hasDefiningMethod ifFalse: [ ^ self ].
 	(self definingMethod gtPhlowIncludesCompiledMethod: aMethodModified methodAffected)
 		ifFalse: [ ^ self ].
 	self onDefiningMethodChange.
+]
+
+{ #category : #accessing }
+GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
+	self hasDefiningMethod ifFalse: [ ^ self ].
+	(aMethodRemoved methodRemoved hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
+	(GtSystemUtility 
+		isClass: self definingMethod origin
+		sameOrSubclassOf: aMethodRemoved classAffected) ifFalse: [ ^ self ].
+	(self definingMethod gtPhlowIncludesCompiledMethod: aMethodRemoved methodRemoved)
+		ifFalse: [ ^ self ].
+	self unsubscribeFromSystem.
+	self onDefiningMethodRemoved.
 ]
 
 { #category : #accessing }
@@ -69,9 +89,8 @@ GtProtoLiveSlide >> priority: anInteger [
 { #category : #'private - subscriptions' }
 GtProtoLiveSlide >> subscribeToSystem [
 	SystemAnnouncer uniqueInstance weak
-		when: MethodModified
-		send: #onMethodModified:
-		to: self
+		when: MethodModified send: #onMethodModified: to: self;
+		when: MethodRemoved send: #onMethodRemoved: to: self.
 ]
 
 { #category : #accessing }
