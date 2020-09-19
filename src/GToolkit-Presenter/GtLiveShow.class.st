@@ -423,19 +423,26 @@ GtLiveShow >> slidesDropdown [
 									arrowsAreVisible := false.
 									self updateArrows ]);
 						addItem:
+							(BrToggle new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
+								icon: BrGlamorousIcons browse asElement;
+								label: 'Browse slide method' asString;
+								when: BrToggleActivatedEvent
+									do: [ :anEvent | 
+										coderElement visibility: BlVisibility visible.
+										coderElementState := true ];
+								when: BrToggleDeactivatedEvent
+									do: [ :anEvent | 
+										coderElement visibility: BlVisibility gone.
+										coderElementState := false ]);
+						addItem:
 							(BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Export slides' asString;
 								icon: BrGlamorousIcons save asElement;
 								action: [ self exportSlides ]);
-						addItem:
-							(BrButton new
-								beSmall;
-								look: BrGlamorousButtonWithIconLook;
-								label: 'Browse slide method' asString;
-								icon: BrGlamorousIcons browse asElement;
-								action: [ self changeCoderElementState ]);
 						addItem:
 							(BrButton new
 								beSmall;
