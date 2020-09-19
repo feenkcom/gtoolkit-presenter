@@ -13,19 +13,18 @@ GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> textAndElementExampleSlideFor: aSlide [
+GtExampleSlideshow >> textAndElementExampleFor: aSlide [
 	<gtSlide>
 	^ aSlide textAndElement
 		priority: 5;
-		newTextWithFormat: 'b' asRopedText;
-		element: [GtTour new playgroundExplanationWithLinks];
-		elementWeight: 0.6.
+		newText: 'This is a text and element slide' asRopedText;
+		element: [GtTour new playgroundExplanationWithLinks].
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> textExampleFor: aSlide [
+GtExampleSlideshow >> textExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide text
 		priority: 10;
-		newText: 'Something goes here' asRopedText.
+		newText: 'This is a text slide'.
 ]
