@@ -35,17 +35,6 @@ GtLiveShow >> background: anObject [
 ]
 
 { #category : #accessing }
-GtLiveShow >> changeCoderElementState [
-	coderElementState
-		ifTrue: [
-			coderElement visibility: BlVisibility gone.
-			coderElementState := false]
-		ifFalse: [
-			coderElement visibility: BlVisibility visible.
-			coderElementState := true ].
-]
-
-{ #category : #accessing }
 GtLiveShow >> coderElement [
 	coderElementState := false.
 	^ coderElement := BlElement new
@@ -138,7 +127,8 @@ GtLiveShow >> create [
 	container addChild: slidesContainer.
 	container addChild: self coderElement.
 	container addChild: self slidesDropdown.
-	coderElement visibility: BlVisibility gone.
+	"coderElement visibility: BlVisibility gone."
+	self updateCoderElementState.
 	
 	container addShortcut: (BlShortcut new
 		repeatable: false;
@@ -237,7 +227,9 @@ GtLiveShow >> makeArrowsVisible [
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
-	self updateCoderElement.
+	coderElementState := false.
+	self updateCoderElementMethod.
+	self updateCoderElementState.
 ]
 
 { #category : #accessing }
@@ -254,7 +246,9 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
-	self updateCoderElement.
+	coderElementState := false.
+	self updateCoderElementMethod.
+	self updateCoderElementState.
 ]
 
 { #category : #'api - updating' }
@@ -482,9 +476,8 @@ GtLiveShow >> updateArrows [
 ]
 
 { #category : #accessing }
-GtLiveShow >> updateCoderElement [
-	coderElementState := false.
-	coderElement children ifNotEmpty: [coderElement removeChildren].
+GtLiveShow >> updateCoderElementMethod [
+coderElement children ifNotEmpty: [coderElement removeChildren].
 	coderElement
 		addChild: ((GtMethodCoder new 
 			forMethod: (self slides at: self currentSlideIndex) definingMethod;
@@ -494,6 +487,15 @@ GtLiveShow >> updateCoderElement [
 				hMatchParent;
 				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10));
 		visibility: BlVisibility gone.
+]
+
+{ #category : #accessing }
+GtLiveShow >> updateCoderElementState [
+	coderElementState
+		ifTrue: [
+			coderElement visibility: BlVisibility visible]
+		ifFalse: [
+			coderElement visibility: BlVisibility gone].
 ]
 
 { #category : #accessing }
