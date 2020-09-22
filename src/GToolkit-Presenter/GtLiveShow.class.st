@@ -289,28 +289,6 @@ GtLiveShow >> showSlideBefore: aSlide [
 ]
 
 { #category : #'api - updating' }
-GtLiveShow >> slideDefinitionChanged: aSlide [
-	"I am called from aSlide when the slide definition has changed.
-	My responsibility is to replace the slide with a new one."
-	<gtCollector>
-	| aNewSlide currentIndex |
-	aNewSlide := self 
-		perform: aSlide definingMethod selector
-		with: GtEmptySlide new.
-	currentIndex := self currentSlideIndex.
-	
-	self replaceSlide: aSlide with: aNewSlide.
-	self sortSlidesByPriority.
-	self slides withIndexDo: [ :slide :index | 
-		slide 
-			slideShow: self;
-			slideIndex: index ].
-	self showSlide: (self slides at: currentIndex).
-	(aNewSlide priority = currentSlide priority)
-		ifFalse: [ self updateCoderElement ].
-]
-
-{ #category : #'api - updating' }
 GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	"I am called from aSlide when the slide definition has changed.
 	My responsibility is to replace the slide with a new one."
@@ -329,7 +307,10 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 			slideIndex: index ].
 	self showSlide: (self slides at: currentIndex).
 	(aNewSlide priority = currentSlide priority)
-		ifFalse: [ self updateCoderElement ].
+		ifFalse: [ 
+			self updateCoderElementMethod.
+			coderElementState := false.
+			self updateCoderElementState].
 	self updatePreviewsContainer.
 ]
 
@@ -345,7 +326,9 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 	(aSlide slideIndex = 1)
 		ifTrue: [
 			self showSlide: self slides first.
-			self updateCoderElement]
+			self updateCoderElementMethod.
+			coderElementState := false.
+			self updateCoderElementState]
 		ifFalse: [self previousStep].
 	self updatePreviewsContainer.
 ]
