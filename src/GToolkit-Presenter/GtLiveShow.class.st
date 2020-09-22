@@ -16,7 +16,8 @@ Class {
 		'coderElement',
 		'coderElementState',
 		'coderElementHeightStrategy',
-		'coderElementResizer'
+		'coderElementResizer',
+		'extraSlidesAdded'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -78,6 +79,8 @@ GtLiveShow >> collectSlides [
 GtLiveShow >> create [
 	| previousElement nextElement container |
 
+	self unsubscribeFromSystem.
+	self subscribeToSystem.
 	self collectSlides.
 	container := GtSlideShowElement new slideShow: self.
 	container 
@@ -137,7 +140,6 @@ GtLiveShow >> create [
 	container addChild: slidesContainer.
 	container addChild: self coderElement.
 	container addChild: self slidesDropdown.
-	"coderElement visibility: BlVisibility gone."
 	self updateCoderElementState.
 	
 	container addShortcut: (BlShortcut new
@@ -154,22 +156,16 @@ GtLiveShow >> create [
 { #category : #accessing }
 GtLiveShow >> createNewEmptySlide [
 	| priority |
-	priority := ((self slides at: self currentSlideIndex) priority + 2) asString.
+	priority := ((self slides at: self currentSlideIndex) priority + 1) asString.
+	extraSlidesAdded := extraSlidesAdded + 1.
 	
 	self class
-		compile: ('newEmptySlideFor: aSlide
+		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
 	<gtSlide>
 	"Rename this method to be able to add others in the slideshow"
 	^ aSlide empty
 		priority: ', priority, '.')
 		classified: ''.
-		
-	self collectSlides.
-	self slides withIndexDo: [ :slide :index | 
-		slide 
-			slideShow: self;
-			slideIndex: index ].
-	self nextStep.
 ]
 
 { #category : #accessing }
@@ -225,7 +221,8 @@ GtLiveShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
 	arrowsAreVisible := false.
-	background := Color white
+	background := Color white.
+	extraSlidesAdded := 0.
 ]
 
 { #category : #accessing }
@@ -250,6 +247,16 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 		aSpace telemetry
 			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
 			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
+]
+
+{ #category : #accessing }
+GtLiveShow >> onMethodAdded: aMethodAdded [
+	(aMethodAdded method hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
+	(GtSystemUtility 
+		isClass: self class
+		sameOrSubclassOf: aMethodAdded classAffected) ifFalse: [ ^ self ].
+	self slides detect: [:aSlide | aSlide definingMethod = aMethodAdded method] ifFound: [^ self ].
+	self slideDefinitionAddedFor: aMethodAdded.
 ]
 
 { #category : #accessing }
@@ -296,6 +303,28 @@ GtLiveShow >> showSlideAfter: aSlide [
 { #category : #accessing }
 GtLiveShow >> showSlideBefore: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex - 1)
+]
+
+{ #category : #accessing }
+GtLiveShow >> slideDefinitionAddedFor: aMethod [
+	"I am called when a new method has been added.
+	Subclasses may react to the method being added.
+	I may be called from a non-UI process."
+	<gtCollector>
+	| aNewSlide |
+	aNewSlide := self 
+		perform: aMethod selector
+		with: GtEmptySlide new.
+	self addSlide: aNewSlide.
+	self sortSlidesByPriority.
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+	self nextStep.
+	"We simulate a click on the dropdown button to close the it so we can update the previews container inside."
+	BlSpace simulateClickOn: dropdown.
+	self updatePreviewsContainer.
 ]
 
 { #category : #'api - updating' }
@@ -449,6 +478,12 @@ GtLiveShow >> sortSlidesByPriority [
 ]
 
 { #category : #accessing }
+GtLiveShow >> subscribeToSystem [
+	SystemAnnouncer uniqueInstance weak
+		when: MethodAdded send: #onMethodAdded: to: self.
+]
+
+{ #category : #accessing }
 GtLiveShow >> title [
 	^ title ifNil: [ 'Gt Slide Show' ]
 ]
@@ -456,6 +491,11 @@ GtLiveShow >> title [
 { #category : #accessing }
 GtLiveShow >> title: anObject [
 	title := anObject.
+]
+
+{ #category : #accessing }
+GtLiveShow >> unsubscribeFromSystem [
+	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
 { #category : #accessing }
