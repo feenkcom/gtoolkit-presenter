@@ -14,7 +14,9 @@ Class {
 		'currentSlide',
 		'slides',
 		'coderElement',
-		'coderElementState'
+		'coderElementState',
+		'coderElementHeightStrategy',
+		'coderElementResizer'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -37,11 +39,13 @@ GtLiveShow >> background: anObject [
 { #category : #accessing }
 GtLiveShow >> coderElement [
 	coderElementState := false.
-	^ coderElement := BlElement new
+	coderElement := BlElement new
 		constraintsDo: [:c |
 			c horizontal matchParent.
 			c vertical matchParent];
-		look: BrShadowLook;
+		look: BrShadowLook + 
+			(BrGlamorousWithVerticalResizerLook new beTop
+				resizerDo: [ :theResizer | coderElementResizer := theResizer ]);
 		background: self background;
 		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30);
 		addChild: ((GtMethodCoder new 
@@ -51,6 +55,12 @@ GtLiveShow >> coderElement [
 				vMatchParent;
 				hMatchParent;
 				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
+	coderElementResizer
+		when: BlResizerResizedEvent
+		do: [:anEvent |
+			coderElementHeightStrategy := BrResizerElementLength exact: anEvent extent y.
+			coderElementHeightStrategy adjustHeightFor: coderElement ].
+	^ coderElement.
 ]
 
 { #category : #accessing }
@@ -460,7 +470,7 @@ GtLiveShow >> updateArrows [
 
 { #category : #accessing }
 GtLiveShow >> updateCoderElementMethod [
-coderElement children ifNotEmpty: [coderElement removeChildren].
+	(coderElement children size > 1) ifTrue: [coderElement removeChildAt: 2].
 	coderElement
 		addChild: ((GtMethodCoder new 
 			forMethod: (self slides at: self currentSlideIndex) definingMethod;
