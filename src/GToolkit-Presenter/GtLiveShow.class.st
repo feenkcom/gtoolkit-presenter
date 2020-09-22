@@ -336,6 +336,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	self showSlide: (self slides at: currentIndex).
 	(aNewSlide priority = currentSlide priority)
 		ifFalse: [ self updateCoderElement ].
+	self updatePreviewsContainer.
 ]
 
 { #category : #accessing }
@@ -352,6 +353,7 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 			self showSlide: self slides first.
 			self updateCoderElement]
 		ifFalse: [self previousStep].
+	self updatePreviewsContainer.
 ]
 
 { #category : #accessing }
@@ -372,22 +374,15 @@ GtLiveShow >> slidesContainer [
 
 { #category : #accessing }
 GtLiveShow >> slidesDropdown [
-	| container aToolbar |
-	container := BlElement new.
-	container
+	| aToolbar |
+	previewsContainer := BlElement new.
+	previewsContainer
 		layout: BlFlowLayout new;
 		constraintsDo: [ :c | 
 			c vertical fitContent.
 			c horizontal matchParent ];
 		padding: (BlInsets all: 10).
-	self slides
-		do: [ :each | 
-			container
-				addChild:
-					(each asPreviewElement
-						when: BlClickEvent
-						do: [ :e | self showSlide: each ]) ].
-	previewsContainer := container.
+	self updatePreviewsContainer.
 	^ dropdown := BrButton new
 		constraintsDo: [:c |
 			c frame horizontal alignRight.
@@ -430,12 +425,12 @@ GtLiveShow >> slidesDropdown [
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
-										coderElement visibility: BlVisibility visible.
-										coderElementState := true ];
+										coderElementState := true.
+										self updateCoderElementState ];
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent | 
-										coderElement visibility: BlVisibility gone.
-										coderElementState := false ]);
+										coderElementState := false.
+										self updateCoderElementState ]);
 						addItem:
 							(BrButton new
 								beSmall;
@@ -453,7 +448,7 @@ GtLiveShow >> slidesDropdown [
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
-						addChild: container asScrollableElement;
+						addChild: previewsContainer asScrollableElement;
 						addChild: aToolbar.
 					el ]);
 			constraintsDo: [ :c | c linear horizontal alignRight ];
@@ -499,6 +494,18 @@ GtLiveShow >> updateCoderElement [
 				hMatchParent;
 				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10));
 		visibility: BlVisibility gone.
+]
+
+{ #category : #accessing }
+GtLiveShow >> updatePreviewsContainer [
+	previewsContainer removeChildren.
+	self slides
+		do: [ :each | 
+			previewsContainer
+				addChild:
+					(each asPreviewElement
+						when: BlClickEvent
+						do: [ :e | self showSlide: each ]) ].
 ]
 
 { #category : #accessing }
