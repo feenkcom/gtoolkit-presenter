@@ -159,10 +159,13 @@ GtLiveShow >> createNewEmptySlide [
 	priority := ((self slides at: self currentSlideIndex) priority + 1) asString.
 	extraSlidesAdded := extraSlidesAdded + 1.
 	
+	"We simulate a click on the dropdown button to close it so we can update the previews container inside, after the method is compiled and the new slide is added."
+	BlSpace simulateClickOn: dropdown.
+
 	self class
 		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
 	<gtSlide>
-	"Rename this method to be able to add others in the slideshow"
+	"Rename this method to be more representative for your slide"
 	^ aSlide empty
 		priority: ', priority, '.')
 		classified: ''.
@@ -322,8 +325,8 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 			slideShow: self;
 			slideIndex: index ].
 	self nextStep.
-	"We simulate a click on the dropdown button to close the it so we can update the previews container inside."
-	BlSpace simulateClickOn: dropdown.
+	coderElementState := true.
+	self updateCoderElementState.
 	self updatePreviewsContainer.
 ]
 
