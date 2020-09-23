@@ -16,7 +16,8 @@ Class {
 		'coderElement',
 		'coderElementState',
 		'coderElementHeightStrategy',
-		'coderElementResizer'
+		'coderElementResizer',
+		'extraSlidesAdded'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -78,6 +79,8 @@ GtLiveShow >> collectSlides [
 GtLiveShow >> create [
 	| previousElement nextElement container |
 
+	self unsubscribeFromSystem.
+	self subscribeToSystem.
 	self collectSlides.
 	container := GtSlideShowElement new slideShow: self.
 	container 
@@ -89,11 +92,17 @@ GtLiveShow >> create [
 		layout: BlLinearLayout horizontal.
 	previousElement := BlElement new 
 		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self previousStep ];
+		when: BlClickEvent do: [:e | 
+			self previousStep.
+			coderElementState := false.
+			self updateCoderElementState ];
 		layout: BlLinearLayout new alignCenter.
 	previousArrow := BrButton new
 		size: 12 @ 24;
-		when: BlClickEvent do: [:e | self previousStep ];
+		when: BlClickEvent do: [:e | 
+			self previousStep.
+			coderElementState := false.
+			self updateCoderElementState ];
 		geometry:
 			(BlPolygon
 				vertices:
@@ -107,11 +116,17 @@ GtLiveShow >> create [
 	previousElement addChild: previousArrow.
 	nextElement := BlElement new 
 		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self nextStep ];
+		when: BlClickEvent do: [:e | 
+			self nextStep.
+			coderElementState := false.
+			self updateCoderElementState ];
 		layout: BlLinearLayout new alignCenter.
 	nextArrow := BrButton new
 		size: 12 @ 24;
-		when: BlClickEvent do: [:e | self nextStep ];
+		when: BlClickEvent do: [:e | 
+			self nextStep.
+			coderElementState := false.
+			self updateCoderElementState ];
 		geometry:
 			(BlPolygon
 				vertices:
@@ -137,7 +152,6 @@ GtLiveShow >> create [
 	container addChild: slidesContainer.
 	container addChild: self coderElement.
 	container addChild: self slidesDropdown.
-	"coderElement visibility: BlVisibility gone."
 	self updateCoderElementState.
 	
 	container addShortcut: (BlShortcut new
@@ -154,22 +168,19 @@ GtLiveShow >> create [
 { #category : #accessing }
 GtLiveShow >> createNewEmptySlide [
 	| priority |
-	priority := ((self slides at: self currentSlideIndex) priority + 2) asString.
+	priority := ((self slides at: self currentSlideIndex) priority + 1) asString.
+	extraSlidesAdded := extraSlidesAdded + 1.
 	
+	"We simulate a click on the dropdown button to close it so we can update the previews container inside, after the method is compiled and the new slide is added."
+	BlSpace simulateClickOn: dropdown.
+
 	self class
-		compile: ('newEmptySlideFor: aSlide
+		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
 	<gtSlide>
-	"Rename this method to be able to add others in the slideshow"
+	"Rename this method to be more representative for your slide"
 	^ aSlide empty
 		priority: ', priority, '.')
 		classified: ''.
-		
-	self collectSlides.
-	self slides withIndexDo: [ :slide :index | 
-		slide 
-			slideShow: self;
-			slideIndex: index ].
-	self nextStep.
 ]
 
 { #category : #accessing }
@@ -225,7 +236,8 @@ GtLiveShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
 	arrowsAreVisible := false.
-	background := Color white
+	background := Color white.
+	extraSlidesAdded := 0.
 ]
 
 { #category : #accessing }
@@ -237,9 +249,7 @@ GtLiveShow >> makeArrowsVisible [
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
-	coderElementState := false.
 	self updateCoderElementMethod.
-	self updateCoderElementState.
 ]
 
 { #category : #accessing }
@@ -253,12 +263,20 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 ]
 
 { #category : #accessing }
+GtLiveShow >> onMethodAdded: aMethodAdded [
+	(aMethodAdded method hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
+	(GtSystemUtility 
+		isClass: self class
+		sameOrSubclassOf: aMethodAdded classAffected) ifFalse: [ ^ self ].
+	self slides detect: [:aSlide | aSlide definingMethod = aMethodAdded method] ifFound: [^ self ].
+	self slideDefinitionAddedFor: aMethodAdded.
+]
+
+{ #category : #accessing }
 GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
-	coderElementState := false.
 	self updateCoderElementMethod.
-	self updateCoderElementState.
 ]
 
 { #category : #'api - updating' }
@@ -296,6 +314,28 @@ GtLiveShow >> showSlideAfter: aSlide [
 { #category : #accessing }
 GtLiveShow >> showSlideBefore: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex - 1)
+]
+
+{ #category : #accessing }
+GtLiveShow >> slideDefinitionAddedFor: aMethod [
+	"I am called when a new method has been added.
+	Subclasses may react to the method being added.
+	I may be called from a non-UI process."
+	<gtCollector>
+	| aNewSlide |
+	aNewSlide := self 
+		perform: aMethod selector
+		with: GtEmptySlide new.
+	self addSlide: aNewSlide.
+	self sortSlidesByPriority.
+	self slides withIndexDo: [ :slide :index | 
+		slide 
+			slideShow: self;
+			slideIndex: index ].
+	self nextStep.
+	coderElementState := true.
+	self updateCoderElementState.
+	self updatePreviewsContainer.
 ]
 
 { #category : #'api - updating' }
@@ -339,7 +379,10 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 			self updateCoderElementMethod.
 			coderElementState := false.
 			self updateCoderElementState]
-		ifFalse: [self previousStep].
+		ifFalse: [
+			self previousStep.
+			coderElementState := false.
+			self updateCoderElementState ].
 	self updatePreviewsContainer.
 ]
 
@@ -449,6 +492,12 @@ GtLiveShow >> sortSlidesByPriority [
 ]
 
 { #category : #accessing }
+GtLiveShow >> subscribeToSystem [
+	SystemAnnouncer uniqueInstance weak
+		when: MethodAdded send: #onMethodAdded: to: self.
+]
+
+{ #category : #accessing }
 GtLiveShow >> title [
 	^ title ifNil: [ 'Gt Slide Show' ]
 ]
@@ -456,6 +505,11 @@ GtLiveShow >> title [
 { #category : #accessing }
 GtLiveShow >> title: anObject [
 	title := anObject.
+]
+
+{ #category : #accessing }
+GtLiveShow >> unsubscribeFromSystem [
+	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
 { #category : #accessing }
@@ -478,8 +532,7 @@ GtLiveShow >> updateCoderElementMethod [
 			asElement)
 				vMatchParent;
 				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10));
-		visibility: BlVisibility gone.
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
 ]
 
 { #category : #accessing }
@@ -500,7 +553,11 @@ GtLiveShow >> updatePreviewsContainer [
 				addChild:
 					(each asPreviewElement
 						when: BlClickEvent
-						do: [ :e | self showSlide: each ]) ].
+						do: [ :e | 
+							self showSlide: each.
+							coderElementState := false.
+							self updateCoderElementMethod.
+							self updateCoderElementState ]) ].
 ]
 
 { #category : #accessing }
