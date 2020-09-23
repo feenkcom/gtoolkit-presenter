@@ -36,9 +36,25 @@ GtProtoLiveSlide >> empty [
 			collect).
 ]
 
+{ #category : #decorating }
+GtProtoLiveSlide >> example [
+	^ GtExampleLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
 { #category : #'private - event handling' }
 GtProtoLiveSlide >> hasDefiningMethod [
 	^ self definingMethod isNotNil
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> labelAndElement [
+	^ GtLabelAndElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
 ]
 
 { #category : #'private - event handling' }
@@ -74,6 +90,14 @@ GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 		ifFalse: [ ^ self ].
 	self unsubscribeFromSystem.
 	self onDefiningMethodRemoved.
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> playground [
+	^ GtPlaygroundLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
 ]
 
 { #category : #accessing }

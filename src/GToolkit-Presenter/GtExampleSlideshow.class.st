@@ -13,6 +13,31 @@ GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> labelAndElementSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide labelAndElement
+		priority: 25;
+		newFadedText: 'This is a label and element slide.';
+		element: [BlElement new background: Color blue].
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> methodExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide example
+		priority: 30;
+		method: GtABAddressBookExample>>#myContactsAddressBook.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> playgroundExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide playground
+		priority: 20;
+		snippets: {'42 + 3'. '''This is a string'''}.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> slideshowExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide slideshow
