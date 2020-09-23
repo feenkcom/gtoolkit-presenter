@@ -7,7 +7,7 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : #'api - instantiation' }
 GtElementLiveSlide >> create [
 	^ element value.
 ]

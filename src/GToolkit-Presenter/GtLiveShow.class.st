@@ -75,7 +75,7 @@ GtLiveShow >> collectSlides [
 	self slides: theSlides.
 ]
 
-{ #category : #accessing }
+{ #category : #'api - instantiation' }
 GtLiveShow >> create [
 	| previousElement nextElement container |
 
@@ -231,7 +231,7 @@ GtLiveShow >> hasPreviousSlide [
 	^ self slides first ~= currentSlide
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GtLiveShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
@@ -252,7 +252,7 @@ GtLiveShow >> nextStep [
 	self updateCoderElementMethod.
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
@@ -316,7 +316,7 @@ GtLiveShow >> showSlideBefore: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex - 1)
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> slideDefinitionAddedFor: aMethod [
 	"I am called when a new method has been added.
 	Subclasses may react to the method being added.
@@ -364,7 +364,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	self updatePreviewsContainer.
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 	"I am called from aSlide when the slide definition has been removed.
 	My responsibility is to remove the slide from the show."
@@ -491,7 +491,7 @@ GtLiveShow >> sortSlidesByPriority [
 	self slides sort: [:a :b | a priority < b priority].
 ]
 
-{ #category : #accessing }
+{ #category : #'private - subscriptions' }
 GtLiveShow >> subscribeToSystem [
 	SystemAnnouncer uniqueInstance weak
 		when: MethodAdded send: #onMethodAdded: to: self.
@@ -507,12 +507,12 @@ GtLiveShow >> title: anObject [
 	title := anObject.
 ]
 
-{ #category : #accessing }
+{ #category : #'private - subscriptions' }
 GtLiveShow >> unsubscribeFromSystem [
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasPreviousSlide ])
 		ifTrue: [ previousArrow visibility: BlVisibility visible ]
@@ -522,7 +522,7 @@ GtLiveShow >> updateArrows [
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> updateCoderElementMethod [
 	(coderElement children size > 1) ifTrue: [coderElement removeChildAt: 2].
 	coderElement
@@ -535,7 +535,7 @@ GtLiveShow >> updateCoderElementMethod [
 				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> updateCoderElementState [
 	coderElementState
 		ifTrue: [
@@ -544,7 +544,7 @@ GtLiveShow >> updateCoderElementState [
 			coderElement visibility: BlVisibility gone].
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> updatePreviewsContainer [
 	previewsContainer removeChildren.
 	self slides
@@ -560,7 +560,7 @@ GtLiveShow >> updatePreviewsContainer [
 							self updateCoderElementState ]) ].
 ]
 
-{ #category : #accessing }
+{ #category : #'api - updating' }
 GtLiveShow >> updateSlide: aSlide [
 	| slideContentElement |
 	currentSlide = aSlide ifFalse: [ ^ self ].

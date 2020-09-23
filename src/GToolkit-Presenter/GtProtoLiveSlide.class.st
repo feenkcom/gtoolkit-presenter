@@ -20,7 +20,7 @@ GtProtoLiveSlide >> definingMethod: aCompiledMethod [
 	self subscribeToSystem.
 ]
 
-{ #category : #accessing }
+{ #category : #decorating }
 GtProtoLiveSlide >> element [
 	^ GtElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -28,7 +28,7 @@ GtProtoLiveSlide >> element [
 			collect).
 ]
 
-{ #category : #accessing }
+{ #category : #decorating }
 GtProtoLiveSlide >> empty [
 	^ GtEmptySlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -48,7 +48,7 @@ GtProtoLiveSlide >> onDefiningMethodChange [
 	I may be called from a non-UI process."
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onDefiningMethodRemoved [
 	"I am called when the defining method has been removed.
 	Subclasses may react to the method definition removal.
@@ -63,7 +63,7 @@ GtProtoLiveSlide >> onMethodModified: aMethodModified [
 	self onDefiningMethodChange.
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 	self hasDefiningMethod ifFalse: [ ^ self ].
 	(aMethodRemoved methodRemoved hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
@@ -93,7 +93,7 @@ GtProtoLiveSlide >> subscribeToSystem [
 		when: MethodRemoved send: #onMethodRemoved: to: self.
 ]
 
-{ #category : #accessing }
+{ #category : #decorating }
 GtProtoLiveSlide >> text [
 	^ GtTextLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -101,7 +101,7 @@ GtProtoLiveSlide >> text [
 			collect).
 ]
 
-{ #category : #accessing }
+{ #category : #decorating }
 GtProtoLiveSlide >> textAndElement [
 	^ GtTextAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
