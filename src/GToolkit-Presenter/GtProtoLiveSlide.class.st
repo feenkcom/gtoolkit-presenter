@@ -86,6 +86,14 @@ GtProtoLiveSlide >> priority: anInteger [
 	priority := anInteger.
 ]
 
+{ #category : #decorating }
+GtProtoLiveSlide >> slideshow [
+	^ GtSlideshowLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
 { #category : #'private - subscriptions' }
 GtProtoLiveSlide >> subscribeToSystem [
 	SystemAnnouncer uniqueInstance weak
@@ -104,6 +112,14 @@ GtProtoLiveSlide >> text [
 { #category : #decorating }
 GtProtoLiveSlide >> textAndElement [
 	^ GtTextAndElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> title [
+	^ GtTitleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
