@@ -13,7 +13,7 @@ GtEmptySlide >> content [
 			c vertical matchParent ].
 ]
 
-{ #category : #accessing }
+{ #category : #'api - instantiation' }
 GtEmptySlide >> create [
 	^ BlElement new
 		background: BlBackground transparent;

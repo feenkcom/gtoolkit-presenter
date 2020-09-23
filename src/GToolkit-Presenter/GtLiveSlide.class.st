@@ -69,7 +69,7 @@ GtLiveSlide >> generateElements [
 			addChild: formElement ]).
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GtLiveSlide >> initialize [
 
 	super initialize.
@@ -106,7 +106,7 @@ GtLiveSlide >> nextStepWith: aSlider [
 	aSlider showSlideAfter: self
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onAddedToSceneGraphAction [
 	^ onAddedToSceneGraphAction ifNil: [^[:anElement | ]].
 ]
@@ -122,7 +122,7 @@ GtLiveSlide >> onDefiningMethodChange [
 		aShow slideDefinitionChangedFor: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onDefiningMethodRemoved [
 	"I am called when the defining method has changed.
 	Subclasses may react to the method definition changes.
@@ -133,19 +133,19 @@ GtLiveSlide >> onDefiningMethodRemoved [
 		aShow slideDefinitionRemovedFor: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onEveryAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := true.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onFirstAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := false.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : #accessing }
+{ #category : #'private - event handling' }
 GtLiveSlide >> performActionOn: element [
 	self onAddedToSceneGraphAction cull: element.
 ]

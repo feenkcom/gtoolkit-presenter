@@ -7,7 +7,7 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : #'api - instantiation' }
 GtTextLiveSlide >> create [
 	| container textContainer |
 	container := BlElement new
@@ -34,7 +34,7 @@ GtTextLiveSlide >> create [
 	^ container
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GtTextLiveSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new

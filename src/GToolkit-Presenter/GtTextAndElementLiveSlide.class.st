@@ -9,7 +9,7 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : #'api - instantiation' }
 GtTextAndElementLiveSlide >> create [
 	| container textContainer completeText |
 	completeText := texts allButFirst 
@@ -62,7 +62,7 @@ GtTextAndElementLiveSlide >> elementWeight: aNumber [
 	elementWeight := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GtTextAndElementLiveSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new.
