@@ -45,6 +45,30 @@ GtExampleSlideshow >> devKeyboardExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide editorElement
+		withDebugCharacter;
+		priority: 44.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide editorElement
+		withRotatedWords;
+		priority: 45.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> editorElementWithTreeExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide editorElement
+		withTree;
+		priority: 46.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> elementAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide elementAndElement
