@@ -29,14 +29,6 @@ GtExampleSlideshow >> devKeyboardExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
-	<gtSlide>
-	^ aSlide editorElement
-		withDebugCharacter;
-		priority: 44.
-]
-
-{ #category : #accessing }
 GtExampleSlideshow >> elementAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide elementAndElement
