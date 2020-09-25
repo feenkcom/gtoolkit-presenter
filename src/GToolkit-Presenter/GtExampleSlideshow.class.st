@@ -45,6 +45,14 @@ GtExampleSlideshow >> devKeyboardExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> documenterExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide documenter
+		priority: 56;
+		document: (GtDocumenter forClass: GtDocumenterExamples).
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
@@ -87,12 +95,39 @@ GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> filePictureExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide filePicture
+		priority: 54;
+		fileReference: './pharo-local/iceberg/feenkcom/gtoolkit/doc/gtoolkit.png'.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> labelAndElementSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide labelAndElement
 		priority: 25;
 		newFadedText: 'This is a label and element slide.';
 		element: [BlElement new background: Color blue].
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> liveElementTreeSlideExampleFor: aSlide [
+	<gtSlide>
+	| editor |
+	editor := BrEditor new 
+		look: BrGlamorousEditorLook;
+		text: GtWhatMakesBlocSpecialExplanation new sampleText.
+	^ aSlide liveElementTree
+		priority: 51;
+		targetElement: (BlUseAsyncFeatures disableDuring: [
+			(editor gtViewsFor: GtPhlowView empty) asElementDo: [:e | 
+				e 
+					addEventFilterOn: BlMouseOverEvent 
+					do: [ :anEvent | 
+						anEvent target effect: (BlOverlayAboveEffect new paint: (BrGlamorousColors textHighlightColor alpha: 0.4)) ];
+					addEventFilterOn: BlMouseOutEvent 
+					do: [ :anEvent | anEvent target effect: (BlNullEffect new) ] ]]).
 ]
 
 { #category : #accessing }
@@ -136,6 +171,15 @@ GtExampleSlideshow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> paragraphExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide paragraph
+		priority: 55;
+		paragraph: 'This is a paragraph slide';
+		subtitle: 'Paragraph title'.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> playgroundExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide playground
@@ -158,6 +202,13 @@ GtExampleSlideshow >> slideshowExampleSlideFor: aSlide [
 		priority: 2;
 		textWithFormat: 'Want to learn more about the Pharo syntax? Follow the show below' asRopedText glamorousRegularFont;
 		slideshow: [ GtExampleSlideshow new create] withTitle: 'Example Slideshow'.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> spotterExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide spotter
+		priority: 52.
 ]
 
 { #category : #accessing }
@@ -185,4 +236,11 @@ GtExampleSlideshow >> titleExampleSlideFor: aSlide [
 		titleWithFormat: ('Example Slideshow' asRopedText
 			fontSize: 70;
 			glamorousRegularFont).
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> worldExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide world
+		priority: 53.
 ]
