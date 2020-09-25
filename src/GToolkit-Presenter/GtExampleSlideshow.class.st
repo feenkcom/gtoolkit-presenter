@@ -5,6 +5,48 @@ Class {
 }
 
 { #category : #accessing }
+GtExampleSlideshow >> classCoderExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide classCoder
+		priority: 41;
+		class: GtABAddressBook;
+		expandHeader: true;
+		expandMethodAt: 2.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> connectorExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide connector
+		priority: 42.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> devKeyboardExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide devKeyboard
+		priority: 43.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide editorElement
+		withDebugCharacter;
+		priority: 44.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> elementAndElementExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide elementAndElement
+		priority: 35;
+		newText: 'This is an element and element slide';
+		leftElement: [BlElement new background: Color blue];
+		rightElement: [BlElement new background: Color red].
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide element
@@ -19,6 +61,30 @@ GtExampleSlideshow >> labelAndElementSlideFor: aSlide [
 		priority: 25;
 		newFadedText: 'This is a label and element slide.';
 		element: [BlElement new background: Color blue].
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> mashExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide mash
+		priority: 40;
+		leftElement: 
+			(BlElement new
+				look: BrShadowLook;
+				background: Color white;
+				addChild: ((GtABCartoonAddressBookExample new cartoonAddressBook 
+					gtViewsFor: GtPhlowView empty) asElement));
+		centerElement: 
+			(((GtMethodCoder 
+					forMethod: GtABAddressBookExample>>#myContactsAddressBook) 
+						expanded: true) asElement);
+		rightElement: 
+			(BlElement new
+				look: BrShadowLook;
+				background: Color white;
+				addChild: ((GtPlaygroundSlide new 
+					snippets: {'BlElement new background: Color red.'};
+					inspectSnippetAt: 1) asElement)).
 ]
 
 { #category : #accessing }

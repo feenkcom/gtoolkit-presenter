@@ -9,7 +9,7 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
-{ #category : #'api - initialization' }
+{ #category : #'api - instantiation' }
 GtSlideshowLiveSlide >> create [
 	| mainContainer textContainer previewContainer previewHeader previewContent |
 	

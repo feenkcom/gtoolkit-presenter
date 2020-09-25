@@ -8,6 +8,22 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
+{ #category : #decorating }
+GtProtoLiveSlide >> classCoder [
+	^ GtClassCoderLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> connector [
+	^ GtConnectorForExampleLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
 { #category : #accessing }
 GtProtoLiveSlide >> definingMethod [
 	^ definingMethod.
@@ -21,8 +37,32 @@ GtProtoLiveSlide >> definingMethod: aCompiledMethod [
 ]
 
 { #category : #decorating }
+GtProtoLiveSlide >> devKeyboard [
+	^ GtDevKeyboardLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> editorElement [
+	^ GtEditorElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
 GtProtoLiveSlide >> element [
 	^ GtElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> elementAndElement [
+	^ GtElementAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
@@ -52,6 +92,14 @@ GtProtoLiveSlide >> hasDefiningMethod [
 { #category : #decorating }
 GtProtoLiveSlide >> labelAndElement [
 	^ GtLabelAndElementLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> mash [
+	^ GtMashExampleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
