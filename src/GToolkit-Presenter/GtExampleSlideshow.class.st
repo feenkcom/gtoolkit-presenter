@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #accessing }
+GtExampleSlideshow >> allViewsExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide inspectorViews
+		allViews;
+		priority: 47.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> classCoderExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide classCoder
@@ -19,6 +27,14 @@ GtExampleSlideshow >> connectorExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide connector
 		priority: 42.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> customViewsExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide inspectorViews
+		customViews;
+		priority: 48.
 ]
 
 { #category : #accessing }
@@ -88,11 +104,27 @@ GtExampleSlideshow >> methodExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleSlideshow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide inspectorViews
+		multipleViewsForOneObject;
+		priority: 50.
+]
+
+{ #category : #accessing }
 GtExampleSlideshow >> playgroundExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide playground
 		priority: 20;
 		snippets: {'42 + 3'. '''This is a string'''}.
+]
+
+{ #category : #accessing }
+GtExampleSlideshow >> rawViewsExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide inspectorViews
+		rawViews;
+		priority: 49.
 ]
 
 { #category : #accessing }
