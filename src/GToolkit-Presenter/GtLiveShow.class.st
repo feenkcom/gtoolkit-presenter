@@ -172,7 +172,7 @@ GtLiveShow >> createNewEmptySlide [
 	extraSlidesAdded := extraSlidesAdded + 1.
 	
 	"We simulate a click on the dropdown button to close it so we can update the previews container inside, after the method is compiled and the new slide is added."
-	BlSpace simulateClickOn: dropdown.
+	BlSpace simulateClickOn: self dropdown.
 
 	self class
 		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
@@ -191,6 +191,11 @@ GtLiveShow >> currentSlideIndex [
 	^currentSlide
 		ifNil: [ nil ] 
 		ifNotNil: [ currentSlide slideIndex ]
+]
+
+{ #category : #accessing }
+GtLiveShow >> dropdown [
+	^ dropdown.
 ]
 
 { #category : #accessing }
