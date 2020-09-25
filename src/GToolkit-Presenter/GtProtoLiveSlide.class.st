@@ -90,6 +90,14 @@ GtProtoLiveSlide >> hasDefiningMethod [
 ]
 
 { #category : #decorating }
+GtProtoLiveSlide >> inspectorViews [
+	^ GtInspectorViewsLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #decorating }
 GtProtoLiveSlide >> labelAndElement [
 	^ GtLabelAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 

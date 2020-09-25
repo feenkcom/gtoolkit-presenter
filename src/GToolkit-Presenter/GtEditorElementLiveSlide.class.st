@@ -1,15 +1,28 @@
 Class {
 	#name : #GtEditorElementLiveSlide,
 	#superclass : #GtLiveSlide,
+	#instVars : [
+		'slideType'
+	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
 GtEditorElementLiveSlide >> create [
-	BlElement new.
+	^ slideType.
 ]
 
 { #category : #accessing }
 GtEditorElementLiveSlide >> withDebugCharacter [
-	^ GtEditorElementWithDebugCharacterLiveSlide new.
+	slideType := GtEditorElementWithDebugCharacterLiveSlide new.
+]
+
+{ #category : #accessing }
+GtEditorElementLiveSlide >> withRotatedWords [
+	slideType := GtEditorElementWithRotatedWordsLiveSlide new.
+]
+
+{ #category : #accessing }
+GtEditorElementLiveSlide >> withTree [
+	slideType := GtEditorElementWithTreeLiveSlide new.
 ]

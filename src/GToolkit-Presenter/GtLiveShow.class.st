@@ -92,17 +92,11 @@ GtLiveShow >> create [
 		layout: BlLinearLayout horizontal.
 	previousElement := BlElement new 
 		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | 
-			self previousStep.
-			coderElementState := false.
-			self updateCoderElementState ];
+		when: BlClickEvent do: [:e | self previousStep ];
 		layout: BlLinearLayout new alignCenter.
 	previousArrow := BrButton new
 		size: 12 @ 24;
-		when: BlClickEvent do: [:e | 
-			self previousStep.
-			coderElementState := false.
-			self updateCoderElementState ];
+		when: BlClickEvent do: [:e | self previousStep ];
 		geometry:
 			(BlPolygon
 				vertices:
@@ -116,17 +110,11 @@ GtLiveShow >> create [
 	previousElement addChild: previousArrow.
 	nextElement := BlElement new 
 		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | 
-			self nextStep.
-			coderElementState := false.
-			self updateCoderElementState ];
+		when: BlClickEvent do: [:e | self nextStep ];
 		layout: BlLinearLayout new alignCenter.
 	nextArrow := BrButton new
 		size: 12 @ 24;
-		when: BlClickEvent do: [:e | 
-			self nextStep.
-			coderElementState := false.
-			self updateCoderElementState ];
+		when: BlClickEvent do: [:e | self nextStep ];
 		geometry:
 			(BlPolygon
 				vertices:
@@ -361,11 +349,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 			slideShow: self;
 			slideIndex: index ].
 	self showSlide: (self slides at: currentIndex).
-	(aNewSlide priority = currentSlide priority)
-		ifFalse: [ 
-			self updateCoderElementMethod.
-			coderElementState := false.
-			self updateCoderElementState].
+	self updateCoderElementMethod.
 	self updatePreviewsContainer.
 ]
 
@@ -381,13 +365,8 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 	(aSlide slideIndex = 1)
 		ifTrue: [
 			self showSlide: self slides first.
-			self updateCoderElementMethod.
-			coderElementState := false.
-			self updateCoderElementState]
-		ifFalse: [
-			self previousStep.
-			coderElementState := false.
-			self updateCoderElementState ].
+			self updateCoderElementMethod ]
+		ifFalse: [ self previousStep ].
 	self updatePreviewsContainer.
 ]
 
@@ -560,9 +539,7 @@ GtLiveShow >> updatePreviewsContainer [
 						when: BlClickEvent
 						do: [ :e | 
 							self showSlide: each.
-							coderElementState := false.
-							self updateCoderElementMethod.
-							self updateCoderElementState ]) ].
+							self updateCoderElementMethod ]) ].
 ]
 
 { #category : #'api - updating' }
