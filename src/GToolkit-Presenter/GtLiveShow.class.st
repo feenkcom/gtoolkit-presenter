@@ -79,9 +79,6 @@ GtLiveShow >> collectSlides [
 GtLiveShow >> create [
 	| previousElement nextElement container |
 
-	self unsubscribeFromSystem.
-	self subscribeToSystem.
-	self collectSlides.
 	container := GtSlideShowElement new slideShow: self.
 	container 
 		background: self background;
@@ -231,6 +228,9 @@ GtLiveShow >> initialize [
 	arrowsAreVisible := false.
 	background := Color white.
 	extraSlidesAdded := 0.
+	self unsubscribeFromSystem.
+	self subscribeToSystem.
+	self collectSlides.
 ]
 
 { #category : #accessing }
