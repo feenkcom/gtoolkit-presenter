@@ -18,32 +18,32 @@ GtSlideShowExamples >> create [
 	| show |
 	show := GtSlideShow new.
 	show
-		addSlide: (GtTitleSlide new titleText: (self title: 'Title slide')).
+		addSlide: (GtTitleLiveSlide new titleWithFormat: (self title: 'Title slide')).
 	show
 		addSlide:
-			(GtTextAndElementSlide new
+			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'Slide with Text and Playground snippets.');
 				newText: 'You can adjust the space for the element between 0 and 1.';
-				element: [ GtPlaygroundSlide new
+				element: [ GtPlaygroundLiveSlide new
 						snippets: {'3 + 4' . '''Hello world'''};
 						asElement ];
 				elementWeight: 0.6).
 	show
 		addSlide:
-			(GtTextAndElementSlide new
+			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'Embedding a full Class Coder');
 				element: [ (GtCoder forClass: Boolean) createInPager maximized ];
 				elementWeight: 0.6).
 	show
 		addSlide:
-			(GtTextAndElementSlide new
+			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'Coder with a given method expanded');
 				element: [ (GtCoder forMethod: True >> #ifTrue:ifFalse:) createInPager
 					"maximized" ];
 				elementWeight: 0.6).
 	show
 		addSlide:
-			(GtTextAndElementSlide new
+			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'A Method coder for selected methods');
 				element: [ self
 						methodCoderForMethods:
@@ -52,7 +52,7 @@ GtSlideShowExamples >> create [
 							(False >> #not)} ]).
 	show
 		addSlide:
-			(GtTextAndElementSlide new
+			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'New method definitions');
 				newText:
 					'These method definitions must be accepted before they will be compiled.';
@@ -62,7 +62,7 @@ GtSlideShowExamples >> create [
 				elementWeight: 0.6).
 	show
 		addSlide:
-			(GtLabelAndElementSlide new
+			(GtLabelAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'A Class Hierarchy');
 				newText: 'Note that diagram is live, so you can click on the classes.';
 				element: [ (GtPager
@@ -74,18 +74,18 @@ GtSlideShowExamples >> create [
 								viewSelector: #gtLiveFor:)) maximized ]).
 	show
 		addSlide:
-			(GtLabelAndElementSlide new
+			(GtLabelAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'A full Inspector');
 				newText: 'This example  shows how to embed a full Inspector on a given object.';
 				element: [ (GtInspector createOn: Boolean) maximized ]).
 	show
 		addSlide:
-			(GtLabelAndElementSlide new
+			(GtLabelAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'A GtExample');
 				newText:
 					'The example below shows an address book with multiple categories and contacts.'
 						asRopedText;
-				element: [ GtExampleSlide new
+				element: [ GtExampleLiveSlide new
 						method: GtABAddressBookExample >> #contactsAddressBookWithCategories;
 						asElement ]).
 	show makeArrowsVisible.

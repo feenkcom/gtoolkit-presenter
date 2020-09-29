@@ -149,7 +149,7 @@ GtExampleSlideshow >> mashExampleSlideFor: aSlide [
 			(BlElement new
 				look: BrShadowLook;
 				background: Color white;
-				addChild: ((GtPlaygroundSlide new 
+				addChild: ((GtPlaygroundLiveSlide new 
 					snippets: {'BlElement new background: Color red.'};
 					inspectSnippetAt: 1) asElement)).
 ]
