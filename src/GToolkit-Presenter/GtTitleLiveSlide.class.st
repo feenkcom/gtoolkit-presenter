@@ -42,11 +42,11 @@ GtTitleLiveSlide >> initialize [
 
 { #category : #accessing }
 GtTitleLiveSlide >> subtitle: aString [
-	subtitle := aString asRopedText fontSize: 20; glamorousRegularFont
+	self subtitleWithFormat: (aString asRopedText fontSize: 20; glamorousRegularFont).
 ]
 
 { #category : #accessing }
-GtTitleLiveSlide >> subtitleText: aText [
+GtTitleLiveSlide >> subtitleWithFormat: aText [
 	subtitle := aText
 ]
 

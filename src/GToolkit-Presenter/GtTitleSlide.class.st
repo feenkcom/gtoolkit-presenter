@@ -46,7 +46,7 @@ GtTitleSlide >> subtitle: aString [
 ]
 
 { #category : #accessing }
-GtTitleSlide >> subtitleText: aText [
+GtTitleSlide >> subtitleWithFormat: aText [
 	subtitle := aText
 ]
 

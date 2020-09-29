@@ -20,7 +20,7 @@ GtSlideshowLiveSlide >> create [
 		addChild: (BrLabel new look: (BrGlamorousLabelLook new fontSize: 15);
 		text: 'Slideshow').
 	
-	previewContent := (slideshow value slideShow slides first asElement
+	previewContent := (slideshow value slides first asElement
 		constraintsDo: [ :c | 
 			c horizontal exact: 800.
 			c vertical exact: 600 ];
@@ -35,13 +35,11 @@ GtSlideshowLiveSlide >> create [
 		margin: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
 		geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
 		action: [ :card |
-			| aSpace aShow |
+			| aSpace |
 			aSpace := BlSpace new.
 			aSpace title: title.
 			aSpace extent: 1200@600.
-			aShow := slideshow value.
-			aShow slideShow makeArrowsVisible.
-			aSpace addChild: aShow.
+			aSpace addChild: slideshow value makeArrowsVisible asElement.
 			aSpace withHalos.
 			card showSpace: aSpace ].
 	
