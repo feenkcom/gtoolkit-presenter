@@ -381,12 +381,16 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
-	(aSlide slideIndex = 1)
+	(self slides isNotEmpty)
 		ifTrue: [
-			self showSlide: self slides first.
-			self updateCoderElementMethod ]
-		ifFalse: [ self previousStep ].
-	self updatePreviewsContainer.
+			(aSlide slideIndex = 1)
+				ifTrue: [
+					self showSlide: self slides first.
+					self updateCoderElementMethod ]
+				ifFalse: [
+					self previousStep ].
+			self updatePreviewsContainer ]
+		ifFalse: [ self createNewEmptySlide ].
 ]
 
 { #category : #accessing }
