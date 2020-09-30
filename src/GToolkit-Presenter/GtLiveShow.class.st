@@ -38,7 +38,58 @@ GtLiveShow >> background: anObject [
 ]
 
 { #category : #accessing }
-GtLiveShow >> coderElement [
+GtLiveShow >> buildSlideshowContainerComponents [
+	| previousElement nextElement |
+	
+	slideElement := BlElement new
+		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
+		layout: BlLinearLayout horizontal.
+		
+	previousElement := BlElement new 
+		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
+		when: BlClickEvent do: [:e | self previousStep ];
+		layout: BlLinearLayout new alignCenter.
+	previousArrow := BrButton new
+		size: 12 @ 24;
+		when: BlClickEvent do: [:e | self previousStep ];
+		geometry:
+			(BlPolygon
+				vertices:
+					{(12 @ 0).
+					(0 @ 12).
+					(12 @ 24)});
+		look: (BrInteractiveCommonLook new
+				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
+				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
+		background: BrGlamorousColors defaultButtonBorderColor.
+	previousElement addChild: previousArrow.
+	
+	nextElement := BlElement new 
+		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
+		when: BlClickEvent do: [:e | self nextStep ];
+		layout: BlLinearLayout new alignCenter.
+	nextArrow := BrButton new
+		size: 12 @ 24;
+		when: BlClickEvent do: [:e | self nextStep ];
+		geometry:
+			(BlPolygon
+				vertices:
+					{(0 @ 0).
+					(12 @ 12).
+					(0 @ 24)});
+		look: (BrInteractiveCommonLook new
+				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
+				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
+		background: BrGlamorousColors defaultButtonBorderColor.
+	nextElement addChild: nextArrow.
+	
+	slidesContainer := BlElement new 
+		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
+		layout: BlLinearLayout horizontal;
+		addChild: previousElement;
+		addChild: slideElement;
+		addChild: nextElement.
+	
 	coderElementState := false.
 	coderElement := BlElement new
 		constraintsDo: [:c |
@@ -48,19 +99,25 @@ GtLiveShow >> coderElement [
 			(BrGlamorousWithVerticalResizerLook new beTop
 				resizerDo: [ :theResizer | coderElementResizer := theResizer ]);
 		background: self background;
-		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30);
-		addChild: ((GtMethodCoder new 
+		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30).
+		"addChild: ((GtMethodCoder new 
 			forMethod: self slides first definingMethod;
 			expanded: true;
 			asElement)
 				vMatchParent;
 				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10))."
 	coderElementResizer
 		when: BlResizerResizedEvent
 		do: [:anEvent |
 			coderElementHeightStrategy := BrResizerElementLength exact: anEvent extent y.
 			coderElementHeightStrategy adjustHeightFor: coderElement ].
+	
+	self slidesDropdown.
+]
+
+{ #category : #accessing }
+GtLiveShow >> coderElement [
 	^ coderElement.
 ]
 
@@ -84,59 +141,10 @@ GtLiveShow >> create [
 		background: self background;
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
 		layout: BlLinearLayout vertical.
-	slideElement := BlElement new
-		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
-		layout: BlLinearLayout horizontal.
-	previousElement := BlElement new 
-		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self previousStep ];
-		layout: BlLinearLayout new alignCenter.
-	previousArrow := BrButton new
-		size: 12 @ 24;
-		when: BlClickEvent do: [:e | self previousStep ];
-		geometry:
-			(BlPolygon
-				vertices:
-					{(12 @ 0).
-					(0 @ 12).
-					(12 @ 24)});
-		look: (BrInteractiveCommonLook new
-				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
-				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
-		background: BrGlamorousColors defaultButtonBorderColor.
-	previousElement addChild: previousArrow.
-	nextElement := BlElement new 
-		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self nextStep ];
-		layout: BlLinearLayout new alignCenter.
-	nextArrow := BrButton new
-		size: 12 @ 24;
-		when: BlClickEvent do: [:e | self nextStep ];
-		geometry:
-			(BlPolygon
-				vertices:
-					{(0 @ 0).
-					(12 @ 12).
-					(0 @ 24)});
-		look: (BrInteractiveCommonLook new
-				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
-				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
-		background: BrGlamorousColors defaultButtonBorderColor.
-	nextElement addChild: nextArrow.
-	slidesContainer := BlElement new 
-		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
-		layout: BlLinearLayout horizontal;
-		addChild: previousElement;
-		addChild: slideElement;
-		addChild: nextElement.
-	self slides withIndexDo: [ :slide :index | 
-		slide 
-			slideShow: self;
-			slideIndex: index ].
-	self showSlide: self slides first.
+	
 	container addChild: slidesContainer.
 	container addChild: self coderElement.
-	container addChild: self slidesDropdown.
+	container addChild: self dropdown.
 	self updateCoderElementState.
 	
 	container addShortcut: (BlShortcut new
@@ -153,11 +161,10 @@ GtLiveShow >> create [
 { #category : #accessing }
 GtLiveShow >> createNewEmptySlide [
 	| priority |
-	priority := ((self slides at: self currentSlideIndex) priority + 1) asString.
+	(self slides isNotEmpty)
+		ifTrue: [ priority := ((self slides at: self currentSlideIndex) priority + 1) asString ]
+		ifFalse: [ priority := 1 asString ].
 	extraSlidesAdded := extraSlidesAdded + 1.
-	
-	"We simulate a click on the dropdown button to close it so we can update the previews container inside, after the method is compiled and the new slide is added."
-	BlSpace simulateClickOn: self dropdown.
 
 	self class
 		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
@@ -228,9 +235,20 @@ GtLiveShow >> initialize [
 	arrowsAreVisible := false.
 	background := Color white.
 	extraSlidesAdded := 0.
+	self buildSlideshowContainerComponents.
 	self unsubscribeFromSystem.
 	self subscribeToSystem.
 	self collectSlides.
+	(self slides size = 0)
+		ifTrue: [ self createNewEmptySlide ]
+		ifFalse: [
+			self slides withIndexDo: [ :slide :index | 
+				slide 
+					slideShow: self;
+					slideIndex: index ].
+			self showSlide: self slides first.
+			self updateCoderElementMethod.
+			self updatePreviewsContainer ].
 ]
 
 { #category : #accessing }
@@ -325,8 +343,9 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
-	self nextStep.
+	self showSlide: aNewSlide.
 	coderElementState := true.
+	self updateCoderElementMethod.
 	self updateCoderElementState.
 	self updatePreviewsContainer.
 ]
@@ -362,12 +381,16 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
-	(aSlide slideIndex = 1)
+	(self slides isNotEmpty)
 		ifTrue: [
-			self showSlide: self slides first.
-			self updateCoderElementMethod ]
-		ifFalse: [ self previousStep ].
-	self updatePreviewsContainer.
+			(aSlide slideIndex = 1)
+				ifTrue: [
+					self showSlide: self slides first.
+					self updateCoderElementMethod ]
+				ifFalse: [
+					self previousStep ].
+			self updatePreviewsContainer ]
+		ifFalse: [ self createNewEmptySlide ].
 ]
 
 { #category : #accessing }
@@ -439,11 +462,11 @@ GtLiveShow >> slidesDropdown [
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
-										coderElementState := true.
+										coderElementState := coderElementState not.
 										self updateCoderElementState ];
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent | 
-										coderElementState := false.
+										coderElementState := coderElementState not.
 										self updateCoderElementState ]);
 						addItem:
 							(BrButton new
@@ -458,7 +481,11 @@ GtLiveShow >> slidesDropdown [
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Add new slide' asString;
 								icon: BrGlamorousIcons add asElement;
-								action: [ self createNewEmptySlide ]).
+								action: [
+									self createNewEmptySlide.
+									"We simulate a click on the dropdown button to close it so we can update the previews container 
+									inside, after the method is compiled and the new slide is added."
+									BlSpace simulateClickOn: self dropdown ]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;

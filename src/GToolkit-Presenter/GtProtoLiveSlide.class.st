@@ -163,9 +163,6 @@ GtProtoLiveSlide >> onMethodModified: aMethodModified [
 GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 	self hasDefiningMethod ifFalse: [ ^ self ].
 	(aMethodRemoved methodRemoved hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
-	(GtSystemUtility 
-		isClass: self definingMethod origin
-		sameOrSubclassOf: aMethodRemoved classAffected) ifFalse: [ ^ self ].
 	(self definingMethod gtPhlowIncludesCompiledMethod: aMethodRemoved methodRemoved)
 		ifFalse: [ ^ self ].
 	self unsubscribeFromSystem.
