@@ -343,8 +343,9 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 		slide 
 			slideShow: self;
 			slideIndex: index ].
-	self nextStep.
+	self showSlide: aNewSlide.
 	coderElementState := true.
+	self updateCoderElementMethod.
 	self updateCoderElementState.
 	self updatePreviewsContainer.
 ]
