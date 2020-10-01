@@ -100,13 +100,6 @@ GtLiveShow >> buildSlideshowContainerComponents [
 				resizerDo: [ :theResizer | coderElementResizer := theResizer ]);
 		background: self background;
 		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30).
-		"addChild: ((GtMethodCoder new 
-			forMethod: self slides first definingMethod;
-			expanded: true;
-			asElement)
-				vMatchParent;
-				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10))."
 	coderElementResizer
 		when: BlResizerResizedEvent
 		do: [:anEvent |
@@ -535,15 +528,20 @@ GtLiveShow >> updateArrows [
 
 { #category : #'api - updating' }
 GtLiveShow >> updateCoderElementMethod [
+	| methodCoder |
 	(coderElement children size > 1) ifTrue: [coderElement removeChildAt: 2].
-	coderElement
-		addChild: ((GtMethodCoder new 
+	methodCoder := (GtMethodCoder new 
 			forMethod: (self slides at: self currentSlideIndex) definingMethod;
 			expanded: true;
 			asElement)
 				vMatchParent;
 				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10)).
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10).
+	coderElement
+		addChild: (
+			(GtPager createWrappedOn: methodCoder)
+				maximized
+				background: Color lightGray).
 ]
 
 { #category : #'api - updating' }
