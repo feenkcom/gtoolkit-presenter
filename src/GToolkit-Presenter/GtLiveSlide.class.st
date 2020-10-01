@@ -192,6 +192,13 @@ GtLiveSlide >> queueAsyncUpdate: aSpace [
 ]
 
 { #category : #accessing }
+GtLiveSlide >> run [
+	^ GtSlideRunner new
+		slide: self;
+		run.
+]
+
+{ #category : #accessing }
 GtLiveSlide >> shouldPerformActionEveryTime [
 	^ shouldPerformActionEveryTime.
 ]
