@@ -541,7 +541,7 @@ GtLiveShow >> updateCoderElementMethod [
 		addChild: (
 			(GtPager createWrappedOn: methodCoder)
 				maximized
-				background: Color lightGray).
+				background: BrGlamorousColors neutralBackgroundColor).
 ]
 
 { #category : #'api - updating' }
