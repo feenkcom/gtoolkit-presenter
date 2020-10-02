@@ -16,6 +16,6 @@ GtSlideCommandLineHandler class >> description [
 
 { #category : #accessing }
 GtSlideCommandLineHandler >> exampleReport [
-	(self hasOption: 'junit-xml-output') ifTrue: [ ^ GtSlidesHDReport ].
+	(self hasOption: 'junit-xml-output') ifTrue: [ ^ GtSlidesHudsonReport ].
 	^ self error: 'only works for now for junit for now'
 ]
