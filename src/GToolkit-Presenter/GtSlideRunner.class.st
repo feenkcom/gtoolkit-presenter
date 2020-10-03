@@ -20,6 +20,7 @@ GtSlideRunner >> run [
 		slide performActionOn: slideElement.
 		space pulse.
 	].
+	^ space
 ]
 
 { #category : #accessing }
