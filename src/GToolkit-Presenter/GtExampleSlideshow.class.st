@@ -96,7 +96,7 @@ GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 
 { #category : #accessing }
 GtExampleSlideshow >> filePictureExampleSlideFor: aSlide [
-	<gtSlide>
+	"<gtSlide>"
 	^ aSlide filePicture
 		priority: 54;
 		fileReference: './pharo-local/iceberg/feenkcom/gtoolkit/doc/gtoolkit.png'.
