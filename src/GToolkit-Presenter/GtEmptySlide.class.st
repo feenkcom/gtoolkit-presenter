@@ -1,3 +1,6 @@
+"
+I am an empty live slide. I don't display anything.
+"
 Class {
 	#name : #GtEmptySlide,
 	#superclass : #GtLiveSlide,

@@ -1,3 +1,8 @@
+"
+I am a documenter live slide. I get a documenter and i display it.
+
+${method:GtExampleLiveShow>>#documenterExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtDocumenterLiveSlide,
 	#superclass : #GtLiveSlide,

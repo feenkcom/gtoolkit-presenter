@@ -1,3 +1,8 @@
+"
+I show an editor element where each character is displayed alongside its position.
+
+${method:GtExampleLiveShow>>#editorElementWithDebugCharacterExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtEditorElementWithDebugCharacterLiveSlide,
 	#superclass : #GtEditorElementLiveSlide,

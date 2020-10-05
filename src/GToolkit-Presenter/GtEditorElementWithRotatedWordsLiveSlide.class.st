@@ -1,3 +1,8 @@
+"
+I show an editor element with three buttons that can alter the look of the editor.
+
+${method:GtExampleLiveShow>>#editorElementWithRotatedWordsExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtEditorElementWithRotatedWordsLiveSlide,
 	#superclass : #GtEditorElementLiveSlide,

@@ -1,3 +1,8 @@
+"
+I show custom views for different objects.
+
+${method:GtExampleLiveShow>>#customViewsExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtCustomViewsLiveSlide,
 	#superclass : #GtInspectorViewsLiveSlide,

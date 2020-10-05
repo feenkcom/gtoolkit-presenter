@@ -1,3 +1,8 @@
+"
+I show all the visualizations available for various objects.
+
+${method:GtExampleLiveShow>>#allViewsExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtAllViewsLiveSlide,
 	#superclass : #GtInspectorViewsLiveSlide,

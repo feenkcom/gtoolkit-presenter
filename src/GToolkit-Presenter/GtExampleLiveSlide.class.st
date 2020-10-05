@@ -1,3 +1,8 @@
+"
+I am an example live slide. I get an example method and i display its code in a method coder on the left and the result of the method in an inspector on the right.
+
+${method:GtExampleLiveShow>>#methodExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtExampleLiveSlide,
 	#superclass : #GtLiveSlide,

@@ -1,3 +1,8 @@
+"
+I am a paragraph live slide. I receive a paragraph subtitle and a text and display them on the screen.
+
+${method:GtExampleLiveShow>>#paragraphExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtParagraphLiveSlide,
 	#superclass : #GtLiveSlide,

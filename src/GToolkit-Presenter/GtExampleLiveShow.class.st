@@ -199,6 +199,13 @@ GtExampleLiveShow >> rawViewsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleLiveShow >> searchFiltersHierarchySlideFor: aSlide [
+	<gtSlide>
+	^ aSlide searchFiltersHierarchy
+		priority: 57.
+]
+
+{ #category : #accessing }
 GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide slideshow

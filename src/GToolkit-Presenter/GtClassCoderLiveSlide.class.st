@@ -1,5 +1,5 @@
 "
-I am a live slide template that creates a class coder. The coder can have its header expanded or one of its methods expanded.
+I am a class coder live slide. I create and display a coder opened on a given class. The coder can also have the header or a certain method expanded.
 
 ${method:GtExampleLiveShow>>#classCoderExampleSlideFor:|expanded}$
 "
