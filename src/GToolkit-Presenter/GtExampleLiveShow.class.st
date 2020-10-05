@@ -1,11 +1,14 @@
+"
+I am an example live show. I have an example for each of the live slide templates.
+"
 Class {
-	#name : #GtExampleSlideshow,
+	#name : #GtExampleLiveShow,
 	#superclass : #GtLiveShow,
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
-GtExampleSlideshow >> allViewsExampleSlideFor: aSlide [
+GtExampleLiveShow >> allViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
 		allViews;
@@ -13,7 +16,7 @@ GtExampleSlideshow >> allViewsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> classCoderExampleSlideFor: aSlide [
+GtExampleLiveShow >> classCoderExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide classCoder
 		priority: 41;
@@ -23,14 +26,14 @@ GtExampleSlideshow >> classCoderExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> connectorExampleSlideFor: aSlide [
+GtExampleLiveShow >> connectorExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide connector
 		priority: 42.
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> customViewsExampleSlideFor: aSlide [
+GtExampleLiveShow >> customViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
 		customViews;
@@ -38,14 +41,14 @@ GtExampleSlideshow >> customViewsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> devKeyboardExampleSlideFor: aSlide [
+GtExampleLiveShow >> devKeyboardExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide devKeyboard
 		priority: 43.
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> documenterExampleSlideFor: aSlide [
+GtExampleLiveShow >> documenterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide documenter
 		priority: 56;
@@ -53,7 +56,7 @@ GtExampleSlideshow >> documenterExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
+GtExampleLiveShow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
 		withDebugCharacter;
@@ -61,7 +64,7 @@ GtExampleSlideshow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
+GtExampleLiveShow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
 		withRotatedWords;
@@ -69,7 +72,7 @@ GtExampleSlideshow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> editorElementWithTreeExampleSlideFor: aSlide [
+GtExampleLiveShow >> editorElementWithTreeExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
 		withTree;
@@ -77,7 +80,7 @@ GtExampleSlideshow >> editorElementWithTreeExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> elementAndElementExampleSlideFor: aSlide [
+GtExampleLiveShow >> elementAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide elementAndElement
 		priority: 35;
@@ -87,7 +90,7 @@ GtExampleSlideshow >> elementAndElementExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> elementExampleSlideFor: aSlide [
+GtExampleLiveShow >> elementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide element
 		priority: 15;
@@ -95,7 +98,7 @@ GtExampleSlideshow >> elementExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> filePictureExampleSlideFor: aSlide [
+GtExampleLiveShow >> filePictureExampleSlideFor: aSlide [
 	"<gtSlide>"
 	^ aSlide filePicture
 		priority: 54;
@@ -103,7 +106,7 @@ GtExampleSlideshow >> filePictureExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> labelAndElementSlideFor: aSlide [
+GtExampleLiveShow >> labelAndElementSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide labelAndElement
 		priority: 25;
@@ -112,7 +115,7 @@ GtExampleSlideshow >> labelAndElementSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> liveElementTreeSlideExampleFor: aSlide [
+GtExampleLiveShow >> liveElementTreeSlideExampleFor: aSlide [
 	<gtSlide>
 	| editor |
 	editor := BrEditor new 
@@ -131,7 +134,7 @@ GtExampleSlideshow >> liveElementTreeSlideExampleFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> mashExampleSlideFor: aSlide [
+GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide mash
 		priority: 40;
@@ -155,7 +158,7 @@ GtExampleSlideshow >> mashExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> methodExampleSlideFor: aSlide [
+GtExampleLiveShow >> methodExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide example
 		priority: 30;
@@ -163,7 +166,7 @@ GtExampleSlideshow >> methodExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
+GtExampleLiveShow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
 		multipleViewsForOneObject;
@@ -171,7 +174,7 @@ GtExampleSlideshow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> paragraphExampleSlideFor: aSlide [
+GtExampleLiveShow >> paragraphExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide paragraph
 		priority: 55;
@@ -180,7 +183,7 @@ GtExampleSlideshow >> paragraphExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> playgroundExampleSlideFor: aSlide [
+GtExampleLiveShow >> playgroundExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide playground
 		priority: 20;
@@ -188,7 +191,7 @@ GtExampleSlideshow >> playgroundExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> rawViewsExampleSlideFor: aSlide [
+GtExampleLiveShow >> rawViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
 		rawViews;
@@ -196,23 +199,23 @@ GtExampleSlideshow >> rawViewsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> slideshowExampleSlideFor: aSlide [
+GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide slideshow
 		priority: 2;
 		textWithFormat: 'Want to learn more about the Pharo syntax? Follow the show below' asRopedText glamorousRegularFont;
-		slideshow: [ GtExampleSlideshow new] withTitle: 'Example Slideshow'.
+		slideshow: [ GtExampleLiveShow new] withTitle: 'Example Slideshow'.
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> spotterExampleSlideFor: aSlide [
+GtExampleLiveShow >> spotterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide spotter
 		priority: 52.
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> textAndElementExampleFor: aSlide [
+GtExampleLiveShow >> textAndElementExampleFor: aSlide [
 	<gtSlide>
 	^ aSlide textAndElement
 		priority: 5;
@@ -221,7 +224,7 @@ GtExampleSlideshow >> textAndElementExampleFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> textExampleSlideFor: aSlide [
+GtExampleLiveShow >> textExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide text
 		priority: 10;
@@ -229,7 +232,7 @@ GtExampleSlideshow >> textExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> titleExampleSlideFor: aSlide [
+GtExampleLiveShow >> titleExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide title
 		priority: 1;
@@ -239,7 +242,7 @@ GtExampleSlideshow >> titleExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleSlideshow >> worldExampleSlideFor: aSlide [
+GtExampleLiveShow >> worldExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide world
 		priority: 53.

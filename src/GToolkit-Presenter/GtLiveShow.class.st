@@ -1,3 +1,6 @@
+"
+I am responsible for creating a liveshow. A liveshow is a slideshow that can be edited live. It has a collection of slides. Slides can be changed, removed and added to the collection live, during the presentation.
+"
 Class {
 	#name : #GtLiveShow,
 	#superclass : #BrStencil,
@@ -231,6 +234,11 @@ GtLiveShow >> initialize [
 	self buildSlideshowContainerComponents.
 	self unsubscribeFromSystem.
 	self subscribeToSystem.
+	self initializeSlides.
+]
+
+{ #category : #accessing }
+GtLiveShow >> initializeSlides [
 	self collectSlides.
 	(self slides size = 0)
 		ifTrue: [ self createNewEmptySlide ]

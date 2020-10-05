@@ -1,3 +1,8 @@
+"
+I am a live slide templates that creates a connector example.
+
+${method:GtExampleLiveShow>>#connectorExampleSlideFor:|expanded}$
+"
 Class {
 	#name : #GtConnectorForExampleLiveSlide,
 	#superclass : #GtLiveSlide,
