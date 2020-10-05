@@ -1,3 +1,8 @@
+"
+I am a live slide template that creates a class coder. The coder can have its header expanded or one of its methods expanded.
+
+${method:GtExampleLiveShow>>#classCoderExampleSlideFor:|expanded}$
+"
 Class {
 	#name : #GtClassCoderLiveSlide,
 	#superclass : #GtLiveSlide,
