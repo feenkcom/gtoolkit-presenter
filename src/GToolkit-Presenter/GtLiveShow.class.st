@@ -14,10 +14,10 @@ Class {
 		'currentSlide',
 		'slides',
 		'coderElement',
-		'coderElementState',
 		'coderElementHeightStrategy',
 		'coderElementResizer',
-		'extraSlidesAdded'
+		'extraSlidesAdded',
+		'coderElementVisibility'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -90,7 +90,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		addChild: slideElement;
 		addChild: nextElement.
 	
-	coderElementState := false.
+	coderElementVisibility := false.
 	coderElement := BlElement new
 		constraintsDo: [:c |
 			c horizontal matchParent.
@@ -250,6 +250,11 @@ GtLiveShow >> makeArrowsVisible [
 ]
 
 { #category : #accessing }
+GtLiveShow >> makeCoderElementVisible [
+	coderElementVisibility := true.
+]
+
+{ #category : #accessing }
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
@@ -337,7 +342,7 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 			slideShow: self;
 			slideIndex: index ].
 	self showSlide: aNewSlide.
-	coderElementState := true.
+	coderElementVisibility := true.
 	self updateCoderElementMethod.
 	self updateCoderElementState.
 	self updatePreviewsContainer.
@@ -455,11 +460,11 @@ GtLiveShow >> slidesDropdown [
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
-										coderElementState := coderElementState not.
+										coderElementVisibility := coderElementVisibility not.
 										self updateCoderElementState ];
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent | 
-										coderElementState := coderElementState not.
+										coderElementVisibility := coderElementVisibility not.
 										self updateCoderElementState ]);
 						addItem:
 							(BrButton new
@@ -546,7 +551,7 @@ GtLiveShow >> updateCoderElementMethod [
 
 { #category : #'api - updating' }
 GtLiveShow >> updateCoderElementState [
-	coderElementState
+	coderElementVisibility
 		ifTrue: [
 			coderElement visibility: BlVisibility visible]
 		ifFalse: [
