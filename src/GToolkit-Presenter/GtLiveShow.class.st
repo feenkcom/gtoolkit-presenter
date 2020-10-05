@@ -234,6 +234,11 @@ GtLiveShow >> initialize [
 	self buildSlideshowContainerComponents.
 	self unsubscribeFromSystem.
 	self subscribeToSystem.
+	self initializeSlides.
+]
+
+{ #category : #accessing }
+GtLiveShow >> initializeSlides [
 	self collectSlides.
 	(self slides size = 0)
 		ifTrue: [ self createNewEmptySlide ]
