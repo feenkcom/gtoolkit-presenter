@@ -1,3 +1,6 @@
+"
+I am an inspector views example live slide. I can show different examples of views. Take a look at my children for more examples on how to use me.
+"
 Class {
 	#name : #GtInspectorViewsLiveSlide,
 	#superclass : #GtLiveSlide,

@@ -1,3 +1,8 @@
+"
+I am a title live slide. I get a text for the title and, if necessary, a text for the subtitle.
+
+${method:GtExampleLiveShow>>#titleExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtTitleLiveSlide,
 	#superclass : #GtLiveSlide,

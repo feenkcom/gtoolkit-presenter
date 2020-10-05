@@ -1,3 +1,8 @@
+"
+I am a text and element live slide. I receive a text, with or without a format and an element. The text is diplayed on the left and the element on the right.
+
+${method:GtExampleLiveShow>>#textAndElementExampleFor:|expanded=}$
+"
 Class {
 	#name : #GtTextAndElementLiveSlide,
 	#superclass : #GtLiveSlide,

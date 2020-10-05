@@ -1,3 +1,8 @@
+"
+I am a text live slide. I receive a text, with or without a format and display it on the screen.
+
+${method:GtExampleLiveShow>>#textExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtTextLiveSlide,
 	#superclass : #GtLiveSlide,

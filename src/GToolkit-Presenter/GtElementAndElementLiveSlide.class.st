@@ -1,3 +1,8 @@
+"
+I am an element and element live slide. I get two elements and display them, one on the left and one on the right.
+
+${method:GtExampleLiveShow>>#elementAndElementExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtElementAndElementLiveSlide,
 	#superclass : #GtLiveSlide,

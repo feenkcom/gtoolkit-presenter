@@ -1,3 +1,8 @@
+"
+I show different visualizations for the same object.
+
+${method:GtExampleLiveShow>>#multipleViewsForOneObjectExampleSlideFor:|expanded=}$
+"
 Class {
 	#name : #GtMultipleViewsForOneObjectLiveSlide,
 	#superclass : #GtInspectorViewsLiveSlide,

@@ -1,3 +1,8 @@
+"
+I am live tree element live slide. I receive an element and display it on the left and on the right i show a live tree of the element on the left.
+
+${method:GtExampleLiveShow>>#liveElementTreeSlideExampleFor:|expanded=}$
+"
 Class {
 	#name : #GtLiveElementTreeLiveSlide,
 	#superclass : #GtLiveSlide,
