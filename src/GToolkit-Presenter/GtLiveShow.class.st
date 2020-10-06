@@ -296,21 +296,6 @@ GtLiveShow >> previousStep [
 	self updateCoderElementMethod.
 ]
 
-{ #category : #'api - updating' }
-GtLiveShow >> replaceSlide: aSlide with: aNewSlide [ 
-	self slides indexOf: aSlide ifAbsent: [ ^ self ].
-	self slides add: aNewSlide after: aSlide.
-	self slides remove: aSlide.
-	
-	aNewSlide
-		slideShow: self;
-		slideIndex: aSlide slideIndex.
-			
-	slideElement 
-		removeChildren;
-		addChild: aNewSlide asElement
-]
-
 { #category : #accessing }
 GtLiveShow >> showSlide: aSlide [
 	| slideContentElement |
@@ -361,19 +346,19 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	"I am called from aSlide when the slide definition has changed.
 	My responsibility is to replace the slide with a new one."
 	<gtCollector>
-	| aNewSlide currentIndex |
+	| aNewSlide |
 	aNewSlide := self 
 		perform: aSlide definingMethod selector
 		with: GtEmptySlide new.
-	currentIndex := self currentSlideIndex.
 	
-	self replaceSlide: aSlide with: aNewSlide.
+	self slides remove: aSlide ifAbsent: [ ^ self ].
+	self addSlide: aNewSlide.
 	self sortSlidesByPriority.
 	self slides withIndexDo: [ :slide :index | 
 		slide 
 			slideShow: self;
 			slideIndex: index ].
-	self showSlide: (self slides at: currentIndex).
+	self showSlide: aNewSlide.
 	self updateCoderElementMethod.
 	self updatePreviewsContainer.
 ]
@@ -394,7 +379,8 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 					self showSlide: self slides first.
 					self updateCoderElementMethod ]
 				ifFalse: [
-					self previousStep ].
+					self showSlide: (self slides at: (aSlide slideIndex - 1)).
+					self updateCoderElementMethod ].
 			self updatePreviewsContainer ]
 		ifFalse: [ self createNewEmptySlide ].
 ]
