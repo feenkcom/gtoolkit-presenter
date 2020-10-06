@@ -394,7 +394,8 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 					self showSlide: self slides first.
 					self updateCoderElementMethod ]
 				ifFalse: [
-					self previousStep ].
+					self showSlide: (self slides at: (aSlide slideIndex - 1)).
+					self updateCoderElementMethod ].
 			self updatePreviewsContainer ]
 		ifFalse: [ self createNewEmptySlide ].
 ]
