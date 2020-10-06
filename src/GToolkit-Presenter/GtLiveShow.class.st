@@ -16,11 +16,11 @@ Class {
 		'slidesContainer',
 		'currentSlide',
 		'slides',
-		'coderElement',
-		'coderElementHeightStrategy',
-		'coderElementResizer',
 		'extraSlidesAdded',
-		'coderElementVisibility'
+		'slideEditorVisibility',
+		'slideEditorResizer',
+		'slideEditorHeightStrategy',
+		'slideEditor'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -93,28 +93,23 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		addChild: slideElement;
 		addChild: nextElement.
 	
-	coderElementVisibility := false.
-	coderElement := BlElement new
+	slideEditorVisibility := false.
+	slideEditor := BlElement new
 		constraintsDo: [:c |
 			c horizontal matchParent.
 			c vertical matchParent];
 		look: BrShadowLook + 
 			(BrGlamorousWithVerticalResizerLook new beTop
-				resizerDo: [ :theResizer | coderElementResizer := theResizer ]);
+				resizerDo: [ :theResizer | slideEditorResizer := theResizer ]);
 		background: self background;
 		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30).
-	coderElementResizer
+	slideEditorResizer
 		when: BlResizerResizedEvent
 		do: [:anEvent |
-			coderElementHeightStrategy := BrResizerElementLength exact: anEvent extent y.
-			coderElementHeightStrategy adjustHeightFor: coderElement ].
+			slideEditorHeightStrategy := BrResizerElementLength exact: anEvent extent y.
+			slideEditorHeightStrategy adjustHeightFor: slideEditor ].
 	
 	self slidesDropdown.
-]
-
-{ #category : #accessing }
-GtLiveShow >> coderElement [
-	^ coderElement.
 ]
 
 { #category : #accessing }
@@ -139,9 +134,9 @@ GtLiveShow >> create [
 		layout: BlLinearLayout vertical.
 	
 	container addChild: slidesContainer.
-	container addChild: self coderElement.
+	container addChild: self slideEditor.
 	container addChild: self dropdown.
-	self updateCoderElementState.
+	self updateSlideEditorState.
 	
 	container addShortcut: (BlShortcut new
 		repeatable: false;
@@ -248,7 +243,7 @@ GtLiveShow >> initializeSlides [
 					slideShow: self;
 					slideIndex: index ].
 			self showSlide: self slides first.
-			self updateCoderElementMethod.
+			self updateSlideEditorMethod.
 			self updatePreviewsContainer ].
 ]
 
@@ -258,15 +253,15 @@ GtLiveShow >> makeArrowsVisible [
 ]
 
 { #category : #accessing }
-GtLiveShow >> makeCoderElementVisible [
-	coderElementVisibility := true.
+GtLiveShow >> makeSlideEditorVisible [
+	slideEditorVisibility := true.
 ]
 
 { #category : #accessing }
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
-	self updateCoderElementMethod.
+	self updateSlideEditorMethod.
 ]
 
 { #category : #'private - event handling' }
@@ -293,7 +288,7 @@ GtLiveShow >> onMethodAdded: aMethodAdded [
 GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
-	self updateCoderElementMethod.
+	self updateSlideEditorMethod.
 ]
 
 { #category : #accessing }
@@ -335,9 +330,9 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 			slideShow: self;
 			slideIndex: index ].
 	self showSlide: aNewSlide.
-	coderElementVisibility := true.
-	self updateCoderElementMethod.
-	self updateCoderElementState.
+	slideEditorVisibility := true.
+	self updateSlideEditorMethod.
+	self updateSlideEditorState.
 	self updatePreviewsContainer.
 ]
 
@@ -359,7 +354,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 			slideShow: self;
 			slideIndex: index ].
 	self showSlide: aNewSlide.
-	self updateCoderElementMethod.
+	self updateSlideEditorMethod.
 	self updatePreviewsContainer.
 ]
 
@@ -377,12 +372,17 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 			(aSlide slideIndex = 1)
 				ifTrue: [
 					self showSlide: self slides first.
-					self updateCoderElementMethod ]
+					self updateSlideEditorMethod ]
 				ifFalse: [
 					self showSlide: (self slides at: (aSlide slideIndex - 1)).
-					self updateCoderElementMethod ].
+					self updateSlideEditorMethod ].
 			self updatePreviewsContainer ]
 		ifFalse: [ self createNewEmptySlide ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> slideEditor [
+	^ slideEditor.
 ]
 
 { #category : #accessing }
@@ -454,12 +454,12 @@ GtLiveShow >> slidesDropdown [
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
-										coderElementVisibility := coderElementVisibility not.
-										self updateCoderElementState ];
+										slideEditorVisibility := slideEditorVisibility not.
+										self updateSlideEditorState ];
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent | 
-										coderElementVisibility := coderElementVisibility not.
-										self updateCoderElementState ]);
+										slideEditorVisibility := slideEditorVisibility not.
+										self updateSlideEditorState ]);
 						addItem:
 							(BrButton new
 								beSmall;
@@ -526,33 +526,6 @@ GtLiveShow >> updateArrows [
 ]
 
 { #category : #'api - updating' }
-GtLiveShow >> updateCoderElementMethod [
-	| methodCoder |
-	(coderElement children size > 1) ifTrue: [coderElement removeChildAt: 2].
-	methodCoder := (GtMethodCoder new 
-			forMethod: (self slides at: self currentSlideIndex) definingMethod;
-			expanded: true;
-			asElement)
-				vMatchParent;
-				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10).
-	coderElement
-		addChild: (
-			(GtPager createWrappedOn: methodCoder)
-				maximized
-				background: BrGlamorousColors neutralBackgroundColor).
-]
-
-{ #category : #'api - updating' }
-GtLiveShow >> updateCoderElementState [
-	coderElementVisibility
-		ifTrue: [
-			coderElement visibility: BlVisibility visible]
-		ifFalse: [
-			coderElement visibility: BlVisibility gone].
-]
-
-{ #category : #'api - updating' }
 GtLiveShow >> updatePreviewsContainer [
 	previewsContainer removeChildren.
 	self slides
@@ -563,7 +536,7 @@ GtLiveShow >> updatePreviewsContainer [
 						when: BlClickEvent
 						do: [ :e | 
 							self showSlide: each.
-							self updateCoderElementMethod ]) ].
+							self updateSlideEditorMethod ]) ].
 ]
 
 { #category : #'api - updating' }
@@ -574,4 +547,31 @@ GtLiveShow >> updateSlide: aSlide [
 	slideElement removeChildren.
 	slideElement addChild: slideContentElement.
 	self updateArrows.
+]
+
+{ #category : #'api - updating' }
+GtLiveShow >> updateSlideEditorMethod [
+	| methodCoder |
+	(self slideEditor children size > 1) ifTrue: [self slideEditor removeChildAt: 2].
+	methodCoder := (GtMethodCoder new 
+			forMethod: (self slides at: self currentSlideIndex) definingMethod;
+			expanded: true;
+			asElement)
+				vMatchParent;
+				hMatchParent;
+				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10).
+	self slideEditor
+		addChild: (
+			(GtPager createWrappedOn: methodCoder)
+				maximized
+				background: BrGlamorousColors neutralBackgroundColor).
+]
+
+{ #category : #'api - updating' }
+GtLiveShow >> updateSlideEditorState [
+	slideEditorVisibility
+		ifTrue: [
+			slideEditor visibility: BlVisibility visible]
+		ifFalse: [
+			slideEditor visibility: BlVisibility gone].
 ]
