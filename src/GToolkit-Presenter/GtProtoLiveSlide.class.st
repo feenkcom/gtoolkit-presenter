@@ -28,6 +28,13 @@ GtProtoLiveSlide >> connector [
 ]
 
 { #category : #accessing }
+GtProtoLiveSlide >> custom: aSlide [
+	^ aSlide definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
+{ #category : #accessing }
 GtProtoLiveSlide >> definingMethod [
 	^ definingMethod.
 ]
