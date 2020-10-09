@@ -211,7 +211,7 @@ GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 	^ aSlide slideshow
 		priority: 2;
 		textWithFormat: 'Want to learn more about the Pharo syntax? Follow the show below' asRopedText glamorousRegularFont;
-		slideshow: [ GtLiveShow openWithArrowsVisible: GtExampleLiveShow ] withTitle: 'Example Slideshow'.
+		slideshow: [ GtLiveShow createWithArrowsVisible: GtExampleLiveShow new ] withTitle: 'Example Slideshow'.
 ]
 
 { #category : #accessing }
