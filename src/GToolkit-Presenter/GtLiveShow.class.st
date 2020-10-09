@@ -27,35 +27,35 @@ Class {
 }
 
 { #category : #accessing }
-GtLiveShow class >> open: aLiveShowClass [
+GtLiveShow class >> create: aLiveShowObject [
 	^ self new
-		targetLiveShow: (aLiveShowClass new);
+		targetLiveShow: aLiveShowObject;
 		initializeSubscriptions;
 		initializeSlides.
 ]
 
 { #category : #accessing }
-GtLiveShow class >> openInEditMode: aLiveShowClass [
+GtLiveShow class >> createInEditMode: aLiveShowObject [
 	^ self new
-		targetLiveShow: (aLiveShowClass new);
+		targetLiveShow: aLiveShowObject;
 		initializeSubscriptions;
 		initializeSlides;
 		makeSlideEditorVisible.
 ]
 
 { #category : #accessing }
-GtLiveShow class >> openWithArrowsVisible: aLiveShowClass [
+GtLiveShow class >> createWithArrowsVisible: aLiveShowObject [
 	^ self new
-		targetLiveShow: (aLiveShowClass new);
+		targetLiveShow: aLiveShowObject;
 		initializeSubscriptions;
 		initializeSlides;
 		makeArrowsVisible.
 ]
 
 { #category : #accessing }
-GtLiveShow class >> openWithArrowsVisibleInEditMode: aLiveShowClass [
+GtLiveShow class >> createWithArrowsVisibleInEditMode: aLiveShowObject [
 	^ self new
-		targetLiveShow: (aLiveShowClass new);
+		targetLiveShow: aLiveShowObject;
 		initializeSubscriptions;
 		initializeSlides;
 		makeArrowsVisible;
