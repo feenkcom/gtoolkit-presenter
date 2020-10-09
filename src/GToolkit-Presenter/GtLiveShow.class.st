@@ -415,7 +415,17 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 					self showSlide: (self slides at: (aSlide slideIndex - 1)).
 					self updateSlideEditorMethod ].
 			self updatePreviewsContainer ]
-		ifFalse: [ self createNewEmptySlide ].
+		ifFalse: [
+			self slideEditor removeChildAt: 2.	
+			previousArrow visibility: BlVisibility hidden.
+			nextArrow visibility: BlVisibility hidden.
+			slideEditor visibility: BlVisibility hidden.
+			slideElement addChild: (BlElement new
+				background: BlBackground transparent;
+				constraintsDo: [:c |
+					c vertical matchParent.
+					c horizontal matchParent]).
+			self updatePreviewsContainer ].
 ]
 
 { #category : #accessing }
@@ -477,13 +487,15 @@ GtLiveShow >> slidesDropdown [
 								icon: BrGlamorousIcons edit asElement;
 								label: 'Update arrows' asString;
 								when: BrToggleActivatedEvent
-									do: [ :anEvent | 
-									arrowsAreVisible := true.
-									self updateArrows ];
+									do: [ :anEvent |
+										self slides ifNotEmpty: [
+											arrowsAreVisible := true.
+											self updateArrows ]];
 								when: BrToggleDeactivatedEvent
-									do: [ :anEvent | 
-									arrowsAreVisible := false.
-									self updateArrows ]);
+									do: [ :anEvent |
+										self slides ifNotEmpty: [
+											arrowsAreVisible := false.
+											self updateArrows ]]);
 						addItem:
 							(BrToggle new
 								beSmall;
@@ -491,13 +503,15 @@ GtLiveShow >> slidesDropdown [
 								icon: BrGlamorousIcons browse asElement;
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
-									do: [ :anEvent | 
-										slideEditorVisibility := slideEditorVisibility not.
-										self updateSlideEditorState ];
+									do: [ :anEvent |
+										self slides ifNotEmpty: [
+											slideEditorVisibility := slideEditorVisibility not.
+											self updateSlideEditorState ]];
 								when: BrToggleDeactivatedEvent
-									do: [ :anEvent | 
-										slideEditorVisibility := slideEditorVisibility not.
-										self updateSlideEditorState ]);
+									do: [ :anEvent |
+										self slides ifNotEmpty: [
+											slideEditorVisibility := slideEditorVisibility not.
+											self updateSlideEditorState ]]);
 						addItem:
 							(BrButton new
 								beSmall;
