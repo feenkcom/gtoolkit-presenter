@@ -20,10 +20,47 @@ Class {
 		'slideEditorVisibility',
 		'slideEditorResizer',
 		'slideEditorHeightStrategy',
-		'slideEditor'
+		'slideEditor',
+		'targetLiveShow'
 	],
 	#category : #'GToolkit-Presenter'
 }
+
+{ #category : #accessing }
+GtLiveShow class >> open: aLiveShowClass [
+	^ self new
+		targetLiveShow: (aLiveShowClass new);
+		initializeSubscriptions;
+		initializeSlides.
+]
+
+{ #category : #accessing }
+GtLiveShow class >> openInEditMode: aLiveShowClass [
+	^ self new
+		targetLiveShow: (aLiveShowClass new);
+		initializeSubscriptions;
+		initializeSlides;
+		makeSlideEditorVisible.
+]
+
+{ #category : #accessing }
+GtLiveShow class >> openWithArrowsVisible: aLiveShowClass [
+	^ self new
+		targetLiveShow: (aLiveShowClass new);
+		initializeSubscriptions;
+		initializeSlides;
+		makeArrowsVisible.
+]
+
+{ #category : #accessing }
+GtLiveShow class >> openWithArrowsVisibleInEditMode: aLiveShowClass [
+	^ self new
+		targetLiveShow: (aLiveShowClass new);
+		initializeSubscriptions;
+		initializeSlides;
+		makeArrowsVisible;
+		makeSlideEditorVisible.
+]
 
 { #category : #accessing }
 GtLiveShow >> addSlide: aSlide [
@@ -116,9 +153,9 @@ GtLiveShow >> buildSlideshowContainerComponents [
 GtLiveShow >> collectSlides [
 	| theSlides |
 	theSlides := GtSlidesCollector new
-		object: self;
-		from: self class;
-		to: self class;
+		object: self targetLiveShow;
+		from: self targetLiveShow class;
+		to: self targetLiveShow class;
 		collect.
 	self slides: theSlides.
 ]
@@ -157,7 +194,7 @@ GtLiveShow >> createNewEmptySlide [
 		ifFalse: [ priority := 1 asString ].
 	extraSlidesAdded := extraSlidesAdded + 1.
 
-	self class
+	self targetLiveShow class
 		compile: ('slide', extraSlidesAdded asString, 'For: aSlide
 	<gtSlide>
 	"Rename this method to be more representative for your slide"
@@ -225,11 +262,8 @@ GtLiveShow >> initialize [
 	slides := OrderedCollection new.
 	arrowsAreVisible := false.
 	background := Color white.
-	extraSlidesAdded := 0.
+	extraSlidesAdded ifNil: [ extraSlidesAdded := 0 ].
 	self buildSlideshowContainerComponents.
-	self unsubscribeFromSystem.
-	self subscribeToSystem.
-	self initializeSlides.
 ]
 
 { #category : #accessing }
@@ -245,6 +279,12 @@ GtLiveShow >> initializeSlides [
 			self showSlide: self slides first.
 			self updateSlideEditorMethod.
 			self updatePreviewsContainer ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> initializeSubscriptions [
+	self unsubscribeFromSystem.
+	self subscribeToSystem.
 ]
 
 { #category : #accessing }
@@ -277,9 +317,7 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 { #category : #accessing }
 GtLiveShow >> onMethodAdded: aMethodAdded [
 	(aMethodAdded method hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
-	(GtSystemUtility 
-		isClass: self class
-		sameOrSubclassOf: aMethodAdded classAffected) ifFalse: [ ^ self ].
+	(aMethodAdded classAffected = self targetLiveShow class) ifFalse: [ ^ self ].	
 	self slides detect: [:aSlide | aSlide definingMethod = aMethodAdded method] ifFound: [^ self ].
 	self slideDefinitionAddedFor: aMethodAdded.
 ]
@@ -320,7 +358,7 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 	I may be called from a non-UI process."
 	<gtCollector>
 	| aNewSlide |
-	aNewSlide := self 
+	aNewSlide := self targetLiveShow
 		perform: aMethod selector
 		with: GtEmptySlide new.
 	self addSlide: aNewSlide.
@@ -342,7 +380,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	My responsibility is to replace the slide with a new one."
 	<gtCollector>
 	| aNewSlide |
-	aNewSlide := self 
+	aNewSlide := self targetLiveShow
 		perform: aSlide definingMethod selector
 		with: GtEmptySlide new.
 	
@@ -496,8 +534,24 @@ GtLiveShow >> sortSlidesByPriority [
 
 { #category : #'private - subscriptions' }
 GtLiveShow >> subscribeToSystem [
-	SystemAnnouncer uniqueInstance weak
-		when: MethodAdded send: #onMethodAdded: to: self.
+	| anAction aSubscription |
+	anAction := WeakMessageSend receiver: self selector: #onMethodAdded:.
+	aSubscription := WeakAnnouncementSubscription new 
+		announcer: SystemAnnouncer uniqueInstance;
+		announcementClass: MethodAdded;
+		action: anAction;
+		subscriber: self targetLiveShow.
+	 SystemAnnouncer uniqueInstance basicSubscribe: aSubscription.
+]
+
+{ #category : #accessing }
+GtLiveShow >> targetLiveShow [
+	^ targetLiveShow.
+]
+
+{ #category : #accessing }
+GtLiveShow >> targetLiveShow: aLiveShowClass [
+	targetLiveShow := aLiveShowClass.
 ]
 
 { #category : #accessing }
@@ -512,7 +566,7 @@ GtLiveShow >> title: anObject [
 
 { #category : #'private - subscriptions' }
 GtLiveShow >> unsubscribeFromSystem [
-	SystemAnnouncer uniqueInstance unsubscribe: self.
+	SystemAnnouncer uniqueInstance unsubscribe: self targetLiveShow.
 ]
 
 { #category : #'api - updating' }
