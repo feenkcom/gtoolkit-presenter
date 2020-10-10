@@ -621,11 +621,10 @@ GtLiveShow >> updateSlide: aSlide [
 GtLiveShow >> updateSlideEditorMethod [
 	| methodCoder |
 	(self slideEditor children size > 1) ifTrue: [self slideEditor removeChildAt: 2].
-	methodCoder := (GtMethodCoder new 
-			forMethod: (self slides at: self currentSlideIndex) definingMethod;
-			expanded: true;
-			asElement)
-				vMatchParent;
+	methodCoder := ((GtMethodCoder 
+			forMethod: (self slides at: self currentSlideIndex) definingMethod)
+			asExpandedOnlyElement)
+				vFitContentLimited;
 				hMatchParent;
 				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10).
 	self slideEditor
