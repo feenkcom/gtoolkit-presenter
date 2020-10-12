@@ -255,6 +255,33 @@ GtLiveShow >> exportSlides [
 ]
 
 { #category : #accessing }
+GtLiveShow >> generateVideoScript [
+	| textFileContent textFileName |
+	self exportSlides.
+	
+	textFileContent := '---
+background: ukulele-1 0.5 fade-in fade-out
+voice: rodney
+size: 1080p
+canvas: white
+transition: crossfade 0.3' asString.
+	
+	self slides
+		withIndexDo: [ :eachSlide :anIndex |	
+			textFileContent := textFileContent,'
+
+---
+
+![contain](' asString, self title, ' - ', anIndex asString, '.png)
+
+' asString, eachSlide notes asString ].
+
+	textFileName := self targetLiveShow className asString, '.txt'.
+	textFileName asFileReference
+		writeStreamDo: [:s | s nextPutAll: textFileContent].
+]
+
+{ #category : #accessing }
 GtLiveShow >> gtSlidesFor: aView [
 	<gtView>
 	^ aView list
@@ -533,7 +560,14 @@ GtLiveShow >> slidesDropdown [
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Export slides' asString;
 								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]).
+								action: [ self exportSlides ]);
+						addItem:
+							(BrButton new
+								beSmall;
+								look: BrGlamorousButtonWithIconLook;
+								label: 'Generate video script' asString;
+								icon: BrGlamorousIcons savetodisk asElement;
+								action: [ self generateVideoScript ]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
