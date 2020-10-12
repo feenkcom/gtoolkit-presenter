@@ -79,7 +79,7 @@ GtLiveShow >> background: anObject [
 
 { #category : #accessing }
 GtLiveShow >> buildSlideshowContainerComponents [
-	| previousElement nextElement |
+	| previousElement nextElement aToolbar |
 	
 	slideElement := BlElement new
 		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
@@ -132,6 +132,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 	
 	slideEditorVisibility := false.
 	slideEditor := BlElement new
+		layout: BlFrameLayout new;
 		constraintsDo: [:c |
 			c horizontal matchParent.
 			c vertical matchParent];
@@ -145,6 +146,22 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		do: [:anEvent |
 			slideEditorHeightStrategy := BrResizerElementLength exact: anEvent extent y.
 			slideEditorHeightStrategy adjustHeightFor: slideEditor ].
+	
+	aToolbar := BrToolbar new
+		constraintsDo: [:c |
+			c frame horizontal alignRight.
+			c frame vertical alignTop ];
+		margin: (BlInsets top: 10 right: 5 bottom: 5 left: 5);		
+		look: BrGlamorousToolbarLook;
+		addItem:
+			(BrButton new
+				beNormal;
+				look: BrGlamorousButtonWithIconLook;
+				label: 'Add new slide' asString;
+				icon: BrGlamorousIcons add asElement;
+				action: [ self createNewEmptySlide ]).
+	
+	slideEditor addChild: aToolbar.
 	
 	self slidesDropdown.
 ]
@@ -415,11 +432,11 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 					self showSlide: (self slides at: (aSlide slideIndex - 1)).
 					self updateSlideEditorMethod ].
 			self updatePreviewsContainer ]
-		ifFalse: [
-			self slideEditor removeChildAt: 2.	
+		ifFalse: [	
 			previousArrow visibility: BlVisibility hidden.
 			nextArrow visibility: BlVisibility hidden.
-			slideEditor visibility: BlVisibility hidden.
+			(slideEditor children size = 3)
+				ifTrue: [ slideEditor removeChildAt: 3 ].
 			slideElement addChild: (BlElement new
 				background: BlBackground transparent;
 				constraintsDo: [:c |
@@ -504,32 +521,19 @@ GtLiveShow >> slidesDropdown [
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent |
-										self slides ifNotEmpty: [
-											slideEditorVisibility := slideEditorVisibility not.
-											self updateSlideEditorState ]];
+										slideEditorVisibility := slideEditorVisibility not.
+										self updateSlideEditorState ];
 								when: BrToggleDeactivatedEvent
 									do: [ :anEvent |
-										self slides ifNotEmpty: [
-											slideEditorVisibility := slideEditorVisibility not.
-											self updateSlideEditorState ]]);
+										slideEditorVisibility := slideEditorVisibility not.
+										self updateSlideEditorState ]);
 						addItem:
 							(BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Export slides' asString;
 								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]);
-						addItem:
-							(BrButton new
-								beSmall;
-								look: BrGlamorousButtonWithIconLook;
-								label: 'Add new slide' asString;
-								icon: BrGlamorousIcons add asElement;
-								action: [
-									self createNewEmptySlide.
-									"We simulate a click on the dropdown button to close it so we can update the previews container 
-									inside, after the method is compiled and the new slide is added."
-									BlSpace simulateClickOn: self dropdown ]).
+								action: [ self exportSlides ]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
@@ -620,18 +624,20 @@ GtLiveShow >> updateSlide: aSlide [
 { #category : #'api - updating' }
 GtLiveShow >> updateSlideEditorMethod [
 	| methodCoder |
-	(self slideEditor children size > 1) ifTrue: [self slideEditor removeChildAt: 2].
+	(self slideEditor children size > 2) ifTrue: [self slideEditor removeChildAt: 3].
 	methodCoder := ((GtMethodCoder 
 			forMethod: (self slides at: self currentSlideIndex) definingMethod)
 			asExpandedOnlyElement)
 				vFitContentLimited;
-				hMatchParent;
-				margin: (BlInsets top: 5 right: 10 bottom: 5 left: 10).
+				hMatchParent.
 	self slideEditor
 		addChild: (
 			(GtPager createWrappedOn: methodCoder)
 				maximized
-				background: BrGlamorousColors neutralBackgroundColor).
+				background: BrGlamorousColors neutralBackgroundColor;
+				margin: (BlInsets top: 35 right: 5 bottom: 5 left: 5);
+				constraintsDo: [:c |
+					c frame vertical alignTop ]).
 ]
 
 { #category : #'api - updating' }
