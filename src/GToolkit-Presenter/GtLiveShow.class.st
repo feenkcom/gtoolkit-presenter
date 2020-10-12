@@ -574,7 +574,7 @@ GtLiveShow >> targetLiveShow: aLiveShowClass [
 
 { #category : #accessing }
 GtLiveShow >> title [
-	^ title ifNil: [ 'Gt Slide Show' ]
+	^ title ifNil: [ 'GtLiveShow' ]
 ]
 
 { #category : #accessing }
