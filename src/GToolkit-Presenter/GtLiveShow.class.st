@@ -609,7 +609,10 @@ GtLiveShow >> targetLiveShow: aLiveShowClass [
 
 { #category : #accessing }
 GtLiveShow >> title [
-	^ title ifNil: [ 'GtLiveShow' ]
+	^ title ifNil: [
+		self targetLiveShow isClass 
+			ifTrue: [ self targetLiveShow name ]
+			ifFalse: [ self targetLiveShow className ] ].
 ]
 
 { #category : #accessing }
