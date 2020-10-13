@@ -261,7 +261,6 @@ GtLiveShow >> generateVideoScript [
 	self exportSlides.
 	
 	textFileContent := '---
-background: ukulele-1 0.5 fade-in fade-out
 voice: rodney
 size: 1080p
 canvas: white
@@ -273,11 +272,14 @@ transition: crossfade 0.3' asString.
 
 ---
 
-![contain](' asString, self title, ' - ', anIndex asString, '.png)
+![contain](' asString, self title, ' - ', anIndex asString, '.jpeg)
 
-' asString, eachSlide notes asString ].
+' asString.
+	
+			eachSlide notes ifNotNil: [
+				textFileContent := textFileContent, eachSlide notes asString ] ].
 
-	textFileName := self targetLiveShow className asString, '.txt'.
+	textFileName := self title asString, '.txt'.
 	textFileName asFileReference
 		writeStreamDo: [:s | s nextPutAll: textFileContent].
 ]
