@@ -276,8 +276,9 @@ transition: crossfade 0.3' asString.
 
 ' asString.
 	
-			eachSlide notes ifNotNil: [
-				textFileContent := textFileContent, eachSlide notes asString ] ].
+			(eachSlide notes isNil)
+				ifTrue: [ textFileContent := textFileContent, '(pause: 1)' asString ]
+				ifFalse: [ textFileContent := textFileContent, eachSlide notes asString ] ].
 
 	textFileName := self title asString, '.txt'.
 	textFileName asFileReference
