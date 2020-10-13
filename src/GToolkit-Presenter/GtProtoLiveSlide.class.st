@@ -6,7 +6,8 @@ Class {
 	#superclass : #BrStencil,
 	#instVars : [
 		'priority',
-		'definingMethod'
+		'definingMethod',
+		'notes'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -145,6 +146,16 @@ GtProtoLiveSlide >> mash [
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
+]
+
+{ #category : #accessing }
+GtProtoLiveSlide >> notes [
+	^ notes.
+]
+
+{ #category : #accessing }
+GtProtoLiveSlide >> notes: aString [
+	notes := aString.
 ]
 
 { #category : #'private - event handling' }
