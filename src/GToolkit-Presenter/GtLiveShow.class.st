@@ -250,6 +250,7 @@ GtLiveShow >> exportSlides [
 			eachCachedElement := eachSlide asCachedElement.
 			eachSlideElement := eachCachedElement slideElement
 				ifNil: [ eachCachedElement ].
+			eachSlideElement background: Color white.
 			eachSlideElement asSpartaForm
 				writePNGFileNamed: self title, ' - ', anIndex asString, '.png' ]
 ]
