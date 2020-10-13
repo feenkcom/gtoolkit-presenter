@@ -252,7 +252,7 @@ GtLiveShow >> exportSlides [
 				ifNil: [ eachCachedElement ].
 			eachSlideElement background: Color white.
 			eachSlideElement asSpartaForm
-				writePNGFileNamed: self title, ' - ', anIndex asString, '.png' ]
+				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg' ]
 ]
 
 { #category : #accessing }
