@@ -243,16 +243,24 @@ GtLiveShow >> enqueueTask: aTask [
 
 { #category : #accessing }
 GtLiveShow >> exportSlides [
+	| container |
+	container := BlElement new
+		height: 1080;
+		width: 1920;
+		background: Color white.
+		
 	self slides
 		withIndexDo: [ :eachSlide :anIndex |	
-			| eachCachedElement eachSlideElement |		
+			| eachCachedElement |		
 
 			eachCachedElement := eachSlide asCachedElement.
-			eachSlideElement := eachCachedElement slideElement
-				ifNil: [ eachCachedElement ].
-			eachSlideElement background: Color white.
-			eachSlideElement asSpartaForm
-				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg' ]
+			container addChild: eachCachedElement removeFromParent.
+			container asSpartaForm
+				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg'.
+			container removeChildren ].
+			
+	slideElement removeChildren.
+	slideElement addChild: currentSlide asCachedElement.
 ]
 
 { #category : #accessing }
