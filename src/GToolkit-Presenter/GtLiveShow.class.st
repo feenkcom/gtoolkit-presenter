@@ -243,16 +243,24 @@ GtLiveShow >> enqueueTask: aTask [
 
 { #category : #accessing }
 GtLiveShow >> exportSlides [
+	| container |
+	container := BlElement new
+		height: 1080;
+		width: 1920;
+		background: Color white.
+		
 	self slides
 		withIndexDo: [ :eachSlide :anIndex |	
-			| eachCachedElement eachSlideElement |		
+			| eachCachedElement |		
 
 			eachCachedElement := eachSlide asCachedElement.
-			eachSlideElement := eachCachedElement slideElement
-				ifNil: [ eachCachedElement ].
-			eachSlideElement background: Color white.
-			eachSlideElement asSpartaForm
-				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg' ]
+			container addChild: eachCachedElement removeFromParent.
+			container asSpartaForm
+				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg'.
+			container removeChildren ].
+			
+	slideElement removeChildren.
+	slideElement addChild: currentSlide asCachedElement.
 ]
 
 { #category : #accessing }
@@ -562,16 +570,11 @@ GtLiveShow >> slidesDropdown [
 							(BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
-								label: 'Export slides' asString;
-								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]);
-						addItem:
-							(BrButton new
-								beSmall;
-								look: BrGlamorousButtonWithIconLook;
 								label: 'Generate video script' asString;
 								icon: BrGlamorousIcons savetodisk asElement;
-								action: [ self generateVideoScript ]).
+								action: [ 
+									self slides ifNotEmpty: [
+										self generateVideoScript ]]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
