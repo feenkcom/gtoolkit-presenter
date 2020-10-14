@@ -9,7 +9,9 @@ Class {
 
 { #category : #'api - instantiation' }
 GtElementSlide >> create [
-	^ elementBlock value
+	^ BlElement new 
+		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
+		addChild: elementBlock value
 ]
 
 { #category : #accessing }
