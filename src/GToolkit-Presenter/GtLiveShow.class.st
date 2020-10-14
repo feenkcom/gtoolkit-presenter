@@ -562,16 +562,11 @@ GtLiveShow >> slidesDropdown [
 							(BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
-								label: 'Export slides' asString;
-								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]);
-						addItem:
-							(BrButton new
-								beSmall;
-								look: BrGlamorousButtonWithIconLook;
 								label: 'Generate video script' asString;
 								icon: BrGlamorousIcons savetodisk asElement;
-								action: [ self generateVideoScript ]).
+								action: [ 
+									self slides ifNotEmpty: [
+										self generateVideoScript ]]).
 					el := BlElement new
 						size: 700 @ 520;
 						layout: BlLinearLayout vertical;
