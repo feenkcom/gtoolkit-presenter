@@ -48,7 +48,10 @@ GtLiveSlide >> generateElements [
 	| element formElement |
 
 	"5 seconds wait."
-	element := self asElement.
+	[element := self asElement]
+		on: Error
+		do: [ :anException |
+			element := anException asDebuggableElement ].
 	formElement := element asSpartaForm asElement asPannableElement.
 	slideShow enqueueTask: (BlTaskAction new action: [
 		cachedElement
