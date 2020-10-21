@@ -237,37 +237,75 @@ GtLiveShow >> dropdown [
 ]
 
 { #category : #accessing }
+GtLiveShow >> dropdownExportStencilFor [
+	| dropdownLook selectionElement |
+
+	^ selectionElement := BrSlideImageExport new
+		folder: FileLocator home;
+		fileFilterBlock: [ :file | (file extension asLowercase = 'jpeg') or: [file extension asLowercase = 'png'] ];
+		okAction: [ :fileName | 
+			self
+				export: selectionElement exportRange
+				as: selectionElement imageFormat
+				withSize: ((selectionElement imageWidth asNumber) @ (selectionElement imageHeight asNumber))
+				andFileName: fileName];
+		buttonLabel: 'Export';
+		padding: (BlInsets all: 20);
+		constraintsDo: [:c |
+			c vertical matchParent.
+			c horizontal matchParent].
+]
+
+{ #category : #accessing }
 GtLiveShow >> enqueueTask: aTask [
 
 	slidesContainer enqueueTask: aTask
 ]
 
 { #category : #accessing }
-GtLiveShow >> exportSlides [
-	| container |
-	container := BlElement new
-		height: 1080;
-		width: 1920;
-		background: Color white.
-		
-	self slides
-		withIndexDo: [ :eachSlide :anIndex |	
-			| eachCachedElement |		
-
-			eachCachedElement := eachSlide asCachedElement.
-			container addChild: eachCachedElement removeFromParent.
-			container asSpartaForm
-				writeJPEGfileNamed: self title, ' - ', anIndex asString, '.jpeg'.
-			container removeChildren ].
-			
+GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName [
+	(anExportQuantity asLowercase = 'all')
+		ifTrue: [
+			self exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName ].
+	(anExportQuantity asLowercase = 'current slide')
+		ifTrue: [
+			self exportSlide: currentSlide as: aFormat withSize: aSize andFileName: aFileName ].
+	
 	slideElement removeChildren.
 	slideElement addChild: currentSlide asCachedElement.
+	
+	self generateVideoScript.
+]
+
+{ #category : #accessing }
+GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName [
+	self slides do: [:eachSlide |
+		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName [
+	| container cachedElement |
+	container := BlElement new.
+	container width: aSize x.
+	container height: aSize y.
+	
+	cachedElement := aSlide asCachedElement.
+	container addChild: cachedElement removeFromParent.
+	(aFormat asUppercase = 'JPEG' or: [aFormat asUppercase = 'JPG'])
+		ifTrue: [
+			container background: Color white.
+			container asSpartaForm
+				writeJPEGfileNamed: aFileName, ' - ', aSlide slideIndex asString, '.jpeg']
+		ifFalse: [
+			container asSpartaForm
+				writePNGFileNamed: aFileName, ' - ', aSlide slideIndex asString, '.png'].
+	container removeChildren.
 ]
 
 { #category : #accessing }
 GtLiveShow >> generateVideoScript [
 	| textFileContent textFileName |
-	self exportSlides.
 	
 	textFileContent := '---
 voice: rodney
