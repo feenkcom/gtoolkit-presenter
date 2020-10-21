@@ -21,7 +21,8 @@ Class {
 		'slideEditorResizer',
 		'slideEditorHeightStrategy',
 		'slideEditor',
-		'targetLiveShow'
+		'targetLiveShow',
+		'pager'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -319,6 +320,7 @@ GtLiveShow >> initialize [
 	arrowsAreVisible := false.
 	background := Color white.
 	extraSlidesAdded ifNil: [ extraSlidesAdded := 0 ].
+	pager := BrPager new matchParent.
 	self buildSlideshowContainerComponents.
 ]
 
@@ -376,6 +378,11 @@ GtLiveShow >> onMethodAdded: aMethodAdded [
 	(aMethodAdded classAffected = self targetLiveShow class) ifFalse: [ ^ self ].	
 	self slides detect: [:aSlide | aSlide definingMethod = aMethodAdded method] ifFound: [^ self ].
 	self slideDefinitionAddedFor: aMethodAdded.
+]
+
+{ #category : #accessing }
+GtLiveShow >> pager [
+	^ pager.
 ]
 
 { #category : #accessing }
@@ -507,7 +514,7 @@ GtLiveShow >> slidesContainer [
 
 { #category : #accessing }
 GtLiveShow >> slidesDropdown [
-	| aToolbar |
+	| aToolbar anExportButton |
 	previewsContainer := BlElement new.
 	previewsContainer
 		layout: BlFlowLayout new;
@@ -567,23 +574,34 @@ GtLiveShow >> slidesDropdown [
 										slideEditorVisibility := slideEditorVisibility not.
 										self updateSlideEditorState ]);
 						addItem:
-							(BrButton new
+							(anExportButton := BrButton new
 								beSmall;
 								look: BrGlamorousButtonWithIconLook;
-								label: 'Generate video script' asString;
+								label: 'Export slides' asString;
 								icon: BrGlamorousIcons savetodisk asElement;
-								action: [ 
-									self slides ifNotEmpty: [
-										self generateVideoScript ]]).
+								action: [ :aButton | 
+									self pager addPage: self slidesExportPage.
+									self pager smoothScrollToLast. ]).
 					el := BlElement new
 						size: 700 @ 520;
+						addChild: self pager removeFromParent.
+					self pager removeAllPages.
+					self pager addPage: (BrPagerPageElement new
+						weight: 1.0;
 						layout: BlLinearLayout vertical;
 						addChild: previewsContainer asScrollableElement;
-						addChild: aToolbar.
+						addChild: aToolbar).
 					el ]);
 			constraintsDo: [ :c | c linear horizontal alignRight ];
 			padding: (BlInsets all: 10);
 			yourself.
+]
+
+{ #category : #accessing }
+GtLiveShow >> slidesExportPage [
+	^ BrPagerPageElement new
+		weight: 1.0;
+		addChild: self dropdownExportStencilFor.
 ]
 
 { #category : #accessing }
