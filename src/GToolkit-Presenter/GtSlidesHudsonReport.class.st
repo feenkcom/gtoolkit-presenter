@@ -53,7 +53,7 @@ GtSlidesHudsonReport >> runSlide: aSlide [
 		beginTestCase: aSlide
 		runBlock: [
 			[ aSlide run ]
-				on: Halt , Error , AssertionFailure
+				on: self signalableExceptions
 				do: [ :err | 
 					error := err.
 					stack := self stackTraceString: err of: aSlide ] ].
