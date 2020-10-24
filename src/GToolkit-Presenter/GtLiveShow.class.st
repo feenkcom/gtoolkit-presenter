@@ -386,7 +386,8 @@ GtLiveShow >> initializeSlides [
 					slideIndex: index ].
 			self showSlide: self slides first.
 			self updateSlideEditorMethod.
-			self updatePreviewsContainer ].
+			self updatePreviewsContainer.
+			self updateSlidePreviewsLook ].
 ]
 
 { #category : #accessing }
