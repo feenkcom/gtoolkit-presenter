@@ -243,12 +243,13 @@ GtLiveShow >> dropdownExportStencilFor [
 	^ selectionElement := BrSlideImageExport new
 		folder: FileLocator home;
 		fileFilterBlock: [ :file | (file extension asLowercase = 'jpeg') or: [file extension asLowercase = 'png'] ];
-		okAction: [ :fileName | 
+		okAction: [ :folder :fileName | 
 			self
 				export: selectionElement exportRange
 				as: selectionElement imageFormat
 				withSize: ((selectionElement imageWidth asNumber) @ (selectionElement imageHeight asNumber))
-				andFileName: fileName];
+				andFileName: fileName
+				in: ((folder / 'Slides' asString) ensureCreateDirectory)];
 		buttonLabel: 'Export';
 		padding: (BlInsets all: 20);
 		constraintsDo: [:c |
