@@ -720,7 +720,8 @@ GtLiveShow >> updatePreviewsContainer [
 						when: BlClickEvent
 						do: [ :e | 
 							self showSlide: each.
-							self updateSlideEditorMethod ]) ].
+							self updateSlideEditorMethod.
+							self updateSlidePreviewsLook ])].
 ]
 
 { #category : #'api - updating' }
