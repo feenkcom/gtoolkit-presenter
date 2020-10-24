@@ -263,29 +263,38 @@ GtLiveShow >> enqueueTask: aTask [
 ]
 
 { #category : #accessing }
-GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName [
+GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	(anExportQuantity asLowercase = 'all')
 		ifTrue: [
-			self exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName ].
+			self 
+				exportAllSlidesAs: aFormat 
+				withSize: aSize 
+				andFileName: aFileName 
+				in: aFolder ].
 	(anExportQuantity asLowercase = 'current slide')
 		ifTrue: [
-			self exportSlide: currentSlide as: aFormat withSize: aSize andFileName: aFileName ].
+			self 
+				exportSlide: currentSlide 
+				as: aFormat 
+				withSize: aSize 
+				andFileName: aFileName 
+				in: aFolder ].
 	
 	slideElement removeChildren.
 	slideElement addChild: currentSlide asCachedElement.
 	
-	self generateVideoScript.
+	self generateVideoScriptIn: aFolder. 
 ]
 
 { #category : #accessing }
-GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName [
+GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	self slides do: [:eachSlide |
-		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName ].
+		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder ].
 ]
 
 { #category : #accessing }
-GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName [
-	| container cachedElement |
+GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
+	| container cachedElement fileName |
 	container := BlElement new.
 	container width: aSize x.
 	container height: aSize y.
@@ -294,12 +303,14 @@ GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFile
 	container addChild: cachedElement removeFromParent.
 	(aFormat asUppercase = 'JPEG' or: [aFormat asUppercase = 'JPG'])
 		ifTrue: [
+			fileName := aFileName, ' - ', aSlide slideIndex asString, '.jpeg'.
 			container background: Color white.
 			container asSpartaForm
-				writeJPEGfileNamed: aFileName, ' - ', aSlide slideIndex asString, '.jpeg']
+				writeJPEGfileNamed: aFolder / fileName]
 		ifFalse: [
+			fileName := aFileName, ' - ', aSlide slideIndex asString, '.png'.
 			container asSpartaForm
-				writePNGFileNamed: aFileName, ' - ', aSlide slideIndex asString, '.png'].
+				writePNGFileNamed: aFolder / fileName].
 	container removeChildren.
 ]
 
