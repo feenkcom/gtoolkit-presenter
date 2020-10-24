@@ -10,7 +10,8 @@ Class {
 		'previewElement',
 		'cachedElement',
 		'slideIndex',
-		'slideShow'
+		'slideShow',
+		'isSlideSelected'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -90,10 +91,25 @@ GtLiveSlide >> initialize [
 		neverUpdate; "I will be updated by the cached element"
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
 		background: Color white;
-		look: BrShadowLook new;
+		viewModel:
+		(BrInteractiveModel new
+			withHover;
+			yourself);
 		margin: (BlInsets all: 10);
 		yourself.
+	self isSlideSelected: false.
+	self updatePreviewElementLook.
 
+]
+
+{ #category : #accessing }
+GtLiveSlide >> isSlideSelected [
+	^ isSlideSelected.
+]
+
+{ #category : #accessing }
+GtLiveSlide >> isSlideSelected: aBoolean [
+	isSlideSelected := aBoolean.
 ]
 
 { #category : #accessing }
@@ -227,4 +243,27 @@ GtLiveSlide >> slideShow [
 { #category : #accessing }
 GtLiveSlide >> slideShow: anObject [
 	slideShow := anObject
+]
+
+{ #category : #accessing }
+GtLiveSlide >> updatePreviewElementLook [
+	isSlideSelected
+		ifTrue: [
+			previewElement
+				look: (BrShadowLook new color: (Color r: 0.27 g: 0.67 b: 0.99 alpha: 0.7)) + (BrInteractiveCommonLook new 
+					default: [ :aWidget |
+						aWidget
+							border: (BlBorder paint: Color transparent)];
+					hovered: [ :aWidget |
+						aWidget 
+							border: (BlBorder paint: (Color r: 0.27 g: 0.67 b: 0.99) width: 1)])]
+		ifFalse: [
+			previewElement
+				look: (BrShadowLook new) + (BrInteractiveCommonLook new 
+					default: [ :aWidget |
+						aWidget
+							border: (BlBorder paint: Color transparent)];
+					hovered: [ :aWidget |
+						aWidget 
+							border: (BlBorder paint: (Color r: 0.27 g: 0.67 b: 0.99) width: 1)])].
 ]

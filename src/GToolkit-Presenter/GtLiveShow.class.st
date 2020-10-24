@@ -760,3 +760,13 @@ GtLiveShow >> updateSlideEditorState [
 		ifFalse: [
 			slideEditor visibility: BlVisibility gone].
 ]
+
+{ #category : #'api - updating' }
+GtLiveShow >> updateSlidePreviewsLook [
+	self slides
+		do: [ :eachSlide |
+			(eachSlide slideIndex = self currentSlideIndex)
+				ifTrue: [ eachSlide isSlideSelected: true ]
+				ifFalse: [ eachSlide isSlideSelected: false ].
+			eachSlide updatePreviewElementLook ].
+]
