@@ -316,7 +316,7 @@ GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFile
 ]
 
 { #category : #accessing }
-GtLiveShow >> generateVideoScript [
+GtLiveShow >> generateVideoScriptIn: aFolder [
 	| textFileContent textFileName |
 	
 	textFileContent := '---
@@ -340,7 +340,7 @@ transition: crossfade 0.3' asString.
 				ifFalse: [ textFileContent := textFileContent, eachSlide notes asString ] ].
 
 	textFileName := self title asString, '.txt'.
-	textFileName asFileReference
+	(aFolder / textFileName) asFileReference
 		writeStreamDo: [:s | s nextPutAll: textFileContent].
 ]
 
