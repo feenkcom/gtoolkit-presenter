@@ -411,6 +411,7 @@ GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
 	self updateSlideEditorMethod.
+	self updateSlidePreviewsLook.
 ]
 
 { #category : #'private - event handling' }
@@ -441,6 +442,7 @@ GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
 	self updateSlideEditorMethod.
+	self updateSlidePreviewsLook.
 ]
 
 { #category : #accessing }
