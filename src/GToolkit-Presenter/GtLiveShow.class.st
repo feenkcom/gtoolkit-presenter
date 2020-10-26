@@ -243,12 +243,13 @@ GtLiveShow >> dropdownExportStencilFor [
 	^ selectionElement := BrSlideImageExport new
 		folder: FileLocator home;
 		fileFilterBlock: [ :file | (file extension asLowercase = 'jpeg') or: [file extension asLowercase = 'png'] ];
-		okAction: [ :fileName | 
+		okAction: [ :folder :fileName | 
 			self
 				export: selectionElement exportRange
 				as: selectionElement imageFormat
 				withSize: ((selectionElement imageWidth asNumber) @ (selectionElement imageHeight asNumber))
-				andFileName: fileName];
+				andFileName: fileName
+				in: ((folder / 'Slides' asString) ensureCreateDirectory)];
 		buttonLabel: 'Export';
 		padding: (BlInsets all: 20);
 		constraintsDo: [:c |
@@ -263,29 +264,38 @@ GtLiveShow >> enqueueTask: aTask [
 ]
 
 { #category : #accessing }
-GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName [
+GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	(anExportQuantity asLowercase = 'all')
 		ifTrue: [
-			self exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName ].
+			self 
+				exportAllSlidesAs: aFormat 
+				withSize: aSize 
+				andFileName: aFileName 
+				in: aFolder ].
 	(anExportQuantity asLowercase = 'current slide')
 		ifTrue: [
-			self exportSlide: currentSlide as: aFormat withSize: aSize andFileName: aFileName ].
+			self 
+				exportSlide: currentSlide 
+				as: aFormat 
+				withSize: aSize 
+				andFileName: aFileName 
+				in: aFolder ].
 	
 	slideElement removeChildren.
 	slideElement addChild: currentSlide asCachedElement.
 	
-	self generateVideoScript.
+	self generateVideoScriptIn: aFolder. 
 ]
 
 { #category : #accessing }
-GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName [
+GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	self slides do: [:eachSlide |
-		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName ].
+		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder ].
 ]
 
 { #category : #accessing }
-GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName [
-	| container cachedElement |
+GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
+	| container cachedElement fileName |
 	container := BlElement new.
 	container width: aSize x.
 	container height: aSize y.
@@ -294,17 +304,19 @@ GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFile
 	container addChild: cachedElement removeFromParent.
 	(aFormat asUppercase = 'JPEG' or: [aFormat asUppercase = 'JPG'])
 		ifTrue: [
+			fileName := aFileName, ' - ', aSlide slideIndex asString, '.jpeg'.
 			container background: Color white.
 			container asSpartaForm
-				writeJPEGfileNamed: aFileName, ' - ', aSlide slideIndex asString, '.jpeg']
+				writeJPEGfileNamed: aFolder / fileName]
 		ifFalse: [
+			fileName := aFileName, ' - ', aSlide slideIndex asString, '.png'.
 			container asSpartaForm
-				writePNGFileNamed: aFileName, ' - ', aSlide slideIndex asString, '.png'].
+				writePNGFileNamed: aFolder / fileName].
 	container removeChildren.
 ]
 
 { #category : #accessing }
-GtLiveShow >> generateVideoScript [
+GtLiveShow >> generateVideoScriptIn: aFolder [
 	| textFileContent textFileName |
 	
 	textFileContent := '---
@@ -328,7 +340,7 @@ transition: crossfade 0.3' asString.
 				ifFalse: [ textFileContent := textFileContent, eachSlide notes asString ] ].
 
 	textFileName := self title asString, '.txt'.
-	textFileName asFileReference
+	(aFolder / textFileName) asFileReference
 		writeStreamDo: [:s | s nextPutAll: textFileContent].
 ]
 
@@ -374,7 +386,8 @@ GtLiveShow >> initializeSlides [
 					slideIndex: index ].
 			self showSlide: self slides first.
 			self updateSlideEditorMethod.
-			self updatePreviewsContainer ].
+			self updatePreviewsContainer.
+			self updateSlidePreviewsLook ].
 ]
 
 { #category : #accessing }
@@ -398,6 +411,7 @@ GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
 	self updateSlideEditorMethod.
+	self updateSlidePreviewsLook.
 ]
 
 { #category : #'private - event handling' }
@@ -428,6 +442,7 @@ GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
 	self updateSlideEditorMethod.
+	self updateSlidePreviewsLook.
 ]
 
 { #category : #accessing }
@@ -708,7 +723,8 @@ GtLiveShow >> updatePreviewsContainer [
 						when: BlClickEvent
 						do: [ :e | 
 							self showSlide: each.
-							self updateSlideEditorMethod ]) ].
+							self updateSlideEditorMethod.
+							self updateSlidePreviewsLook ])].
 ]
 
 { #category : #'api - updating' }
@@ -747,4 +763,14 @@ GtLiveShow >> updateSlideEditorState [
 			slideEditor visibility: BlVisibility visible]
 		ifFalse: [
 			slideEditor visibility: BlVisibility gone].
+]
+
+{ #category : #'api - updating' }
+GtLiveShow >> updateSlidePreviewsLook [
+	self slides
+		do: [ :eachSlide |
+			(eachSlide slideIndex = self currentSlideIndex)
+				ifTrue: [ eachSlide isSlideSelected: true ]
+				ifFalse: [ eachSlide isSlideSelected: false ].
+			eachSlide updatePreviewElementLook ].
 ]
