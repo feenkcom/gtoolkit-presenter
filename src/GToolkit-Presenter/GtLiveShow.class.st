@@ -304,14 +304,21 @@ GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFile
 	container addChild: cachedElement removeFromParent.
 	(aFormat asUppercase = 'JPEG' or: [aFormat asUppercase = 'JPG'])
 		ifTrue: [
-			fileName := aFileName, ' - ', aSlide slideIndex asString, '.jpeg'.
-			container background: Color white.
-			container asSpartaForm
-				writeJPEGfileNamed: aFolder / fileName]
+			fileName := aFileName, ' - ', aSlide slideIndex asString, '.jpg'.
+			BlExporter jpg
+				element: container;
+				background: Color white;
+   			 fileName: aFolder / fileName;
+   			 scaled: 1;
+   			 export ]
 		ifFalse: [
 			fileName := aFileName, ' - ', aSlide slideIndex asString, '.png'.
-			container asSpartaForm
-				writePNGFileNamed: aFolder / fileName].
+			BlExporter png
+				element: container;
+				background: Color transparent;
+  			  fileName: aFolder / fileName;
+   			 scaled: 1;
+   			 export ].
 	container removeChildren.
 ]
 
