@@ -218,7 +218,7 @@ GtLiveShow >> createNewEmptySlide [
 	"Rename this method to be more representative for your slide"
 	^ aSlide empty
 		priority: ', priority, '.')
-		classified: ''.
+		classified: 'slides'.
 ]
 
 { #category : #accessing }
