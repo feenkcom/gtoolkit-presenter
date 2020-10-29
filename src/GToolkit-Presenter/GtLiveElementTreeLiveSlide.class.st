@@ -41,7 +41,7 @@ GtLiveElementTreeLiveSlide >> create [
 				margin: (BlInsets all: 10);
 				when: BlClickEvent do: [:e | e target phlow spawnObject: el].
 			meta isEmpty 
-				ifTrue: [ nodeElement geometry: BlEllipse new; size: 10@10 ];
+				ifTrue: [ nodeElement geometry: BlEllipseGeometry new; size: 10@10 ];
 				ifFalse: [ nodeElement 
 					constraintsDo: [:c | c vertical fitContent. c horizontal fitContent];
 					layout: BlLinearLayout vertical;
