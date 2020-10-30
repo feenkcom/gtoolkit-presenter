@@ -249,7 +249,7 @@ GtLiveShow >> dropdownExportStencilFor [
 				as: selectionElement imageFormat
 				withSize: ((selectionElement imageWidth asNumber) @ (selectionElement imageHeight asNumber))
 				andFileName: fileName
-				in: ((folder / 'Slides' asString) ensureCreateDirectory)];
+				in: ((folder / fileName) ensureCreateDirectory)];
 		buttonLabel: 'Export';
 		padding: (BlInsets all: 20);
 		constraintsDo: [:c |
@@ -272,7 +272,7 @@ GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: 
 				withSize: aSize 
 				andFileName: aFileName 
 				in: aFolder ].
-	(anExportQuantity asLowercase = 'current slide')
+	(anExportQuantity asLowercase = 'current')
 		ifTrue: [
 			self 
 				exportSlide: currentSlide 
