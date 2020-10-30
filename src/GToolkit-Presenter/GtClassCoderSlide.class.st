@@ -53,7 +53,7 @@ GtClassCoderSlide >> create [
 						label: 'Expand certain method in coder';
 						onBreadthFirstChildOfClass: BrTabGroup;
 						onChildAt: 2;
-						onBreadthFirstChildOfClass: GtCodersElement;
+						onBreadthFirstChildOfClass: GtMethodsCoderElement;
 						onBreadthFirstChildOfClass: BrSimpleList;
 						onBreadthFirstChildOfClass: BrInfiniteListElement;
 						onChildAt: self methodExpanded;
