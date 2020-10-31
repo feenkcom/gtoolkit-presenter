@@ -25,7 +25,7 @@ GtExampleLiveSlide >> create [
 		layout: BlLinearLayout horizontal.
 	
 	coder := GtMethodCoder forMethod: method.
-	coderElement := (coder expanded: true) asElement.
+	coderElement := (coder asCoderUIModel expanded: true) asElement.
 	coderElement
 		forceLayout;
 		vMatchParent;
