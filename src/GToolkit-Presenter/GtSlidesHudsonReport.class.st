@@ -21,7 +21,7 @@ GtSlidesHudsonReport class >> runPackages: aCollectionOfStrings [
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> containerNameFor: aSlide [
 	| definingClass |
-	definingClass := aSlide definingMethod methods last methodClass.
+	definingClass := aSlide definingMethod.
 
 	^ (definingClass category copyReplaceAll: '-' with: '.'),
 		'.',
@@ -38,7 +38,7 @@ GtSlidesHudsonReport >> loggingNameFor: anExample [
 
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> nameFor: aSlide [
-	^ aSlide definingMethod methods last selector
+	^ aSlide definingMethod selector
 ]
 
 { #category : #accessing }
