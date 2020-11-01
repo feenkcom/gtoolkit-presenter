@@ -32,7 +32,7 @@ GtSlidesHudsonReport >> containerNameFor: aSlide [
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> loggingNameFor: anExample [
 	| definingMethod |
-	definingMethod := anExample definingMethod methods last.
+	definingMethod := anExample definingMethod.
 	^ definingMethod methodClass name, '>>', definingMethod selector
 ]
 
