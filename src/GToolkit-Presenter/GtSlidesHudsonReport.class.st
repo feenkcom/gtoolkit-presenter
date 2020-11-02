@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 GtSlidesHudsonReport class >> runPackage: aString [
 	^ self new 
-		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlidesAllContained;
+		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlideBuildersAllContained;
 		reportName: aString;
 		run
 ]
@@ -47,16 +47,16 @@ GtSlidesHudsonReport >> resultsFileName [
 ]
 
 { #category : #running }
-GtSlidesHudsonReport >> runSlide: aSlide [
+GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 	| error stack |
 	self
-		beginTestCase: aSlide
+		beginTestCase: aSlideBuilder
 		runBlock: [
-			[ aSlide run ]
+			[ aSlideBuilder build run ]
 				on: self signalableExceptions
 				do: [ :err | 
 					error := err.
-					stack := self stackTraceString: err of: aSlide ] ].
+					stack := self stackTraceString: err of: aSlideBuilder ] ].
 			
 	error ifNotNil: [
 		(error isKindOf: AssertionFailure)
@@ -68,7 +68,7 @@ GtSlidesHudsonReport >> runSlide: aSlide [
 
 { #category : #running }
 GtSlidesHudsonReport >> runTestCase: anExample [
-	^ self runSlide: anExample
+	^ self runSlideBuilder: anExample
 ]
 
 { #category : #private }
