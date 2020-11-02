@@ -9,3 +9,10 @@ CompiledMethod >> gtSlide [
 		withArguments: {GtEmptySlide new}
 		inClass: self methodClass.
 ]
+
+{ #category : #'*GToolkit-Presenter' }
+CompiledMethod >> gtSlideBuilder [
+	^ GtSlideBuilder new
+		slideShowClass: self methodClass;
+		slideSelector: self selector
+]
