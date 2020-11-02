@@ -18,7 +18,7 @@ GtClassCoderSlide >> class: aClass [
 GtClassCoderSlide >> create [
 	| coder coderElement aScripter |
 	
-	coderElement := (GtClassCoder forClass: class) asElement.
+	coderElement := (GtBehaviorCoder forClass: class) asElement.
 	coderElement
 		forceLayout;
 		constraintsDo: [ :c |
