@@ -41,7 +41,7 @@ GtClassCoderSlide >> create [
 				do: [ :aStep | 
 					aStep click
 						label: 'Expand coder header';
-						onBreadthFirstChildOfClass: GtBehaviorCoderHeaderElement;
+						onBreadthFirstChildOfClass: GtBehaviorDefinitionCoderElement;
 						onChildAt: 1.
 					aStep wait forEmptySpaceTaskQueue ]].
 	(self methodExpanded > 0)
