@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 GtSlidesHudsonReport class >> runPackage: aString [
 	^ self new 
-		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlidesAllContained;
+		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlideBuildersAllContained;
 		reportName: aString;
 		run
 ]
@@ -21,7 +21,7 @@ GtSlidesHudsonReport class >> runPackages: aCollectionOfStrings [
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> containerNameFor: aSlide [
 	| definingClass |
-	definingClass := aSlide definingMethod methods last methodClass.
+	definingClass := aSlide definingMethod.
 
 	^ (definingClass category copyReplaceAll: '-' with: '.'),
 		'.',
@@ -32,13 +32,13 @@ GtSlidesHudsonReport >> containerNameFor: aSlide [
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> loggingNameFor: anExample [
 	| definingMethod |
-	definingMethod := anExample definingMethod methods last.
+	definingMethod := anExample definingMethod.
 	^ definingMethod methodClass name, '>>', definingMethod selector
 ]
 
 { #category : #'accessing - test case' }
 GtSlidesHudsonReport >> nameFor: aSlide [
-	^ aSlide definingMethod methods last selector
+	^ aSlide definingMethod selector
 ]
 
 { #category : #accessing }
@@ -47,16 +47,16 @@ GtSlidesHudsonReport >> resultsFileName [
 ]
 
 { #category : #running }
-GtSlidesHudsonReport >> runSlide: aSlide [
+GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 	| error stack |
 	self
-		beginTestCase: aSlide
+		beginTestCase: aSlideBuilder
 		runBlock: [
-			[ aSlide run ]
+			[ aSlideBuilder build run ]
 				on: self signalableExceptions
 				do: [ :err | 
 					error := err.
-					stack := self stackTraceString: err of: aSlide ] ].
+					stack := self stackTraceString: err of: aSlideBuilder ] ].
 			
 	error ifNotNil: [
 		(error isKindOf: AssertionFailure)
@@ -68,7 +68,7 @@ GtSlidesHudsonReport >> runSlide: aSlide [
 
 { #category : #running }
 GtSlidesHudsonReport >> runTestCase: anExample [
-	^ self runSlide: anExample
+	^ self runSlideBuilder: anExample
 ]
 
 { #category : #private }

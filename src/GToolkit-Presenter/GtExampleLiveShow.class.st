@@ -145,8 +145,7 @@ GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 				addChild: ((GtABCartoonAddressBookExample new cartoonAddressBook 
 					gtViewsFor: GtPhlowView empty) asElement));
 		centerElement: 
-			(((GtMethodCoder 
-					forMethod: GtABAddressBookExample>>#myContactsAddressBook) 
+			(((GtMethodCoder forMethod: GtABAddressBookExample>>#myContactsAddressBook) asCoderUIModel
 						expanded: true) asElement);
 		rightElement: 
 			(BlElement new
