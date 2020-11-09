@@ -95,11 +95,11 @@ GtSlideShow >> create [
 	container addChild: slidesContainer.
 	container addChild: self slidesDropdown.
 	
-	container addShortcut: (BlShortcut new
+	container addShortcut: (BlShortcutWithAction new
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowRight build;
 		action: [ self nextStep ]).
-	container addShortcut: (BlShortcut new
+	container addShortcut: (BlShortcutWithAction new
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowLeft build;
 		action: [ self previousStep ]).
@@ -196,11 +196,11 @@ GtSlideShow >> openInSpace [
 	space extent: 800@500.
 	space title: self title.
 	space root addChild: self asElement.
-	space root addShortcut: (BlShortcut new 
+	space root addShortcut: (BlShortcutWithAction new 
 		repeatable: false;
 		combination: (BlSingleKeyCombination new key: BlKeyboardKey pageDown);
 			action: [ self nextStep ]).
-	space root addShortcut: (BlShortcut new 
+	space root addShortcut: (BlShortcutWithAction new 
 		repeatable: false;
 		combination: (BlSingleKeyCombination new key: BlKeyboardKey pageUp);
 			action: [ self previousStep ]).

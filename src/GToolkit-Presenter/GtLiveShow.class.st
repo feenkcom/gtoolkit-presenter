@@ -193,11 +193,11 @@ GtLiveShow >> create [
 	container addChild: self dropdown.
 	self updateSlideEditorState.
 	
-	container addShortcut: (BlShortcut new
+	container addShortcut: (BlShortcutWithAction new
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowRight build;
 		action: [ self nextStep ]).
-	container addShortcut: (BlShortcut new
+	container addShortcut: (BlShortcutWithAction new
 		repeatable: false;
 		combination: BlKeyCombination builder alt arrowLeft build;
 		action: [ self previousStep ]).
