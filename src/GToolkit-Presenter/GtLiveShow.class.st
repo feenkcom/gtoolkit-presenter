@@ -206,10 +206,18 @@ GtLiveShow >> create [
 
 { #category : #accessing }
 GtLiveShow >> createNewEmptySlide [
-	| priority |
+	| priority stopPosition |
 	(self slides isNotEmpty)
-		ifTrue: [ priority := ((self slides at: self currentSlideIndex) priority + 1) asString ]
-		ifFalse: [ priority := 1 asString ].
+		ifTrue: [
+			priority := ((self slides at: self currentSlideIndex) priority + 1) asString.
+			stopPosition := self slides size.
+			(self slides size) to: (self currentSlideIndex + 1) by: -1 do: [:index |
+				((((self slides at: index) priority) - ((self slides at: (index - 1)) priority)) > 1)
+					ifTrue: [ stopPosition := index - 1 ]].
+			stopPosition to: (self currentSlideIndex + 1) by: -1 do: [:index |
+				self updateMethodForSlide: (self slides at: index)]]
+		ifFalse: [ 
+			priority := 1 asString ].
 	extraSlidesAdded := extraSlidesAdded + 1.
 
 	self targetLiveShow class
@@ -717,6 +725,19 @@ GtLiveShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasNextSlide ])
 		ifTrue: [ nextArrow visibility: BlVisibility visible ]
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
+]
+
+{ #category : #accessing }
+GtLiveShow >> updateMethodForSlide: aSlide [
+	| methodString newSlideMethod |
+	methodString := aSlide definingMethod compiledMethod sourceCode.
+	newSlideMethod := methodString
+		copyReplaceAll: ('priority: ', (aSlide priority) asString)
+		with: ('priority: ', (aSlide priority + 1) asString).
+	
+	self targetLiveShow class
+		compile: newSlideMethod asString
+		classified: 'slides'.
 ]
 
 { #category : #'api - updating' }
