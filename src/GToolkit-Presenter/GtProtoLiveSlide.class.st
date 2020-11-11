@@ -208,7 +208,7 @@ GtProtoLiveSlide >> playground [
 
 { #category : #accessing }
 GtProtoLiveSlide >> priority [
-	^ priority.
+	^ priority ifNil: [ 100 ].
 ]
 
 { #category : #accessing }
