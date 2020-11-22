@@ -44,7 +44,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 				onBreadthFirstChildOfClass: GtPageSnippetsElement;
 				onChildAt: aPosition;
 				onBreadthFirstChildOfClass: GtExpandableCoderElement;
-				onBreadthFirstChildOfClass: GtSourceCoderActionsElement;
+				onBreadthFirstChildOfClass: GtCoderActionsElement;
 				onBreadthFirstChildOfClass: BrToolbar;
 				onChildAt: 2.
 			aStep wait forEmptySpaceTaskQueue ].
