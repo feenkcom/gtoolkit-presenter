@@ -34,6 +34,11 @@ GtSlideBuilder >> gtSlideCodeFor: aView [
 ]
 
 { #category : #accessing }
+GtSlideBuilder >> ignoreSlideTest [
+	^ self definingMethod hasPragmaNamed: #noTest.
+]
+
+{ #category : #accessing }
 GtSlideBuilder >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
