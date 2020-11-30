@@ -80,3 +80,9 @@ GtSlidesHudsonReport >> stackTraceString: err of: aTestCase [
 			[str print: context; lf.] ifError: [ str nextPutAll: 'PRINTING ERROR'; lf].
 			context := context sender ] ] 
 ]
+
+{ #category : #accessing }
+GtSlidesHudsonReport >> testCasesToRun [
+	^ self testCases reject: [ :aSlideExample |
+		aSlideExample ignoreSlideTest ].
+]
