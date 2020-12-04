@@ -156,7 +156,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		look: BrGlamorousToolbarLook;
 		addItem:
 			(BrButton new
-				beNormal;
+				beNormalSize;
 				look: BrGlamorousButtonWithIconLook;
 				label: 'Add new slide' asString;
 				icon: BrGlamorousIcons add asElement;
