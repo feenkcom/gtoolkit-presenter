@@ -294,7 +294,7 @@ GtSlideShow >> slidesDropdown [
 					aToolbar
 						addItem:
 							(BrToggle new
-								beSmall;
+								beSmallSize;
 								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
 								icon: BrGlamorousIcons edit asElement;
 								when: BrToggleActivatedEvent
@@ -307,7 +307,7 @@ GtSlideShow >> slidesDropdown [
 									self updateArrows ]);
 						addItem:
 							(BrButton new
-								beSmall;
+								beSmallSize;
 								look: BrGlamorousButtonWithIconLook;
 								icon: BrGlamorousIcons save asElement;
 								action: [ self exportSlides ]).

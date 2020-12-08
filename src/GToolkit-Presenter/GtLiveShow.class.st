@@ -156,7 +156,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		look: BrGlamorousToolbarLook;
 		addItem:
 			(BrButton new
-				beNormal;
+				beNormalSize;
 				look: BrGlamorousButtonWithIconLook;
 				label: 'Add new slide' asString;
 				icon: BrGlamorousIcons add asElement;
@@ -613,7 +613,7 @@ GtLiveShow >> slidesDropdown [
 					aToolbar
 						addItem:
 							(BrToggle new
-								beSmall;
+								beSmallSize;
 								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
 								icon: BrGlamorousIcons edit asElement;
 								label: 'Update arrows' asString;
@@ -629,7 +629,7 @@ GtLiveShow >> slidesDropdown [
 											self updateArrows ]]);
 						addItem:
 							(BrToggle new
-								beSmall;
+								beSmallSize;
 								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
 								icon: BrGlamorousIcons browse asElement;
 								label: 'Browse slide method' asString;
@@ -643,7 +643,7 @@ GtLiveShow >> slidesDropdown [
 										self updateSlideEditorState ]);
 						addItem:
 							(anExportButton := BrButton new
-								beSmall;
+								beSmallSize;
 								look: BrGlamorousButtonWithIconLook;
 								label: 'Export slides' asString;
 								icon: BrGlamorousIcons savetodisk asElement;
