@@ -17,29 +17,38 @@ GtEpiceaChangesLiveSlide >> changes [
 GtEpiceaChangesLiveSlide >> create [
 	| aToolbar inspectorElement inspectorContainer container |
 	aToolbar := BrToolbar new
-		constraintsDo: [:c |
+		constraintsDo: [ :c | 
 			c frame horizontal alignRight.
 			c frame vertical alignTop ];
-		margin: (BlInsets top: 10 right: 5 bottom: 5 left: 5);		
+		margin:
+			(BlInsets
+				top: 10
+				right: 5
+				bottom: 5
+				left: 5);
 		look: BrGlamorousToolbarLook;
 		addItem:
 			(BrButton new
-				beNormal;
+				beNormalSize;
 				look: BrGlamorousButtonWithIconAndLabelLook;
 				label: 'Apply' asString;
 				icon: BrGlamorousIcons accept asElement;
-				action: [
-					self changes applyChanges ]).
+				action: [ self changes applyChanges ]).
 	inspectorElement := BlUseAsyncFeatures
 		disableDuring: [ (GtPhlowView empty composite
-			views: {
-				(self changes gtDiffFor: GtPhlowView empty).
-				(self changes gtTutorialFor: GtPhlowView empty) })
-		asElementDo: [ :e | e ] ].
+				views:
+					{(self changes gtDiffFor: GtPhlowView empty).
+					(self changes gtTutorialFor: GtPhlowView empty)})
+				asElementDo: [ :e | e ] ].
 	inspectorElement forceLayout.
 	inspectorContainer := BlElement new
-		margin: (BlInsets top: 35 right: 5 bottom: 5 left: 5);
-		constraintsDo: [:c |
+		margin:
+			(BlInsets
+				top: 35
+				right: 5
+				bottom: 5
+				left: 5);
+		constraintsDo: [ :c | 
 			c vertical matchParent.
 			c horizontal matchParent.
 			c frame vertical alignTop ];
@@ -48,12 +57,19 @@ GtEpiceaChangesLiveSlide >> create [
 		layout: BlFrameLayout new;
 		look: BrShadowLook;
 		background: Color white;
-		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30);
-		constraintsDo: [:c |
+		margin:
+			(BlInsets
+				top: 5
+				right: 30
+				bottom: 5
+				left: 30);
+		constraintsDo: [ :c | 
 			c vertical matchParent.
 			c horizontal matchParent ];
-		addChildren: {aToolbar. inspectorContainer}.
-	^ container.
+		addChildren:
+			{aToolbar.
+			inspectorContainer}.
+	^ container
 ]
 
 { #category : #accessing }
