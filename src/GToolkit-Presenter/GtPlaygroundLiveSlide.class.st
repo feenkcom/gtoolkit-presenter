@@ -43,7 +43,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 				onChildNamed: #content;
 				onBreadthFirstChildOfClass: GtPageSnippetsElement;
 				onChildAt: aPosition;
-				onBreadthFirstChildOfClass: GtExpandableCoderElement;
+				onBreadthFirstChildOfClass: GtExpandableSourceCoderElement;
 				onBreadthFirstChildOfClass: GtCoderActionsElement;
 				onBreadthFirstChildOfClass: BrToolbar;
 				onChildAt: 2.
