@@ -41,6 +41,11 @@ GtSlidesHudsonReport >> nameFor: aSlide [
 	^ aSlide definingMethod selector
 ]
 
+{ #category : #private }
+GtSlidesHudsonReport >> progressFileName [
+	^ 'progress-slides.log'
+]
+
 { #category : #accessing }
 GtSlidesHudsonReport >> resultsFileName [
 	^ self reportName , '-Slides.xml'
