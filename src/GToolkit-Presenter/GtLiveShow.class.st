@@ -82,63 +82,44 @@ GtLiveShow >> background: anObject [
 GtLiveShow >> buildSlideshowContainerComponents [
 	| previousElement nextElement aToolbar |
 	
-	slideElement := BlElement new
-		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
-		layout: BlLinearLayout horizontal.
+	slideElement := BrHorizontalPane new matchParent.
 		
-	previousElement := BlElement new 
-		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self previousStep ];
-		layout: BlLinearLayout new alignCenter.
-	previousArrow := BrButton new
+	previousArrow := BlElement new
 		size: 12 @ 24;
+		geometry: BlTriangleGeometry new beLeft.
+	previousElement := BrHorizontalPane new
+		hExact: 24;
+		vMatchParent;
+		alignCenter;
 		when: BlClickEvent do: [:e | self previousStep ];
-		geometry:
-			(BlPolygon
-				vertices:
-					{(12 @ 0).
-					(0 @ 12).
-					(12 @ 24)});
-		look: (BrInteractiveCommonLook new
-				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
-				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
-		background: BrGlamorousColors defaultButtonBorderColor.
-	previousElement addChild: previousArrow.
+		addChild: previousArrow;
+		addLook: (BrStyleCommonLook new
+			@ previousArrow;
+			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
+			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
 	
-	nextElement := BlElement new 
-		constraintsDo: [:c | c horizontal exact: 24. c vertical matchParent ];
-		when: BlClickEvent do: [:e | self nextStep ];
-		layout: BlLinearLayout new alignCenter.
-	nextArrow := BrButton new
+	nextArrow := BlElement new
 		size: 12 @ 24;
+		geometry: BlTriangleGeometry new beRight.
+	nextElement := BrHorizontalPane new
+		hExact: 24;
+		vMatchParent;
+		alignCenter;
 		when: BlClickEvent do: [:e | self nextStep ];
-		geometry:
-			(BlPolygon
-				vertices:
-					{(0 @ 0).
-					(12 @ 12).
-					(0 @ 24)});
-		look: (BrInteractiveCommonLook new
-				default: [ :aWidget | aWidget background: (BrGlamorousColors defaultButtonBorderColor) ];
-				hovered: [ :aWidget | aWidget background: (BrGlamorousColors hoveredButtonBorderColor) ]);
-		background: BrGlamorousColors defaultButtonBorderColor.
-	nextElement addChild: nextArrow.
+		addChild: nextArrow;
+		addLook: (BrStyleCommonLook new
+			@ nextArrow;
+			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
+			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
 	
-	slidesContainer := BlElement new 
-		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ];
-		layout: BlLinearLayout horizontal;
-		addChild: previousElement;
-		addChild: slideElement;
-		addChild: nextElement.
+	slidesContainer := slidesContainer := BrHorizontalPane new
+		matchParent;
+		addChildren: { previousElement . slideElement . nextElement }.
 	
 	slideEditorVisibility := false.
-	slideEditor := BlElement new
-		layout: BlFrameLayout new;
-		constraintsDo: [:c |
-			c horizontal matchParent.
-			c vertical matchParent];
-		look: BrShadowLook + 
-			(BrGlamorousWithVerticalResizerLook new beTop
+	slideEditor := BrFrame new
+		matchParent;
+		addLook: BrShadowLook + (BrGlamorousWithVerticalResizerLook new beTop
 				resizerDo: [ :theResizer | slideEditorResizer := theResizer ]);
 		background: self background;
 		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30).
