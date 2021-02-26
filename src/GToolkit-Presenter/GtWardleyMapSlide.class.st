@@ -18,6 +18,12 @@ GtWardleyMapSlide >> create [
 	aWardleyMapModel := GtWardleyMapFromDictionaryImporter importMapFromJSONString: self json.
 	aWardleyMapViewModel := GtWardleyMapViewModel new wardleyMapModel: aWardleyMapModel.
 	aWardleyMapElement := GtWardleyMapElement new wardleyMapViewModel: aWardleyMapViewModel.
+	aWardleyMapElement evolutionSections: {
+		'genesis'.
+		'custom built'.
+		'product (+rental)'.
+		'commodity'
+	}.
 	^ aWardleyMapElement
 ]
 
