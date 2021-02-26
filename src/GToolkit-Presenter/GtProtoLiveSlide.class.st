@@ -277,6 +277,14 @@ GtProtoLiveSlide >> unsubscribeFromSystem [
 ]
 
 { #category : #decorating }
+GtProtoLiveSlide >> wardleyMap [
+	^ GtWardleyMapSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect)
+]
+
+{ #category : #decorating }
 GtProtoLiveSlide >> world [
 	^ GtWorldLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
