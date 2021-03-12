@@ -750,7 +750,7 @@ GtLiveShow >> updateSlide: aSlide [
 GtLiveShow >> updateSlideEditorMethod [
 	| methodCoder |
 	(self slideEditor children size > 2) ifTrue: [self slideEditor removeChildAt: 3].
-	methodCoder := ((GtMethodCoder 
+	methodCoder := ((GtPharoMethodCoder 
 			forMethod: (self slides at: self currentSlideIndex) definingMethod)
 			asExpandedOnlyElement)
 				vFitContentLimited;

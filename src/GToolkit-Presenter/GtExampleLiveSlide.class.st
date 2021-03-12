@@ -24,7 +24,7 @@ GtExampleLiveSlide >> create [
 		padding: (BlInsets all: 5);
 		layout: BlLinearLayout horizontal.
 	
-	coder := GtMethodCoder forMethod: method.
+	coder := GtPharoMethodCoder forMethod: method.
 	coderElement := (coder asCoderUIModel expanded: true) asElement.
 	coderElement
 		forceLayout;
