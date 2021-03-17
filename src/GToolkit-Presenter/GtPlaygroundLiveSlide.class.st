@@ -34,6 +34,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 			aStep set
 				label: 'Playground';
 				element: [ self asElement ] ].
+	aScripter wait forEmptySpaceTaskQueue.
 	aScripter
 		substep: 'Evaluate and inspect snippet'
 		do: [ :aStep | 
@@ -43,10 +44,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 				onChildNamed: #content;
 				onBreadthFirstChildOfClass: GtPageSnippetsElement;
 				onChildAt: aPosition;
-				onBreadthFirstChildOfClass: GtExpandableSourceCoderElement;
-				onBreadthFirstChildOfClass: GtCoderActionsElement;
-				onBreadthFirstChildOfClass: BrToolbar;
-				onChildAt: 2.
+				id: GtSourceCoderDoItAndGoActionId.
 			aStep wait forEmptySpaceTaskQueue ].
 	aScripter syncContinue.
 	^ aScripter elementWithoutParent
