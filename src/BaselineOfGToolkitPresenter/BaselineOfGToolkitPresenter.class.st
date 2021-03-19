@@ -16,6 +16,9 @@ BaselineOfGToolkitPresenter >> baseline: spec [
 				package: 'GToolkit-Presenter'
 				with: [ spec requires: #(#Bloc) ].
 			spec
+				package: 'GToolkit-Explainer'
+				with: [ spec requires: #(#Bloc) ].
+			spec
 				package: 'GToolkit-Presenter-Examples'
 				with: [ spec requires: 'GToolkit-Presenter' ] ]
 ]
