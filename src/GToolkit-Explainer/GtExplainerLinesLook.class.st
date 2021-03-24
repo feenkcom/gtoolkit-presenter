@@ -1,6 +1,6 @@
 Class {
 	#name : #GtExplainerLinesLook,
-	#superclass : #BrLook,
+	#superclass : #BrAptitude,
 	#instVars : [
 		'isForTarget',
 		'addedLines'
