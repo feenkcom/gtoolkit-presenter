@@ -1,11 +1,11 @@
 Class {
-	#name : #GtExplainerExplanationAttributeLook,
-	#superclass : #BrStyleCommonLook,
+	#name : #GtExplainerExplanationAttributeAptitude,
+	#superclass : #BrStyleCommonAptitude,
 	#category : #'GToolkit-Explainer'
 }
 
 { #category : #initialization }
-GtExplainerExplanationAttributeLook >> initialize [
+GtExplainerExplanationAttributeAptitude >> initialize [
 	super initialize.
 	
 	self

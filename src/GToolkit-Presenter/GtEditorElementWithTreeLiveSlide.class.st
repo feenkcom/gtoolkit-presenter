@@ -24,21 +24,21 @@ GtEditorElementWithTreeLiveSlide >> create [
 			c horizontal fitContent ];
 		margin: (BlInsets all: 10);
 		padding: (BlInsets all: 10);
-		look: BrShadowLook;
+		aptitude: BrShadowAptitude;
 		background: Color white.
 
 	label := BrLabel new
 			constraintsDo: [ :c | 
 				c vertical fitContent.
 				c horizontal fitContent ];
-			look: BrGlamorousLabelLook;
+			aptitude: BrGlamorousLabelAptitude;
 			text:
 				(('Press this button to see the element tree behind the editor') asRopedText
 					glamorousRegularSmallSize;
 					foreground: Color gray).
 					
 	button := BrButton new
-		look: BrGlamorousButtonWithLabelLook;
+		aptitude: BrGlamorousButtonWithLabelAptitude;
 		label: 'Show Tree';
 		margin: (BlInsets all: 5);
 		action: [ | m |

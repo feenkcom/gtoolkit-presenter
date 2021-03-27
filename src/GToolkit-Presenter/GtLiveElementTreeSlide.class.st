@@ -14,7 +14,7 @@ GtLiveElementTreeSlide >> create [
 		constraintsDo: [:c |c horizontal matchParent. c vertical matchParent];
 		margin: (BlInsets all: 10);
 		background: Color white;
-		look: BrShadowLook;
+		aptitude: BrShadowAptitude;
 		layout: BlLinearLayout new.
 
 	container := BlElement new 
@@ -32,7 +32,7 @@ GtLiveElementTreeSlide >> create [
 			meta := el userData associations select: [:each | each value class name endsWith: 'Context'].
 			nodeElement := BlElement new 
 				background: Color white; 
-				look: BrShadowLook; 
+				aptitude: BrShadowAptitude; 
 				margin: (BlInsets all: 10);
 				when: BlClickEvent do: [:e | e target phlow spawnObject: el].
 			meta isEmpty 

@@ -18,6 +18,6 @@ GtWorldLiveSlide >> create [
 			c vertical matchParent ];
 		margin: (BlInsets all: 50);
 		background: Color white;
-		look: (BrShadowLook new width: 6);
+		aptitude: (BrShadowAptitude new width: 6);
 		addChild: GtWorldElement new
 ]

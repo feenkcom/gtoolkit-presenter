@@ -1,6 +1,6 @@
 Class {
-	#name : #GtExplainerActorLook,
-	#superclass : #BrStyleCommonLook,
+	#name : #GtExplainerActorAptitude,
+	#superclass : #BrStyleCommonAptitude,
 	#instVars : [
 		'explanationModel'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-GtExplainerActorLook >> explanationModel [
+GtExplainerActorAptitude >> explanationModel [
 	^ explanationModel
 ]
 
 { #category : #accessing }
-GtExplainerActorLook >> explanationModel: anObject [
+GtExplainerActorAptitude >> explanationModel: anObject [
 	explanationModel := anObject
 ]
 
 { #category : #'api - hooks' }
-GtExplainerActorLook >> onAttachedTo: anElement [
+GtExplainerActorAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 
 	anElement explainer model: self explanationModel

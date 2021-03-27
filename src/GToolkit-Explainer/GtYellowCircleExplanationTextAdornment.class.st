@@ -28,7 +28,7 @@ GtYellowCircleExplanationTextAdornment >> doAffect: aTBrTextEditorTextualPiece i
 	circleElement := BrButton new
 		geometry: BlEllipseGeometry new;
 		size: circleSize@circleSize;
-		look: (GtExplainerTargetLook new explanationModel: identifier).
+		aptitude: (GtExplainerTargetAptitude new explanationModel: identifier).
 	
 	^ circleElement
 ]

@@ -40,7 +40,7 @@ GtTextAndElementLiveSlide >> create [
 		padding: (BlInsets top: 10 left: 50 bottom: 10 right: 50);
 		layout: BlLinearLayout vertical alignCenter.
 		textContainer addChild: ((BrEditor new
-				look: (BrGlamorousEditorLook new lineSpacing: 5);
+				aptitude: (BrGlamorousEditorAptitude new lineSpacing: 5);
 				hMatchParent;
 				vFitContent;
 				text: completeText)

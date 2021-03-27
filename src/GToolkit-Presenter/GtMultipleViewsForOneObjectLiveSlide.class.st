@@ -33,10 +33,10 @@ GtMultipleViewsForOneObjectLiveSlide >> create [
 						c horizontal fitContent.
 						c vertical fitContent ];		
 					layout: BlLinearLayout vertical alignCenter;
-					addChild: (BrLabel new text: view title; look: (BrGlamorousLabelLook new foreground: Color gray));
+					addChild: (BrLabel new text: view title; aptitude: (BrGlamorousLabelAptitude new foreground: Color gray));
 					addChild: (
 						BlElement new 
-							look: BrShadowLook; 
+							aptitude: BrShadowAptitude; 
 							constraintsDo: [:c |
 								c horizontal exact: 400.
 								c vertical exact: 400 ];	

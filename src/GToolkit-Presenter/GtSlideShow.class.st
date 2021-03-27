@@ -54,7 +54,7 @@ GtSlideShow >> create [
 		alignCenter;
 		when: BlClickEvent do: [:e | self previousStep ];
 		addChild: previousArrow;
-		addLook: (BrStyleCommonLook new
+		addAptitude: (BrStyleCommonAptitude new
 			@ previousArrow;
 			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
 			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
@@ -68,7 +68,7 @@ GtSlideShow >> create [
 		alignCenter;
 		when: BlClickEvent do: [:e | self nextStep ];
 		addChild: nextArrow;
-		addLook: (BrStyleCommonLook new
+		addAptitude: (BrStyleCommonAptitude new
 			@ nextArrow;
 			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
 			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
@@ -270,23 +270,23 @@ GtSlideShow >> slidesDropdown [
 		margin: (BlInsets all: 10);
 		icon: BrGlamorousIcons hamburger asElement;
 		label: 'Slides';
-		look: 
-			BrGlamorousButtonWithIconLook
-			+ (BrGlamorousWithDropdownLook
+		aptitude: 
+			BrGlamorousButtonWithIconAptitude
+			+ (BrGlamorousWithDropdownAptitude
 				handle: [ BrButton new
-						look: BrGlamorousButtonWithIconLook 
-							- BrGlamorousButtonWithLabelTooltipLook
-							- BrGlamorousButtonExteriorLook;
+						aptitude: BrGlamorousButtonWithIconAptitude 
+							- BrGlamorousButtonWithLabelTooltipAptitude
+							- BrGlamorousButtonExteriorAptitude;
 						icon: BrGlamorousIcons hamburger asElement;
 						yourself ]
 				content: [ | el |
 					aToolbar := BrToolbar new.
-					aToolbar look: BrGlamorousToolbarLook.
+					aToolbar aptitude: BrGlamorousToolbarAptitude.
 					aToolbar
 						addItem:
 							(BrToggle new
 								beSmallSize;
-								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
+								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
 								icon: BrGlamorousIcons edit asElement;
 								when: BrToggleActivatedEvent
 									do: [ :anEvent | 
@@ -299,7 +299,7 @@ GtSlideShow >> slidesDropdown [
 						addItem:
 							(BrButton new
 								beSmallSize;
-								look: BrGlamorousButtonWithIconLook;
+								aptitude: BrGlamorousButtonWithIconAptitude;
 								icon: BrGlamorousIcons save asElement;
 								action: [ self exportSlides ]).
 					el := BlElement new

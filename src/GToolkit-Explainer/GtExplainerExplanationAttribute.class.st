@@ -16,7 +16,7 @@ GtExplainerExplanationAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEd
 		segmentPiece: aTBrTextEditorTextualPiece) asElement.
 
 	aTextPieceElement
-		look: (GtExplainerExplanationLook new explanationModel: self explanationModel) + GtExplainerExplanationAttributeLook;
+		aptitude: (GtExplainerExplanationAptitude new explanationModel: self explanationModel) + GtExplainerExplanationAttributeAptitude;
 		clipChildren: false;
 		layout: BlLinearLayout vertical;
 		geometry: (BlRoundedRectangleGeometry cornerRadius: 4);

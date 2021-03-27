@@ -29,7 +29,7 @@ GtRawViewsLiveSlide >> create [
 		container addChild: (((x gtRawFor: GtPhlowView empty) 
 			asElementDo: [:e | 
 				BlElement new 
-					look: BrShadowLook; 
+					aptitude: BrShadowAptitude; 
 					background: Color white;
 					margin: (BlInsets all: 20);
 					addChild: e]) size: 400@400) ].
