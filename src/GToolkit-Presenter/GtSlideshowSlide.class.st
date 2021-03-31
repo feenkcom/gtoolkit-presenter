@@ -17,7 +17,7 @@ GtSlideshowSlide >> create [
 		constraintsDo: [:c | c horizontal matchParent. c vertical fitContent ];
 		layout: BlLinearLayout vertical;
 		background: BrGlamorousColors defaultButtonBorderColor;
-		addChild: (BrLabel new look: (BrGlamorousLabelLook new fontSize: 15);
+		addChild: (BrLabel new aptitude: (BrGlamorousLabelAptitude new fontSize: 15);
 		text: 'Slideshow').
 	
 	previewContent := (slideshow value slides first create
@@ -30,7 +30,7 @@ GtSlideshowSlide >> create [
 		size: 500 @ 350;
 		layout: BlLinearLayout vertical;
 		constraintsDo: [ :c | c linear horizontal alignCenter ];
-		look: BrGlamorousButtonExteriorLook new;
+		aptitude: BrGlamorousButtonExteriorAptitude new;
 		padding: (BlInsets all: 1);
 		margin: (BlInsets top: 10 left: 20 bottom: 10 right: 20);
 		geometry: (BlRoundedRectangleGeometry cornerRadius: 4);

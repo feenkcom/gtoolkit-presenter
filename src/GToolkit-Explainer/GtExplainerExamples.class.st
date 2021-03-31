@@ -32,7 +32,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
 				geometry: BlCircle new;
-				look: (GtExplainerTargetLook new explanationModel: #header);
+				aptitude: (GtExplainerTargetAptitude new explanationModel: #header);
 				relocate: (5 @ inspectorHeader extent y / 2)). 
 	inspectorView
 		addChild:
@@ -41,7 +41,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
 				geometry: BlCircle new;
-				look: (GtExplainerTargetLook new explanationModel: #view);
+				aptitude: (GtExplainerTargetAptitude new explanationModel: #view);
 				relocate: (5 @ inspectorView extent y / 2)).
 	inspectorActionButton
 		addChild:
@@ -50,7 +50,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
 				geometry: BlCircle new;
-				look: (GtExplainerTargetLook new explanationModel: #action);
+				aptitude: (GtExplainerTargetAptitude new explanationModel: #action);
 				relocate: (5 @ inspectorActionButton extent y / 2)).
 					
 	^ inspectorContainer.
@@ -89,7 +89,7 @@ GtExplainerExamples >> inspectorOnOneObjectExample [
 	container explainer isExplanationHolder: true.
 					
 	editor := BrEditor new
-		look: (BrGlamorousRegularEditorLook new fontSize: 16);
+		aptitude: (BrGlamorousRegularEditorAptitude new fontSize: 16);
 		text: self inspectorExplanationText;
 		margin: (BlInsets all: 10);
 		constraintsDo: [ :c | 
@@ -118,7 +118,7 @@ GtExplainerExamples >> oneTarget [
 			c vertical matchParent ];
 		layout: BlFrameLayout new;
 		background: Color white;
-		look: BrShadowLook;
+		aptitude: BrShadowAptitude;
 		margin: (BlInsets all: 10).
 
 	target := BlElement new 
@@ -136,13 +136,13 @@ GtExplainerExamples >> oneTarget [
 		size: 20 @ 20;
 		elevation: (BlRelativeElevation elevation: 10);
 		geometry: BlCircle new;
-		look: (GtExplainerTargetLook new explanationModel: #someKey).
+		aptitude: (GtExplainerTargetAptitude new explanationModel: #someKey).
 
 	subject addChild: marker.
 	subject addChild: target.
 
 	editor := BrEditor new
-		look: BrGlamorousRegularEditorLook;
+		aptitude: BrGlamorousRegularEditorAptitude;
 		text: 'Some ' asRopedText, ('explanation' asRopedText glamorousExplanationFor: #someKey);
 		margin: (BlInsets all: 10);
 		constraintsDo: [ :c | 
@@ -180,7 +180,7 @@ GtExplainerExamples >> playgroundWithPreview [
 		matchParent;
 		background: Color white;
 		margin: (BlInsets all: 10);
-		look: BrShadowLook.
+		aptitude: BrShadowAptitude.
 
 	container := BrHorizontalPane new
 		matchParent.
@@ -202,13 +202,13 @@ GtExplainerExamples >> playgroundWithPreview [
 		size: 20 @ 20;
 		elevation: (BlRelativeElevation elevation: 10);
 		geometry: BlCircle new;
-		look: (GtExplainerTargetLook new explanationModel: #inspect).
+		aptitude: (GtExplainerTargetAptitude new explanationModel: #inspect).
 	
 	inspectButton := (subject query // GtSourceCoderDoItActionId) anyOne.
 	inspectorContainer addChild: ((BlOverlayElement on: inspectButton) clipChildren: false; addChild: inspectActionMarker).
 
 	editor := BrEditor new
-		look: BrGlamorousRegularEditorLook;
+		aptitude: BrGlamorousRegularEditorAptitude;
 		text: self playgroundExplanationText;
 		margin: (BlInsets all: 10);
 		constraintsDo: [ :c | 

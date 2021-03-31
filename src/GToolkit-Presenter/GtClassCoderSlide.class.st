@@ -18,7 +18,7 @@ GtClassCoderSlide >> class: aClass [
 GtClassCoderSlide >> create [
 	| coder coderElement aScripter |
 	
-	coderElement := (GtBehaviorCoder forClass: class) asElement.
+	coderElement := (GtPharoBehaviorCoder forClass: class) asElement.
 	coderElement
 		forceLayout;
 		constraintsDo: [ :c |
@@ -41,7 +41,7 @@ GtClassCoderSlide >> create [
 				do: [ :aStep | 
 					aStep click
 						label: 'Expand coder header';
-						onBreadthFirstChildOfClass: GtBehaviorDefinitionCoderElement;
+						onBreadthFirstChildOfClass: GtPharoBehaviorDefinitionCoderElement;
 						onChildAt: 1.
 					aStep wait forEmptySpaceTaskQueue ]].
 	(self methodExpanded > 0)
@@ -53,7 +53,7 @@ GtClassCoderSlide >> create [
 						label: 'Expand certain method in coder';
 						onBreadthFirstChildOfClass: BrTabGroup;
 						onChildAt: 2;
-						onBreadthFirstChildOfClass: GtMethodsCoderElement;
+						onBreadthFirstChildOfClass: GtPharoMethodsCoderElement;
 						onBreadthFirstChildOfClass: BrSimpleList;
 						onBreadthFirstChildOfClass: BrInfiniteListElement;
 						onChildAt: self methodExpanded;

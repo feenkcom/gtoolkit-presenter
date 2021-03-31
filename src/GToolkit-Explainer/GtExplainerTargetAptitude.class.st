@@ -1,14 +1,14 @@
 Class {
-	#name : #GtExplainerTargetLook,
-	#superclass : #GtExplainerActorLook,
+	#name : #GtExplainerTargetAptitude,
+	#superclass : #GtExplainerActorAptitude,
 	#category : #'GToolkit-Explainer'
 }
 
 { #category : #initialization }
-GtExplainerTargetLook >> initialize [
+GtExplainerTargetAptitude >> initialize [
 	super initialize.
 	
-	self add: GtExplainerLinesLook new beForTarget.
+	self add: GtExplainerLinesAptitude new beForTarget.
 
 	self default: [ :aStyle | 
 		aStyle border: (BlBorder paint: (BrGlamorousColors textHighlightColor alpha: 0.7) width: 2).
@@ -16,7 +16,7 @@ GtExplainerTargetLook >> initialize [
 ]
 
 { #category : #'api - hooks' }
-GtExplainerTargetLook >> onAttachedTo: anElement [
+GtExplainerTargetAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 
 	anElement explainer isTarget: true

@@ -93,7 +93,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		alignCenter;
 		when: BlClickEvent do: [:e | self previousStep ];
 		addChild: previousArrow;
-		addLook: (BrStyleCommonLook new
+		addAptitude: (BrStyleCommonAptitude new
 			@ previousArrow;
 			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
 			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
@@ -107,7 +107,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		alignCenter;
 		when: BlClickEvent do: [:e | self nextStep ];
 		addChild: nextArrow;
-		addLook: (BrStyleCommonLook new
+		addAptitude: (BrStyleCommonAptitude new
 			@ nextArrow;
 			default: [ :aStyle | aStyle background: (BrGlamorousColors defaultButtonBorderColor) ];
 			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ]).
@@ -119,7 +119,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 	slideEditorVisibility := false.
 	slideEditor := BrFrame new
 		matchParent;
-		addLook: BrShadowLook + (BrGlamorousWithVerticalResizerLook new beTop
+		addAptitude: BrShadowAptitude + (BrGlamorousWithVerticalResizerAptitude new beTop
 				resizerDo: [ :theResizer | slideEditorResizer := theResizer ]);
 		background: self background;
 		margin: (BlInsets top: 5 right: 30 bottom: 5 left: 30).
@@ -134,11 +134,11 @@ GtLiveShow >> buildSlideshowContainerComponents [
 			c frame horizontal alignRight.
 			c frame vertical alignTop ];
 		margin: (BlInsets top: 10 right: 5 bottom: 5 left: 5);		
-		look: BrGlamorousToolbarLook;
+		aptitude: BrGlamorousToolbarAptitude;
 		addItem:
 			(BrButton new
 				beNormalSize;
-				look: BrGlamorousButtonWithIconLook;
+				aptitude: BrGlamorousButtonWithIconAptitude;
 				label: 'Add new slide' asString;
 				icon: BrGlamorousIcons add asElement;
 				action: [ self createNewEmptySlide ]).
@@ -579,23 +579,23 @@ GtLiveShow >> slidesDropdown [
 		margin: (BlInsets all: 10);
 		icon: BrGlamorousIcons hamburger asElement;
 		label: 'Slides';
-		look: 
-			BrGlamorousButtonWithIconLook
-			+ (BrGlamorousWithDropdownLook
+		aptitude: 
+			BrGlamorousButtonWithIconAptitude
+			+ (BrGlamorousWithDropdownAptitude
 				handle: [ BrButton new
-						look: BrGlamorousButtonWithIconLook 
-							- BrGlamorousButtonWithLabelTooltipLook
-							- BrGlamorousButtonExteriorLook;
+						aptitude: BrGlamorousButtonWithIconAptitude 
+							- BrGlamorousButtonWithLabelTooltipAptitude
+							- BrGlamorousButtonExteriorAptitude;
 						icon: BrGlamorousIcons hamburger asElement;
 						yourself ]
 				content: [ | el |
 					aToolbar := BrToolbar new.
-					aToolbar look: BrGlamorousToolbarLook.
+					aToolbar aptitude: BrGlamorousToolbarAptitude.
 					aToolbar
 						addItem:
 							(BrToggle new
 								beSmallSize;
-								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
+								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
 								icon: BrGlamorousIcons edit asElement;
 								label: 'Update arrows' asString;
 								when: BrToggleActivatedEvent
@@ -611,7 +611,7 @@ GtLiveShow >> slidesDropdown [
 						addItem:
 							(BrToggle new
 								beSmallSize;
-								look: BrGlamorousButtonWithIconLook + BrGlamorousToggleBackgroundLook;
+								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
 								icon: BrGlamorousIcons browse asElement;
 								label: 'Browse slide method' asString;
 								when: BrToggleActivatedEvent
@@ -625,7 +625,7 @@ GtLiveShow >> slidesDropdown [
 						addItem:
 							(anExportButton := BrButton new
 								beSmallSize;
-								look: BrGlamorousButtonWithIconLook;
+								aptitude: BrGlamorousButtonWithIconAptitude;
 								label: 'Export slides' asString;
 								icon: BrGlamorousIcons savetodisk asElement;
 								action: [ :aButton | 

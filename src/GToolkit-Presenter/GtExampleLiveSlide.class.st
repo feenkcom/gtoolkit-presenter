@@ -39,7 +39,7 @@ GtExampleLiveSlide >> create [
 		margin: (BlInsets top: 5 right: 5 bottom: 5 left: 15);
 		layout: BlLinearLayout horizontal;
 		background: Color white;
-		look: BrShadowLook.
+		aptitude: BrShadowAptitude.
 	
 	inspectorElement := (method gtExample returnValue gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ].
 	inspectorElement forceLayout.

@@ -13,7 +13,7 @@ GtSpotterSlide >> create [
 	aSpotterElement searchField requestFocus.
 	aSpotterElement 	
 		size: 600@400;
-		look: BrShadowLook;
+		aptitude: BrShadowAptitude;
 		margin: (BlInsets all: 20).
 	container := BlElement new
 		constraintsDo: [ :c | 

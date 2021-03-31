@@ -119,7 +119,7 @@ GtExampleLiveShow >> liveElementTreeSlideExampleFor: aSlide [
 	<gtSlide>
 	| editor |
 	editor := BrEditor new 
-		look: BrGlamorousEditorLook;
+		aptitude: BrGlamorousEditorAptitude;
 		text: GtWhatMakesBlocSpecialExplanation new sampleText.
 	^ aSlide liveElementTree
 		priority: 51;
@@ -140,7 +140,7 @@ GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 		priority: 40;
 		leftElement: 
 			(BlElement new
-				look: BrShadowLook;
+				aptitude: BrShadowAptitude;
 				background: Color white;
 				addChild: ((GtABCartoonAddressBookExample new cartoonAddressBook 
 					gtViewsFor: GtPhlowView empty) asElement));
@@ -149,7 +149,7 @@ GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 						expanded: true) asElement);
 		rightElement: 
 			(BlElement new
-				look: BrShadowLook;
+				aptitude: BrShadowAptitude;
 				background: Color white;
 				addChild: ((GtPlaygroundLiveSlide new 
 					snippets: {'BlElement new background: Color red.'};

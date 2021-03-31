@@ -1,6 +1,6 @@
 Class {
-	#name : #GtExplainerLinesLook,
-	#superclass : #BrLook,
+	#name : #GtExplainerLinesAptitude,
+	#superclass : #BrAptitude,
 	#instVars : [
 		'isForTarget',
 		'addedLines'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #private }
-GtExplainerLinesLook >> allChildrenWithSameExplanationModel: aWidget do: aBlock [
+GtExplainerLinesAptitude >> allChildrenWithSameExplanationModel: aWidget do: aBlock [
 	isForTarget
 		ifFalse: [
 			aWidget explainer firstExplanationHolderParent explainer
@@ -22,17 +22,17 @@ GtExplainerLinesLook >> allChildrenWithSameExplanationModel: aWidget do: aBlock 
 ]
 
 { #category : #accessing }
-GtExplainerLinesLook >> beForExplanation [
+GtExplainerLinesAptitude >> beForExplanation [
 	isForTarget := false
 ]
 
 { #category : #accessing }
-GtExplainerLinesLook >> beForTarget [
+GtExplainerLinesAptitude >> beForTarget [
 	isForTarget := true
 ]
 
 { #category : #initialization }
-GtExplainerLinesLook >> initialize [
+GtExplainerLinesAptitude >> initialize [
 	super initialize.
 	
 	addedLines := OrderedCollection new.
@@ -40,7 +40,7 @@ GtExplainerLinesLook >> initialize [
 ]
 
 { #category : #initialization }
-GtExplainerLinesLook >> initializeListeners [
+GtExplainerLinesAptitude >> initializeListeners [
 	super initializeListeners.
 	
 	self when: BlElementHoveredEvent do: [ :anEvent | self onHovered: anEvent element ].
@@ -48,14 +48,14 @@ GtExplainerLinesLook >> initializeListeners [
 ]
 
 { #category : #initialization }
-GtExplainerLinesLook >> onAttachedTo: anElement [
+GtExplainerLinesAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 
 	anElement states withHover
 ]
 
 { #category : #private }
-GtExplainerLinesLook >> onHovered: aWidget [
+GtExplainerLinesAptitude >> onHovered: aWidget [
 	self
 		allChildrenWithSameExplanationModel: aWidget
 		do: [ :explanationTargetElement |
@@ -83,7 +83,7 @@ GtExplainerLinesLook >> onHovered: aWidget [
 ]
 
 { #category : #private }
-GtExplainerLinesLook >> onUnhovered: anElement [
+GtExplainerLinesAptitude >> onUnhovered: anElement [
 	addedLines do: [ :eachLine |
 		eachLine removeFromParent.
 		eachLine toAnchor referenceElement fireEvent: GtExplanationLinkDisconnectedEvent new ].

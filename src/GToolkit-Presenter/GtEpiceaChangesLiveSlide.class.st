@@ -26,11 +26,11 @@ GtEpiceaChangesLiveSlide >> create [
 				right: 5
 				bottom: 5
 				left: 5);
-		look: BrGlamorousToolbarLook;
+		aptitude: BrGlamorousToolbarAptitude;
 		addItem:
 			(BrButton new
 				beNormalSize;
-				look: BrGlamorousButtonWithIconAndLabelLook;
+				aptitude: BrGlamorousButtonWithIconAndLabelAptitude;
 				label: 'Apply' asString;
 				icon: BrGlamorousIcons accept asElement;
 				action: [ self changes applyChanges ]).
@@ -55,7 +55,7 @@ GtEpiceaChangesLiveSlide >> create [
 		addChild: inspectorElement.
 	container := BlElement new
 		layout: BlFrameLayout new;
-		look: BrShadowLook;
+		aptitude: BrShadowAptitude;
 		background: Color white;
 		margin:
 			(BlInsets

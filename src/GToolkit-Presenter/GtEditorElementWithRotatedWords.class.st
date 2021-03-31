@@ -18,7 +18,7 @@ GtEditorElementWithRotatedWords >> create [
 		margin: (BlInsets left: 10).
 
 	anEditor := BrEditor new
-		look: (BrGlamorousRegularEditorLook new fontSize: 30);
+		aptitude: (BrGlamorousRegularEditorAptitude new fontSize: 30);
 		vFitContent;
 		hExact: 600;
 		text: ('Glamorous Toolkit is the moldable development environment. It is a live notebook. It is a flexible search interface. It is a fancy code editor. It is a software analysis platform. It is a data visualization engine. All in one. It is built in Pharo and it is free and open-source under an MIT license.').
@@ -27,7 +27,7 @@ GtEditorElementWithRotatedWords >> create [
 	aContainer addChild: theButtons.
 	
 	theButtons addChild: (BrButton new
-		look: BrGlamorousButtonWithLabelLook;
+		aptitude: BrGlamorousButtonWithLabelAptitude;
 		label: 'Paint';
 		margin: (BlInsets all: 5);
 		action: [ anEditor childrenDo: [ :eachSegment |
@@ -36,7 +36,7 @@ GtEditorElementWithRotatedWords >> create [
 				eachWord textChanged ] ] ]).
 	
 	theButtons addChild: (BrButton new
-		look: BrGlamorousButtonWithLabelLook;
+		aptitude: BrGlamorousButtonWithLabelAptitude;
 		label: 'Resize';
 		margin: (BlInsets all: 5);
 		action: [ anEditor childrenDo: [ :eachSegment |
@@ -45,7 +45,7 @@ GtEditorElementWithRotatedWords >> create [
 				eachWord textChanged ] ] ]).
 	
 	theButtons addChild: (BrButton new
-		look: BrGlamorousButtonWithLabelLook;
+		aptitude: BrGlamorousButtonWithLabelAptitude;
 		label: 'Rotate';
 		margin: (BlInsets all: 5);
 		action: [ anEditor childrenDo: [ :eachSegment |

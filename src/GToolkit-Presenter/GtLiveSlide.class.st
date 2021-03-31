@@ -247,7 +247,7 @@ GtLiveSlide >> updatePreviewElementLook [
 	isSlideSelected
 		ifTrue: [
 			previewElement
-				look: (BrShadowLook new color: (Color r: 0.27 g: 0.67 b: 0.99 alpha: 0.7)) + (BrInteractiveCommonLook new 
+				aptitude: (BrShadowAptitude new color: (Color r: 0.27 g: 0.67 b: 0.99 alpha: 0.7)) + (BrInteractiveCommonAptitude new 
 					default: [ :aWidget |
 						aWidget
 							border: (BlBorder paint: Color transparent)];
@@ -256,7 +256,7 @@ GtLiveSlide >> updatePreviewElementLook [
 							border: (BlBorder paint: (Color r: 0.27 g: 0.67 b: 0.99) width: 1)])]
 		ifFalse: [
 			previewElement
-				look: (BrShadowLook new) + (BrInteractiveCommonLook new 
+				aptitude: (BrShadowAptitude new) + (BrInteractiveCommonAptitude new 
 					default: [ :aWidget |
 						aWidget
 							border: (BlBorder paint: Color transparent)];
