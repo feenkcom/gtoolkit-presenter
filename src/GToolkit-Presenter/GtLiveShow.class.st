@@ -114,6 +114,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 	
 	slidesContainer := slidesContainer := BrHorizontalPane new
 		matchParent;
+		addAptitude: (BrGlamorousWithMaximizerAptitude new hideMaximizeButton preferredBackground: Color white);
 		addChildren: { previousElement . slideElement . nextElement }.
 	
 	slideEditorVisibility := false.
@@ -161,7 +162,7 @@ GtLiveShow >> collectSlides [
 
 { #category : #'api - instantiation' }
 GtLiveShow >> create [
-	| previousElement nextElement container |
+	| container |
 
 	container := GtSlideShowElement new slideShow: self.
 	container 
@@ -593,6 +594,13 @@ GtLiveShow >> slidesDropdown [
 					aToolbar aptitude: BrGlamorousToolbarAptitude.
 					aToolbar
 						addItem:
+							(BrButton new
+								beSmallSize;
+								aptitude: BrGlamorousButtonWithIconAptitude;
+								icon: BrGlamorousIcons play asElement;
+								label: 'Slideshow' asString;
+								action: [ slidesContainer dispatchEvent: BrWithMaximizerAptitudeMaximizeWish new ]);
+						addItem:
 							(BrToggle new
 								beSmallSize;
 								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
@@ -630,7 +638,7 @@ GtLiveShow >> slidesDropdown [
 								icon: BrGlamorousIcons savetodisk asElement;
 								action: [ :aButton | 
 									self pager addPage: self slidesExportPage.
-									self pager smoothScrollToLast. ]).
+									self pager smoothScrollToLast ]).
 					el := BlElement new
 						size: 700 @ 520;
 						addChild: self pager removeFromParent.
