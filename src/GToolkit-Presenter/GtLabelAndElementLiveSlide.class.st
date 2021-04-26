@@ -37,7 +37,7 @@ GtLabelAndElementLiveSlide >> create [
 				ct horizontal matchParent ];
 			layout: BlLinearLayout vertical;
 			margin: (BlInsets all: 20);
-			addChild: (elementBlock value constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ])).
+			addChild: (elementBlock value asElement constraintsDo: [:c | c horizontal matchParent. c vertical matchParent ])).
 	^ container
 ]
 
