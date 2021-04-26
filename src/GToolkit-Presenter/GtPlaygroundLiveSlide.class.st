@@ -12,6 +12,26 @@ Class {
 	#category : #'GToolkit-Presenter'
 }
 
+{ #category : #accessing }
+GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
+	| notTemp |
+	notTemp := aMethod ast body children detect: [:aNode | aNode isTemp not ].
+
+	^ String streamContents: [ :stream |
+		aMethod ast comments ifNotEmpty: [
+			stream
+				nextPutAll: '"';
+				nextPutAll: aMethod ast comments first contents;
+				nextPutAll: '"';
+				nextPutAll: String cr].
+			
+		(aMethod sourceCode 
+			copyFrom: notTemp start to: aMethod ast stop) lines 
+				do: [ :aLine |
+					stream nextPutAll: (aLine removePrefix: String tab) ]
+				separatedBy: [ stream cr ] ]
+]
+
 { #category : #'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
 	^ GtPlayground createOn: playbook
@@ -20,7 +40,9 @@ GtPlaygroundLiveSlide >> create [
 { #category : #initialization }
 GtPlaygroundLiveSlide >> initialize [
 	super initialize.
-	playbook := GtPlayBook newDefault.
+	playbook := GtPlayBook new
+		addPlayPage: GtPlayPage new; 
+		subscribeExternalTools.
 ]
 
 { #category : #accessing }
@@ -51,6 +73,17 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 ]
 
 { #category : #accessing }
+GtPlaygroundLiveSlide >> newSnippet: el [
+	playbook pages first addSnippet: GtCoderSnippet new.
+	^ playbook pages last snippets last sourceCode: el
+]
+
+{ #category : #accessing }
+GtPlaygroundLiveSlide >> newSnippetFromMethod: aMethod [
+	self newSnippet: ((self codeFromMethod: aMethod))
+]
+
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> playbook: aBlock [
 	playbook := aBlock
 ]
@@ -58,7 +91,5 @@ GtPlaygroundLiveSlide >> playbook: aBlock [
 { #category : #accessing }
 GtPlaygroundLiveSlide >> snippets: aCollection [
 	playbook := GtPlayBook newWithCodeSnippetContent: aCollection first.
-	aCollection allButFirst do: [:el |
-		playbook pages first addSnippet: GtCoderSnippet new.
-		playbook pages last snippets last sourceCode: el]
+	aCollection allButFirst do: [ :el | self newSnippet: el ]
 ]
