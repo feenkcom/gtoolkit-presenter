@@ -48,7 +48,7 @@ GtTextAndElementLiveSlide >> create [
 				asScalableElement maxScale: 1).
 	container 
 		addChild: textContainer;
-		addChild: (elementStencil value constraintsDo: [:c |
+		addChild: (elementStencil value asElement constraintsDo: [:c |
 			c frame horizontal weight: elementWeight. 
 			c frame horizontal alignRight.
 			c vertical matchParent.
