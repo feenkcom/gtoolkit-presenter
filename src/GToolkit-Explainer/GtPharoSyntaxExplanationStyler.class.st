@@ -70,7 +70,7 @@ GtPharoSyntaxExplanationStyler >> visitNamedVariable: aNamedVariable [
 	self circleBefore: aNamedVariable identifier: (
 		aNamedVariable isLocallyDefined 
 			ifFalse: [#GlobalNode]
-			ifTrue: [#asda])
+			ifTrue: [aNamedVariable whoDefines isMethod ifTrue: [#ArgumentNode] ifFalse: [#TemporaryNode]])
 ]
 
 { #category : #accessing }
