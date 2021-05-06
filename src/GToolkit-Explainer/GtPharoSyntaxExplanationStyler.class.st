@@ -1,15 +1,24 @@
 Class {
 	#name : #GtPharoSyntaxExplanationStyler,
 	#superclass : #GtSourceExplanationLinkStyler,
+	#instVars : [
+		'detectedConstructs'
+	],
 	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #accessing }
 GtPharoSyntaxExplanationStyler >> circleBefore: aNode identifier: aSymbol [
+	self detectedConstructs add: aSymbol.
 	(text
 		from: aNode startPosition - 1
 		to: aNode startPosition - 1)
 		attribute: (GtYellowCircleExplanationTextAdornment new identifier: aSymbol)
+]
+
+{ #category : #accessing }
+GtPharoSyntaxExplanationStyler >> detectedConstructs [
+	^ detectedConstructs ifNil: [ detectedConstructs := Set new ]
 ]
 
 { #category : #accessing }
@@ -45,7 +54,8 @@ GtPharoSyntaxExplanationStyler >> visitBlock: aBlock [
 { #category : #accessing }
 GtPharoSyntaxExplanationStyler >> visitCascade: aCascade [
 	super visitCascade: aCascade.
-	aCascade semicolons do: [ :each |
+	aCascade semicolons do: [ :each |	
+		self detectedConstructs add: #CascadeNode.
 		(text
 			from: each startPosition - 1
 			to: each startPosition - 1)
@@ -92,6 +102,7 @@ GtPharoSyntaxExplanationStyler >> visitPragma: aPragma [
 GtPharoSyntaxExplanationStyler >> visitProgram: aProgram [
 	super visitProgram: aProgram.
 	(aProgram comments ifNil: [{}]) do: [:aCommentNode | 
+		self detectedConstructs add: #CommentNode.
 		(text
 			from: aCommentNode first - 1
 			to: aCommentNode first - 1)
