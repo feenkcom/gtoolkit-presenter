@@ -49,20 +49,20 @@ GtVariableExplanationLinkStyler >> variablesAssociations [
 ]
 
 { #category : #visiting }
-GtVariableExplanationLinkStyler >> visitVariableNode: aVariableNode [
-	super visitVariableNode: aVariableNode.
+GtVariableExplanationLinkStyler >> visitVariable: aVariableNode [
+	super visitVariable: aVariableNode.
 	self variablesAssociations do: [:association |
-		(aVariableNode name asString = association key) ifTrue: [ 
+		(aVariableNode name value asString = association key) ifTrue: [ 
 			self 
-				styleFrom: (aVariableNode start - 1) 
-				to: (aVariableNode start - 1) 
-				with: ((self shouldAddUnderline)
-					ifTrue: [ {GtTargetCircleWithUnderlineAdornment new
+				attribute: ((self shouldAddUnderline)
+					ifTrue: [ GtTargetCircleWithUnderlineAdornment new
 						identifier: (association value);
 						coder: coder;
 						node: aVariableNode;
 						start: aVariableNode start;
-						stop: (aVariableNode start + aVariableNode name byteSize - 1)} ]
-					ifFalse: [ {GtYellowCircleExplanationTextAdornment 
-						forIdentifier: (association value)} ]) ]].
+						stop: (aVariableNode start + aVariableNode name byteSize - 1) ]
+					ifFalse: [ GtYellowCircleExplanationTextAdornment 
+						forIdentifier: (association value) ])
+				from: (aVariableNode startPosition - 1) 
+				to: (aVariableNode startPosition - 1)  ]].
 ]
