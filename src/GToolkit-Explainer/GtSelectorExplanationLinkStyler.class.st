@@ -95,8 +95,8 @@ GtSelectorExplanationLinkStyler >> visitNode: aNode withSelector: aSelector [
 
 	self
 		attribute: anAttribute
-		from: aNode startPosition
-		to: aNode stopPosition
+		from: aNode startPosition - 1
+		to: aNode startPosition - 1
 ]
 
 { #category : #visiting }
