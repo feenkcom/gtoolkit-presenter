@@ -58,28 +58,32 @@ GtExplainerLinesAptitude >> onAttachedTo: anElement [
 GtExplainerLinesAptitude >> onHovered: aWidget [
 	self
 		allChildrenWithSameExplanationModel: aWidget
-		do: [ :explanationTargetElement |
+		do: [ :explanationTargetElement | 
 			| aNewLine |
-			
 			aNewLine := BlLineElement new
-				fromAnchor: (BlNearestPositionTightCircleAnchor
+				fromAnchor:
+					(BlNearestPositionTightCircleAnchor
 						referenceElement: aWidget
 						relatedTo: explanationTargetElement);
-				toAnchor: (BlNearestPositionTightCircleAnchor
+				toAnchor:
+					(BlNearestPositionTightCircleAnchor
 						referenceElement: explanationTargetElement
 						relatedTo: aWidget);
 				zIndex: 10;
-				border: (BlBorder paint: (BrGlamorousColors textHighlightColor alpha: 0.7) width: 2);
+				border:
+					(BlBorder
+						paint: (self theme button textHighlightColor alpha: 0.7)
+						width: 2);
 				constraintsDo: [ :c | c ignoreByLayout ];
 				yourself.
-
-			aWidget 
+			aWidget
 				firstCommonParent: explanationTargetElement
-				ifFound: [ :aCommonParent |
+				ifFound: [ :aCommonParent | 
 					addedLines add: aNewLine.
 					aCommonParent addChild: aNewLine.
-					explanationTargetElement dispatchEvent: GtExplanationLinkConnectedEvent new ]
-				ifNone: [  ] ] 
+					explanationTargetElement
+						dispatchEvent: GtExplanationLinkConnectedEvent new ]
+				ifNone: [  ] ]
 ]
 
 { #category : #private }
