@@ -34,7 +34,19 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 
 { #category : #'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
-	^ GtPlayground createOn: playbook
+	"Horrible (hopefully temporary) workaround"
+	| page pageTool toolElement |
+
+	^ Smalltalk globals 
+		at: #LePage  
+		ifPresent: [:lePage | 
+			page := LePage new.
+			playbook pages first snippets do: [:s |
+				page addSnippet: (LePharoSnippet code: s sourceCode)].
+			pageTool := page asLepiterPagePhlowTool.
+			toolElement := pageTool asElementDo: [ :e | e ].
+			GtPager createWrappedOn: toolElement ]
+		ifAbsent: [ GtPlayground createOn: playbook ]
 ]
 
 { #category : #initialization }
