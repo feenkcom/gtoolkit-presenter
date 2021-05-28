@@ -38,7 +38,7 @@ GtPlaygroundLiveSlide >> create [
 
 	| page pageTool toolElement |
 	^ GtImage isLepiterEnabled 
-		ifTrue: [ :lePage | 
+		ifTrue: [  
 			page := LePage unnamedPageWithDefaultTitle: 'Playground'.
 			playbook pages first snippets
 				do: [ :s | page addSnippet: (LePharoSnippet code: s sourceCode) ].
