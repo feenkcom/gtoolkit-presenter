@@ -37,9 +37,8 @@ GtPlaygroundLiveSlide >> create [
 	"Horrible (hopefully temporary) workaround"
 
 	| page pageTool toolElement |
-	^ Smalltalk globals
-		at: #LePage
-		ifPresent: [ :lePage | 
+	^ GtImage isLepiterEnabled 
+		ifTrue: [  
 			page := LePage unnamedPageWithDefaultTitle: 'Playground'.
 			playbook pages first snippets
 				do: [ :s | page addSnippet: (LePharoSnippet code: s sourceCode) ].
@@ -58,7 +57,7 @@ GtPlaygroundLiveSlide >> create [
 						pageModel: page;
 						shouldFocusFirstSnippet: true).
 			GtPager createWrappedOn: toolElement ]
-		ifAbsent: [ GtPlayground createOn: playbook ]
+		ifFalse: [ GtPlayground createOn: playbook ]
 ]
 
 { #category : #initialization }
