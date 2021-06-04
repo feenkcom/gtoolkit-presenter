@@ -1,5 +1,7 @@
 "
 I am a Slide designe that gets a Text and and Element and displays them. I can be included in presentations.
+
+
 "
 Class {
 	#name : #GtLabelAndElementSlide,

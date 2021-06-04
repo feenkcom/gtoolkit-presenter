@@ -1,5 +1,7 @@
 "
 I am a Wardley Map slide. I can be created from an exported json string.
+
+
 "
 Class {
 	#name : #GtWardleyMapSlide,

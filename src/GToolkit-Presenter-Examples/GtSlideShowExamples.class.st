@@ -1,9 +1,9 @@
 "
 I show some typical examples of how to create slides.
 
-[[[
+```
 GtSlideShowExamples new openInSpace
-]]]
+```
 
 
 "

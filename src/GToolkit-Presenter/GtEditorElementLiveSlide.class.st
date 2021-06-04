@@ -1,5 +1,7 @@
 "
 I am an editor element example live slide. I show different examples for the text editor. Take a look at my children for more examples on how to use me.
+
+
 "
 Class {
 	#name : #GtEditorElementLiveSlide,

@@ -1,5 +1,7 @@
 "
 I am an example live show. I have an example for each of the live slide templates.
+
+
 "
 Class {
 	#name : #GtExampleLiveShow,

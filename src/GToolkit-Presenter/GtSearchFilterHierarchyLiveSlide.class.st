@@ -1,7 +1,9 @@
 "
 I am a live slide that displays the tree hierarchy of the filters in Gt.
 
-${method:GtExampleLiveShow>>#searchFiltersHierarchySlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#searchFiltersHierarchySlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtSearchFilterHierarchyLiveSlide,

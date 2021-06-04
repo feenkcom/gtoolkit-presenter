@@ -1,7 +1,9 @@
 "
 I show an editor element and a button that displays the tree for the respective editor element.
 
-${method:GtExampleLiveShow>>#editorElementWithTreeExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#editorElementWithTreeExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtEditorElementWithTreeLiveSlide,

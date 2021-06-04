@@ -1,7 +1,9 @@
 "
 I am a playground live slide. I receive a collection of snippets and display a playground with those snippets.
 
-${method:GtExampleLiveShow>>#playgroundExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#playgroundExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtPlaygroundLiveSlide,

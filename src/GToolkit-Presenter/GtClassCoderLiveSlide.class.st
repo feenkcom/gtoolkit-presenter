@@ -1,7 +1,9 @@
 "
 I am a class coder live slide. I create and display a coder opened on a given class. The coder can also have the header or a certain method expanded.
 
-${method:GtExampleLiveShow>>#classCoderExampleSlideFor:|expanded}$
+{{gtMethod:GtExampleLiveShow>>#classCoderExampleSlideFor:|expanded}}
+
+
 "
 Class {
 	#name : #GtClassCoderLiveSlide,

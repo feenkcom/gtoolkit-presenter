@@ -1,7 +1,9 @@
 "
 I am a live slide that has a link to another live show. I receive that slideshow and a text and i create a button with preview for that live show.
 
-${method:GtExampleLiveShow>>#slideshowExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#slideshowExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtSlideshowLiveSlide,

@@ -1,7 +1,9 @@
 "
 I am a mash example live slide. I receive three elements and i show o mash of those three elements.
 
-${method:GtExampleLiveShow>>#mashExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#mashExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtMashExampleLiveSlide,

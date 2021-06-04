@@ -1,7 +1,9 @@
 "
 I am an element live slide. I get an element and display it in the middle of the screen.
 
-${method:GtExampleLiveShow>>#elementExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#elementExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtElementLiveSlide,

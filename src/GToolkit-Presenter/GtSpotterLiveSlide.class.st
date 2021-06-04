@@ -1,7 +1,9 @@
 "
 I am a spotter live slide. I create a spotter element opened in the default context.
 
-${method:GtExampleLiveShow>>#spotterExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#spotterExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtSpotterLiveSlide,

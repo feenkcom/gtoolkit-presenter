@@ -1,5 +1,7 @@
 "
 I have a collection of stylers to apply yellow circles adornments in a code.
+
+
 "
 Class {
 	#name : #GtCompositeExplanationLinkStyler,
