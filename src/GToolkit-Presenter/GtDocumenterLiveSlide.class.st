@@ -1,7 +1,9 @@
 "
 I am a documenter live slide. I get a documenter and i display it.
 
-${method:GtExampleLiveShow>>#documenterExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#documenterExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtDocumenterLiveSlide,

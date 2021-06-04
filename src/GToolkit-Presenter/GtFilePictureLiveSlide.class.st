@@ -1,7 +1,9 @@
 "
 I am a live slide that gets a picture reference and displays it. Optionally a scale and a background can be provided.
 
-${method:GtExampleLiveShow>>#filePictureExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#filePictureExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtFilePictureLiveSlide,

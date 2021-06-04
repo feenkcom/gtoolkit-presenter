@@ -1,5 +1,7 @@
 "
 Makes the element be a target for an explainer explanation.
+
+
 "
 Class {
 	#name : #GtExplainerTargetAptitude,

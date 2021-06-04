@@ -1,7 +1,9 @@
 "
 I create a world element and display it.
 
-${method:GtExampleLiveShow>>#worldExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#worldExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtWorldLiveSlide,

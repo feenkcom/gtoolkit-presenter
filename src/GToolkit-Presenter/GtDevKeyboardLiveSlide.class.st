@@ -1,7 +1,9 @@
 "
 I create a keyboard element.
 
-${method:GtExampleLiveShow>>#devKeyboardExampleSlideFor:|expanded}$
+{{gtMethod:GtExampleLiveShow>>#devKeyboardExampleSlideFor:|expanded}}
+
+
 "
 Class {
 	#name : #GtDevKeyboardLiveSlide,

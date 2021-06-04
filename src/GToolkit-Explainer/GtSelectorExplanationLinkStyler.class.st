@@ -1,5 +1,7 @@
 "
 I add a yellow circle adornment to selectors in a text. The selectors are pragma nodes, literal nodes and message nodes.
+
+
 "
 Class {
 	#name : #GtSelectorExplanationLinkStyler,

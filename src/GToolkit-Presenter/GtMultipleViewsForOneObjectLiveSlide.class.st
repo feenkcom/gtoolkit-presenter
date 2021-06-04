@@ -1,7 +1,9 @@
 "
 I show different visualizations for the same object.
 
-${method:GtExampleLiveShow>>#multipleViewsForOneObjectExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#multipleViewsForOneObjectExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtMultipleViewsForOneObjectLiveSlide,

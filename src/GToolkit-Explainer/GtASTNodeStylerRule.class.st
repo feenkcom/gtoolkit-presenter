@@ -1,5 +1,7 @@
 "
 I get an RBNode name and a styler rule. I style the node using the rule.
+
+
 "
 Class {
 	#name : #GtASTNodeStylerRule,

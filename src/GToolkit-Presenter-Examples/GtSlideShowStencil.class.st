@@ -1,7 +1,7 @@
 "
 I offer a few utility methods that can be useful for creating slideshows.
 
-See my subclass, ${class:name=GtSlideShowExamples}$.
+See my subclass, {{gtClass:name=GtSlideShowExamples}}.
 
 
 "

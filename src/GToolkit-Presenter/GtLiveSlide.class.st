@@ -1,5 +1,7 @@
 "
 A live slide is a slide that can be used in live shows and it can be edited live, during the presentation. I am responsible for creating the live slide element and its preview. Those then can be added to a live show. A live slide can take multiple forms, depending on the type of information you want to display in it.
+
+
 "
 Class {
 	#name : #GtLiveSlide,

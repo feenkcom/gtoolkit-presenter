@@ -1,5 +1,7 @@
 "
 I add a yellow circle adornment to variables in a text. The variables are argument node, temporary nodes, self nodes, super node and global nodes.
+
+
 "
 Class {
 	#name : #GtVariableExplanationLinkStyler,

@@ -1,7 +1,9 @@
 "
 I show the raw view for various objects.
 
-${method:GtExampleLiveShow>>#rawViewsExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#rawViewsExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtRawViewsLiveSlide,

@@ -1,7 +1,9 @@
 "
 I am a playground live slide. I receive a collection of snippets and display a playground with those snippets.
 
-${method:GtExampleLiveShow>>#playgroundExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#playgroundExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtPlaygroundLiveSlide,
@@ -85,11 +87,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 		do: [ :aStep | 
 			aStep click
 				label: 'Click on evaluate and inspect button';
-				onBreadthFirstChildOfClass: GtPlayground;
-				onChildNamed: #content;
-				onBreadthFirstChildOfClass: GtPageSnippetsElement;
-				onChildAt: aPosition;
-				id: GtSourceCoderDoItAndGoActionId.
+				id: GtSourceCoderDoItAndGoActionId index: aPosition.
 			aStep wait forEmptySpaceTaskQueue ].
 	aScripter syncContinue.
 	^ aScripter elementWithoutParent

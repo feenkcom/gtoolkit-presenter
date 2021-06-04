@@ -1,7 +1,9 @@
 "
 I am a lable and element live slide. I get a label in the form of a text and an element. The element is displayed in the center and the label is positioned on top.
 
-${method:GtExampleLiveShow>>#labelAndElementSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#labelAndElementSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtLabelAndElementLiveSlide,

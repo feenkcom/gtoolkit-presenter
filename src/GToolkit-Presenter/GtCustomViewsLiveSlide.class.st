@@ -1,7 +1,9 @@
 "
 I show custom views for different objects.
 
-${method:GtExampleLiveShow>>#customViewsExampleSlideFor:|expanded=}$
+{{gtMethod:GtExampleLiveShow>>#customViewsExampleSlideFor:|expanded=}}
+
+
 "
 Class {
 	#name : #GtCustomViewsLiveSlide,

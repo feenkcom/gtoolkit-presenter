@@ -1,7 +1,9 @@
 "
 I create a connector example.
 
-${method:GtExampleLiveShow>>#connectorExampleSlideFor:|expanded}$
+{{gtMethod:GtExampleLiveShow>>#connectorExampleSlideFor:|expanded}}
+
+
 "
 Class {
 	#name : #GtConnectorForExampleLiveSlide,
