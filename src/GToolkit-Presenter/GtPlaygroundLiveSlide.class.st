@@ -87,11 +87,7 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 		do: [ :aStep | 
 			aStep click
 				label: 'Click on evaluate and inspect button';
-				onBreadthFirstChildOfClass: GtPlayground;
-				onChildNamed: #content;
-				onBreadthFirstChildOfClass: GtPageSnippetsElement;
-				onChildAt: aPosition;
-				id: GtSourceCoderDoItAndGoActionId.
+				id: GtSourceCoderDoItAndGoActionId index: aPosition.
 			aStep wait forEmptySpaceTaskQueue ].
 	aScripter syncContinue.
 	^ aScripter elementWithoutParent
