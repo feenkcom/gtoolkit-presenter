@@ -24,7 +24,9 @@ Class {
 		'slideEditorHeightStrategy',
 		'slideEditor',
 		'targetLiveShow',
-		'pager'
+		'pager',
+		'shouldPreloadSlides',
+		'container'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -107,7 +109,11 @@ GtLiveShow >> buildSlideshowContainerComponents [
 		hExact: 24;
 		vMatchParent;
 		alignCenter;
-		when: BlClickEvent do: [:e | self nextStep ];
+		when: BlClickEvent do: [:e |
+			self shouldPreloadSlides ifFalse: [
+				self shouldPreloadSlides: true.
+				self loadSlides ].
+			self nextStep ];
 		addChild: nextArrow;
 		addAptitude: (BrStyleCommonAptitude new
 			@ nextArrow;
@@ -162,9 +168,14 @@ GtLiveShow >> collectSlides [
 	self slides: theSlides.
 ]
 
+{ #category : #accessing }
+GtLiveShow >> container [
+	^ container.
+]
+
 { #category : #'api - instantiation' }
 GtLiveShow >> create [
-	| container |
+	"| container |"
 
 	container := GtSlideShowElement new slideShow: self.
 	container 
@@ -395,6 +406,16 @@ GtLiveShow >> initializeSubscriptions [
 	self subscribeToSystem.
 ]
 
+{ #category : #'private - event handling' }
+GtLiveShow >> loadSlides [
+	| aSpace |
+	aSpace := self container space.
+	self slides withIndexDo: [ :eachSlide :eachIndex |
+		aSpace telemetry
+			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
+			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
+]
+
 { #category : #accessing }
 GtLiveShow >> makeArrowsVisible [
 	arrowsAreVisible := true
@@ -417,10 +438,8 @@ GtLiveShow >> nextStep [
 GtLiveShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
-	self slides withIndexDo: [ :eachSlide :eachIndex |
-		aSpace telemetry
-			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
-			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
+	self shouldPreloadSlides
+		ifTrue: [ self loadSlides ]
 ]
 
 { #category : #accessing }
@@ -442,6 +461,16 @@ GtLiveShow >> previousStep [
 	currentSlide previousStepWith: self.
 	self updateSlideEditorMethod.
 	self updateSlidePreviewsLook.
+]
+
+{ #category : #accessing }
+GtLiveShow >> shouldPreloadSlides [
+	^ shouldPreloadSlides ifNil: [ false ].
+]
+
+{ #category : #accessing }
+GtLiveShow >> shouldPreloadSlides: aBoolean [
+	shouldPreloadSlides := aBoolean.
 ]
 
 { #category : #accessing }
@@ -581,6 +610,10 @@ GtLiveShow >> slidesDropdown [
 			c frame vertical alignCenter];
 		margin: (BlInsets all: 10);
 		icon: BrGlamorousIcons hamburger asElement;
+		action: [
+			self shouldPreloadSlides ifFalse: [
+				self shouldPreloadSlides: true.
+				self loadSlides ] ];
 		label: 'Slides';
 		aptitude: 
 			BrGlamorousButtonWithIconAptitude
