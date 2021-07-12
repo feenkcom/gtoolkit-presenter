@@ -134,6 +134,14 @@ GtProtoLiveSlide >> labelAndElement [
 			collect).
 ]
 
+{ #category : #accessing }
+GtProtoLiveSlide >> lepiterPage [
+	^ GtLepiterPageLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
 { #category : #decorating }
 GtProtoLiveSlide >> liveElementTree [
 	^ GtLiveElementTreeLiveSlide new
