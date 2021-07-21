@@ -53,20 +53,26 @@ GtSlidesHudsonReport >> resultsFileName [
 
 { #category : #running }
 GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
-	| error stack |
+	| errorDetails stack |
+	
+	errorDetails := nil.
 	self
 		beginTestCase: aSlideBuilder
 		runBlock: [
 			[ aSlideBuilder build run ]
 				on: self signalableExceptions
 				do: [ :err | 
-					error := err.
+					errorDetails := Dictionary new.
+					errorDetails at: #errorClass put: err class.
+					errorDetails
+						at: #errorMessage
+						put: (err messageText ifNil: [ err description ]).
 					stack := self stackTraceString: err of: aSlideBuilder ] ].
-			
-	error ifNotNil: [
-		(error isKindOf: AssertionFailure)
-			ifTrue: [ self writeFailure: error stack: stack ]
-			ifFalse: [ self writeError: error stack: stack ] ].
+
+	errorDetails ifNotNil: [
+		((errorDetails at: #errorClass) isKindOf: AssertionFailure)
+			ifTrue: [ self writeFailure: errorDetails stack: stack ]
+			ifFalse: [ self writeError: errorDetails stack: stack ] ].
 	
 	self endTestCase
 ]
