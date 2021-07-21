@@ -60,9 +60,9 @@ GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 			[ aSlideBuilder build run ]
 				on: self signalableExceptions
 				do: [ :err | 
-					error := err.
+					error := err freeze.
 					stack := self stackTraceString: err of: aSlideBuilder ] ].
-			
+
 	error ifNotNil: [
 		(error isKindOf: AssertionFailure)
 			ifTrue: [ self writeFailure: error stack: stack ]
