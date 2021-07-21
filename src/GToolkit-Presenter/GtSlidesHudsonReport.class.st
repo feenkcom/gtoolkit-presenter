@@ -82,7 +82,9 @@ GtSlidesHudsonReport >> stackTraceString: err of: aTestCase [
 		| context |
 		context := err signalerContext.
 		[ context isNil or: [ context receiver == aTestCase and: [ context methodSelector == #run ] ] ] whileFalse: [
-			[str print: context; lf.] ifError: [ str nextPutAll: 'PRINTING ERROR'; lf].
+			[str print: context; lf.]
+				on: Error
+				do: [ str nextPutAll: 'PRINTING ERROR'; lf].
 			context := context sender ] ] 
 ]
 
