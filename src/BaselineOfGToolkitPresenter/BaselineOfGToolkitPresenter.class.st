@@ -1,21 +1,22 @@
 Class {
-	#name : #BaselineOfGToolkitPresenter,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfGToolkitPresenter
+	#name : 'BaselineOfGToolkitPresenter',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfGToolkitPresenter'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfGToolkitPresenter >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
-		spec baseline: 'Bloc' with: [
-				spec repository: 'github://feenkcom/Bloc:v0.8.229/src' ].
-		spec 
-			package: 'GToolkit-Presenter' with: [
-				spec requires: #('Bloc' ). ];
-			package: 'GToolkit-Explainer' with: [
-				spec requires: #('Bloc' ). ];
-			package: 'GToolkit-Presenter-Examples' with: [
-				spec requires: #('GToolkit-Presenter' ). ]. ].
+		spec
+			baseline: 'Bloc' with: [
+				spec repository: 'github://feenkcom/Bloc:v0.8.230/src' ].
 
+		spec package: 'GToolkit-Presenter' with: [
+			spec requires: #('Bloc') ].
+		spec package: 'GToolkit-Explainer' with: [
+			spec requires: #('Bloc') ].
+		spec package: 'GToolkit-Presenter-Examples' with: [
+			spec requires: #('GToolkit-Presenter') ].
+	]
 ]
