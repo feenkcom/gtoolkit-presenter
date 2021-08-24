@@ -157,7 +157,7 @@ GtExplainerElementContext >> updateValidatorTargetsOf: aModel to: aBoolean [
 		allChildrenBreadthFirstDo:
 			[ :child | 
 			(child explainer isValidatorTarget and: [ child explainer model = aModel ])
-				ifTrue: [ child fireEvent: (GtValidateAttributeEvent new hasAttribute: aBoolean) ] ]
+				ifTrue: [ child fireEvent: (GtValidatorAttributeEvent new hasAttribute: aBoolean) ] ]
 ]
 
 { #category : 'validators' }
