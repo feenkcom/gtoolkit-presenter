@@ -1,5 +1,5 @@
 Class {
-	#name : #GtExplanationLinkConnectedEvent,
-	#superclass : #BlEvent,
-	#category : #'GToolkit-Explainer'
+	#name : 'GtExplanationLinkConnectedEvent',
+	#superclass : 'BlEvent',
+	#category : 'GToolkit-Explainer'
 }

@@ -1,13 +1,13 @@
 Class {
-	#name : #GtPharoSyntaxExplanationStyler,
-	#superclass : #GtSourceExplanationLinkStyler,
+	#name : 'GtPharoSyntaxExplanationStyler',
+	#superclass : 'GtSourceExplanationLinkStyler',
 	#instVars : [
 		'detectedConstructs'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> circleBefore: aNode identifier: aSymbol [
 	self detectedConstructs add: aSymbol.
 	(text
@@ -16,42 +16,42 @@ GtPharoSyntaxExplanationStyler >> circleBefore: aNode identifier: aSymbol [
 		attribute: (GtYellowCircleExplanationTextAdornment new identifier: aSymbol)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> detectedConstructs [
 	^ detectedConstructs ifNil: [ detectedConstructs := Set new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitArray: anArray [
 	super visitArray: anArray.
 	self circleBefore: anArray identifier: #ArrayNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitArrayLiteral: anArrayLiteral [
 	super visitArrayLiteral: anArrayLiteral.
 	self circleBefore: anArrayLiteral identifier: #LiteralArrayNode.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitAssignment: anAssignment [
 	super visitAssignment: anAssignment.
 	self circleBefore: anAssignment assignmentToken identifier: #AssignmentNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitBinaryMessage: aBinaryMessage [
 	super visitBinaryMessage: aBinaryMessage.
 	self circleBefore: aBinaryMessage identifier: #BinaryNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitBlock: aBlock [
 	super visitBlock: aBlock.
 	self circleBefore: aBlock identifier: #BlockNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitCascade: aCascade [
 	super visitCascade: aCascade.
 	aCascade semicolons do: [ :each |	
@@ -62,19 +62,19 @@ GtPharoSyntaxExplanationStyler >> visitCascade: aCascade [
 			attribute: (GtYellowCircleExplanationTextAdornment new identifier: #CascadeNode)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitCharacterLiteral: aCharacterLiteral [
 	super visitCharacterLiteral: aCharacterLiteral.
 	self circleBefore: aCharacterLiteral identifier: #CharacterNode.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitKeywordMessage: aKeyword [
 	super visitKeywordMessage: aKeyword.
 	self circleBefore: aKeyword identifier: #KeywordNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitNamedVariable: aNamedVariable [
 	super visitNamedVariable: aNamedVariable.
 	self circleBefore: aNamedVariable identifier: (
@@ -83,7 +83,7 @@ GtPharoSyntaxExplanationStyler >> visitNamedVariable: aNamedVariable [
 			ifTrue: [aNamedVariable whoDefines isMethod ifTrue: [#ArgumentNode] ifFalse: [#TemporaryNode]])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitNumberLiteral: aNumberLiteral [
 	super visitNumberLiteral: aNumberLiteral.
 	self circleBefore: aNumberLiteral identifier: (
@@ -92,13 +92,13 @@ GtPharoSyntaxExplanationStyler >> visitNumberLiteral: aNumberLiteral [
 			ifFalse: [ #FloatNode ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitPragma: aPragma [
 	super visitPragma: aPragma.
 	self circleBefore: aPragma identifier: #PragmaNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitProgram: aProgram [
 	super visitProgram: aProgram.
 	(aProgram comments ifNil: [{}]) do: [:aCommentNode | 
@@ -109,43 +109,43 @@ GtPharoSyntaxExplanationStyler >> visitProgram: aProgram [
 			attributes: { GtYellowCircleExplanationTextAdornment new identifier: #CommentNode} ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitReturn: aReturn [
 	super visitReturn: aReturn.
 	self circleBefore: aReturn identifier: #ReturnNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitSelfVariable: aSelf [
 	super visitSelfVariable: aSelf.
 	self circleBefore: aSelf identifier: #SelfNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitStringLiteral: aStringLiteral [
 	super visitStringLiteral: aStringLiteral.
 	self circleBefore: aStringLiteral identifier: #StringNode.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitSuperVariable: aSuperVariable [
 	super visitSuperVariable: aSuperVariable.
 	self circleBefore: aSuperVariable identifier: #SuperNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitSymbol: aSymbol [
 	super visitSymbol: aSymbol.
 	self circleBefore: aSymbol identifier: #SymbolNode.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitThisContextVariable: aThisContextVariable [
 	super visitThisContextVariable: aThisContextVariable.
 	self circleBefore: aThisContextVariable identifier: #ThisContextNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPharoSyntaxExplanationStyler >> visitUnaryMessage: anUnaryMessage [
 	super visitUnaryMessage: anUnaryMessage.
 	self circleBefore: anUnaryMessage identifier: #UnaryNode

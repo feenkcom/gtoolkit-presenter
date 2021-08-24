@@ -1,14 +1,14 @@
 Class {
-	#name : #GtExplainerLinesAptitude,
-	#superclass : #BrAptitude,
+	#name : 'GtExplainerLinesAptitude',
+	#superclass : 'BrAptitude',
 	#instVars : [
 		'isForTarget',
 		'addedLines'
 	],
-	#category : #'GToolkit-Explainer'
+	#category : 'GToolkit-Explainer'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 GtExplainerLinesAptitude >> allChildrenWithSameExplanationModel: aWidget do: aBlock [
 	isForTarget
 		ifFalse: [
@@ -21,17 +21,17 @@ GtExplainerLinesAptitude >> allChildrenWithSameExplanationModel: aWidget do: aBl
 				do: aBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerLinesAptitude >> beForExplanation [
 	isForTarget := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerLinesAptitude >> beForTarget [
 	isForTarget := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtExplainerLinesAptitude >> initialize [
 	super initialize.
 	
@@ -39,7 +39,7 @@ GtExplainerLinesAptitude >> initialize [
 	isForTarget := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtExplainerLinesAptitude >> initializeListeners [
 	super initializeListeners.
 	
@@ -47,14 +47,14 @@ GtExplainerLinesAptitude >> initializeListeners [
 	self when: BlElementUnhoveredEvent do: [ :anEvent | self onUnhovered: anEvent element ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtExplainerLinesAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 
 	anElement states withHover
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 GtExplainerLinesAptitude >> onHovered: aWidget [
 	self
 		allChildrenWithSameExplanationModel: aWidget
@@ -86,7 +86,7 @@ GtExplainerLinesAptitude >> onHovered: aWidget [
 				ifNone: [  ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 GtExplainerLinesAptitude >> onUnhovered: anElement [
 	addedLines do: [ :eachLine |
 		eachLine removeFromParent.

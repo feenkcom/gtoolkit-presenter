@@ -4,53 +4,53 @@ I add a yellow circle adornment to variables in a text. The variables are argume
 
 "
 Class {
-	#name : #GtVariableExplanationLinkStyler,
-	#superclass : #GtSourceExplanationLinkStyler,
+	#name : 'GtVariableExplanationLinkStyler',
+	#superclass : 'GtSourceExplanationLinkStyler',
 	#instVars : [
 		'variablesDictionary',
 		'coder'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtVariableExplanationLinkStyler >> addVariableName: aVariableName [
 	self addVariableName: aVariableName withIdentifier: aVariableName.
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtVariableExplanationLinkStyler >> addVariableName: aVariableName withIdentifier: anIdentifier [
 	variablesDictionary at: aVariableName put: anIdentifier.
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtVariableExplanationLinkStyler >> addVariables: aCollection [
 	aCollection do: [ :variable | self addVariableName: variable ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtVariableExplanationLinkStyler >> coder: aMethodCoder [
 	coder := aMethodCoder.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtVariableExplanationLinkStyler >> initialize [
 	super initialize.
 	variablesDictionary := IdentityDictionary new.
 	coder := GtPharoMethodCoder new.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 GtVariableExplanationLinkStyler >> shouldAddUnderline [
 	^ coder compiledMethod isNotNil.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtVariableExplanationLinkStyler >> variablesAssociations [
 	^ variablesDictionary associations.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GtVariableExplanationLinkStyler >> visitVariable: aVariableNode [
 	super visitVariable: aVariableNode.
 	self variablesAssociations do: [:association |

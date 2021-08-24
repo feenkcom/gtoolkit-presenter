@@ -1,10 +1,10 @@
 Class {
-	#name : #GtExplainerExamples,
-	#superclass : #Object,
-	#category : #'GToolkit-Explainer-Examples'
+	#name : 'GtExplainerExamples',
+	#superclass : 'Object',
+	#category : 'GToolkit-Explainer-Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerExamples >> inspectorContainerElement [
 	<gtExample>
 	| inspectorContainer subject inspectorHeader inspectorView inspectorActionButton |
@@ -56,7 +56,7 @@ GtExplainerExamples >> inspectorContainerElement [
 	^ inspectorContainer.
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 GtExplainerExamples >> inspectorExplanationText [
 	<gtExample>
 	| text |
@@ -76,7 +76,7 @@ The inspector also shows multiple ' asRopedText,
 		foreground: Color black
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 GtExplainerExamples >> inspectorOnOneObjectExample [
 	<gtExample>
 	| container editor |
@@ -101,7 +101,7 @@ GtExplainerExamples >> inspectorOnOneObjectExample [
 	^ container
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 GtExplainerExamples >> oneTarget [
 	<gtExample>
 	| container subject target marker editor |
@@ -156,7 +156,7 @@ GtExplainerExamples >> oneTarget [
 	^ container
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 GtExplainerExamples >> playgroundExplanationText [
 	<gtExample>
 	| text |
@@ -171,7 +171,7 @@ It comes with snippets, and each snippet can be independently evaluated or ' asR
 		foreground: Color black
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 GtExplainerExamples >> playgroundWithPreview [
 	<gtExample>
 	| container inspectorContainer subject editor inspectButton inspectActionMarker scripter |

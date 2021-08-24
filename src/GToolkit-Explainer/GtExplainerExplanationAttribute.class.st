@@ -1,13 +1,13 @@
 Class {
-	#name : #GtExplainerExplanationAttribute,
-	#superclass : #BrTextAdornmentAttribute,
+	#name : 'GtExplainerExplanationAttribute',
+	#superclass : 'BrTextAdornmentAttribute',
 	#instVars : [
 		'explanationModel'
 	],
-	#category : #'GToolkit-Explainer'
+	#category : 'GToolkit-Explainer'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerExplanationAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
 	| aTextPieceElement |
 
@@ -26,12 +26,12 @@ GtExplainerExplanationAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEd
 	^ aTextPieceElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerExplanationAttribute >> explanationModel [
 	^ explanationModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExplainerExplanationAttribute >> explanationModel: anObject [
 	explanationModel := anObject
 ]

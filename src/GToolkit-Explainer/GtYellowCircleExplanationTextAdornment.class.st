@@ -1,19 +1,19 @@
 Class {
-	#name : #GtYellowCircleExplanationTextAdornment,
-	#superclass : #BrTextAdornmentAttribute,
+	#name : 'GtYellowCircleExplanationTextAdornment',
+	#superclass : 'BrTextAdornmentAttribute',
 	#instVars : [
 		'identifier',
 		'circleSize'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GtYellowCircleExplanationTextAdornment class >> forIdentifier: anIdentifier [
 	^ self forIdentifier: anIdentifier withSize: 3.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GtYellowCircleExplanationTextAdornment class >> forIdentifier: anIdentifier withSize: aSize [
 	^ self new
 		size: aSize;
@@ -21,7 +21,7 @@ GtYellowCircleExplanationTextAdornment class >> forIdentifier: anIdentifier with
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtYellowCircleExplanationTextAdornment >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
 	| circleElement |
 	
@@ -33,17 +33,17 @@ GtYellowCircleExplanationTextAdornment >> doAffect: aTBrTextEditorTextualPiece i
 	^ circleElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtYellowCircleExplanationTextAdornment >> identifier [
 	^ identifier.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtYellowCircleExplanationTextAdornment >> identifier: anIdentifier [
 	identifier := anIdentifier.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtYellowCircleExplanationTextAdornment >> initialize [
 	super initialize.
 	self beAppend.
@@ -51,12 +51,12 @@ GtYellowCircleExplanationTextAdornment >> initialize [
 	circleSize := 3.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtYellowCircleExplanationTextAdornment >> size [
 	^ circleSize.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtYellowCircleExplanationTextAdornment >> size: aSize [
 	circleSize := aSize.
 ]

@@ -1,17 +1,17 @@
 Class {
-	#name : #GtExplainerExplanationAptitude,
-	#superclass : #GtExplainerActorAptitude,
-	#category : #'GToolkit-Explainer'
+	#name : 'GtExplainerExplanationAptitude',
+	#superclass : 'GtExplainerActorAptitude',
+	#category : 'GToolkit-Explainer'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtExplainerExplanationAptitude >> initialize [
 	super initialize.
 	
 	self add: GtExplainerLinesAptitude new beForExplanation
 ]
 
-{ #category : #'api - hooks' }
+{ #category : 'api - hooks' }
 GtExplainerExplanationAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 
