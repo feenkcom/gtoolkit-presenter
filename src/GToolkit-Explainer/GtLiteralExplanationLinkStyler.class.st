@@ -4,42 +4,42 @@ I style literal nodes in a text with yellow circle adornments.
 
 "
 Class {
-	#name : #GtLiteralExplanationLinkStyler,
-	#superclass : #GtSourceExplanationLinkStyler,
+	#name : 'GtLiteralExplanationLinkStyler',
+	#superclass : 'GtSourceExplanationLinkStyler',
 	#instVars : [
 		'literalsDictionary'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtLiteralExplanationLinkStyler >> addLiteral: aSymbol [	
 	self addLiteral: aSymbol withIdentifier: aSymbol.
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtLiteralExplanationLinkStyler >> addLiteral: aLiteralObject withIdentifier: anIdentifier [
 	literalsDictionary at: aLiteralObject put: anIdentifier
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 GtLiteralExplanationLinkStyler >> addLiterals: aCollection [
 	aCollection do: [ :literal | self addLiteral: literal ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtLiteralExplanationLinkStyler >> initialize [
 	super initialize.
 
 	literalsDictionary := Dictionary new
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 GtLiteralExplanationLinkStyler >> shouldAddUnderline [
 	^ self coderViewModel compiledMethod notNil
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GtLiteralExplanationLinkStyler >> visitLiteral: aLiteralNode [
 	| anAttribute aLiteralValue aLiteralIdentifier |
 	super visitLiteral: aLiteralNode.

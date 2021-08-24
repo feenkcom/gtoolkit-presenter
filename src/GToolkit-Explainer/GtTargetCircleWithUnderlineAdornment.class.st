@@ -1,21 +1,21 @@
 Class {
-	#name : #GtTargetCircleWithUnderlineAdornment,
-	#superclass : #GtYellowCircleExplanationTextAdornment,
+	#name : 'GtTargetCircleWithUnderlineAdornment',
+	#superclass : 'GtYellowCircleExplanationTextAdornment',
 	#instVars : [
 		'start',
 		'stop',
 		'coder',
 		'node'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTargetCircleWithUnderlineAdornment >> coder: aCoder [
 	coder := aCoder.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTargetCircleWithUnderlineAdornment >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
 	| circleElement underlineRules |
 	
@@ -36,29 +36,29 @@ GtTargetCircleWithUnderlineAdornment >> doAffect: aTBrTextEditorTextualPiece in:
 	^ circleElement
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtTargetCircleWithUnderlineAdornment >> initialize [
 	super initialize.
 
 	start := stop := 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTargetCircleWithUnderlineAdornment >> node: aNode [
 	node := aNode.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTargetCircleWithUnderlineAdornment >> start: aStartPoint [
 	start := aStartPoint.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTargetCircleWithUnderlineAdornment >> stop: aStopPoint [
 	stop := aStopPoint.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GtTargetCircleWithUnderlineAdornment >> stylerRule [
 	^ (node isKindOf: RBMessageNode)
 		ifTrue: [ GtPharoAstNodeHighlighterStylerRule new

@@ -4,37 +4,37 @@ I have a collection of stylers to apply yellow circles adornments in a code.
 
 "
 Class {
-	#name : #GtCompositeExplanationLinkStyler,
-	#superclass : #GtSourceExplanationLinkStyler,
+	#name : 'GtCompositeExplanationLinkStyler',
+	#superclass : 'GtSourceExplanationLinkStyler',
 	#instVars : [
 		'links'
 	],
-	#category : #'GToolkit-Explainer-Coder add-on'
+	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GtCompositeExplanationLinkStyler class >> forLinks: aCollection [
 	^ self new
 		forLinks: aCollection;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtCompositeExplanationLinkStyler >> forLinks: aCollection [
 	links := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtCompositeExplanationLinkStyler >> links [
 	^ links
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 GtCompositeExplanationLinkStyler >> style: aText ast: ast [
 	self links do: [ :each | each style: aText ast: ast ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtCompositeExplanationLinkStyler >> stylers [
 	^ self links
 ]
