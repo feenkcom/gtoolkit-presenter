@@ -4,8 +4,8 @@ I am responsible for creating a liveshow. A liveshow is a slideshow that can be 
 
 "
 Class {
-	#name : #GtLiveShow,
-	#superclass : #BrStencil,
+	#name : 'GtLiveShow',
+	#superclass : 'BrStencil',
 	#instVars : [
 		'dropdown',
 		'previewsContainer',
@@ -28,10 +28,10 @@ Class {
 		'shouldPreloadSlides',
 		'container'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow class >> create: aLiveShowObject [
 	^ self new
 		targetLiveShow: aLiveShowObject;
@@ -39,7 +39,7 @@ GtLiveShow class >> create: aLiveShowObject [
 		initializeSlides.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow class >> createInEditMode: aLiveShowObject [
 	^ self new
 		targetLiveShow: aLiveShowObject;
@@ -48,7 +48,7 @@ GtLiveShow class >> createInEditMode: aLiveShowObject [
 		makeSlideEditorVisible.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow class >> createWithArrowsVisible: aLiveShowObject [
 	^ self new
 		targetLiveShow: aLiveShowObject;
@@ -57,7 +57,7 @@ GtLiveShow class >> createWithArrowsVisible: aLiveShowObject [
 		makeArrowsVisible.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow class >> createWithArrowsVisibleInEditMode: aLiveShowObject [
 	^ self new
 		targetLiveShow: aLiveShowObject;
@@ -67,22 +67,22 @@ GtLiveShow class >> createWithArrowsVisibleInEditMode: aLiveShowObject [
 		makeSlideEditorVisible.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> addSlide: aSlide [
 	self slides add: aSlide.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> background [
 	^ background.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> background: anObject [
 	background := anObject.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> buildSlideshowContainerComponents [
 	| previousElement nextElement aToolbar |
 	
@@ -157,7 +157,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 	self slidesDropdown.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> collectSlides [
 	| theSlides |
 	theSlides := GtSlidesCollector new
@@ -168,12 +168,12 @@ GtLiveShow >> collectSlides [
 	self slides: theSlides.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> container [
 	^ container.
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtLiveShow >> create [
 	"| container |"
 
@@ -199,7 +199,7 @@ GtLiveShow >> create [
 	^ container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> createNewEmptySlide [
 	| priority stopPosition |
 	(self slides isNotEmpty)
@@ -224,7 +224,7 @@ GtLiveShow >> createNewEmptySlide [
 		classified: 'slides'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> currentSlideIndex [
 	"Answer the index of the currently displayed slide.
 	nil if the slides aren't yet displayed"
@@ -234,12 +234,12 @@ GtLiveShow >> currentSlideIndex [
 		ifNotNil: [ currentSlide slideIndex ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> dropdown [
 	^ dropdown.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> dropdownExportStencilFor [
 	| dropdownLook selectionElement |
 
@@ -260,13 +260,13 @@ GtLiveShow >> dropdownExportStencilFor [
 			c horizontal matchParent].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> enqueueTask: aTask [
 
 	slidesContainer enqueueTask: aTask
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	(anExportQuantity asLowercase = 'all')
 		ifTrue: [
@@ -290,13 +290,13 @@ GtLiveShow >> export: anExportQuantity as: aFormat withSize: aSize andFileName: 
 	self generateVideoScriptIn: aFolder. 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> exportAllSlidesAs: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	self slides do: [:eachSlide |
 		self exportSlide: eachSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFileName in: aFolder [
 	| container cachedElement fileName |
 	container := BlElement new.
@@ -325,7 +325,7 @@ GtLiveShow >> exportSlide: aSlide as: aFormat withSize: aSize andFileName: aFile
 	container removeChildren.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> generateVideoScriptIn: aFolder [
 	| textFileContent textFileName |
 	
@@ -354,7 +354,7 @@ transition: crossfade 0.3' asString.
 		writeStreamDo: [:s | s nextPutAll: textFileContent].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> gtSlidesFor: aView [
 	<gtView>
 	^ aView list
@@ -363,17 +363,17 @@ GtLiveShow >> gtSlidesFor: aView [
 		itemText: #name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> hasNextSlide [
 	^ self slides last ~= currentSlide
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> hasPreviousSlide [
 	^ self slides first ~= currentSlide
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtLiveShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
@@ -384,7 +384,7 @@ GtLiveShow >> initialize [
 	self buildSlideshowContainerComponents.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> initializeSlides [
 	self collectSlides.
 	(self slides size = 0)
@@ -400,13 +400,13 @@ GtLiveShow >> initializeSlides [
 			self updateSlidePreviewsLook ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> initializeSubscriptions [
 	self unsubscribeFromSystem.
 	self subscribeToSystem.
 ]
 
-{ #category : #'private - event handling' }
+{ #category : 'private - event handling' }
 GtLiveShow >> loadSlides [
 	| aSpace |
 	aSpace := self container space.
@@ -416,17 +416,17 @@ GtLiveShow >> loadSlides [
 			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> makeArrowsVisible [
 	arrowsAreVisible := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> makeSlideEditorVisible [
 	slideEditorVisibility := true.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self.
@@ -434,7 +434,7 @@ GtLiveShow >> nextStep [
 	self updateSlidePreviewsLook.
 ]
 
-{ #category : #'private - event handling' }
+{ #category : 'private - event handling' }
 GtLiveShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
@@ -442,7 +442,7 @@ GtLiveShow >> onAddedToSceneGraph: aSpace [
 		ifTrue: [ self loadSlides ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> onMethodAdded: aMethodAdded [
 	(aMethodAdded method hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
 	(aMethodAdded classAffected = self targetLiveShow class) ifFalse: [ ^ self ].	
@@ -450,12 +450,12 @@ GtLiveShow >> onMethodAdded: aMethodAdded [
 	self slideDefinitionAddedFor: aMethodAdded.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> pager [
 	^ pager.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self.
@@ -463,17 +463,17 @@ GtLiveShow >> previousStep [
 	self updateSlidePreviewsLook.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> shouldPreloadSlides [
 	^ shouldPreloadSlides ifNil: [ false ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> shouldPreloadSlides: aBoolean [
 	shouldPreloadSlides := aBoolean.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> showSlide: aSlide [
 	| slideContentElement |
 	currentSlide = aSlide
@@ -485,17 +485,17 @@ GtLiveShow >> showSlide: aSlide [
 	self updateArrows.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> showSlideAfter: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex + 1)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> showSlideBefore: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex - 1)
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> slideDefinitionAddedFor: aMethod [
 	"I am called when a new method has been added.
 	Subclasses may react to the method being added.
@@ -518,7 +518,7 @@ GtLiveShow >> slideDefinitionAddedFor: aMethod [
 	self updatePreviewsContainer.
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	"I am called from aSlide when the slide definition has changed.
 	My responsibility is to replace the slide with a new one."
@@ -540,7 +540,7 @@ GtLiveShow >> slideDefinitionChangedFor: aSlide [
 	self updatePreviewsContainer.
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 	"I am called from aSlide when the slide definition has been removed.
 	My responsibility is to remove the slide from the show."
@@ -572,28 +572,28 @@ GtLiveShow >> slideDefinitionRemovedFor: aSlide [
 			self updatePreviewsContainer ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slideEditor [
 	^ slideEditor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slides [
 	^ slides
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slides: anObject [
 	slides := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slidesContainer [
 
 	^slidesContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slidesDropdown [
 	| aToolbar anExportButton |
 	previewsContainer := BlElement new.
@@ -689,19 +689,19 @@ GtLiveShow >> slidesDropdown [
 			yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> slidesExportPage [
 	^ BrPagerPageElement new
 		weight: 1.0;
 		addChild: self dropdownExportStencilFor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> sortSlidesByPriority [
 	self slides sort: [:a :b | a priority < b priority].
 ]
 
-{ #category : #'private - subscriptions' }
+{ #category : 'private - subscriptions' }
 GtLiveShow >> subscribeToSystem [
 	| anAction aSubscription |
 	anAction := WeakMessageSend receiver: self selector: #onMethodAdded:.
@@ -713,17 +713,17 @@ GtLiveShow >> subscribeToSystem [
 	 SystemAnnouncer uniqueInstance basicSubscribe: aSubscription.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> targetLiveShow [
 	^ targetLiveShow.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> targetLiveShow: aLiveShowClass [
 	targetLiveShow := aLiveShowClass.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> title [
 	^ title ifNil: [
 		self targetLiveShow isClass 
@@ -731,17 +731,17 @@ GtLiveShow >> title [
 			ifFalse: [ self targetLiveShow className ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> title: anObject [
 	title := anObject.
 ]
 
-{ #category : #'private - subscriptions' }
+{ #category : 'private - subscriptions' }
 GtLiveShow >> unsubscribeFromSystem [
 	SystemAnnouncer uniqueInstance unsubscribe: self targetLiveShow.
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasPreviousSlide ])
 		ifTrue: [ previousArrow visibility: BlVisibility visible ]
@@ -751,7 +751,7 @@ GtLiveShow >> updateArrows [
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveShow >> updateMethodForSlide: aSlide [
 	| methodString newSlideMethod |
 	methodString := aSlide definingMethod compiledMethod sourceCode.
@@ -764,7 +764,7 @@ GtLiveShow >> updateMethodForSlide: aSlide [
 		classified: 'slides'.
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updatePreviewsContainer [
 	previewsContainer removeChildren.
 	self slides
@@ -779,7 +779,7 @@ GtLiveShow >> updatePreviewsContainer [
 							self updateSlidePreviewsLook ])].
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updateSlide: aSlide [
 	| slideContentElement |
 	currentSlide = aSlide ifFalse: [ ^ self ].
@@ -789,7 +789,7 @@ GtLiveShow >> updateSlide: aSlide [
 	self updateArrows.
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updateSlideEditorMethod [
 	| methodCoder |
 	(self slideEditor children size > 2) ifTrue: [self slideEditor removeChildAt: 3].
@@ -808,7 +808,7 @@ GtLiveShow >> updateSlideEditorMethod [
 					c frame vertical alignTop ]).
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updateSlideEditorState [
 	slideEditorVisibility
 		ifTrue: [
@@ -817,7 +817,7 @@ GtLiveShow >> updateSlideEditorState [
 			slideEditor visibility: BlVisibility gone].
 ]
 
-{ #category : #'api - updating' }
+{ #category : 'api - updating' }
 GtLiveShow >> updateSlidePreviewsLook [
 	self slides
 		do: [ :eachSlide |

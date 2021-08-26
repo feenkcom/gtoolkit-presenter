@@ -1,10 +1,10 @@
 Class {
-	#name : #GtSlidesCollector,
-	#superclass : #GtPhlowCollector,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtSlidesCollector',
+	#superclass : 'GtPhlowCollector',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlidesCollector >> collect [
 	<return: #Array of: #GtLiveSlide>
 	<gtCollector>
@@ -27,17 +27,17 @@ GtSlidesCollector >> collect [
 	^ theViews
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlidesCollector >> defaultPragmaNames [
 	^ #( #gtSlide ).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlidesCollector >> initialize [
 	super initialize.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlidesCollector >> liveSlideWithError: anException forContext: aContext andSelector: aSelector [
 	
 ]

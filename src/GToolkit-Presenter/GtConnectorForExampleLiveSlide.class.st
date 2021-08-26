@@ -6,12 +6,12 @@ I create a connector example.
 
 "
 Class {
-	#name : #GtConnectorForExampleLiveSlide,
-	#superclass : #GtLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtConnectorForExampleLiveSlide',
+	#superclass : 'GtLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtConnectorForExampleLiveSlide >> create [
 	^ ((BlFrameLayoutCompositionExamples>>#example) gtExample gtConnectionsFor: GtPhlowEmptyView new)
 		asElementDo: [ :anElement | ^ anElement  ]

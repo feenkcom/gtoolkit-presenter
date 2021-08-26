@@ -1,14 +1,14 @@
 Class {
-	#name : #GtSlideBuilder,
-	#superclass : #Object,
+	#name : 'GtSlideBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'slideSelector',
 		'slideShowClass'
 	],
-	#category : #'GToolkit-Presenter-Runtime'
+	#category : 'GToolkit-Presenter-Runtime'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> build [
 	^ thisContext
 		object: slideShowClass new
@@ -17,12 +17,12 @@ GtSlideBuilder >> build [
 		inClass: slideShowClass.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> definingMethod [
 	^ slideShowClass>>slideSelector.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> gtSlideCodeFor: aView [
 	<gtView>
 	((slideShowClass isNil) or: [slideSelector isNil])
@@ -33,12 +33,12 @@ GtSlideBuilder >> gtSlideCodeFor: aView [
 		view: #gtSourceFor:.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> ignoreSlideTest [
 	^ self definingMethod hasPragmaNamed: #noTest.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
@@ -49,12 +49,12 @@ GtSlideBuilder >> printOn: aStream [
 		nextPutAll: ')'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> slideSelector: aSelector [
 	slideSelector := aSelector.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideBuilder >> slideShowClass: aClass [
 	slideShowClass := aClass.
 ]

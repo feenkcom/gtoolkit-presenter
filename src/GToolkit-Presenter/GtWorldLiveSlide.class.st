@@ -6,12 +6,12 @@ I create a world element and display it.
 
 "
 Class {
-	#name : #GtWorldLiveSlide,
-	#superclass : #GtLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtWorldLiveSlide',
+	#superclass : 'GtLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtWorldLiveSlide >> create [
 	<return: #Object>
 	^ BlElement new

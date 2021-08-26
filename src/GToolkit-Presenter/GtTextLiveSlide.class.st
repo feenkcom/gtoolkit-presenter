@@ -6,15 +6,15 @@ I am a text live slide. I receive a text, with or without a format and display i
 
 "
 Class {
-	#name : #GtTextLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtTextLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'texts'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtTextLiveSlide >> create [
 	| container textContainer |
 	container := BlElement new
@@ -41,18 +41,18 @@ GtTextLiveSlide >> create [
 	^ container
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtTextLiveSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTextLiveSlide >> newText: aRopedText [
 	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTextLiveSlide >> newTextWithFormat: aRopedText [
 	texts add: aRopedText asRopedText
 ]

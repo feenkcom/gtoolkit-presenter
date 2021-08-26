@@ -1,10 +1,10 @@
 Class {
-	#name : #GtSearchFilterHierarchySlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtSearchFilterHierarchySlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtSearchFilterHierarchySlide >> create [
 	^ (GtSearchMethodsFilter gtHierarchyFor: GtPhlowView empty) asElementDo: [ :e | e ]
 ]

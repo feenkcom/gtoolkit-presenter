@@ -1,13 +1,13 @@
 Class {
-	#name : #GtMashExampleSlide,
-	#superclass : #GtSlide,
+	#name : 'GtMashExampleSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'elements'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> centerElement: anElement [
 	self centerElementWithConstraints: ( anElement
 		constraintsDo: [:c |
@@ -18,12 +18,12 @@ GtMashExampleSlide >> centerElement: anElement [
 		margin: (BlInsets all: 10)).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> centerElementWithConstraints: anElement [
 	elements add: anElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> create [
 	^ (BlElement new
 		constraintsDo: [ :c | 
@@ -33,13 +33,13 @@ GtMashExampleSlide >> create [
 		addChildren: elements) asScalableElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> initialize [
 	super initialize.
 	elements := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> leftElement: anElement [
 	self leftElementWithConstraints: (anElement
 		constraintsDo: [:c |
@@ -50,12 +50,12 @@ GtMashExampleSlide >> leftElement: anElement [
 		margin: (BlInsets top: 100 right: 10 bottom: 10 left: 10)).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> leftElementWithConstraints: anElement [
 	elements add: anElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> rightElement: anElement [
 	self rightElementWithConstraints: (anElement
 		constraintsDo: [:c |
@@ -66,7 +66,7 @@ GtMashExampleSlide >> rightElement: anElement [
 		margin: (BlInsets all: 10)).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMashExampleSlide >> rightElementWithConstraints: anElement [
 	elements add: anElement.
 ]

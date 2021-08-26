@@ -1,18 +1,18 @@
 Class {
-	#name : #GtSlideChanged,
-	#superclass : #Announcement,
+	#name : 'GtSlideChanged',
+	#superclass : 'Announcement',
 	#instVars : [
 		'slide'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideChanged >> slide [
 	^ slide
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideChanged >> slide: aSlide [
 	slide := aSlide
 ]

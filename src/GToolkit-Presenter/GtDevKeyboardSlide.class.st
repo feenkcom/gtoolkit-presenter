@@ -1,10 +1,10 @@
 Class {
-	#name : #GtDevKeyboardSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtDevKeyboardSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtDevKeyboardSlide >> create [
 	<return: #Object>
 

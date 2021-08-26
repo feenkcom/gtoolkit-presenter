@@ -6,12 +6,12 @@ I show all the visualizations available for various objects.
 
 "
 Class {
-	#name : #GtAllViewsLiveSlide,
-	#superclass : #GtInspectorViewsLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtAllViewsLiveSlide',
+	#superclass : 'GtInspectorViewsLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtAllViewsLiveSlide >> create [
 	| container |
 	container := BlElement new

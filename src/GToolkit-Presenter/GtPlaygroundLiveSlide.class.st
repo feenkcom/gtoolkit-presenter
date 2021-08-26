@@ -6,18 +6,18 @@ I am a playground live slide. I receive a collection of snippets and display a p
 
 "
 Class {
-	#name : #GtPlaygroundLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtPlaygroundLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'playbook'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 	| notTemp |
-	notTemp := aMethod ast body children detect: [:aNode | aNode isTemp not ].
+	notTemp := aMethod ast body statements first.
 
 	^ String streamContents: [ :stream |
 		aMethod ast comments ifNotEmpty: [
@@ -34,7 +34,7 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 				separatedBy: [ stream cr ] ]
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
 	"Horrible (hopefully temporary) workaround"
 
@@ -62,7 +62,7 @@ GtPlaygroundLiveSlide >> create [
 		ifFalse: [ GtPlayground createOn: playbook ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtPlaygroundLiveSlide >> initialize [
 	super initialize.
 	playbook := GtPlayBook new
@@ -70,7 +70,7 @@ GtPlaygroundLiveSlide >> initialize [
 		subscribeExternalTools.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 	| aScripter |
 	
@@ -93,23 +93,23 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 	^ aScripter elementWithoutParent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> newSnippet: el [
 	playbook pages first addSnippet: GtCoderSnippet new.
 	^ playbook pages last snippets last sourceCode: el
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> newSnippetFromMethod: aMethod [
 	self newSnippet: ((self codeFromMethod: aMethod))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> playbook: aBlock [
 	playbook := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> snippets: aCollection [
 	playbook := GtPlayBook newWithCodeSnippetContent: aCollection first.
 	aCollection allButFirst do: [ :el | self newSnippet: el ]

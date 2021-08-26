@@ -6,15 +6,15 @@ I am an example live slide. I get an example method and i display its code in a 
 
 "
 Class {
-	#name : #GtExampleLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtExampleLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'method'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtExampleLiveSlide >> create [
 	| container coder coderElement inspectorElement inspectorContainer |
 	
@@ -52,7 +52,7 @@ GtExampleLiveSlide >> create [
 		addChild: inspectorContainer.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtExampleLiveSlide >> method: aMethod [
 	method := aMethod.
 ]

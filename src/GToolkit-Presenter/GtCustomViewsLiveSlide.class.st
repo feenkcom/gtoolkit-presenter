@@ -6,12 +6,12 @@ I show custom views for different objects.
 
 "
 Class {
-	#name : #GtCustomViewsLiveSlide,
-	#superclass : #GtInspectorViewsLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtCustomViewsLiveSlide',
+	#superclass : 'GtInspectorViewsLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtCustomViewsLiveSlide >> create [
 	| container |
 	container := BlElement new

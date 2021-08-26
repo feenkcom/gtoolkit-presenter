@@ -1,6 +1,6 @@
-Extension { #name : #ClassDescription }
+Extension { #name : 'ClassDescription' }
 
-{ #category : #'*GToolkit-Presenter' }
+{ #category : '*GToolkit-Presenter' }
 ClassDescription >> gtSlideBuildersAll [
 	^ (GtSlidesCollector new
 		from: self;
@@ -8,7 +8,7 @@ ClassDescription >> gtSlideBuildersAll [
 		collectPragmas) collect: [:eachPragma | eachPragma method gtSlideBuilder].
 ]
 
-{ #category : #'*GToolkit-Presenter' }
+{ #category : '*GToolkit-Presenter' }
 ClassDescription >> gtSlidesAll [
 	^ self gtSlideBuildersAll collect: [:each | each build].
 ]

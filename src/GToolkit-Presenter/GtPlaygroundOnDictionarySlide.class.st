@@ -1,10 +1,10 @@
 Class {
-	#name : #GtPlaygroundOnDictionarySlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtPlaygroundOnDictionarySlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtPlaygroundOnDictionarySlide >> create [
 	| book |
 	book := GtPlayBook newWithCodeSnippetContent: '{

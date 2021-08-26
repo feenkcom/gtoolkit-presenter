@@ -6,20 +6,20 @@ I am an element live slide. I get an element and display it in the middle of the
 
 "
 Class {
-	#name : #GtElementLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtElementLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'element'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtElementLiveSlide >> create [
 	^ element value.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementLiveSlide >> element: anElementBlock [
 	element := anElementBlock.
 ]

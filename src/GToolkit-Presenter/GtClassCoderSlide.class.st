@@ -1,20 +1,20 @@
 Class {
-	#name : #GtClassCoderSlide,
-	#superclass : #GtSlide,
+	#name : 'GtClassCoderSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'class',
 		'methodExpanded',
 		'headerExpanded'
 	],
-	#category : #'GToolkit-Presenter-GToolkit-Presenter'
+	#category : 'GToolkit-Presenter-GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> class: aClass [
 	class := aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> create [
 	| coder coderElement aScripter |
 	
@@ -72,29 +72,29 @@ GtClassCoderSlide >> create [
 		addChild: coderElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> headerExpanded [
 	^ headerExpanded.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> headerExpanded: aBoolean [
 	headerExpanded := aBoolean.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> initialize [
 	super initialize.
 	methodExpanded := 0.
 	headerExpanded := false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> methodExpanded [
 	^ methodExpanded
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtClassCoderSlide >> methodExpanded: aNumber [
 	methodExpanded := aNumber.
 ]

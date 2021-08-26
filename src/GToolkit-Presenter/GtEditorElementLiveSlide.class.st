@@ -4,30 +4,30 @@ I am an editor element example live slide. I show different examples for the tex
 
 "
 Class {
-	#name : #GtEditorElementLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtEditorElementLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'slideType'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEditorElementLiveSlide >> create [
 	^ slideType.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEditorElementLiveSlide >> withDebugCharacter [
 	slideType := GtEditorElementWithDebugCharacterLiveSlide new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEditorElementLiveSlide >> withRotatedWords [
 	slideType := GtEditorElementWithRotatedWordsLiveSlide new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEditorElementLiveSlide >> withTree [
 	slideType := GtEditorElementWithTreeLiveSlide new.
 ]
