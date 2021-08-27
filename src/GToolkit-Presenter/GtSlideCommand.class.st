@@ -1,19 +1,19 @@
 Class {
-	#name : #GtSlideCommand,
-	#superclass : #BlTktCommand,
+	#name : 'GtSlideCommand',
+	#superclass : 'BlTktCommand',
 	#instVars : [
 		'slide'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> entryIdentifier [
 
 	^slide
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> entryPriority [
 	"Answer the task priority of the receiver.
 	This is the distance away from the visible portion of the screen.  To accurately fit in with other windows we should really determine the screen size and use that as the multiplier, however it probably isn't worth the effort."
@@ -42,7 +42,7 @@ GtSlideCommand >> entryPriority [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 GtSlideCommand >> execute [ 
 	"Generate the receiver's slide's bloc elements"
 
@@ -50,13 +50,13 @@ GtSlideCommand >> execute [
 		[ slide generateElements ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GtSlideCommand >> includesSingleCommand [
 
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> name [ 
 
 	^name
@@ -64,23 +64,23 @@ GtSlideCommand >> name [
 		ifNil: [ slide name, ' ', self slideIndex asString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> slide [
 	^ slide
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> slide: anObject [
 	slide := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> slideIndex [ 
 
 	^slide slideIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtSlideCommand >> slideShow [ 
 	"Answer the slide show the receiver's slide is a member of"
 

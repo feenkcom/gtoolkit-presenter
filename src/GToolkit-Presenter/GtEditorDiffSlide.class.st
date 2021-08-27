@@ -1,10 +1,10 @@
 Class {
-	#name : #GtEditorDiffSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtEditorDiffSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtEditorDiffSlide >> create [
 	<return: #Object>
 

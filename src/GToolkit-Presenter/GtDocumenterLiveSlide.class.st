@@ -6,30 +6,30 @@ I am a documenter live slide. I get a documenter and i display it.
 
 "
 Class {
-	#name : #GtDocumenterLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtDocumenterLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'document'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtDocumenterLiveSlide >> create [
 	^ document createInPager maximized.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtDocumenterLiveSlide >> document [
 	^ document.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtDocumenterLiveSlide >> document: aDocument [
 	document := aDocument.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtDocumenterLiveSlide >> initialize [
 	super initialize.
 	document := GtDocument new.

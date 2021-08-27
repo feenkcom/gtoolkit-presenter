@@ -6,12 +6,12 @@ I create a keyboard element.
 
 "
 Class {
-	#name : #GtDevKeyboardLiveSlide,
-	#superclass : #GtLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtDevKeyboardLiveSlide',
+	#superclass : 'GtLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtDevKeyboardLiveSlide >> create [
 	<return: #Object>
 	^ BlDevKeyboard new asPannableElement

@@ -1,10 +1,10 @@
 Class {
-	#name : #GtSpotterSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtSpotterSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtSpotterSlide >> create [
 	| aSpotter aSpotterElement container |
 	aSpotter := GtSpotter new.

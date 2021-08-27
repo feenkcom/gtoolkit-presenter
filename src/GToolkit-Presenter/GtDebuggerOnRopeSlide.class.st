@@ -1,10 +1,10 @@
 Class {
-	#name : #GtDebuggerOnRopeSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtDebuggerOnRopeSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtDebuggerOnRopeSlide >> create [
 	| process context debuggingSession |
 	context := [ BlAttributeRopeExamples new small_delete_1_to_3 ] asContext.

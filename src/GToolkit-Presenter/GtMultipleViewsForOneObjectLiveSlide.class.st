@@ -6,15 +6,15 @@ I show different visualizations for the same object.
 
 "
 Class {
-	#name : #GtMultipleViewsForOneObjectLiveSlide,
-	#superclass : #GtInspectorViewsLiveSlide,
+	#name : 'GtMultipleViewsForOneObjectLiveSlide',
+	#superclass : 'GtInspectorViewsLiveSlide',
 	#instVars : [
 		'containerLayout'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtMultipleViewsForOneObjectLiveSlide >> create [
 	| container object |
 	object := GtWhatMakesBlocSpecialExplanation new sampleText.
@@ -48,18 +48,18 @@ GtMultipleViewsForOneObjectLiveSlide >> create [
 	^ container asPannableElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMultipleViewsForOneObjectLiveSlide >> grid [
 	containerLayout := BlGridLayout new columnCount: 2; cellSpacing: 10
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtMultipleViewsForOneObjectLiveSlide >> initialize [
 	super initialize.
 	containerLayout := BlLinearLayout horizontal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtMultipleViewsForOneObjectLiveSlide >> vertical [
 	containerLayout := BlLinearLayout vertical
 ]

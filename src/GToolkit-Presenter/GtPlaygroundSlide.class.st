@@ -1,24 +1,24 @@
 Class {
-	#name : #GtPlaygroundSlide,
-	#superclass : #GtSlide,
+	#name : 'GtPlaygroundSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'playbook'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtPlaygroundSlide >> create [
 	^ GtPlayground createOn: playbook
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtPlaygroundSlide >> initialize [
 	super initialize.
 	playbook := GtPlayBook newDefault.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundSlide >> inspectSnippetAt: aPosition [
 	| aScripter |
 	
@@ -47,12 +47,12 @@ GtPlaygroundSlide >> inspectSnippetAt: aPosition [
 	^ aScripter elementWithoutParent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundSlide >> playbook: aBlock [
 	playbook := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtPlaygroundSlide >> snippets: aCollection [
 	playbook := GtPlayBook newWithCodeSnippetContent: aCollection first.
 	aCollection allButFirst do: [:el |

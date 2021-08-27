@@ -1,10 +1,10 @@
 Class {
-	#name : #GtRawViewsSlide,
-	#superclass : #GtInspectorViewsSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtRawViewsSlide',
+	#superclass : 'GtInspectorViewsSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtRawViewsSlide >> create [
 	| container |
 	container := BlElement new

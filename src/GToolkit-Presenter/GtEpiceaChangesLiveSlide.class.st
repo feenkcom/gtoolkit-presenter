@@ -1,19 +1,19 @@
 Class {
-	#name : #GtEpiceaChangesLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtEpiceaChangesLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'changes',
 		'ombuFile'
 	],
-	#category : #'GToolkit-Presenter-GToolkit-Presenter'
+	#category : 'GToolkit-Presenter-GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEpiceaChangesLiveSlide >> changes [
 	^ changes ifNil: [ changes := GtEpicea new ombuFile: self ombuFile ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEpiceaChangesLiveSlide >> create [
 	| aToolbar inspectorElement inspectorContainer container |
 	aToolbar := BrToolbar new
@@ -72,17 +72,17 @@ GtEpiceaChangesLiveSlide >> create [
 	^ container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEpiceaChangesLiveSlide >> fileName: aString [
 	self ombuFile: aString asFileReference.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEpiceaChangesLiveSlide >> ombuFile [
 	^ ombuFile.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEpiceaChangesLiveSlide >> ombuFile: aFileReference [
 	ombuFile := aFileReference.
 ]

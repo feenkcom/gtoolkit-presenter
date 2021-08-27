@@ -1,19 +1,19 @@
 Class {
-	#name : #GtLepiterPageLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtLepiterPageLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'startPage'
 	],
-	#category : #'GToolkit-Presenter-GToolkit-Presenter'
+	#category : 'GToolkit-Presenter-GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLepiterPageLiveSlide >> create [
 	startPage asPhlowTool asElementDo: [:e | 
 		^ GtPager createWrappedOn: e ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLepiterPageLiveSlide >> pageNamed: aPageName from: aLepiterBaseName [
 	| database |
 	database := LeDatabasesRegistry default currentLoadedDefaultLogicalDatabase 

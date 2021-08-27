@@ -4,12 +4,12 @@ I am an empty live slide. I don't display anything.
 
 "
 Class {
-	#name : #GtEmptySlide,
-	#superclass : #GtLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtEmptySlide',
+	#superclass : 'GtLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtEmptySlide >> content [
 	^ BlElement new
 		background: BlBackground transparent;
@@ -18,7 +18,7 @@ GtEmptySlide >> content [
 			c vertical matchParent ].
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtEmptySlide >> create [
 	^ BlElement new
 		background: BlBackground transparent;

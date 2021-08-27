@@ -6,15 +6,15 @@ I am live tree element live slide. I receive an element and display it on the le
 
 "
 Class {
-	#name : #GtLiveElementTreeLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtLiveElementTreeLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'targetElement'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtLiveElementTreeLiveSlide >> create [
 	| targetContainer container highlighted m treeElement |
 	targetContainer := BlElement new 
@@ -76,7 +76,7 @@ GtLiveElementTreeLiveSlide >> create [
 	^ container
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtLiveElementTreeLiveSlide >> initialize [ 
 	| text styler |
 	super initialize.
@@ -89,12 +89,12 @@ GtLiveElementTreeLiveSlide >> initialize [
 	targetElement forceLayout.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveElementTreeLiveSlide >> targetElement [
 	^ targetElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLiveElementTreeLiveSlide >> targetElement: anObject [
 	targetElement := anObject
 ]

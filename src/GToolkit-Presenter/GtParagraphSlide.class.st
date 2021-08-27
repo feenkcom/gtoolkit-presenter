@@ -1,14 +1,14 @@
 Class {
-	#name : #GtParagraphSlide,
-	#superclass : #GtSlide,
+	#name : 'GtParagraphSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'subtitle',
 		'paragraph'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtParagraphSlide >> create [
 	^  BlElement new 
 			constraintsDo: [ :c |
@@ -32,7 +32,7 @@ GtParagraphSlide >> create [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtParagraphSlide >> fullText [
 
 	^'' asRopedText
@@ -42,7 +42,7 @@ GtParagraphSlide >> fullText [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtParagraphSlide >> initialize [ 
 
 	super initialize.
@@ -50,13 +50,13 @@ GtParagraphSlide >> initialize [
 	self paragraph: ''.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtParagraphSlide >> paragraph: aString [
 
 	paragraph := aString asRopedText fontSize: 30; glamorousRegularFont
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtParagraphSlide >> subtitle: aString [
 
 	subtitle := aString asRopedText fontSize: 40; glamorousRegularFont

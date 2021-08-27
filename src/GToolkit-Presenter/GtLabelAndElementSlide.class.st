@@ -4,16 +4,16 @@ I am a Slide designe that gets a Text and and Element and displays them. I can b
 
 "
 Class {
-	#name : #GtLabelAndElementSlide,
-	#superclass : #GtSlide,
+	#name : 'GtLabelAndElementSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'elementBlock',
 		'textPieces'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtLabelAndElementSlide >> create [
 	| container |
 	container := BlElement new
@@ -41,39 +41,39 @@ GtLabelAndElementSlide >> create [
 	^ container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLabelAndElementSlide >> element: anElement [
 	elementBlock := anElement.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtLabelAndElementSlide >> initialize [
 	super initialize.
 	textPieces := OrderedCollection new.
 	self element: BlElement new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLabelAndElementSlide >> newFadedText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFont; fontSize: 16; foreground: Color gray)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLabelAndElementSlide >> newText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GtLabelAndElementSlide >> newTextWithFormat: aText [
 	textPieces add: aText asRopedText.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLabelAndElementSlide >> stencil: aBlock [
 	elementBlock := aBlock.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtLabelAndElementSlide >> text: aText [
 	self newText: aText
 ]

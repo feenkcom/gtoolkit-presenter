@@ -4,35 +4,35 @@ I am an inspector views example live slide. I can show different examples of vie
 
 "
 Class {
-	#name : #GtInspectorViewsLiveSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtInspectorViewsLiveSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'slideType'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtInspectorViewsLiveSlide >> allViews [
 	slideType := GtAllViewsLiveSlide new.
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtInspectorViewsLiveSlide >> create [
 	^ slideType.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtInspectorViewsLiveSlide >> customViews [
 	slideType := GtCustomViewsLiveSlide new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtInspectorViewsLiveSlide >> multipleViewsForOneObject [
 	slideType := GtMultipleViewsForOneObjectLiveSlide new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtInspectorViewsLiveSlide >> rawViews [
 	slideType := GtRawViewsLiveSlide new.
 ]

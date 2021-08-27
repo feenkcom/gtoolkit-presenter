@@ -1,10 +1,10 @@
 Class {
-	#name : #GtHttpQuerySlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtHttpQuerySlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtHttpQuerySlide >> create [
 	| book |
 	book := GtPlayBook newWithCodeSnippetContent: 'url := ''https://blog.feenk.com'' asZnUrl 

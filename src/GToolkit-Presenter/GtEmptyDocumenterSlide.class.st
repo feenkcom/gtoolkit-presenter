@@ -1,10 +1,10 @@
 Class {
-	#name : #GtEmptyDocumenterSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtEmptyDocumenterSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtEmptyDocumenterSlide >> create [
 	^ GtPager new 
 		createWrappedOn: GtDocumenter new

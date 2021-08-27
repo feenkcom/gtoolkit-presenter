@@ -6,12 +6,12 @@ I show an editor element and a button that displays the tree for the respective 
 
 "
 Class {
-	#name : #GtEditorElementWithTreeLiveSlide,
-	#superclass : #GtEditorElementLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtEditorElementWithTreeLiveSlide',
+	#superclass : 'GtEditorElementLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtEditorElementWithTreeLiveSlide >> create [
 	| container verticalContainer horizontalContainer editorElement preview button label |
 	

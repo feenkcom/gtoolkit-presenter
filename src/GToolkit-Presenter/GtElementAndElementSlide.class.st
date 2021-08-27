@@ -1,15 +1,15 @@
 Class {
-	#name : #GtElementAndElementSlide,
-	#superclass : #GtSlide,
+	#name : 'GtElementAndElementSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'leftElementBlock',
 		'textPieces',
 		'rightElementBlock'
 	],
-	#category : #'GToolkit-Presenter-GToolkit-Presenter'
+	#category : 'GToolkit-Presenter-GToolkit-Presenter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> create [
 	| mainContainer container |
 	mainContainer := BlElement new
@@ -53,7 +53,7 @@ GtElementAndElementSlide >> create [
 	^ mainContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> initialize [
 	super initialize.
 	textPieces := OrderedCollection new.
@@ -61,22 +61,22 @@ GtElementAndElementSlide >> initialize [
 	self rightElement: BlElement new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> leftElement: anElement [
 	leftElementBlock := anElement.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> newText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize; foreground: Color gray)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> newTextWithFormat: aText [
 	textPieces add: aText asRopedText.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtElementAndElementSlide >> rightElement: anElement [
 	rightElementBlock := anElement.
 ]

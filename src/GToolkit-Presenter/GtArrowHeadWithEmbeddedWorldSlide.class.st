@@ -1,10 +1,10 @@
 Class {
-	#name : #GtArrowHeadWithEmbeddedWorldSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtArrowHeadWithEmbeddedWorldSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtArrowHeadWithEmbeddedWorldSlide >> create [
 	<return: #Object>
 	| container curve curveColor headColor headerFillColor curveWidth currentScale |

@@ -1,13 +1,13 @@
 Class {
-	#name : #GtMultipleViewsForOneObjectSlide,
-	#superclass : #GtInspectorViewsSlide,
+	#name : 'GtMultipleViewsForOneObjectSlide',
+	#superclass : 'GtInspectorViewsSlide',
 	#instVars : [
 		'containerLayout'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtMultipleViewsForOneObjectSlide >> create [
 	| container object |
 	object := GtWhatMakesBlocSpecialExplanation new sampleText.
@@ -41,18 +41,18 @@ GtMultipleViewsForOneObjectSlide >> create [
 	^ container asPannableElement
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtMultipleViewsForOneObjectSlide >> grid [
 	containerLayout := BlGridLayout new columnCount: 2; cellSpacing: 10
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtMultipleViewsForOneObjectSlide >> initialize [
 	super initialize.
 	containerLayout := BlLinearLayout horizontal
 ]
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtMultipleViewsForOneObjectSlide >> vertical [
 	containerLayout := BlLinearLayout vertical
 ]

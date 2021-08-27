@@ -1,14 +1,14 @@
 Class {
-	#name : #GtTitleSlide,
-	#superclass : #GtSlide,
+	#name : 'GtTitleSlide',
+	#superclass : 'GtSlide',
 	#instVars : [
 		'title',
 		'subtitle'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtTitleSlide >> create [
 	^  BlElement new 
 			constraintsDo: [ :c |
@@ -33,29 +33,29 @@ GtTitleSlide >> create [
 							text: subtitle))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtTitleSlide >> initialize [
 	super initialize.
 	self title: ''.
 	self subtitle: ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTitleSlide >> subtitle: aString [
 	subtitle := aString asRopedText fontSize: 20; glamorousRegularFont
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTitleSlide >> subtitleWithFormat: aText [
 	subtitle := aText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTitleSlide >> title: aString [
 	title := aString asRopedText fontSize: 30; glamorousRegularFont
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtTitleSlide >> titleText: aText [
 	title := aText
 ]

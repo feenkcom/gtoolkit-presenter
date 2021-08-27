@@ -6,12 +6,12 @@ I show an editor element where each character is displayed alongside its positio
 
 "
 Class {
-	#name : #GtEditorElementWithDebugCharacterLiveSlide,
-	#superclass : #GtEditorElementLiveSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtEditorElementWithDebugCharacterLiveSlide',
+	#superclass : 'GtEditorElementLiveSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtEditorElementWithDebugCharacterLiveSlide >> create [
 	<return: #Object>
 	| aText |

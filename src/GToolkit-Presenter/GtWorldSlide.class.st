@@ -1,10 +1,10 @@
 Class {
-	#name : #GtWorldSlide,
-	#superclass : #GtSlide,
-	#category : #'GToolkit-Presenter'
+	#name : 'GtWorldSlide',
+	#superclass : 'GtSlide',
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtWorldSlide >> create [
 	<return: #Object>
 	^ BlElement new

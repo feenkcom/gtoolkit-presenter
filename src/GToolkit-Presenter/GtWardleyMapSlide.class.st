@@ -4,15 +4,15 @@ I am a Wardley Map slide. I can be created from an exported json string.
 
 "
 Class {
-	#name : #GtWardleyMapSlide,
-	#superclass : #GtLiveSlide,
+	#name : 'GtWardleyMapSlide',
+	#superclass : 'GtLiveSlide',
 	#instVars : [
 		'json'
 	],
-	#category : #'GToolkit-Presenter'
+	#category : 'GToolkit-Presenter'
 }
 
-{ #category : #'api - instantiation' }
+{ #category : 'api - instantiation' }
 GtWardleyMapSlide >> create [
 	| aWardleyMapModel aWardleyMapViewModel aWardleyMapElement |
 	<return: #Object>
@@ -29,7 +29,7 @@ GtWardleyMapSlide >> create [
 	^ aWardleyMapElement
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GtWardleyMapSlide >> initialize [
 	super initialize.
 	
@@ -39,12 +39,12 @@ GtWardleyMapSlide >> initialize [
 }'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtWardleyMapSlide >> json [
 	^ json
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GtWardleyMapSlide >> json: anObject [
 	json := anObject
 ]
