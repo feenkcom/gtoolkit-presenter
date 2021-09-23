@@ -184,10 +184,10 @@ GtExplainerExamples >> playgroundWithPreview [
 
 	container := BrHorizontalPane new
 		matchParent.
-	container explainer isExplanationHolder: true.
+	container explainer isExplanationHolder: true.	
 
 	scripter := BlDevScripter new
-		element: (GtPlayground createOn: (GtPlayBook newWithCodeSnippetContent: '41 + 1')).
+		element: ((GtPlaygroundLiveSlide new newSnippet: '41 + 1') asElement).
 	scripter wait forEmptySpaceTaskQueue.
 	scripter syncContinue.
 	subject := scripter elementWithoutParent.

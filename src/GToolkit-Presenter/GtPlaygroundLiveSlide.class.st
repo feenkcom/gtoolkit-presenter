@@ -36,7 +36,6 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 
 { #category : 'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
-	"Horrible (hopefully temporary) workaround"
 	| toolElement |
 
 	toolElement := LePageToolContentTreeElement new
