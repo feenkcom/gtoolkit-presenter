@@ -9,7 +9,7 @@ Class {
 	#name : 'GtPlaygroundLiveSlide',
 	#superclass : 'GtLiveSlide',
 	#instVars : [
-		'playbook'
+		'page'
 	],
 	#category : 'GToolkit-Presenter'
 }
@@ -36,38 +36,28 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 
 { #category : 'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
-	"Horrible (hopefully temporary) workaround"
+	| toolElement |
 
-	| page pageTool toolElement |
-	^ GtImage isLepiterEnabled 
-		ifTrue: [  
-			page := LePage unnamedPageWithDefaultTitle: 'Playground'.
-			playbook pages first snippets
-				do: [ :s | page addSnippet: (LePharoSnippet code: s sourceCode) ].
-			"pageTool := page asLepiterPagePhlowTool.
-			toolElement := pageTool asElementDo: [ :e | e ]."
-			toolElement := LePageToolContentTreeElement new
-				withTitleOnly;
-				padding:
-					(BlInsets
-						top: 0
-						right: 10
-						bottom: 0
-						left: 10);
-				pageViewModel:
-					(LePageViewModel new
-						pageModel: page;
-						shouldFocusFirstSnippet: true).
-			GtPager createWrappedOn: toolElement ]
-		ifFalse: [ GtPlayground createOn: playbook ]
+	toolElement := LePageToolContentTreeElement new
+		withTitleOnly;
+		padding:
+			(BlInsets
+				top: 0
+				right: 10
+				bottom: 0
+				left: 10);
+		pageViewModel:
+			(LePageViewModel new
+				pageModel: page;
+				shouldFocusFirstSnippet: true).
+	^ GtPager createWrappedOn: toolElement
 ]
 
 { #category : 'initialization' }
 GtPlaygroundLiveSlide >> initialize [
 	super initialize.
-	playbook := GtPlayBook new
-		addPlayPage: GtPlayPage new; 
-		subscribeExternalTools.
+	
+	page := LePage unnamedPageWithDefaultTitle: 'Playground'
 ]
 
 { #category : 'accessing' }
@@ -94,9 +84,8 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 ]
 
 { #category : 'accessing' }
-GtPlaygroundLiveSlide >> newSnippet: el [
-	playbook pages first addSnippet: GtCoderSnippet new.
-	^ playbook pages last snippets last sourceCode: el
+GtPlaygroundLiveSlide >> newSnippet: el [	
+	page addSnippet: (LePharoSnippet code: el)
 ]
 
 { #category : 'accessing' }
@@ -105,12 +94,6 @@ GtPlaygroundLiveSlide >> newSnippetFromMethod: aMethod [
 ]
 
 { #category : 'accessing' }
-GtPlaygroundLiveSlide >> playbook: aBlock [
-	playbook := aBlock
-]
-
-{ #category : 'accessing' }
 GtPlaygroundLiveSlide >> snippets: aCollection [
-	playbook := GtPlayBook newWithCodeSnippetContent: aCollection first.
-	aCollection allButFirst do: [ :el | self newSnippet: el ]
+	aCollection do: [ :el | self newSnippet: el ]
 ]
