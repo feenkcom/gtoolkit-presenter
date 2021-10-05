@@ -1,1 +1,1 @@
-Package { #name : 'BaselineOfGToolkitPresenter' }
+Package { #name : #BaselineOfGToolkitPresenter }
