@@ -4,8 +4,8 @@ I define a common API that should be implemented by all Live slides.
 
 "
 Class {
-	#name : 'GtProtoLiveSlide',
-	#superclass : 'BrStencil',
+	#name : #GtProtoLiveSlide,
+	#superclass : #BrStencil,
 	#instVars : [
 		'priority',
 		'definingMethod',
@@ -14,7 +14,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> classCoder [
 	^ GtClassCoderLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -22,7 +22,7 @@ GtProtoLiveSlide >> classCoder [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> connector [
 	^ GtConnectorForExampleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -30,26 +30,26 @@ GtProtoLiveSlide >> connector [
 			collect).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> custom: aSlide [
 	^ aSlide definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> definingMethod [
 	^ definingMethod.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> definingMethod: aCompiledMethod [
 	self unsubscribeFromSystem.
 	definingMethod := aCompiledMethod.
 	self subscribeToSystem.
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> devKeyboard [
 	^ GtDevKeyboardLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -57,7 +57,7 @@ GtProtoLiveSlide >> devKeyboard [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> documenter [
 	^ GtDocumenterLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -65,7 +65,7 @@ GtProtoLiveSlide >> documenter [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> editorElement [
 	^ GtEditorElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -73,7 +73,7 @@ GtProtoLiveSlide >> editorElement [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> element [
 	^ GtElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -81,7 +81,7 @@ GtProtoLiveSlide >> element [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> elementAndElement [
 	^ GtElementAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -89,7 +89,7 @@ GtProtoLiveSlide >> elementAndElement [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> empty [
 	^ GtEmptySlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -97,7 +97,7 @@ GtProtoLiveSlide >> empty [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> example [
 	^ GtExampleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -105,7 +105,7 @@ GtProtoLiveSlide >> example [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> filePicture [
 	^ GtFilePictureLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -113,12 +113,12 @@ GtProtoLiveSlide >> filePicture [
 			collect).
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> hasDefiningMethod [
 	^ self definingMethod isNotNil
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> inspectorViews [
 	^ GtInspectorViewsLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -126,7 +126,7 @@ GtProtoLiveSlide >> inspectorViews [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> labelAndElement [
 	^ GtLabelAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -134,7 +134,7 @@ GtProtoLiveSlide >> labelAndElement [
 			collect).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> lepiterPage [
 	^ GtLepiterPageLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -142,7 +142,7 @@ GtProtoLiveSlide >> lepiterPage [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> liveElementTree [
 	^ GtLiveElementTreeLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -150,7 +150,7 @@ GtProtoLiveSlide >> liveElementTree [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> mash [
 	^ GtMashExampleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -158,31 +158,31 @@ GtProtoLiveSlide >> mash [
 			collect).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> notes [
 	^ notes.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> notes: aString [
 	notes := aString.
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onDefiningMethodChange [
 	"I am called when the defining method has changed.
 	Subclasses may react to the method definition changes.
 	I may be called from a non-UI process."
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onDefiningMethodRemoved [
 	"I am called when the defining method has been removed.
 	Subclasses may react to the method definition removal.
 	I may be called from a non-UI process."
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onMethodModified: aMethodModified [
 	self hasDefiningMethod ifFalse: [ ^ self ].
 	(self definingMethod gtPhlowIncludesCompiledMethod: aMethodModified methodAffected)
@@ -190,7 +190,7 @@ GtProtoLiveSlide >> onMethodModified: aMethodModified [
 	self onDefiningMethodChange.
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 	self hasDefiningMethod ifFalse: [ ^ self ].
 	(aMethodRemoved methodRemoved hasPragmaNamed: #gtSlide) ifFalse: [ ^ self ].
@@ -200,7 +200,7 @@ GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 	self onDefiningMethodRemoved.
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> paragraph [
 	^ GtParagraphLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -208,7 +208,7 @@ GtProtoLiveSlide >> paragraph [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> playground [
 	^ GtPlaygroundLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -216,17 +216,17 @@ GtProtoLiveSlide >> playground [
 			collect).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> priority [
 	^ priority ifNil: [ 100 ].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtProtoLiveSlide >> priority: anInteger [
 	priority := anInteger.
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> searchFiltersHierarchy [
 	^ GtSearchFilterHierarchyLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -234,7 +234,7 @@ GtProtoLiveSlide >> searchFiltersHierarchy [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> slideshow [
 	^ GtSlideshowLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -242,7 +242,7 @@ GtProtoLiveSlide >> slideshow [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> spotter [
 	^ GtSpotterLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -250,14 +250,14 @@ GtProtoLiveSlide >> spotter [
 			collect).
 ]
 
-{ #category : 'private - subscriptions' }
+{ #category : #'private - subscriptions' }
 GtProtoLiveSlide >> subscribeToSystem [
 	SystemAnnouncer uniqueInstance weak
 		when: MethodModified send: #onMethodModified: to: self;
 		when: MethodRemoved send: #onMethodRemoved: to: self.
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> text [
 	^ GtTextLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -265,7 +265,7 @@ GtProtoLiveSlide >> text [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> textAndElement [
 	^ GtTextAndElementLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -273,7 +273,7 @@ GtProtoLiveSlide >> textAndElement [
 			collect).
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> title [
 	^ GtTitleLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -281,12 +281,12 @@ GtProtoLiveSlide >> title [
 			collect).
 ]
 
-{ #category : 'private - subscriptions' }
+{ #category : #'private - subscriptions' }
 GtProtoLiveSlide >> unsubscribeFromSystem [
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> wardleyMap [
 	^ GtWardleyMapSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
@@ -294,7 +294,7 @@ GtProtoLiveSlide >> wardleyMap [
 			collect)
 ]
 
-{ #category : 'decorating' }
+{ #category : #decorating }
 GtProtoLiveSlide >> world [
 	^ GtWorldLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 

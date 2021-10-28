@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtSlideshowSlide',
-	#superclass : 'GtSlide',
+	#name : #GtSlideshowSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'text',
 		'slideshow',
@@ -9,7 +9,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideshowSlide >> create [
 	| mainContainer textContainer previewContainer previewHeader previewContent |
 	
@@ -66,29 +66,29 @@ GtSlideshowSlide >> create [
 			addChild: previewContainer.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 GtSlideshowSlide >> initialize [
 	super initialize.
 	slideshow := [ GtSlideShow new ].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowSlide >> slideshow: aSlideshow [
 	self slideshow: aSlideshow withTitle: 'Slideshow'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowSlide >> slideshow: aSlideshow withTitle: aTitle [
 	slideshow := aSlideshow.
 	title := aTitle.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowSlide >> text: aText [
 	text := aText asRopedText glamorousRegularFont; fontSize: 16.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 GtSlideshowSlide >> textWithFormat: aText [
 	text := aText asRopedText.
 ]

@@ -6,8 +6,8 @@ I am an element and element live slide. I get two elements and display them, one
 
 "
 Class {
-	#name : 'GtElementAndElementLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtElementAndElementLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'leftElementBlock',
 		'rightElementBlock',
@@ -16,7 +16,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtElementAndElementLiveSlide >> create [
 	| mainContainer container |
 	mainContainer := BlElement new
@@ -60,7 +60,7 @@ GtElementAndElementLiveSlide >> create [
 	^ mainContainer
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtElementAndElementLiveSlide >> initialize [
 	super initialize.
 	textPieces := OrderedCollection new.
@@ -68,22 +68,22 @@ GtElementAndElementLiveSlide >> initialize [
 	self rightElement: BlElement new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtElementAndElementLiveSlide >> leftElement: anElement [
 	leftElementBlock := anElement.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtElementAndElementLiveSlide >> newText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize; foreground: Color gray)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtElementAndElementLiveSlide >> newTextWithFormat: aText [
 	textPieces add: aText asRopedText.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtElementAndElementLiveSlide >> rightElement: anElement [
 	rightElementBlock := anElement.
 ]

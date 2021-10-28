@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtTextAndElementSlide',
-	#superclass : 'GtSlide',
+	#name : #GtTextAndElementSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'texts',
 		'elementStencil',
@@ -9,7 +9,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementSlide >> create [
 	| container textContainer completeText |
 	completeText := texts allButFirst 
@@ -52,17 +52,17 @@ GtTextAndElementSlide >> create [
 	^ container
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementSlide >> element: aStencil [
 	elementStencil := aStencil
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementSlide >> elementWeight: aNumber [
 	elementWeight := aNumber
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtTextAndElementSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new.
@@ -70,12 +70,12 @@ GtTextAndElementSlide >> initialize [
 	elementWeight := 0.5
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementSlide >> newText: aRopedText [
 	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementSlide >> newTextWithFormat: aRopedText [
 	texts add: aRopedText asRopedText
 ]

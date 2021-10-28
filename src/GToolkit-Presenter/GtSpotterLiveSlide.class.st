@@ -6,12 +6,12 @@ I am a spotter live slide. I create a spotter element opened in the default cont
 
 "
 Class {
-	#name : 'GtSpotterLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtSpotterLiveSlide,
+	#superclass : #GtLiveSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSpotterLiveSlide >> create [
 	| aSpotter aSpotterElement container |
 	aSpotter := GtSpotter new.

@@ -4,12 +4,12 @@ I am an example live show. I have an example for each of the live slide template
 
 "
 Class {
-	#name : 'GtExampleLiveShow',
-	#superclass : 'Object',
-	#category : 'GToolkit-Presenter'
+	#name : #GtExampleLiveShow,
+	#superclass : #Object,
+	#category : #'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> allViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
@@ -17,7 +17,7 @@ GtExampleLiveShow >> allViewsExampleSlideFor: aSlide [
 		priority: 47.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> classCoderExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide classCoder
@@ -27,14 +27,14 @@ GtExampleLiveShow >> classCoderExampleSlideFor: aSlide [
 		expandMethodAt: 2.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> connectorExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide connector
 		priority: 42.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> customViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
@@ -42,22 +42,22 @@ GtExampleLiveShow >> customViewsExampleSlideFor: aSlide [
 		priority: 48.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> devKeyboardExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide devKeyboard
 		priority: 43.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> documenterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide documenter
 		priority: 56;
-		document: (GtDocumenter forClass: GtDocumenterExamples).
+		document: (LeCoderCommentElement coderElementFor: #GtDocumenterExamples).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
@@ -65,7 +65,7 @@ GtExampleLiveShow >> editorElementWithDebugCharacterExampleSlideFor: aSlide [
 		priority: 44.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
@@ -73,7 +73,7 @@ GtExampleLiveShow >> editorElementWithRotatedWordsExampleSlideFor: aSlide [
 		priority: 45.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> editorElementWithTreeExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide editorElement
@@ -81,7 +81,7 @@ GtExampleLiveShow >> editorElementWithTreeExampleSlideFor: aSlide [
 		priority: 46.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> elementAndElementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide elementAndElement
@@ -91,7 +91,7 @@ GtExampleLiveShow >> elementAndElementExampleSlideFor: aSlide [
 		rightElement: [BlElement new background: Color red].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> elementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide element
@@ -99,7 +99,7 @@ GtExampleLiveShow >> elementExampleSlideFor: aSlide [
 		element: [BlElement new background: Color red].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> filePictureExampleSlideFor: aSlide [
 	"<gtSlide>"
 	^ aSlide filePicture
@@ -107,7 +107,7 @@ GtExampleLiveShow >> filePictureExampleSlideFor: aSlide [
 		fileReference: './pharo-local/iceberg/feenkcom/gtoolkit/doc/gtoolkit.png'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> labelAndElementSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide labelAndElement
@@ -116,7 +116,7 @@ GtExampleLiveShow >> labelAndElementSlideFor: aSlide [
 		element: [BlElement new background: Color blue].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> liveElementTreeSlideExampleFor: aSlide [
 	<gtSlide>
 	| editor |
@@ -135,7 +135,7 @@ GtExampleLiveShow >> liveElementTreeSlideExampleFor: aSlide [
 					do: [ :anEvent | anEvent target effect: (BlNullEffect new) ] ]]).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide mash
@@ -158,7 +158,7 @@ GtExampleLiveShow >> mashExampleSlideFor: aSlide [
 					inspectSnippetAt: 1) asElement)).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> methodExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide example
@@ -166,7 +166,7 @@ GtExampleLiveShow >> methodExampleSlideFor: aSlide [
 		method: GtABAddressBookExample>>#myContactsAddressBook.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
@@ -174,7 +174,7 @@ GtExampleLiveShow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 		priority: 50.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> paragraphExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide paragraph
@@ -183,7 +183,7 @@ GtExampleLiveShow >> paragraphExampleSlideFor: aSlide [
 		subtitle: 'Paragraph title'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> playgroundExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide playground
@@ -191,7 +191,7 @@ GtExampleLiveShow >> playgroundExampleSlideFor: aSlide [
 		snippets: {'42 + 3'. '''This is a string'''}.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> rawViewsExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide inspectorViews
@@ -199,14 +199,14 @@ GtExampleLiveShow >> rawViewsExampleSlideFor: aSlide [
 		priority: 49.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> searchFiltersHierarchySlideFor: aSlide [
 	<gtSlide>
 	^ aSlide searchFiltersHierarchy
 		priority: 57.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide slideshow
@@ -215,14 +215,14 @@ GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 		slideshow: [ GtLiveShow createWithArrowsVisible: GtExampleLiveShow new ] withTitle: 'Example Slideshow'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> spotterExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide spotter
 		priority: 52.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> textAndElementExampleFor: aSlide [
 	<gtSlide>
 	^ aSlide textAndElement
@@ -231,7 +231,7 @@ GtExampleLiveShow >> textAndElementExampleFor: aSlide [
 		element: [GtTour new playgroundExplanationWithLinks].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> textExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide text
@@ -239,7 +239,7 @@ GtExampleLiveShow >> textExampleSlideFor: aSlide [
 		newText: 'This is a text slide'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> titleExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide title
@@ -249,7 +249,7 @@ GtExampleLiveShow >> titleExampleSlideFor: aSlide [
 			glamorousRegularFont).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleLiveShow >> worldExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide world

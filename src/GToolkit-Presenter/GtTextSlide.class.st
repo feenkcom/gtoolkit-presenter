@@ -1,13 +1,13 @@
 Class {
-	#name : 'GtTextSlide',
-	#superclass : 'GtSlide',
+	#name : #GtTextSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'texts'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextSlide >> create [
 	| container textContainer |
 	container := BlElement new
@@ -34,18 +34,18 @@ GtTextSlide >> create [
 	^ container
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtTextSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextSlide >> newText: aRopedText [
 	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextSlide >> newTextWithFormat: aRopedText [
 	texts add: aRopedText asRopedText
 ]

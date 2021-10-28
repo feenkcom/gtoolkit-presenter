@@ -1,13 +1,13 @@
 Class {
-	#name : 'GtExampleSlide',
-	#superclass : 'GtSlide',
+	#name : #GtExampleSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'method'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtExampleSlide >> create [
 	| container coder coderElement inspectorElement inspectorContainer |
 	
@@ -45,7 +45,7 @@ GtExampleSlide >> create [
 		addChild: inspectorContainer.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExampleSlide >> method: aMethod [
 	method := aMethod.
 ]

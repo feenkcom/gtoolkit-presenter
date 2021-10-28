@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtSlideShow',
-	#superclass : 'BrStencil',
+	#name : #GtSlideShow,
+	#superclass : #BrStencil,
 	#instVars : [
 		'slides',
 		'currentSlide',
@@ -17,23 +17,23 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> addSlide: aSlide [
 	slides add: aSlide.
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> background [
 	^ background
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> background: anObject [
 	background := anObject
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> create [
 	| previousElement nextElement container |
 
@@ -97,7 +97,7 @@ GtSlideShow >> create [
 	^ container
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> currentSlideIndex [
 	"Answer the index of the currently displayed slide.
 	nil if the slides aren't yet displayed"
@@ -107,19 +107,19 @@ GtSlideShow >> currentSlideIndex [
 		ifNotNil: [ currentSlide slideIndex ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> dropdown [ 
 
 	^dropdown
 ]
 
-{ #category : 'api - tasks' }
+{ #category : #'api - tasks' }
 GtSlideShow >> enqueueTask: aTask [
 
 	slidesContainer enqueueTask: aTask
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> exportSlides [
 	self slides
 		withIndexDo: [ :eachSlide :anIndex |	
@@ -132,7 +132,7 @@ GtSlideShow >> exportSlides [
 				writePNGFileNamed: self title, ' - ', anIndex asString, '.png' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> gtSlidesFor: aView [
 	<gtView>
 	^ aView list
@@ -141,17 +141,17 @@ GtSlideShow >> gtSlidesFor: aView [
 		itemText: #name
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> hasNextSlide [
 	^ self slides last ~= currentSlide
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> hasPreviousSlide [
 	^ self slides first ~= currentSlide
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtSlideShow >> initialize [
 	super initialize.
 	slides := OrderedCollection new.
@@ -159,18 +159,18 @@ GtSlideShow >> initialize [
 	background := Color white
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> makeArrowsVisible [
 	arrowsAreVisible := true
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> nextStep [
 	self hasNextSlide ifFalse: [ ^ self ].
 	currentSlide nextStepWith: self
 ]
 
-{ #category : 'hooks - children' }
+{ #category : #'hooks - children' }
 GtSlideShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
@@ -180,7 +180,7 @@ GtSlideShow >> onAddedToSceneGraph: aSpace [
 			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> openInSpace [ 
 	| space |
 	space := BlSpace new.
@@ -198,18 +198,18 @@ GtSlideShow >> openInSpace [
 	space show
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> previewsContainer [
 	^ previewsContainer
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> previousStep [
 	self hasPreviousSlide ifFalse: [ ^ self ].
 	currentSlide previousStepWith: self
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> showSlide: aSlide [
 	| slideContentElement |
 	currentSlide = aSlide
@@ -221,34 +221,34 @@ GtSlideShow >> showSlide: aSlide [
 	self updateArrows
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> showSlideAfter: aSlide [
 
 	self showSlide: (self slides at: currentSlide slideIndex + 1)
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> showSlideBefore: aSlide [
 	self showSlide: (self slides at: currentSlide slideIndex - 1)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> slides [
 	^ slides
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> slides: anObject [
 	slides := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> slidesContainer [
 
 	^slidesContainer
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> slidesDropdown [
 	| container aToolbar |
 	container := BlElement new.
@@ -313,17 +313,17 @@ GtSlideShow >> slidesDropdown [
 			yourself.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> title [
 	^ title ifNil: [ 'Gt Slide Show' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> title: anObject [
 	title := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShow >> updateArrows [
 	(arrowsAreVisible and: [ self hasPreviousSlide ])
 		ifTrue: [ previousArrow visibility: BlVisibility visible ]
@@ -333,7 +333,7 @@ GtSlideShow >> updateArrows [
 		ifFalse: [ nextArrow visibility: BlVisibility hidden ]
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideShow >> updateSlide: aSlide [
 	| slideContentElement |
 	currentSlide = aSlide ifFalse: [ ^ self ].

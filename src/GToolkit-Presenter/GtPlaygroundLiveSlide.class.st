@@ -6,15 +6,15 @@ I am a playground live slide. I receive a collection of snippets and display a p
 
 "
 Class {
-	#name : 'GtPlaygroundLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtPlaygroundLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'page'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 	| notTemp |
 	notTemp := aMethod ast body statements first.
@@ -34,7 +34,7 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 				separatedBy: [ stream cr ] ]
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
 	| toolElement |
 
@@ -53,14 +53,14 @@ GtPlaygroundLiveSlide >> create [
 	^ GtPager createWrappedOn: toolElement
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtPlaygroundLiveSlide >> initialize [
 	super initialize.
 	
 	page := LePage unnamedPageWithDefaultTitle: 'Playground'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 	| aScripter |
 	
@@ -83,17 +83,17 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 	^ aScripter elementWithoutParent
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> newSnippet: el [	
 	page addSnippet: (LePharoSnippet code: el)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> newSnippetFromMethod: aMethod [
 	self newSnippet: ((self codeFromMethod: aMethod))
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtPlaygroundLiveSlide >> snippets: aCollection [
 	aCollection do: [ :el | self newSnippet: el ]
 ]

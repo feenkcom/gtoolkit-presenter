@@ -1,13 +1,13 @@
 Class {
-	#name : 'GtLiveElementTreeSlide',
-	#superclass : 'GtSlide',
+	#name : #GtLiveElementTreeSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'targetElement'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtLiveElementTreeSlide >> create [
 	| targetContainer container highlighted m treeElement |
 	targetContainer := BlElement new 
@@ -69,7 +69,7 @@ GtLiveElementTreeSlide >> create [
 	^ container
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtLiveElementTreeSlide >> initialize [ 
 	| text styler |
 	super initialize.
@@ -82,12 +82,12 @@ GtLiveElementTreeSlide >> initialize [
 	targetElement forceLayout.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveElementTreeSlide >> targetElement [
 	^ targetElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveElementTreeSlide >> targetElement: anObject [
 	targetElement := anObject
 ]

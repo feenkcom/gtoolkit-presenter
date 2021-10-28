@@ -1,25 +1,25 @@
 Class {
-	#name : 'GtSlideShowElement',
-	#superclass : 'BlElement',
+	#name : #GtSlideShowElement,
+	#superclass : #BlElement,
 	#instVars : [
 		'slideShow'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'hooks - children' }
+{ #category : #'hooks - children' }
 GtSlideShowElement >> onAddedToSceneGraph [
 
 	super onAddedToSceneGraph.
 	self slideShow onAddedToSceneGraph: self space
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShowElement >> slideShow [
 	^ slideShow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideShowElement >> slideShow: anObject [
 	slideShow := anObject
 ]

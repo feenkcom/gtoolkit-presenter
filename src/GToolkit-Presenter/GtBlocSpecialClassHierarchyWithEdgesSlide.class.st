@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtBlocSpecialClassHierarchyWithEdgesSlide',
-	#superclass : 'GtSlide',
+	#name : #GtBlocSpecialClassHierarchyWithEdgesSlide,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtBlocSpecialClassHierarchyWithEdgesSlide >> create [
 	<return: #Object>
 

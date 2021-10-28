@@ -6,8 +6,8 @@ I am a class coder live slide. I create and display a coder opened on a given cl
 
 "
 Class {
-	#name : 'GtClassCoderLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtClassCoderLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'class',
 		'expandHeader',
@@ -16,12 +16,12 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtClassCoderLiveSlide >> class: aClass [
 	class := aClass
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtClassCoderLiveSlide >> create [
 	| coder coderElement aScripter |
 	
@@ -78,29 +78,29 @@ GtClassCoderLiveSlide >> create [
 		addChild: coderElement.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtClassCoderLiveSlide >> expandHeader: aBoolean [
 	expandHeader := aBoolean.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtClassCoderLiveSlide >> expandMethodAt: aNumber [
 	expandMethod := aNumber.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtClassCoderLiveSlide >> expandedMethod [
 	^ expandMethod.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtClassCoderLiveSlide >> initialize [
 	super initialize.
 	expandMethod := 0.
 	expandHeader := false.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtClassCoderLiveSlide >> isHeaderExpanded [
 	^ expandHeader.
 ]

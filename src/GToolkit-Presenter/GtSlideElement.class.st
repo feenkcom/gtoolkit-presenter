@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtSlideElement',
-	#superclass : 'BlAsyncElement',
+	#name : #GtSlideElement,
+	#superclass : #BlAsyncElement,
 	#instVars : [
 		'slide',
 		'slideElement'
@@ -8,12 +8,12 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtSlideElement >> defaultPreviewStrategy [
 	^ BlAsyncPreviewStrategy delayedStencil: BrGlamorousAsyncElementProgressPreviewStencil new
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 GtSlideElement >> drawOnSpartaCanvas: aCanvas [
 	super drawOnSpartaCanvas: aCanvas.
 
@@ -22,7 +22,7 @@ GtSlideElement >> drawOnSpartaCanvas: aCanvas [
 	slideElement ifNil: [ self queueAsyncUpdate ]
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 GtSlideElement >> needsUpdate [
 	"Answer a boolean indicating whether the receiver needs to be updated (via an asynchronous task).
 	In GtSlideShow only the current slide is attached to the scene graph - the receiver needs to be updated if its slide show is attached to the scene graph."
@@ -38,7 +38,7 @@ GtSlideElement >> needsUpdate [
 	^true
 ]
 
-{ #category : 'async processing' }
+{ #category : #'async processing' }
 GtSlideElement >> queueAsyncUpdate [
 	"Queue a task to update the receiver's state.
 	Since slides generate their cached element and preview element together defer to the slide"
@@ -49,29 +49,29 @@ GtSlideElement >> queueAsyncUpdate [
 	self slide queueAsyncUpdate: self space
 ]
 
-{ #category : 'async processing' }
+{ #category : #'async processing' }
 GtSlideElement >> queueEntry [
 	"GtSlideElement is unusual in that it is the slide that is responsible for queueing tasks"
 
 	^self shouldNotImplement 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideElement >> slide [
 	^ slide
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideElement >> slide: anObject [
 	slide := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideElement >> slideElement [
 	^ slideElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideElement >> slideElement: aBlElement [
 	"Set the receiver's slide element.
 	Must be called from the UI process"
@@ -83,7 +83,7 @@ GtSlideElement >> slideElement: aBlElement [
 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 GtSlideElement >> slideShowIsAttachedToSceneGraph [
 	"Answer a boolean indicating whether the receiver's slide show is attached to a scene graph.
 	The receiver will only be attached to a scene graph while it is the current slide."

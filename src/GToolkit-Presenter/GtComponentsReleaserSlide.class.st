@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtComponentsReleaserSlide',
-	#superclass : 'GtSlide',
+	#name : #GtComponentsReleaserSlide,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtComponentsReleaserSlide >> create [
 	| container |
 	container := BlElement new

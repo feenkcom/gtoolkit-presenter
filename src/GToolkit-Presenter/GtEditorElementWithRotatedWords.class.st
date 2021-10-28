@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtEditorElementWithRotatedWords',
-	#superclass : 'GtSlide',
+	#name : #GtEditorElementWithRotatedWords,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtEditorElementWithRotatedWords >> create [
 	<return: #Object>
 	| aContainer anEditor theButtons |

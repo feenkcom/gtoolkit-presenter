@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtEditorElementWithDebugCharacterSlide',
-	#superclass : 'GtSlide',
+	#name : #GtEditorElementWithDebugCharacterSlide,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtEditorElementWithDebugCharacterSlide >> create [
 	<return: #Object>
 	| aText |

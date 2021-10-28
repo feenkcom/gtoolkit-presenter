@@ -6,12 +6,12 @@ I show an editor element with three buttons that can alter the look of the edito
 
 "
 Class {
-	#name : 'GtEditorElementWithRotatedWordsLiveSlide',
-	#superclass : 'GtEditorElementLiveSlide',
+	#name : #GtEditorElementWithRotatedWordsLiveSlide,
+	#superclass : #GtEditorElementLiveSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtEditorElementWithRotatedWordsLiveSlide >> create [
 	<return: #Object>
 	| aContainer anEditor theButtons |

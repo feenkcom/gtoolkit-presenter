@@ -1,13 +1,13 @@
 Class {
-	#name : 'GtSlideRunner',
-	#superclass : 'Object',
+	#name : #GtSlideRunner,
+	#superclass : #Object,
 	#instVars : [
 		'slide'
 	],
 	#category : 'GToolkit-Presenter-Runtime'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideRunner >> run [
 	| space |
 	BlUseAsyncFeatures disableDuring:[
@@ -23,7 +23,7 @@ GtSlideRunner >> run [
 	^ space
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideRunner >> slide: aSlide [
 	slide := aSlide.
 ]

@@ -6,8 +6,8 @@ I am a lable and element live slide. I get a label in the form of a text and an 
 
 "
 Class {
-	#name : 'GtLabelAndElementLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtLabelAndElementLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'elementBlock',
 		'textPieces'
@@ -15,7 +15,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtLabelAndElementLiveSlide >> create [
 	| container |
 	container := BlElement new
@@ -43,29 +43,29 @@ GtLabelAndElementLiveSlide >> create [
 	^ container
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLabelAndElementLiveSlide >> element: anElement [
 	elementBlock := anElement.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtLabelAndElementLiveSlide >> initialize [
 	super initialize.
 	textPieces := OrderedCollection new.
 	self element: BlElement new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLabelAndElementLiveSlide >> newFadedText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFont; fontSize: 16; foreground: Color gray)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLabelAndElementLiveSlide >> newText: aText [
 	self newTextWithFormat: (aText asRopedText glamorousRegularFontAndSize)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLabelAndElementLiveSlide >> newTextWithFormat: aText [
 	textPieces add: aText asRopedText.
 ]
