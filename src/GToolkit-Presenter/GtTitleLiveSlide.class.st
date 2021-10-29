@@ -6,8 +6,8 @@ I am a title live slide. I get a text for the title and, if necessary, a text fo
 
 "
 Class {
-	#name : 'GtTitleLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtTitleLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'subtitle',
 		'title'
@@ -15,7 +15,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTitleLiveSlide >> create [
 	^  BlElement new 
 			constraintsDo: [ :c |
@@ -40,29 +40,29 @@ GtTitleLiveSlide >> create [
 							text: subtitle))
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtTitleLiveSlide >> initialize [
 	super initialize.
 	self title: ''.
 	self subtitle: ''
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTitleLiveSlide >> subtitle: aString [
 	self subtitleWithFormat: (aString asRopedText fontSize: 20; glamorousRegularFont).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTitleLiveSlide >> subtitleWithFormat: aText [
 	subtitle := aText
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTitleLiveSlide >> title: aString [
 	self titleWithFormat: (aString asRopedText fontSize: 30; glamorousRegularFont).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTitleLiveSlide >> titleWithFormat: aString [
 	title := aString.
 ]

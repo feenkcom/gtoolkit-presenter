@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtEditorElementWithTreeSlide',
-	#superclass : 'GtSlide',
+	#name : #GtEditorElementWithTreeSlide,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtEditorElementWithTreeSlide >> create [
 	| container verticalContainer horizontalContainer editorElement preview button label |
 	

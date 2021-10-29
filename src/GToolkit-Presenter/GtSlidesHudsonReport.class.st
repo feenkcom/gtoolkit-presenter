@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtSlidesHudsonReport',
-	#superclass : 'GtExamplesTestingHudsonReport',
+	#name : #GtSlidesHudsonReport,
+	#superclass : #GtExamplesTestingHudsonReport,
 	#category : 'GToolkit-Presenter-Runtime'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 GtSlidesHudsonReport class >> runPackage: aString [
 	^ self new 
 		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlideBuildersAllContained;
@@ -12,13 +12,13 @@ GtSlidesHudsonReport class >> runPackage: aString [
 		run
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 GtSlidesHudsonReport class >> runPackages: aCollectionOfStrings [
 	^ aCollectionOfStrings collect: [ :each | 
 		self runPackage: each ]
 ]
 
-{ #category : 'accessing - test case' }
+{ #category : #'accessing - test case' }
 GtSlidesHudsonReport >> containerNameFor: aSlide [
 	| definingClass |
 	definingClass := aSlide definingMethod.
@@ -29,29 +29,29 @@ GtSlidesHudsonReport >> containerNameFor: aSlide [
 		
 ]
 
-{ #category : 'accessing - test case' }
+{ #category : #'accessing - test case' }
 GtSlidesHudsonReport >> loggingNameFor: anExample [
 	| definingMethod |
 	definingMethod := anExample definingMethod.
 	^ definingMethod methodClass name, '>>', definingMethod selector
 ]
 
-{ #category : 'accessing - test case' }
+{ #category : #'accessing - test case' }
 GtSlidesHudsonReport >> nameFor: aSlide [
 	^ aSlide definingMethod selector
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlidesHudsonReport >> progressFileName [
 	^ 'progress-slides.log'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlidesHudsonReport >> resultsFileName [
 	^ self reportName , '-Slides.xml'
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 	| errorDetails stack |
 	
@@ -77,12 +77,12 @@ GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 	self endTestCase
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 GtSlidesHudsonReport >> runTestCase: anExample [
 	^ self runSlideBuilder: anExample
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlidesHudsonReport >> stackTraceString: err of: aTestCase [
 	^ String streamContents: [ :str | 
 		| context |
@@ -94,7 +94,7 @@ GtSlidesHudsonReport >> stackTraceString: err of: aTestCase [
 			context := context sender ] ] 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlidesHudsonReport >> testCasesToRun [
 	^ self testCases reject: [ :aSlideExample |
 		aSlideExample ignoreSlideTest ].

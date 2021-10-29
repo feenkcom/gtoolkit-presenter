@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtDebuggerOnJSParserSlide',
-	#superclass : 'GtSlide',
+	#name : #GtDebuggerOnJSParserSlide,
+	#superclass : #GtSlide,
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtDebuggerOnJSParserSlide >> create [
 	| context process debuggingSession |
 	context := [ JSParser parse: 'if (x == 42) return true;' ] asContext.

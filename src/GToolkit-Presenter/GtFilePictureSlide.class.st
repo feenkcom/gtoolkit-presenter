@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtFilePictureSlide',
-	#superclass : 'GtSlide',
+	#name : #GtFilePictureSlide,
+	#superclass : #GtSlide,
 	#instVars : [
 		'fileReference',
 		'background',
@@ -9,17 +9,17 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> background [
 	^ background ifNil: [ background := Color white ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> background: anObject [
 	background := anObject
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtFilePictureSlide >> create [
 	| form container |
 	container := BlElement new 
@@ -34,28 +34,28 @@ GtFilePictureSlide >> create [
 		background: (BlImageBackground new image: form)) asScalableElement maxScale: self maxScale)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> fileReference [
 	^ fileReference
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> fileReference: aStringOrFileReference [
 	fileReference := aStringOrFileReference asFileReference 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> initialize [
 	super initialize.
 	maxScale := 1.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> maxScale [
 	^ maxScale
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureSlide >> maxScale: aNumber [
 	maxScale := aNumber
 ]

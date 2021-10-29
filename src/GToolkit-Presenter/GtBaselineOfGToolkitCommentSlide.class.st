@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtBaselineOfGToolkitCommentSlide',
-	#superclass : 'GtSlide',
-	#category : 'GToolkit-Presenter'
+	#name : #GtBaselineOfGToolkitCommentSlide,
+	#superclass : #GtSlide,
+	#category : #'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtBaselineOfGToolkitCommentSlide >> create [
-	^ GtPager createWrappedOn: (GtDocumenter forClass: BaselineOfGToolkit)
+	^ GtPager createWrappedOn: (LeCoderCommentElement coderElementFor: #BaselineOfGToolkit)
 ]

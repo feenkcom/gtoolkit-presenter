@@ -6,8 +6,8 @@ I am a mash example live slide. I receive three elements and i show o mash of th
 
 "
 Class {
-	#name : 'GtMashExampleLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtMashExampleLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'leftElement',
 		'rightElement',
@@ -16,7 +16,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> centerElement: anElement [
 	self centerElementWithConstraints: ( anElement
 		constraintsDo: [:c |
@@ -27,12 +27,12 @@ GtMashExampleLiveSlide >> centerElement: anElement [
 		margin: (BlInsets all: 10)).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> centerElementWithConstraints: anElement [
 	centerElement := anElement.
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtMashExampleLiveSlide >> create [
 	^ (BlElement new
 		constraintsDo: [ :c | 
@@ -42,7 +42,7 @@ GtMashExampleLiveSlide >> create [
 		addChildren: {leftElement. centerElement. rightElement}) asScalableElement.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtMashExampleLiveSlide >> initialize [
 	super initialize.
 	leftElement := BlElement new.
@@ -50,7 +50,7 @@ GtMashExampleLiveSlide >> initialize [
 	rightElement := BlElement new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> leftElement: anElement [
 	self leftElementWithConstraints: (anElement
 		constraintsDo: [:c |
@@ -61,12 +61,12 @@ GtMashExampleLiveSlide >> leftElement: anElement [
 		margin: (BlInsets top: 100 right: 10 bottom: 10 left: 10)).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> leftElementWithConstraints: anElement [
 	leftElement := anElement.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> rightElement: anElement [
 	self rightElementWithConstraints: (anElement
 		constraintsDo: [:c |
@@ -77,7 +77,7 @@ GtMashExampleLiveSlide >> rightElement: anElement [
 		margin: (BlInsets all: 10)).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtMashExampleLiveSlide >> rightElementWithConstraints: anElement [
 	rightElement := anElement.
 ]

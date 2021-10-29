@@ -6,8 +6,8 @@ I am a live slide that gets a picture reference and displays it. Optionally a sc
 
 "
 Class {
-	#name : 'GtFilePictureLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtFilePictureLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'fileReference',
 		'background',
@@ -16,17 +16,17 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> background [
 	^ background ifNil: [ background := Color white ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> background: anObject [
 	background := anObject
 ]
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtFilePictureLiveSlide >> create [
 	| form container |
 	container := BlElement new 
@@ -41,28 +41,28 @@ GtFilePictureLiveSlide >> create [
 		background: (BlImageBackground new image: form)) asScalableElement maxScale: self maxScale)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> fileReference [
 	^ fileReference.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> fileReference: aStringOrFileReference [
 	fileReference := aStringOrFileReference asFileReference 
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtFilePictureLiveSlide >> initialize [
 	super initialize.
 	maxScale := 1.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> maxScale [
 	^ maxScale.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtFilePictureLiveSlide >> maxScale: aNumber [
 	maxScale := aNumber
 ]

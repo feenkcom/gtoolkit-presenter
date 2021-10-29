@@ -1,6 +1,6 @@
-Extension { #name : 'CompiledMethod' }
+Extension { #name : #CompiledMethod }
 
-{ #category : '*GToolkit-Presenter' }
+{ #category : #'*GToolkit-Presenter' }
 CompiledMethod >> gtSlide [
 	<gtCollector>
 	^ thisContext
@@ -10,7 +10,7 @@ CompiledMethod >> gtSlide [
 		inClass: self methodClass.
 ]
 
-{ #category : '*GToolkit-Presenter' }
+{ #category : #'*GToolkit-Presenter' }
 CompiledMethod >> gtSlideBuilder [
 	^ GtSlideBuilder new
 		slideShowClass: self methodClass;

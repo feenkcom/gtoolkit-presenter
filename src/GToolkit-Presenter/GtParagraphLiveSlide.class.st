@@ -6,8 +6,8 @@ I am a paragraph live slide. I receive a paragraph subtitle and a text and displ
 
 "
 Class {
-	#name : 'GtParagraphLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtParagraphLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'subtitle',
 		'paragraph'
@@ -15,7 +15,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtParagraphLiveSlide >> create [
 	^  BlElement new 
 			constraintsDo: [ :c |
@@ -39,7 +39,7 @@ GtParagraphLiveSlide >> create [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtParagraphLiveSlide >> fullText [
 	^ '' asRopedText
 		append: subtitle;
@@ -48,19 +48,19 @@ GtParagraphLiveSlide >> fullText [
 		yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtParagraphLiveSlide >> initialize [ 
 	super initialize.
 	self subtitle: ''.
 	self paragraph: ''.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtParagraphLiveSlide >> paragraph: aString [
 	paragraph := aString asRopedText fontSize: 30; glamorousRegularFont
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtParagraphLiveSlide >> subtitle: aString [
 	subtitle := aString asRopedText fontSize: 40; glamorousRegularFont
 ]

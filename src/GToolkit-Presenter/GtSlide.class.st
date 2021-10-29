@@ -1,6 +1,6 @@
 Class {
-	#name : 'GtSlide',
-	#superclass : 'BrStencil',
+	#name : #GtSlide,
+	#superclass : #BrStencil,
 	#instVars : [
 		'slideShow',
 		'slideIndex',
@@ -12,7 +12,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> asCachedElement [
 	"Answer the receiver's cached element.
 	Must be called from the UI process."
@@ -20,7 +20,7 @@ GtSlide >> asCachedElement [
 	^ cachedElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> asPreviewElement [
 	"Answer the receiver's preview element.
 	Must be called from the UI process."
@@ -28,17 +28,17 @@ GtSlide >> asPreviewElement [
 	^ previewElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> cachedElement [
 	^ cachedElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> cachedElement: anObject [
 	cachedElement := anObject
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlide >> generateElements [
 	"Generate the receiver's element and preview"
 
@@ -69,7 +69,7 @@ GtSlide >> generateElements [
 			addChild: formElement ]).
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtSlide >> initialize [
 
 	super initialize.
@@ -90,61 +90,61 @@ GtSlide >> initialize [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> name [
 	^ (self class name gtRemovePrefix: 'Gt') gtRemoveSuffix: 'Slide'
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 GtSlide >> needsUpdate [ 
 
 	^cachedElement needsUpdate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> nextStepWith: aSlider [
 	aSlider showSlideAfter: self
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlide >> onAddedToSceneGraphAction [
 	^ onAddedToSceneGraphAction ifNil: [^[:anElement | ]].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> onEveryAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := true.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> onFirstAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := false.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlide >> performActionOn: element [
 	self onAddedToSceneGraphAction cull: element.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> previewElement [
 	previewElement hasChildren ifFalse: [ previewElement schedulePreview ].
 	^ previewElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> previewElement: anObject [
 	previewElement := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> previousStepWith: aSlider [
 	aSlider showSlideBefore: self
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlide >> queueAsyncUpdate: aSpace [
 	"Submit a task to cache the receiver's elements"
 	| aCommand aTelemetry |
@@ -169,27 +169,27 @@ GtSlide >> queueAsyncUpdate: aSpace [
 				during: [ aCommand execute ] ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtSlide >> shouldPerformActionEveryTime [
 	^ shouldPerformActionEveryTime.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> slideIndex [
 	^ slideIndex
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> slideIndex: anObject [
 	slideIndex := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> slideShow [
 	^ slideShow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlide >> slideShow: anObject [
 	slideShow := anObject
 ]

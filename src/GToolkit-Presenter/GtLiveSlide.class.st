@@ -4,8 +4,8 @@ A live slide is a slide that can be used in live shows and it can be edited live
 
 "
 Class {
-	#name : 'GtLiveSlide',
-	#superclass : 'GtProtoLiveSlide',
+	#name : #GtLiveSlide,
+	#superclass : #GtProtoLiveSlide,
 	#instVars : [
 		'shouldPerformActionEveryTime',
 		'onAddedToSceneGraphAction',
@@ -18,7 +18,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> asCachedElement [
 	"Answer the receiver's cached element.
 	Must be called from the UI process."
@@ -26,7 +26,7 @@ GtLiveSlide >> asCachedElement [
 	^ cachedElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> asPreviewElement [
 	"Answer the receiver's preview element.
 	Must be called from the UI process."
@@ -34,17 +34,17 @@ GtLiveSlide >> asPreviewElement [
 	^ previewElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> cachedElement [
 	^ cachedElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> cachedElement: anObject [
 	cachedElement := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> generateElements [
 	"Generate the receiver's element and preview"
 
@@ -78,7 +78,7 @@ GtLiveSlide >> generateElements [
 			addChild: formElement ]).
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtLiveSlide >> initialize [
 	super initialize.
 	shouldPerformActionEveryTime := true.
@@ -101,38 +101,38 @@ GtLiveSlide >> initialize [
 	self updatePreviewElementLook
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> isSlideSelected [
 	^ isSlideSelected.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> isSlideSelected: aBoolean [
 	isSlideSelected := aBoolean.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> name [
 	^ (self class name gtRemovePrefix: 'Gt').
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> needsUpdate [ 
 
 	^cachedElement needsUpdate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> nextStepWith: aSlider [
 	aSlider showSlideAfter: self
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onAddedToSceneGraphAction [
 	^ onAddedToSceneGraphAction ifNil: [^[:anElement | ]].
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onDefiningMethodChange [
 	"I am called when the defining method has changed.
 	Subclasses may react to the method definition changes.
@@ -143,7 +143,7 @@ GtLiveSlide >> onDefiningMethodChange [
 		aShow slideDefinitionChangedFor: self ]
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onDefiningMethodRemoved [
 	"I am called when the defining method has changed.
 	Subclasses may react to the method definition changes.
@@ -154,40 +154,40 @@ GtLiveSlide >> onDefiningMethodRemoved [
 		aShow slideDefinitionRemovedFor: self ]
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onEveryAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := true.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> onFirstAddToSceneGraphDo: aBlock [
 	shouldPerformActionEveryTime := false.
 	onAddedToSceneGraphAction := aBlock.
 ]
 
-{ #category : 'private - event handling' }
+{ #category : #'private - event handling' }
 GtLiveSlide >> performActionOn: element [
 	self onAddedToSceneGraphAction cull: element.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> previewElement [
 	previewElement hasChildren ifFalse: [ previewElement schedulePreview ].
 	^ previewElement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> previewElement: anObject [
 	previewElement := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> previousStepWith: aSlider [
 	aSlider showSlideBefore: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> queueAsyncUpdate: aSpace [
 	"Submit a task to cache the receiver's elements"
 	| aCommand aTelemetry |
@@ -212,39 +212,39 @@ GtLiveSlide >> queueAsyncUpdate: aSpace [
 				during: [ aCommand execute ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> run [
 	^ GtSlideRunner new
 		slide: self;
 		run.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> shouldPerformActionEveryTime [
 	^ shouldPerformActionEveryTime.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> slideIndex [
 	^ slideIndex
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> slideIndex: anObject [
 	slideIndex := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> slideShow [
 	^ slideShow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> slideShow: anObject [
 	slideShow := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlide >> updatePreviewElementLook [
 	isSlideSelected
 		ifTrue: [

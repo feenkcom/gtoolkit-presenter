@@ -6,8 +6,8 @@ I am a text and element live slide. I receive a text, with or without a format a
 
 "
 Class {
-	#name : 'GtTextAndElementLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtTextAndElementLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'elementWeight',
 		'elementStencil',
@@ -16,7 +16,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtTextAndElementLiveSlide >> create [
 	| container textContainer completeText |
 	completeText := texts allButFirst 
@@ -59,17 +59,17 @@ GtTextAndElementLiveSlide >> create [
 	^ container
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTextAndElementLiveSlide >> element: aStencil [
 	elementStencil := aStencil
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTextAndElementLiveSlide >> elementWeight: aNumber [
 	elementWeight := aNumber
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtTextAndElementLiveSlide >> initialize [
 	super initialize.
 	texts := OrderedCollection new.
@@ -77,12 +77,12 @@ GtTextAndElementLiveSlide >> initialize [
 	elementWeight := 0.5
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTextAndElementLiveSlide >> newText: aRopedText [
 	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtTextAndElementLiveSlide >> newTextWithFormat: aRopedText [
 	texts add: aRopedText asRopedText
 ]

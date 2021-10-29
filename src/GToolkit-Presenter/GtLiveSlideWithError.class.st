@@ -1,23 +1,23 @@
 Class {
-	#name : 'GtLiveSlideWithError',
-	#superclass : 'GtLiveSlide',
+	#name : #GtLiveSlideWithError,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'error'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlideWithError >> create [
 	^ error asDebuggableElement.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlideWithError >> error [
 	^ error.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtLiveSlideWithError >> error: anObject [
 	error := anObject.
 ]

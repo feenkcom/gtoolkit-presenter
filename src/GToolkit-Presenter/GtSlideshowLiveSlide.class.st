@@ -6,8 +6,8 @@ I am a live slide that has a link to another live show. I receive that slideshow
 
 "
 Class {
-	#name : 'GtSlideshowLiveSlide',
-	#superclass : 'GtLiveSlide',
+	#name : #GtSlideshowLiveSlide,
+	#superclass : #GtLiveSlide,
 	#instVars : [
 		'title',
 		'slideshow',
@@ -16,7 +16,7 @@ Class {
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtSlideshowLiveSlide >> create [
 	| mainContainer textContainer previewContainer previewHeader previewContent |
 	
@@ -73,29 +73,29 @@ GtSlideshowLiveSlide >> create [
 			addChild: previewContainer.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtSlideshowLiveSlide >> initialize [
 	super initialize.
 	slideshow := [ GtSlideShow new ].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowLiveSlide >> slideshow: aSlideshow [
 	self slideshow: aSlideshow withTitle: 'Slideshow'.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowLiveSlide >> slideshow: aSlideshow withTitle: aTitle [
 	slideshow := aSlideshow.
 	title := aTitle.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowLiveSlide >> text: aText [
 	self textWithFormat: (aText asRopedText glamorousRegularFont; fontSize: 16).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSlideshowLiveSlide >> textWithFormat: aText [
 	text := aText asRopedText.
 ]

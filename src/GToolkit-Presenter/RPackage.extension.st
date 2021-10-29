@@ -1,6 +1,6 @@
-Extension { #name : 'RPackage' }
+Extension { #name : #RPackage }
 
-{ #category : '*GToolkit-Presenter' }
+{ #category : #'*GToolkit-Presenter' }
 RPackage >> gtSlideBuildersAllContained [
 	"I obtain all slide builders contained in this package by collecting all slide builders 
 	contained by the classes in this package."
@@ -12,7 +12,7 @@ RPackage >> gtSlideBuildersAllContained [
 	^ sideBuilders asOrderedCollection
 ]
 
-{ #category : '*GToolkit-Presenter' }
+{ #category : #'*GToolkit-Presenter' }
 RPackage >> gtSlidesAllContained [
 	"I obtain all slides contained in this package."
 	^ self gtSlideBuildersAllContained collect: [:each | each build ]

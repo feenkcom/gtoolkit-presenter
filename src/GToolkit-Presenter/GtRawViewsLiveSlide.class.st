@@ -6,15 +6,15 @@ I show the raw view for various objects.
 
 "
 Class {
-	#name : 'GtRawViewsLiveSlide',
-	#superclass : 'GtInspectorViewsLiveSlide',
+	#name : #GtRawViewsLiveSlide,
+	#superclass : #GtInspectorViewsLiveSlide,
 	#instVars : [
 		'containerLayout'
 	],
 	#category : 'GToolkit-Presenter'
 }
 
-{ #category : 'api - instantiation' }
+{ #category : #'api - instantiation' }
 GtRawViewsLiveSlide >> create [
 	| container |
 	container := BlElement new
