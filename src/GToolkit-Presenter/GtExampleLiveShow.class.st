@@ -18,6 +18,14 @@ GtExampleLiveShow >> allViewsExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleLiveShow >> clasCommentExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide element
+		priority: 56;
+		element: [ (LeCoderCommentElement coderElementFor: #BaselineOfGToolkit)]
+]
+
+{ #category : #accessing }
 GtExampleLiveShow >> classCoderExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide classCoder
@@ -47,14 +55,6 @@ GtExampleLiveShow >> devKeyboardExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide devKeyboard
 		priority: 43.
-]
-
-{ #category : #accessing }
-GtExampleLiveShow >> documenterExampleSlideFor: aSlide [
-	<gtSlide>
-	^ aSlide documenter
-		priority: 56;
-		document: (LeCoderCommentElement coderElementFor: #GtDocumenterExamples).
 ]
 
 { #category : #accessing }
