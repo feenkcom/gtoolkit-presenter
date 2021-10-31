@@ -1,18 +1,18 @@
 Class {
-	#name : 'GtValidatorTextAttribute',
-	#superclass : 'BlTextAttribute',
+	#name : #GtValidatorTextAttribute,
+	#superclass : #BlTextAttribute,
 	#instVars : [
 		'model'
 	],
 	#category : 'GToolkit-Explainer-Validator'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtValidatorTextAttribute >> model [
 	^ model
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtValidatorTextAttribute >> model: anObject [
 	model := anObject
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #GtArrowHeadWithEmbeddedWorldSlide,
 	#superclass : #GtSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -28,7 +28,7 @@ GtArrowHeadWithEmbeddedWorldSlide >> create [
 			alignCenter;
 			matchParent;
 			padding: (BlInsets all: 20);
-			geometry: BlCircle new;
+			geometry: BlCircleGeometry new;
 			"addChild: (BrEditor new
 				text: 'Hi';
 				geometry: BlCircle new;

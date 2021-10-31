@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtExplainerExplanationAttributeAptitude',
-	#superclass : 'BrStyleCommonAptitude',
+	#name : #GtExplainerExplanationAttributeAptitude,
+	#superclass : #BrStyleCommonAptitude,
 	#category : 'GToolkit-Explainer'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtExplainerExplanationAttributeAptitude >> initialize [
 	super initialize.
 	self

@@ -1,29 +1,29 @@
 Class {
-	#name : 'GtValidatorTargetAptitude',
-	#superclass : 'BrAptitude',
+	#name : #GtValidatorTargetAptitude,
+	#superclass : #BrAptitude,
 	#instVars : [
 		'model'
 	],
 	#category : 'GToolkit-Explainer-Validator'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtValidatorTargetAptitude >> initializeListeners [
 	super initializeListeners.
 	self when: GtValidatorAttributeEvent do: [ :anEvent | self updateWidgetWithValue: anEvent hasAttribute ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtValidatorTargetAptitude >> model [
 	^ model
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtValidatorTargetAptitude >> model: anObject [
 	model := anObject
 ]
 
-{ #category : 'api - hooks' }
+{ #category : #'api - hooks' }
 GtValidatorTargetAptitude >> onInstalledIn: anElement [
 	super onInstalledIn: anElement.
 	(anElement explainer)
@@ -31,7 +31,7 @@ GtValidatorTargetAptitude >> onInstalledIn: anElement [
 		isValidatorTarget: true
 ]
 
-{ #category : 'api - hooks' }
+{ #category : #'api - hooks' }
 GtValidatorTargetAptitude >> onUninstalledIn: anElement [
 	(anElement explainer)
 		model: nil;
@@ -39,6 +39,6 @@ GtValidatorTargetAptitude >> onUninstalledIn: anElement [
 	super onUninstalledIn: anElement
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GtValidatorTargetAptitude >> updateWidgetWithValue: aBoolean [
 ]

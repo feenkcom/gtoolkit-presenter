@@ -4,15 +4,15 @@ I add a yellow circle adornment to selectors in a text. The selectors are pragma
 
 "
 Class {
-	#name : 'GtSelectorExplanationLinkStyler',
-	#superclass : 'GtSourceExplanationLinkStyler',
+	#name : #GtSelectorExplanationLinkStyler,
+	#superclass : #GtSourceExplanationLinkStyler,
 	#instVars : [
 		'selectorsDictionary'
 	],
 	#category : 'GToolkit-Explainer-Coder add-on'
 }
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GtSelectorExplanationLinkStyler >> addExplanationAttributeFor: aNode withIdentifier: anIdentifier [
 	| anAttribute |
 
@@ -34,39 +34,39 @@ GtSelectorExplanationLinkStyler >> addExplanationAttributeFor: aNode withIdentif
 		to: aNode stopPosition
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSelectorExplanationLinkStyler >> addSelector: aSymbol [	
 	self addSelector: aSymbol withIdentifier: aSymbol.
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 GtSelectorExplanationLinkStyler >> addSelector: aSymbol withIdentifier: anIdentifier [
 	selectorsDictionary at: aSymbol put: anIdentifier.
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 GtSelectorExplanationLinkStyler >> addSelectors: aCollection [
 	aCollection do: [ :selector | self addSelector: selector ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtSelectorExplanationLinkStyler >> initialize [
 	super initialize.
 
 	selectorsDictionary := Dictionary new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtSelectorExplanationLinkStyler >> selectorsAssociations [
 	^ selectorsDictionary associations.
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 GtSelectorExplanationLinkStyler >> shouldAddUnderline [
 	^ self coderViewModel compiledMethod notNil
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GtSelectorExplanationLinkStyler >> visitMessage: aMessageNode [
 	super visitMessage: aMessageNode.
 	
@@ -75,7 +75,7 @@ GtSelectorExplanationLinkStyler >> visitMessage: aMessageNode [
 		withSelector: aMessageNode selector
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GtSelectorExplanationLinkStyler >> visitNode: aNode withSelector: aSelector [
 	| anAttribute aSelectorIdentifier |
 
@@ -101,7 +101,7 @@ GtSelectorExplanationLinkStyler >> visitNode: aNode withSelector: aSelector [
 		to: aNode startPosition - 1
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GtSelectorExplanationLinkStyler >> visitPragma: aPragmaNode [
 	super visitPragma: aPragmaNode.
 
