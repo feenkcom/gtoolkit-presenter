@@ -4,12 +4,12 @@ Makes the element be a target for an explainer explanation.
 
 "
 Class {
-	#name : 'GtExplainerTargetAptitude',
-	#superclass : 'GtExplainerActorAptitude',
+	#name : #GtExplainerTargetAptitude,
+	#superclass : #GtExplainerActorAptitude,
 	#category : 'GToolkit-Explainer'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GtExplainerTargetAptitude >> initialize [
 	super initialize.
 	self add: GtExplainerLinesAptitude new beForTarget.
@@ -24,7 +24,7 @@ GtExplainerTargetAptitude >> initialize [
 				background: (self theme button textHighlightColor alpha: 0.3) ]
 ]
 
-{ #category : 'api - hooks' }
+{ #category : #'api - hooks' }
 GtExplainerTargetAptitude >> onAttachedTo: anElement [
 	super onAttachedTo: anElement.
 

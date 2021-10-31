@@ -1,6 +1,6 @@
-Extension { #name : 'BrEditor' }
+Extension { #name : #BrEditor }
 
-{ #category : '*GToolkit-Explainer' }
+{ #category : #'*GToolkit-Explainer' }
 BrEditor >> hasValidators [
 	^ self userData
 		at: #explainer
@@ -8,7 +8,7 @@ BrEditor >> hasValidators [
 		ifAbsent: [ false ]
 ]
 
-{ #category : '*GToolkit-Explainer' }
+{ #category : #'*GToolkit-Explainer' }
 BrEditor >> installValidatorsFor: modelCollection [
 	modelCollection do: [ :each | self explainer addValidator: each ].
 	textStyleHandler
@@ -22,7 +22,7 @@ BrEditor >> installValidatorsFor: modelCollection [
 					self updateValidatorsFor: text ] ]
 ]
 
-{ #category : '*GToolkit-Explainer' }
+{ #category : #'*GToolkit-Explainer' }
 BrEditor >> updateValidatorsFor: aText [
 	| originalValues |
 	originalValues := Dictionary new.

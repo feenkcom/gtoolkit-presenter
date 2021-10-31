@@ -1,10 +1,10 @@
 Class {
-	#name : 'GtExplainerExamples',
-	#superclass : 'Object',
-	#category : 'GToolkit-Explainer-Examples'
+	#name : #GtExplainerExamples,
+	#superclass : #Object,
+	#category : #'GToolkit-Explainer-Examples'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GtExplainerExamples >> inspectorContainerElement [
 	<gtExample>
 	| inspectorContainer subject inspectorHeader inspectorView inspectorActionButton |
@@ -31,7 +31,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				constraintsDo: [ :c | c ignoreByLayout ];
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
-				geometry: BlCircle new;
+				geometry: BlCircleGeometry new;
 				aptitude: (GtExplainerTargetAptitude new explanationModel: #header);
 				relocate: (5 @ inspectorHeader extent y / 2)). 
 	inspectorView
@@ -40,7 +40,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				constraintsDo: [ :c | c ignoreByLayout ];
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
-				geometry: BlCircle new;
+				geometry: BlCircleGeometry new;
 				aptitude: (GtExplainerTargetAptitude new explanationModel: #view);
 				relocate: (5 @ inspectorView extent y / 2)).
 	inspectorActionButton
@@ -49,14 +49,14 @@ GtExplainerExamples >> inspectorContainerElement [
 				constraintsDo: [ :c | c ignoreByLayout ];
 				size: 5 @ 5;
 				elevation: (BlRelativeElevation elevation: 10);
-				geometry: BlCircle new;
+				geometry: BlCircleGeometry new;
 				aptitude: (GtExplainerTargetAptitude new explanationModel: #action);
 				relocate: (5 @ inspectorActionButton extent y / 2)).
 					
 	^ inspectorContainer.
 ]
 
-{ #category : 'example' }
+{ #category : #example }
 GtExplainerExamples >> inspectorExplanationText [
 	<gtExample>
 	| text |
@@ -76,7 +76,7 @@ The inspector also shows multiple ' asRopedText,
 		foreground: Color black
 ]
 
-{ #category : 'example' }
+{ #category : #example }
 GtExplainerExamples >> inspectorOnOneObjectExample [
 	<gtExample>
 	| container editor |
@@ -101,7 +101,7 @@ GtExplainerExamples >> inspectorOnOneObjectExample [
 	^ container
 ]
 
-{ #category : 'example' }
+{ #category : #example }
 GtExplainerExamples >> oneTarget [
 	<gtExample>
 	| container subject target marker editor |
@@ -135,7 +135,7 @@ GtExplainerExamples >> oneTarget [
 			c ignored vertical alignCenter ];
 		size: 20 @ 20;
 		elevation: (BlRelativeElevation elevation: 10);
-		geometry: BlCircle new;
+		geometry: BlCircleGeometry new;
 		aptitude: (GtExplainerTargetAptitude new explanationModel: #someKey).
 
 	subject addChild: marker.
@@ -156,7 +156,7 @@ GtExplainerExamples >> oneTarget [
 	^ container
 ]
 
-{ #category : 'example' }
+{ #category : #example }
 GtExplainerExamples >> playgroundExplanationText [
 	<gtExample>
 	| text |
@@ -171,7 +171,7 @@ It comes with snippets, and each snippet can be independently evaluated or ' asR
 		foreground: Color black
 ]
 
-{ #category : 'example' }
+{ #category : #example }
 GtExplainerExamples >> playgroundWithPreview [
 	<gtExample>
 	| container inspectorContainer subject editor inspectButton inspectActionMarker scripter |
@@ -201,7 +201,7 @@ GtExplainerExamples >> playgroundWithPreview [
 			c ignored vertical alignCenter ];
 		size: 20 @ 20;
 		elevation: (BlRelativeElevation elevation: 10);
-		geometry: BlCircle new;
+		geometry: BlCircleGeometry new;
 		aptitude: (GtExplainerTargetAptitude new explanationModel: #inspect).
 	
 	inspectButton := (subject query // GtSourceCoderDoItActionId) anyOne.
