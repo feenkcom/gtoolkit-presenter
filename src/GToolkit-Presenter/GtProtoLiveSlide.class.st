@@ -11,7 +11,7 @@ Class {
 		'definingMethod',
 		'notes'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #decorating }
@@ -52,14 +52,6 @@ GtProtoLiveSlide >> definingMethod: aCompiledMethod [
 { #category : #decorating }
 GtProtoLiveSlide >> devKeyboard [
 	^ GtDevKeyboardLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
-]
-
-{ #category : #decorating }
-GtProtoLiveSlide >> documenter [
-	^ GtDocumenterLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector new 
 			stack: thisContext stack;
 			collect).
