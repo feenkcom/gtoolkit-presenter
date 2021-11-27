@@ -15,7 +15,7 @@ Class {
 		'slideShow',
 		'isSlideSelected'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -190,11 +190,7 @@ GtLiveSlide >> previousStepWith: aSlider [
 { #category : #accessing }
 GtLiveSlide >> queueAsyncUpdate: aSpace [
 	"Submit a task to cache the receiver's elements"
-	| aCommand aTelemetry |
-	
-	aTelemetry := aSpace
-		ifNil: [ BlNullTelemetry uniqueInstance ]
-		ifNotNil: [ aSpace telemetry ].
+	| aCommand |
 	
 	cachedElement needsUpdate
 		ifFalse: [ ^ self ].
@@ -203,12 +199,12 @@ GtLiveSlide >> queueAsyncUpdate: aSpace [
 
 	BlUseAsyncFeatures
 		ifEnabledDo: [
-			aTelemetry
-				timeSync: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
+			BlFrameTelemetry
+				time: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
 				during: [ aCommand asBlTktLoggingCommand scheduleInUIPool ]  ] 
 		otherwise: [
-			aTelemetry
-				timeSync: [ 'Execute slide {1} update command directly' format: { self class name } ]
+			BlFrameTelemetry
+				time: [ 'Execute slide {1} update command directly' format: { self class name } ]
 				during: [ aCommand execute ] ]
 ]
 

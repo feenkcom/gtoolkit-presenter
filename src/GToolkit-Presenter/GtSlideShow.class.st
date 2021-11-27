@@ -14,7 +14,7 @@ Class {
 		'previewsContainer',
 		'dropdown'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -175,8 +175,8 @@ GtSlideShow >> onAddedToSceneGraph: aSpace [
 	"If my element has been added to a scene graph ensure the slides have been generated"
 
 	self slides withIndexDo: [ :eachSlide :eachIndex |
-		aSpace telemetry
-			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
+		BlFrameTelemetry
+			time: [ 'Queue slide {1} to async update' format: { eachIndex } ]
 			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
 ]
 
