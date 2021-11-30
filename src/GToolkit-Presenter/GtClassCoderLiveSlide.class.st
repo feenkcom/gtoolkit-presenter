@@ -33,10 +33,7 @@ GtClassCoderLiveSlide >> create [
 		margin: (BlInsets top: 5 right: 15 bottom: 5 left: 5).
 		
 	aScripter := BlDevScripter new.
-	aScripter set
-		label: 'Coder';
-		element: [ coderElement ];
-		play.
+	aScripter element: coderElement.
 	
 	self isHeaderExpanded
 		ifTrue: [

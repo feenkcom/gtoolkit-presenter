@@ -188,8 +188,6 @@ GtExplainerExamples >> playgroundWithPreview [
 
 	scripter := BlDevScripter new
 		element: ((GtPlaygroundLiveSlide new newSnippet: '41 + 1') asElement).
-	scripter wait forEmptySpaceTaskQueue.
-	scripter syncContinue.
 	subject := scripter elementWithoutParent.
 		
 	inspectorContainer addChild: subject.
