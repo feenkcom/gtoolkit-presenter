@@ -28,7 +28,7 @@ Class {
 		'shouldPreloadSlides',
 		'container'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -411,8 +411,8 @@ GtLiveShow >> loadSlides [
 	| aSpace |
 	aSpace := self container space.
 	self slides withIndexDo: [ :eachSlide :eachIndex |
-		aSpace telemetry
-			timeSync: [ 'Queue slide {1} to async update' format: { eachIndex } ]
+		BlFrameTelemetry
+			time: [ 'Queue slide {1} to async update' format: { eachIndex } ]
 			during: [ eachSlide queueAsyncUpdate: aSpace ] ]
 ]
 

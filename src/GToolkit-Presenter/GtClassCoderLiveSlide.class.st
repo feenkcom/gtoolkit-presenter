@@ -13,7 +13,7 @@ Class {
 		'expandHeader',
 		'expandMethod'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -23,50 +23,33 @@ GtClassCoderLiveSlide >> class: aClass [
 
 { #category : #'api - instantiation' }
 GtClassCoderLiveSlide >> create [
-	| coder coderElement aScripter |
+	| coderElement aScripter |
 	
 	coderElement := (GtPharoBehaviorCoder forClass: class) asElement.
 	coderElement
-		forceLayout;
 		constraintsDo: [ :c |
 			c vertical matchParent.
 			c horizontal matchParent ];
 		margin: (BlInsets top: 5 right: 15 bottom: 5 left: 5).
 		
 	aScripter := BlDevScripter new.
-	aScripter
-		substep: 'Coder Element'
-		do: [ :aStep | 
-			aStep set
-				label: 'Coder';
-				element: [ coderElement ] ].
+	aScripter element: coderElement.
 	
-	(self isHeaderExpanded)
+	self isHeaderExpanded
 		ifTrue: [
-			aScripter
-				substep: 'Expand header'
-				do: [ :aStep | 
-					aStep click
-						label: 'Expand coder header';
-						onBreadthFirstChildOfClass: GtPharoBehaviorDefinitionCoderElement;
-						onChildAt: 1.
-					aStep wait forEmptySpaceTaskQueue ]].
-	(self expandedMethod > 0)
+			aScripter click
+				label: 'Expand coder header';
+				onBreadthFirstChildOfClass: GtPharoBehaviorDefinitionCoderElement;
+				id: GtSourceCoderExpanderToggleId;
+				play ].
+
+	self expandedMethod > 0
 		ifTrue: [
-			aScripter
-				substep: 'Expand method'
-				do: [ :aStep | 
-					aStep click
-						label: 'Expand certain method in coder';
-						onBreadthFirstChildOfClass: BrTabGroup;
-						onChildAt: 2;
-						onBreadthFirstChildOfClass: GtPharoMethodsCoderElement;
-						onBreadthFirstChildOfClass: BrSimpleList;
-						onBreadthFirstChildOfClass: BrInfiniteListElement;
-						onChildAt: self expandedMethod;
-						onChildAt: 1.
-					aStep wait forEmptySpaceTaskQueue ]].
-	aScripter syncContinue.
+			aScripter click
+				label: 'Expand certain method in coder';
+				id: GtSourceCoderId index: self expandedMethod;
+				play ].
+
 	coderElement := aScripter elementWithoutParent.
 	
 	^ BlElement new

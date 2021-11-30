@@ -9,7 +9,7 @@ Class {
 		'onAddedToSceneGraphAction',
 		'shouldPerformActionEveryTime'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -147,11 +147,7 @@ GtSlide >> previousStepWith: aSlider [
 { #category : #private }
 GtSlide >> queueAsyncUpdate: aSpace [
 	"Submit a task to cache the receiver's elements"
-	| aCommand aTelemetry |
-	
-	aTelemetry := aSpace
-		ifNil: [ BlNullTelemetry uniqueInstance ]
-		ifNotNil: [ aSpace telemetry ].
+	| aCommand |
 	
 	cachedElement needsUpdate
 		ifFalse: [ ^ self ].
@@ -160,12 +156,12 @@ GtSlide >> queueAsyncUpdate: aSpace [
 
 	BlUseAsyncFeatures
 		ifEnabledDo: [
-			aTelemetry
-				timeSync: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
+			BlFrameTelemetry
+				time: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
 				during: [ aCommand asBlTktLoggingCommand scheduleInUIPool ]  ] 
 		otherwise: [
-			aTelemetry
-				timeSync: [ 'Execute slide {1} update command directly' format: { self class name } ]
+			BlFrameTelemetry
+				time: [ 'Execute slide {1} update command directly' format: { self class name } ]
 				during: [ aCommand execute ] ]
 ]
 
