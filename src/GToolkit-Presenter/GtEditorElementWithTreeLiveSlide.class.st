@@ -8,17 +8,14 @@ I show an editor element and a button that displays the tree for the respective 
 Class {
 	#name : #GtEditorElementWithTreeLiveSlide,
 	#superclass : #GtEditorElementLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
 GtEditorElementWithTreeLiveSlide >> create [
 	| container verticalContainer horizontalContainer editorElement preview button label |
 	
-	preview := BlElement new
-	constraintsDo: [ :c | 
-		c vertical matchParent.
-		c horizontal matchParent ].
+	preview := BrVerticalPane new fitContent.
 	
 	editorElement := GtWhatMakesBlocSpecialExplanation new editorOnSampleText
 		constraintsDo: [ :c | 
@@ -49,16 +46,12 @@ GtEditorElementWithTreeLiveSlide >> create [
 			editorElement paintEditorElementsWith: m.
 			preview addChild: m asElement].						
 	
-	horizontalContainer := BlElement new
-		layout: BlLinearLayout horizontal alignCenter;
-		constraintsDo: [:c |
-			c vertical fitContent.
-			c horizontal fitContent].
-	verticalContainer := BlElement new
-		layout: BlLinearLayout vertical alignCenter;
-		constraintsDo: [:c |
-			c horizontal fitContent.
-			c vertical fitContent].
+	horizontalContainer := BrHorizontalPane new
+		alignCenter;
+		fitContent.
+	verticalContainer := BrVerticalPane new
+		alignCenter;
+		fitContent.
 	
 	horizontalContainer
 		addChild: label;
@@ -67,13 +60,12 @@ GtEditorElementWithTreeLiveSlide >> create [
 		addChild: editorElement;
 		addChild: horizontalContainer.
 
-	container := BlElement new
-		constraintsDo: [ :c | 
-			c vertical matchParent.
-			c horizontal matchParent ];
-		layout: BlLinearLayout vertical alignTopCenter.
+	container := BrVerticalPane new
+		fitContent;
+		alignTopCenter.
 
-	^ container
+	container
 		addChild: verticalContainer;
 		addChild: preview.
+	^ container asScalableElement maxScale: 1.0
 ]
