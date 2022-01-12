@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -27,7 +27,7 @@ GtExampleLiveSlide >> create [
 		layout: BlLinearLayout horizontal.
 	
 	coder := GtPharoMethodCoder forMethod: method.
-	coderElement := (coder asCoderUIModel expanded: true) asElement.
+	coderElement := (coder asCoderViewModel expanded: true) asElement.
 	coderElement
 		forceLayout;
 		vMatchParent;
