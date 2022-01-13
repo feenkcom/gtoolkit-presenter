@@ -47,7 +47,7 @@ GtSlideShowStencil >> methodCoderForClass: aClass withSources: methodSourceColle
 				addChild:
 					((GtPharoMethodCoder
 						forClass: aClass
-						source: (OpalCompiler new format: methodSource)) asCoderUIModel
+						source: (OpalCompiler new format: methodSource)) asCoderViewModel
 						expanded: true;
 						asElement) ].
 	^ container
@@ -66,7 +66,7 @@ GtSlideShowStencil >> methodCoderForMethods: aMethodList [
 	aMethodList
 		do: [ :aMethod | 
 			container
-				addChild: ((GtPharoMethodCoder forMethod: aMethod) asCoderUIModel expanded: true) asElement ].
+				addChild: ((GtPharoMethodCoder forMethod: aMethod) asCoderViewModel expanded: true) asElement ].
 	^ container
 ]
 
