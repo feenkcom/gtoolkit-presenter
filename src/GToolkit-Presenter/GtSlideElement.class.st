@@ -5,7 +5,7 @@ Class {
 		'slide',
 		'slideElement'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #initialization }
@@ -24,18 +24,21 @@ GtSlideElement >> drawOnSpartaCanvas: aCanvas [
 
 { #category : #testing }
 GtSlideElement >> needsUpdate [
+
 	"Answer a boolean indicating whether the receiver needs to be updated (via an asynchronous task).
 	In GtSlideShow only the current slide is attached to the scene graph - the receiver needs to be updated if its slide show is attached to the scene graph."
 
 	"We dont need to update if the slide element has already been generated"
-	slideElement ifNotNil: [ ^false ].
+
+	slideElement ifNotNil: [ ^ false ].
+	self slide ifNil: [ ^ false ].
 
 	"We don't need to update if there has been an exception, 
 	or our slide show isn't attached to a scene graph"
-	(self exception isNil and: [ self slideShowIsAttachedToSceneGraph ])
-		ifFalse: [ ^false ].
+	(self exception isNil and: [ self slideShowIsAttachedToSceneGraph ]) 
+		ifFalse: [ ^ false ].
 
-	^true
+	^ true
 ]
 
 { #category : #'async processing' }

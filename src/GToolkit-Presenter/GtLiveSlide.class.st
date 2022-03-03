@@ -82,8 +82,7 @@ GtLiveSlide >> generateElements [
 GtLiveSlide >> initialize [
 	super initialize.
 	shouldPerformActionEveryTime := true.
-	cachedElement := GtSlideElement new
-		withGlamorousPreview;
+	cachedElement := BrSlideWidget new
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
 		slide: self;
 		yourself.
