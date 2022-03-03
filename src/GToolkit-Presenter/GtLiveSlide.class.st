@@ -82,19 +82,14 @@ GtLiveSlide >> generateElements [
 GtLiveSlide >> initialize [
 	super initialize.
 	shouldPerformActionEveryTime := true.
-	cachedElement := GtSlideElement new
-		withGlamorousPreview;
+	cachedElement := BrSlideWidget new
 		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
 		slide: self;
 		yourself.
-	previewElement := BlLazyElement new
-		withGlamorousPreview;
-		neverUpdate; "I will be updated by the cached element"
+	previewElement := BrAsyncWidget new
+		strategy: BrAsyncElementFutureNeverUpdateStrategy new; "I will be updated by the cached element"
 		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
 		background: Color white;
-		viewModel: (BrInteractiveModel new
-			withHover;
-			yourself);
 		margin: (BlInsets all: 10);
 		yourself.
 	self isSlideSelected: false.
@@ -173,7 +168,6 @@ GtLiveSlide >> performActionOn: element [
 
 { #category : #accessing }
 GtLiveSlide >> previewElement [
-	previewElement hasChildren ifFalse: [ previewElement schedulePreview ].
 	^ previewElement
 ]
 

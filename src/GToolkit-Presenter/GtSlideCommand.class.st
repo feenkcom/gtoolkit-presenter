@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'slide'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -45,7 +45,6 @@ GtSlideCommand >> entryPriority [
 { #category : #evaluating }
 GtSlideCommand >> execute [ 
 	"Generate the receiver's slide's bloc elements"
-
 	slide needsUpdate ifTrue:
 		[ slide generateElements ]
 ]
