@@ -1,6 +1,6 @@
 Class {
 	#name : #GtSlideCommand,
-	#superclass : #BlTktCommand,
+	#superclass : #Object,
 	#instVars : [
 		'slide'
 	],

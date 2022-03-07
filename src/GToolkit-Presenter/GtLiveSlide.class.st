@@ -183,22 +183,26 @@ GtLiveSlide >> previousStepWith: aSlider [
 
 { #category : #accessing }
 GtLiveSlide >> queueAsyncUpdate: aSpace [
+
 	"Submit a task to cache the receiver's elements"
+
 	| aCommand |
-	
-	cachedElement needsUpdate
-		ifFalse: [ ^ self ].
+	cachedElement needsUpdate ifFalse: [ ^ self ].
 
 	aCommand := GtSlideCommand new slide: self.
 
 	BlUseAsyncFeatures
-		ifEnabledDo: [
+		ifEnabledDo: [ 
 			BlFrameTelemetry
-				time: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
-				during: [ aCommand asBlTktLoggingCommand scheduleInUIPool ]  ] 
-		otherwise: [
+				time: [ 
+					'Schedule slide {1} update command in UI pool' format:
+						{ self class name } ]
+				during: [ [ aCommand execute ] asAsyncFuture await ] ]
+		otherwise: [ 
 			BlFrameTelemetry
-				time: [ 'Execute slide {1} update command directly' format: { self class name } ]
+				time: [ 
+					'Execute slide {1} update command directly' format:
+						{ self class name } ]
 				during: [ aCommand execute ] ]
 ]
 

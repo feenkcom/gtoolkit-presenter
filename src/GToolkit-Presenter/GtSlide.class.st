@@ -155,7 +155,7 @@ GtSlide >> queueAsyncUpdate: aSpace [
 		ifEnabledDo: [
 			BlFrameTelemetry
 				time: [ 'Schedule slide {1} update command in UI pool' format: { self class name } ]
-				during: [ aCommand asBlTktLoggingCommand scheduleInUIPool ]  ] 
+				during: [ [ aCommand execute ] asAsyncFuture await ]  ] 
 		otherwise: [
 			BlFrameTelemetry
 				time: [ 'Execute slide {1} update command directly' format: { self class name } ]
