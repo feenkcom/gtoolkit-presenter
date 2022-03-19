@@ -68,6 +68,17 @@ GtLiveShow class >> createWithArrowsVisibleInEditMode: aLiveShowObject [
 ]
 
 { #category : #accessing }
+GtLiveShow class >> openInSpace: aLiveSlideShow [
+	"For example:
+		GtLiveShow openInSpace: GtTour
+	"
+	BlSpace new
+		addChild:
+			(GtLiveShow createWithArrowsVisible: aLiveSlideShow new) create;
+		show
+]
+
+{ #category : #accessing }
 GtLiveShow >> addSlide: aSlide [
 	self slides add: aSlide.
 ]
