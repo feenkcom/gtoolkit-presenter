@@ -69,7 +69,8 @@ GtLiveShow class >> createWithArrowsVisibleInEditMode: aLiveShowObject [
 
 { #category : #accessing }
 GtLiveShow class >> openInSpace: aLiveSlideShow [
-	"For example:
+	"Convenience method to open a slideshow in a new window.
+	For example:
 		GtLiveShow openInSpace: GtTour
 	"
 	BlSpace new
