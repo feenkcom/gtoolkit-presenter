@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'detectedConstructs'
 	],
-	#category : 'GToolkit-Explainer-Coder add-on'
+	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #accessing }
@@ -134,8 +134,8 @@ GtPharoSyntaxExplanationStyler >> visitSuperVariable: aSuperVariable [
 ]
 
 { #category : #accessing }
-GtPharoSyntaxExplanationStyler >> visitSymbol: aSymbol [
-	super visitSymbol: aSymbol.
+GtPharoSyntaxExplanationStyler >> visitSymbolLiteral: aSymbol [
+	super visitSymbolLiteral: aSymbol.
 	self circleBefore: aSymbol identifier: #SymbolNode.
 ]
 
