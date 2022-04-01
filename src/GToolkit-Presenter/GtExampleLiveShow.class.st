@@ -175,6 +175,14 @@ GtExampleLiveShow >> multipleViewsForOneObjectExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
+GtExampleLiveShow >> namedPlaygroundExampleSlideFor: aSlide [
+	<gtSlide>
+	^ aSlide lepiterPage
+		priority: 24;
+		pageNamed: 'Glamorous Toolkit' from: 'Glamorous Toolkit Book'
+]
+
+{ #category : #accessing }
 GtExampleLiveShow >> paragraphExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide paragraph
