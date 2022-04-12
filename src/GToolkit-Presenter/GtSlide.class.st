@@ -71,21 +71,23 @@ GtSlide >> generateElements [
 
 { #category : #initialization }
 GtSlide >> initialize [
-
 	super initialize.
+
 	shouldPerformActionEveryTime := true.
-	cachedElement := BrSlideWidget new
-		constraintsDo: [ :c | c horizontal matchParent. c vertical matchParent ];
+
+	cachedElement := GtSlideWidget new
+		matchParent;
 		slide: self;
 		yourself.
+
 	previewElement := BrAsyncWidget new
-		strategy: BrAsyncElementFutureNeverUpdateStrategy new; "I will be updated by the cached element"
-		constraintsDo: [ :c | c vertical exact: 100. c horizontal exact: 150 ];
+		 "It will be updated by the cached element"
+		strategy: BrAsyncElementFutureNeverUpdateStrategy new;
+		exact: 150@100;
 		background: Color white;
 		aptitude: BrShadowAptitude new;
 		margin: (BlInsets all: 10);
-		yourself.
-
+		yourself
 ]
 
 { #category : #accessing }
