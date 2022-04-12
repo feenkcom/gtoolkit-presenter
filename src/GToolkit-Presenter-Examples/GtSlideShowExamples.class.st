@@ -99,3 +99,14 @@ GtSlideShowExamples >> exampleSlideShow [
 	<gtExample>
 	^ self create
 ]
+
+{ #category : #accessing }
+GtSlideShowExamples >> exampleSlideShowInScripter [
+	<gtExample>
+	| aScripter |
+
+	aScripter := BlDevScripter new.
+	aScripter element: self exampleSlideShow asElement.
+
+	^ aScripter
+]
