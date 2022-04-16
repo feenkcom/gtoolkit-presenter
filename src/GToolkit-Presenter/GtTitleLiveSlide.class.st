@@ -10,9 +10,10 @@ Class {
 	#superclass : #GtLiveSlide,
 	#instVars : [
 		'subtitle',
-		'title'
+		'title',
+		'titleBottomPadding'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -32,7 +33,7 @@ GtTitleLiveSlide >> create [
 						addChild: (BlTextElement new 
 							constraintsDo: [ :c |
 								c linear horizontal alignCenter ];
-							padding: (BlInsets top: 40; bottom: 10);
+							padding: (BlInsets top: 40; bottom: self titleBottomPadding);
 							text: title);
 						addChild: (BlTextElement new 
 							constraintsDo: [ :c |
@@ -44,7 +45,8 @@ GtTitleLiveSlide >> create [
 GtTitleLiveSlide >> initialize [
 	super initialize.
 	self title: ''.
-	self subtitle: ''
+	self subtitle: ''.
+	self titleBottomPadding: 10
 ]
 
 { #category : #accessing }
@@ -60,6 +62,17 @@ GtTitleLiveSlide >> subtitleWithFormat: aText [
 { #category : #accessing }
 GtTitleLiveSlide >> title: aString [
 	self titleWithFormat: (aString asRopedText fontSize: 30; glamorousRegularFont).
+]
+
+{ #category : #'api - instantiation' }
+GtTitleLiveSlide >> titleBottomPadding [
+	^ titleBottomPadding
+]
+
+{ #category : #initialization }
+GtTitleLiveSlide >> titleBottomPadding: anInteger [
+	"The default padding of 10 can be too tight."
+	titleBottomPadding := anInteger
 ]
 
 { #category : #accessing }

@@ -12,7 +12,7 @@ Class {
 		'subtitle',
 		'paragraph'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -57,10 +57,24 @@ GtParagraphLiveSlide >> initialize [
 
 { #category : #accessing }
 GtParagraphLiveSlide >> paragraph: aString [
-	paragraph := aString asRopedText fontSize: 30; glamorousRegularFont
+	self paragraphWithFormat: (aString asRopedText
+			 fontSize: 30;
+			 glamorousRegularFont)
+]
+
+{ #category : #accessing }
+GtParagraphLiveSlide >> paragraphWithFormat: aText [
+	paragraph := aText
 ]
 
 { #category : #accessing }
 GtParagraphLiveSlide >> subtitle: aString [
-	subtitle := aString asRopedText fontSize: 40; glamorousRegularFont
+	self subtitleWithFormat: (aString asRopedText
+			 fontSize: 40;
+			 glamorousRegularFont)
+]
+
+{ #category : #accessing }
+GtParagraphLiveSlide >> subtitleWithFormat: aText [
+	subtitle := aText
 ]
