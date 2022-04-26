@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'containerLayout'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -30,10 +30,12 @@ GtRawViewsLiveSlide >> create [
 	GtWhatMakesBlocSpecialExplanation new sampleText} do: [:x | 
 		container addChild: (((x gtRawFor: GtPhlowView empty) 
 			asElementDo: [:e | 
-				BlElement new 
+				BrVerticalPane new 
 					aptitude: BrShadowAptitude; 
 					background: Color white;
 					margin: (BlInsets all: 20);
-					addChild: e]) size: 400@400) ].
+					matchParent;
+					addChild: e])
+					size: 400@400 ) ].
 	^ container asPannableElement
 ]
