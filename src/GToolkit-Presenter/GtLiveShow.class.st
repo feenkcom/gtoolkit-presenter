@@ -166,7 +166,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 	
 	slideEditor addChild: aToolbar.
 	
-	self slidesDropdown.
+	self slidesDropdown
 ]
 
 { #category : #accessing }
@@ -189,11 +189,8 @@ GtLiveShow >> container [
 GtLiveShow >> create [
 	"| container |"
 
-	container := GtSlideShowElement new slideShow: self.
-	container 
-		background: self background;
-		constraintsDo: [:c | c horizontal matchParent. c vertical matchParent];
-		layout: BlLinearLayout vertical.
+	container := GtLiveShowElement new slideShow: self.
+	container background: self background.
 	
 	container addChild: slidesContainer.
 	container addChild: self slideEditor.
@@ -710,7 +707,7 @@ GtLiveShow >> slidesExportPage [
 
 { #category : #accessing }
 GtLiveShow >> sortSlidesByPriority [
-	self slides sort: [:a :b | a priority < b priority].
+	self slides sort: [:a :b | a priority < b priority]
 ]
 
 { #category : #'private - subscriptions' }
