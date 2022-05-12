@@ -2,7 +2,8 @@ Class {
 	#name : #GtSlideCommand,
 	#superclass : #Object,
 	#instVars : [
-		'slide'
+		'slide',
+		'name'
 	],
 	#category : #'GToolkit-Presenter'
 }
