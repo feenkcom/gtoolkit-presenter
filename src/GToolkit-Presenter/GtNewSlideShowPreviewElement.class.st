@@ -5,8 +5,8 @@ Is responsible for displaying a preview of all slides in a slideshow. A preview 
 Class {
 	#name : #GtNewSlideShowPreviewElement,
 	#superclass : #BlElement,
-	#traits : 'TGtWithSlideShow + TBrLayoutResizable',
-	#classTraits : 'TGtWithSlideShow classTrait + TBrLayoutResizable classTrait',
+	#traits : 'TGtPresenterWithSlideShowViewModel + TBrLayoutResizable',
+	#classTraits : 'TGtPresenterWithSlideShowViewModel classTrait + TBrLayoutResizable classTrait',
 	#instVars : [
 		'previews'
 	],
@@ -22,27 +22,30 @@ GtNewSlideShowPreviewElement >> initialize [
 	previews := BrGridList new.
 	previews aptitudeDo: [ :anAptitude | anAptitude columnCount: 3 ].
 	previews hFitContent; vMatchParent.
-	previews stencil: [ :eachSlide |
-		GtNewSlidePreviewElement new
+	previews stencil: [ :eachSlideViewModel |
+		GtPresenterSlidePreviewElement new
 			exact: 96@54;
 			aptitude: (BrShadowAptitude new);
 			margin: (BlInsets all: 6);
 			background: Color white;
-			slide: eachSlide ].
+			slideViewModel: eachSlideViewModel;
+			when: BlClickEvent do: [ :aClickEvent |
+				aClickEvent consumed: true.
+				slideShowViewModel currentSlide: eachSlideViewModel ] ].
 
 	self matchParent.
 
 	self addChild: previews
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowPreviewElement >> onSlideShowChanged [
-	"Is sent when a new slideShow is assigned to the receiver.
-	Note: #onSlideShowChanged is sent before #subscribeToSlideShow
+{ #category : #'api - slide show view model' }
+GtNewSlideShowPreviewElement >> onSlideShowViewModelChanged [
+	"Is sent when a new slideShowViewModel is assigned to the receiver.
+	Note: #onSlideShowViewModelChanged is sent before #subscribeToSlideShowViewModel
 	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
-	didn't get a chance to subscribe to any announcement. Override #onPostSlideShowChanged if you
+	didn't get a chance to subscribe to any announcement. Override #onPostSlideShowViewModelChanged if you
 	wish to perform an operation that requires an announcement, but keep in mind that this is not the most efficient way"
 	<generatedFrom: #'TGtRobocoderWithObjectTraitTemplate>>#onObjectChangedTemplate'>
 	
-	previews items: self slideShow slides
+	previews items: self slideShowViewModel slidesViewModel slideViewModels
 ]
