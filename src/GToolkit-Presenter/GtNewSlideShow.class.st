@@ -44,7 +44,7 @@ GtNewSlideShow >> gtLiveFor: aView [
 	^ aView explicit
 		title: 'Live';
 		priority: 3;
-		stencil: [ GtNewSlideShowElement new slideShow: self ]
+		stencil: [ GtPresenterSlideShowElement new slideShow: self ]
 ]
 
 { #category : #'gt-extension' }

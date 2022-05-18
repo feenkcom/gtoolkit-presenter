@@ -1,10 +1,9 @@
 Class {
-	#name : #GtNewSlideShowElement,
+	#name : #GtPresenterSlideShowElement,
 	#superclass : #BlElement,
-	#traits : 'TGtWithSlideShow + TBrLayoutResizable',
-	#classTraits : 'TGtWithSlideShow classTrait + TBrLayoutResizable classTrait',
+	#traits : 'TGtPresenterWithSlideShowViewModel + TBrLayoutResizable',
+	#classTraits : 'TGtPresenterWithSlideShowViewModel classTrait + TBrLayoutResizable classTrait',
 	#instVars : [
-		'currentSlide',
 		'slideElement',
 		'previousSlideSwitch',
 		'nextSlideSwitch',
@@ -14,13 +13,13 @@ Class {
 }
 
 { #category : #initialization }
-GtNewSlideShowElement >> initialize [
+GtPresenterSlideShowElement >> initialize [
 	super initialize.
 	
 	self layout: BlLinearLayout horizontal.
 	self matchParent.
 	
-	slideElement := GtNewSlideElement new.
+	slideElement := GtPresenterSlideElement new.
 	slideElement matchParent.
 	
 	previousSlideSwitch := self newPreviousSlideSwitch.
@@ -58,31 +57,31 @@ GtNewSlideShowElement >> initialize [
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newNextSlideArrow [
+GtPresenterSlideShowElement >> newNextSlideArrow [
 	^ BlElement new
 		size: 12 @ 24;
 		geometry: BlTriangleGeometry new beRight
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newNextSlideSwitch [
+GtPresenterSlideShowElement >> newNextSlideSwitch [
 	^ self newSlideSwitch: (self newNextSlideArrow id: #nextSlideArrow)
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newPreviousSlideArrow [
+GtPresenterSlideShowElement >> newPreviousSlideArrow [
 	^ BlElement new
 		size: 12 @ 24;
 		geometry: BlTriangleGeometry new beLeft
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newPreviousSlideSwitch [
+GtPresenterSlideShowElement >> newPreviousSlideSwitch [
 	^ self newSlideSwitch: (self newPreviousSlideArrow id: #previousSlideArrow)
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newSlideShowDropdown [
+GtPresenterSlideShowElement >> newSlideShowDropdown [
 	^ BrButton new
 		label: 'Slides';
 		icon: BrGlamorousVectorIcons hamburger;
@@ -97,7 +96,7 @@ GtNewSlideShowElement >> newSlideShowDropdown [
 					GtNewSlideShowPreviewElement new
 						exact: 200@200;
 						hFitContent;
-						slideShow: slideShow ]);
+						slideShowViewModel: slideShowViewModel ]);
 		constraintsDo: [ :c |
 			c ignoreByLayout.
 			c ignored vertical alignBottom.
@@ -107,7 +106,7 @@ GtNewSlideShowElement >> newSlideShowDropdown [
 ]
 
 { #category : #'private - instance creation' }
-GtNewSlideShowElement >> newSlideSwitch: aSwitchArrow [
+GtPresenterSlideShowElement >> newSlideSwitch: aSwitchArrow [
 	^ BrHorizontalPane new
 		hExact: 24;
 		vMatchParent;
@@ -119,53 +118,76 @@ GtNewSlideShowElement >> newSlideSwitch: aSwitchArrow [
 			hovered: [ :aStyle | aStyle background: (BrGlamorousColors hoveredButtonBorderColor) ])
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowElement >> onSlideShowChanged [
-	"Is sent when a new slideShow is assigned to the receiver.
-	Note: #onSlideShowChanged is sent before #subscribeToSlideShow
+{ #category : #'private - event handling' }
+GtPresenterSlideShowElement >> onCurrentSlideChanged: anAnnouncement [
+	self switchToSlide: anAnnouncement currentSlide
+]
+
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> onSlideShowViewModelChanged [
+	"Is sent when a new slideShowViewModel is assigned to the receiver.
+	Note: #onSlideShowViewModelChanged is sent before #subscribeToSlideShowViewModel
 	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
-	didn't get a chance to subscribe to any announcement. Override #onPostSlideShowChanged if you
+	didn't get a chance to subscribe to any announcement. Override #onPostSlideShowViewModelChanged if you
 	wish to perform an operation that requires an announcement, but keep in mind that this is not the most efficient way"
 	<generatedFrom: #'TGtRobocoderWithObjectTraitTemplate>>#onObjectChangedTemplate'>
 	
-	self switchToSlide: self slideShow slides first.
-	self background: self slideShow background
+	self switchToSlide: slideShowViewModel currentSlide
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowElement >> preloadSlide: aSlide [
-	self enqueueTask: (BlPromiseTask new promise: (aSlide slideArtifact await: (AsyncFutureExecutionConfiguration new customGroup: #Slides)))
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> preloadSlide: aSlideViewModel [
+	self enqueueTask: (BlPromiseTask new promise: (aSlideViewModel slideArtifact await: (AsyncFutureExecutionConfiguration new customGroup: #Slides)))
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowElement >> switchToNextSlide [
-	self slideShow
-		slideAfter: currentSlide
-		do: [ :aNextSlide | self switchToSlide: aNextSlide ]
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> subscribeToSlideShowViewModel [
+	"Is sent after a new slideShowViewModel is assigned to the receiver.
+	It is required to unsubscribe from the previously subscribed objects by implementing
+	#unsubscribeFromSlideShowViewModel if the receiver subscribes to them"
+	<modelSubscriber: #slideShow>
+	<generatedFrom: #'TGtRobocoderWithObjectTraitTemplate>>#subscribeToObjectTemplate'>
+	
+	slideShowViewModel
+		when: GtPresenterSlideShowViewModelCurrentSlideChanged
+		send: #onCurrentSlideChanged:
+		to: self
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowElement >> switchToPreviousSlide [
-	self slideShow
-		slideBefore: currentSlide
-		do: [ :aPreviousSlide | self switchToSlide: aPreviousSlide ]
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> switchToNextSlide [
+	slideShowViewModel switchToNextSlide
 ]
 
-{ #category : #'api - slide show' }
-GtNewSlideShowElement >> switchToSlide: aSlide [
-	currentSlide := aSlide.
-	slideElement slide: aSlide.
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> switchToPreviousSlide [
+	slideShowViewModel switchToPreviousSlide
+]
+
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> switchToSlide: aSlideViewModel [
+	slideElement slideViewModel: aSlideViewModel.
 
 	slideElement asyncFuture pendingPromise
 		then: [
-			slideShow slideAfter: currentSlide do: [ :aNextSlide | self preloadSlide: aNextSlide ].
-			slideShow slideBefore: currentSlide do: [ :aPreviousSlide | self preloadSlide: aPreviousSlide ] ].
+			slideShowViewModel slideAfter: aSlideViewModel do: [ :aNextSlideViewModel | self preloadSlide: aNextSlideViewModel ].
+			slideShowViewModel slideBefore: aSlideViewModel do: [ :aPreviousSlideViewModel | self preloadSlide: aPreviousSlideViewModel ] ].
 		
-	(slideShow isFirstSlide: aSlide)
+	(slideShowViewModel isFirstSlide: aSlideViewModel)
 		ifTrue: [ previousSlideSwitch visibility: BlVisibility hidden ]
 		ifFalse: [ previousSlideSwitch visibility: BlVisibility visible ].
 		
-	(slideShow isLastSlide: aSlide)
+	(slideShowViewModel isLastSlide: aSlideViewModel)
 		ifTrue: [ nextSlideSwitch visibility: BlVisibility hidden ]
 		ifFalse: [ nextSlideSwitch visibility: BlVisibility visible ]
+]
+
+{ #category : #'api - slide show view model' }
+GtPresenterSlideShowElement >> unsubscribeFromSlideShowViewModel [
+	"Is sent before a new slideShowViewModel is assigned to the receiver.
+	Objects that subscribe to slideShowViewModel are required to implement this method."
+	<modelUnsubscriber: #slideShow>
+	<generatedFrom: #'TGtRobocoderWithObjectTraitTemplate>>#unsubscribeFromObjectTemplate'>
+	
+	slideShowViewModel unsubscribe: self
 ]

@@ -1,13 +1,13 @@
 Class {
-	#name : #GtNewSlideElement,
+	#name : #GtPresenterSlideElement,
 	#superclass : #BlElement,
-	#traits : 'TGtWithSlide + TBrLayoutResizable',
-	#classTraits : 'TGtWithSlide classTrait + TBrLayoutResizable classTrait',
+	#traits : 'TGtPresenterWithSlideViewModel + TBrLayoutResizable',
+	#classTraits : 'TGtPresenterWithSlideViewModel classTrait + TBrLayoutResizable classTrait',
 	#category : #'GToolkit-Presenter-Views'
 }
 
 { #category : #initialization }
-GtNewSlideElement >> initialize [
+GtPresenterSlideElement >> initialize [
 	super initialize.
 	
 	self matchParent.
@@ -26,14 +26,14 @@ GtNewSlideElement >> initialize [
 				aSlideElement addChild: aSlideArtifact slideElement removeFromParent asScalableElement ] ]
 ]
 
-{ #category : #'api - slide' }
-GtNewSlideElement >> onSlideChanged [
-	"Is sent when a new slide is assigned to the receiver.
-	Note: #onSlideChanged is sent before #subscribeToSlide
+{ #category : #'api - slide view model' }
+GtPresenterSlideElement >> onSlideViewModelChanged [
+	"Is sent when a new slideViewModel is assigned to the receiver.
+	Note: #onSlideViewModelChanged is sent before #subscribeToSlideViewModel
 	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
-	didn't get a chance to subscribe to any announcement. Override #onPostSlideChanged if you
+	didn't get a chance to subscribe to any announcement. Override #onPostSlideViewModelChanged if you
 	wish to perform an operation that requires an announcement, but keep in mind that this is not the most efficient way"
 	<generatedFrom: #'TGtRobocoderWithObjectTraitTemplate>>#onObjectChangedTemplate'>
 	
-	self asyncFuture future: self slide slideArtifact
+	self asyncFuture future: self slideViewModel slideArtifact
 ]
