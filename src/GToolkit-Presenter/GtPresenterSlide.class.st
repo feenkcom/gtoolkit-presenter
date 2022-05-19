@@ -16,6 +16,16 @@ GtPresenterSlide >> announce: anAnnouncement [
 	announcer ifNotNil: [ :anAnnouncer | anAnnouncer announce: anAnnouncement ].
 ]
 
+{ #category : #accessing }
+GtPresenterSlide >> gtLiveFor: aView [
+	<gtView>
+	
+	^ aView forward
+		title: 'Live';
+		priority: 0;
+		object: [ self stencil asElement ]
+]
+
 { #category : #initialization }
 GtPresenterSlide >> initialize [
 	super initialize.
