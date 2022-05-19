@@ -13,7 +13,7 @@ GtPresenterSlidePreviewElement >> initialize [
 	self beInSingleCompositionLayer.
 	self withAsyncFutureDo: [ :anElementFuture |
 		anElementFuture
-			executionConfiguration: (AsyncFutureExecutionConfiguration new customGroup: #Slides);
+			executionConfiguration: (AsyncFutureExecutionConfiguration new customGroup: #SlidesPreview);
 			strategy: BrAsyncElementFutureWhenVisibleStrategy new.
 		anElementFuture
 			whenError: [ :aSlidePreviewElement :anError |

@@ -74,8 +74,7 @@ GtLiveShow class >> openInSpace: aLiveSlideShow [
 		GtLiveShow openInSpace: GtTour
 	"
 	BlSpace new
-		addChild:
-			(GtLiveShow createWithArrowsVisible: aLiveSlideShow new) create;
+		addChild: (GtLiveShow createWithArrowsVisible: aLiveSlideShow new) create;
 		show
 ]
 
