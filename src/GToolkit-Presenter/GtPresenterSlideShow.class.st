@@ -28,6 +28,20 @@ GtPresenterSlideShow class >> create: aSlideshowObject [
 	^ aSlideshow
 ]
 
+{ #category : #accessing }
+GtPresenterSlideShow class >> openInSpace: aSlideShowClass [
+	"Convenience method to open a slideshow in a new window.
+	For example: GtPresenterSlideShow openInSpace: GtTour"
+	| slideshow slideshowViewModel |
+	
+	slideshow := self create: aSlideShowClass new.
+	slideshowViewModel := GtPresenterSlideShowViewModel new slideShow: slideshow.
+	
+	BlSpace new
+		addChild: (GtPresenterSlideShowElement new slideShowViewModel: slideshowViewModel);
+		show
+]
+
 { #category : #'api - announcer' }
 GtPresenterSlideShow >> announce: anAnnouncement [
 	<generatedFrom: #'TGtRobocoderAnnouncerTemplate>>#announceTemplate'>
