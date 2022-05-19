@@ -3,7 +3,7 @@
 Is responsible for displaying a preview of all slides in a slideshow. A preview of a slide is a static scaled down image generated from the slide content after it is done loading.
 "
 Class {
-	#name : #GtNewSlideShowPreviewElement,
+	#name : #GtPresenterSlideShowPreviewElement,
 	#superclass : #BlElement,
 	#traits : 'TGtPresenterWithSlideShowViewModel + TBrLayoutResizable',
 	#classTraits : 'TGtPresenterWithSlideShowViewModel classTrait + TBrLayoutResizable classTrait',
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #initialization }
-GtNewSlideShowPreviewElement >> initialize [
+GtPresenterSlideShowPreviewElement >> initialize [
 	super initialize.
 	
 	self layout: BlFrameLayout new.
@@ -39,7 +39,7 @@ GtNewSlideShowPreviewElement >> initialize [
 ]
 
 { #category : #'api - slide show view model' }
-GtNewSlideShowPreviewElement >> onSlideShowViewModelChanged [
+GtPresenterSlideShowPreviewElement >> onSlideShowViewModelChanged [
 	"Is sent when a new slideShowViewModel is assigned to the receiver.
 	Note: #onSlideShowViewModelChanged is sent before #subscribeToSlideShowViewModel
 	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
