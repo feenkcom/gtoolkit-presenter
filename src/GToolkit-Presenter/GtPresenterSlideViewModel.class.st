@@ -112,7 +112,7 @@ GtPresenterSlideViewModel >> previewScale: aPreviewScale [
 
 { #category : #private }
 GtPresenterSlideViewModel >> privateCreateSlideAtrifact [
-	<return: #GtNewSlideArtifact>
+	<return: #GtPresenterSlideArtifact>
 	| aScripter aSlidePreview aSlideElement |
 	
 	aScripter := BlDevScripter new.
@@ -126,7 +126,7 @@ GtPresenterSlideViewModel >> privateCreateSlideAtrifact [
 
 	aSlideElement := aScripter elementWithoutParent.
 	
-	^ GtNewSlideArtifact new
+	^ GtPresenterSlideArtifact new
 		slideElement: aSlideElement preview: aSlidePreview
 ]
 
@@ -139,7 +139,7 @@ GtPresenterSlideViewModel >> privateSlideArtifactFuture [
 GtPresenterSlideViewModel >> slideArtifact [
 	"Return a future that resolves to a slide artifact that contains a slide and its form preview.
 	Note: a rendered slide and its preview are internally cached and computed once for each slide generation"
-	<return: #TAsyncFuture of: #GtNewSlideArtifact>
+	<return: #TAsyncFuture of: #GtPresenterSlideArtifact>
 
 	^ AsyncCachedFuture
 		  forFuture: self privateSlideArtifactFuture

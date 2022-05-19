@@ -1,15 +1,15 @@
 Class {
-	#name : #GtNewSlideArtifact,
+	#name : #GtPresenterSlideArtifact,
 	#superclass : #Object,
 	#instVars : [
 		'slidePreview',
 		'slideElement'
 	],
-	#category : #'GToolkit-Presenter-Model'
+	#category : #'GToolkit-Presenter-Models'
 }
 
 { #category : #'gt-extension' }
-GtNewSlideArtifact >> gtPreviewFor: aView [
+GtPresenterSlideArtifact >> gtPreviewFor: aView [
 	<gtView>
 	
 	^ aView explicit
@@ -19,19 +19,19 @@ GtNewSlideArtifact >> gtPreviewFor: aView [
 ]
 
 { #category : #accessing }
-GtNewSlideArtifact >> slideElement [
+GtPresenterSlideArtifact >> slideElement [
 
 	^ slideElement
 ]
 
 { #category : #initialization }
-GtNewSlideArtifact >> slideElement: anElement preview: aForm [
+GtPresenterSlideArtifact >> slideElement: anElement preview: aForm [
 	slideElement := anElement.
 	slidePreview := aForm
 ]
 
 { #category : #accessing }
-GtNewSlideArtifact >> slidePreview [
+GtPresenterSlideArtifact >> slidePreview [
 
 	^ slidePreview
 ]

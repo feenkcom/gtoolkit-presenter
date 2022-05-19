@@ -93,7 +93,7 @@ GtPresenterSlideShowElement >> newSlideShowDropdown [
 						icon: BrGlamorousVectorIcons hamburger;
 						yourself ]
 				content: [
-					GtNewSlideShowPreviewElement new
+					GtPresenterSlideShowPreviewElement new
 						exact: 200@200;
 						hFitContent;
 						slideShowViewModel: slideShowViewModel ]);

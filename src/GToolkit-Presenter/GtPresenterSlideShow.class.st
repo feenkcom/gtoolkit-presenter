@@ -55,6 +55,19 @@ GtPresenterSlideShow >> firstSlide [
 ]
 
 { #category : #'gt-extensions' }
+GtPresenterSlideShow >> gtLiveFor: aView [
+	<gtView>
+	
+	^ aView explicit
+		title: 'Live';
+		priority: 5;
+		stencil: [
+			| aViewModel |
+			aViewModel := GtPresenterSlideShowViewModel new slideShow: self.
+			GtPresenterSlideShowElement new slideShowViewModel: aViewModel ]
+]
+
+{ #category : #'gt-extensions' }
 GtPresenterSlideShow >> gtSlidesListViewFor: aView [
 	<gtView>
 	<generatedFrom: #'GtRobocoderMetamodelPhlowListViewDerive>>#listForOneTemplate'>
