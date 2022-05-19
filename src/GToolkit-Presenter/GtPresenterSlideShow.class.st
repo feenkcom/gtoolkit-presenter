@@ -31,7 +31,7 @@ GtPresenterSlideShow class >> create: aSlideshowObject [
 { #category : #accessing }
 GtPresenterSlideShow class >> openInSpace: aSlideShowClass [
 	"Convenience method to open a slideshow in a new window.
-	For example: GtLiveShow openInSpace: GtTour"
+	For example: GtPresenterSlideShow openInSpace: GtTour"
 	| slideshow slideshowViewModel |
 	
 	slideshow := self create: aSlideShowClass new.
