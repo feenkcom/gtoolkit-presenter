@@ -84,10 +84,7 @@ GtPresenterSlideShow >> gtLiveFor: aView [
 	^ aView explicit
 		title: 'Live';
 		priority: 5;
-		stencil: [
-			| aViewModel |
-			aViewModel := GtPresenterSlideShowViewModel new slideShow: self.
-			GtPresenterSlideShowElement new slideShowViewModel: aViewModel ]
+		stencil: [ self asElement ]
 ]
 
 { #category : #'gt-extensions' }
