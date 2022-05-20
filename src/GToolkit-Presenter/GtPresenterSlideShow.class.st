@@ -28,6 +28,19 @@ GtPresenterSlideShow class >> create: aSlideshowObject [
 	^ aSlideshow
 ]
 
+{ #category : #serialization }
+GtPresenterSlideShow class >> leJsonV4AttributeMapping [
+	"Answer the Array of attribute to store keys.
+	Subclasses should override this with their attributes."
+
+	^ { #slides -> #slides }
+]
+
+{ #category : #serialization }
+GtPresenterSlideShow class >> leJsonV4Name [
+	^ #presenterSlideShow
+]
+
 { #category : #accessing }
 GtPresenterSlideShow class >> openInSpace: aSlideShowClass [
 	"Convenience method to open a slideshow in a new window.
@@ -83,8 +96,11 @@ GtPresenterSlideShow >> gtLiveFor: aView [
 	
 	^ aView explicit
 		title: 'Live';
-		priority: 5;
-		stencil: [ self asElement ]
+		priority: 4;
+		stencil: [
+			| aViewModel |
+			aViewModel := GtPresenterSlideShowViewModel new slideShow: self.
+			GtPresenterSlideShowElement new slideShowViewModel: aViewModel ]
 ]
 
 { #category : #'gt-extensions' }
@@ -98,6 +114,14 @@ GtPresenterSlideShow >> gtSlidesListViewFor: aView [
 		items: [ self slides slides ]
 ]
 
+{ #category : #initialization }
+GtPresenterSlideShow >> initialize [
+	super initialize.
+	
+	"The slideshow should be initialized with at least one slide"
+	self slides addSlide: GtPresenterSlide new
+]
+
 { #category : #'api - accessing' }
 GtPresenterSlideShow >> slides [
 	"Return a composite object (${class:nil}$) created for a collection of children from the domain model.
@@ -107,6 +131,11 @@ GtPresenterSlideShow >> slides [
 	<generatedFrom: #'TGtRobocoderMetamodelChildrenForOneTemplate>>#childObjectsTemplate'>
 
 	^ slides ifNil: [ slides := self createSlides ]
+]
+
+{ #category : #'api - accessing' }
+GtPresenterSlideShow >> slides: theSlides [
+	slides := theSlides
 ]
 
 { #category : #'api - announcer' }
