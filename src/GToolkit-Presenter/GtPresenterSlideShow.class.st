@@ -61,6 +61,15 @@ GtPresenterSlideShow >> announce: anAnnouncement [
 	announcer ifNotNil: [ :anAnnouncer | anAnnouncer announce: anAnnouncement ].
 ]
 
+{ #category : #accessing }
+GtPresenterSlideShow >> asElement [
+	| slideshowViewModel |
+	slideshowViewModel := GtPresenterSlideShowViewModel new slideShow: self.
+	^ GtPresenterSlideShowElement new
+		slideShowViewModel: slideshowViewModel;
+		yourself
+]
+
 { #category : #'private - instance creation' }
 GtPresenterSlideShow >> createSlides [
 	"Create a nested child object for a domain child (or children) and return the result"
