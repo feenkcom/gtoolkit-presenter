@@ -8,6 +8,19 @@ Class {
 	#category : #'GToolkit-Presenter-Models'
 }
 
+{ #category : #accessing }
+GtPresenterSlides class >> leJsonV4AttributeMapping [
+	"Answer the Array of attribute to store keys.
+	Subclasses should override this with their attributes."
+
+	^ { #slides -> #slides }
+]
+
+{ #category : #accessing }
+GtPresenterSlides class >> leJsonV4Name [
+	^ #presenterSlides
+]
+
 { #category : #'api - adding' }
 GtPresenterSlides >> addSlide: aSlide [
 	"Add a given object as a child to the receiver and notify subscribers about it.

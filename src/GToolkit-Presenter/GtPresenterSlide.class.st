@@ -10,6 +10,22 @@ Class {
 	#category : #'GToolkit-Presenter-Models'
 }
 
+{ #category : #jsonV3 }
+GtPresenterSlide class >> leJsonV4AttributeMapping [
+	"Answer the Array of attribute to store keys.
+	Subclasses should override this with their attributes."
+
+	^ {
+		#previewScale -> #previewScale.
+		#slideExtent -> #slideExtent.
+		#stencil -> #stencil }
+]
+
+{ #category : #accessing }
+GtPresenterSlide class >> leJsonV4Name [
+	^ #presenterSlide
+]
+
 { #category : #'api - announcer' }
 GtPresenterSlide >> announce: anAnnouncement [
 	<generatedFrom: #'TGtRobocoderAnnouncerTemplate>>#announceTemplate'>
@@ -23,7 +39,7 @@ GtPresenterSlide >> initialize [
 	"16x9 aspect ration"
 	slideExtent := (960@540).
 	previewScale := 0.5.
-	stencil := [ BlElement new ] asStencil
+	stencil := GtPresenterEmptySlideStencil new
 ]
 
 { #category : #'api - preview scale' }
