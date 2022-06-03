@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'announcer',
-		'slides'
+		'slides',
+		'background'
 	],
 	#category : #'GToolkit-Presenter-Models'
 }
@@ -67,7 +68,13 @@ GtPresenterSlideShow >> asElement [
 	slideshowViewModel := GtPresenterSlideShowViewModel new slideShow: self.
 	^ GtPresenterSlideShowElement new
 		slideShowViewModel: slideshowViewModel;
+		background: self background;
 		yourself
+]
+
+{ #category : #accessing }
+GtPresenterSlideShow >> background [
+	^ background
 ]
 
 { #category : #'private - instance creation' }
@@ -81,6 +88,11 @@ GtPresenterSlideShow >> createSlides [
 	
 	
 	^ childObject
+]
+
+{ #category : #initialization }
+GtPresenterSlideShow >> defaultBackground [
+	^ Color white
 ]
 
 { #category : #'api - accessing' }
@@ -119,7 +131,8 @@ GtPresenterSlideShow >> initialize [
 	super initialize.
 	
 	"The slideshow should be initialized with at least one slide"
-	self slides addSlide: GtPresenterSlide new
+	self slides addSlide: GtPresenterSlide new.
+	background := self defaultBackground
 ]
 
 { #category : #'api - accessing' }

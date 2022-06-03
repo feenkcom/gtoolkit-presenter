@@ -42,6 +42,11 @@ GtPresenterSlides >> announce: anAnnouncement [
 	announcer ifNotNil: [ :anAnnouncer | anAnnouncer announce: anAnnouncement ].
 ]
 
+{ #category : #accessing }
+GtPresenterSlides >> first [
+	^ self slides first
+]
+
 { #category : #'gt-extensions' }
 GtPresenterSlides >> gtSlideListViewFor: aView [
 	<gtView>
