@@ -33,6 +33,11 @@ GtPresenterSlide >> announce: anAnnouncement [
 ]
 
 { #category : #accessing }
+GtPresenterSlide >> asElement [ 
+	^ self stencil asElement
+]
+
+{ #category : #accessing }
 GtPresenterSlide >> gtLiveFor: aView [
 	<gtView>
 	
