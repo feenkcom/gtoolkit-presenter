@@ -34,7 +34,7 @@ GtParagraphLiveSlide >> create [
 							constraintsDo: [ :c |
 								c linear horizontal alignCenter ];
 							padding: (BlInsets all: 10);
-							editor: (BrTextEditor new 
+							editor: (BrTextEditorModel new 
 								text: self fullText))).
 
 ]
