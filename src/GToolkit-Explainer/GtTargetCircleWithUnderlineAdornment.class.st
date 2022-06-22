@@ -7,7 +7,7 @@ Class {
 		'coder',
 		'node'
 	],
-	#category : 'GToolkit-Explainer-Coder add-on'
+	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #accessing }
@@ -17,7 +17,7 @@ GtTargetCircleWithUnderlineAdornment >> coder: aCoder [
 
 { #category : #accessing }
 GtTargetCircleWithUnderlineAdornment >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
-	| circleElement underlineRules |
+	| circleElement |
 	
 	circleElement := super doAffect: aTBrTextEditorTextualPiece in: anEditorElement.
 
