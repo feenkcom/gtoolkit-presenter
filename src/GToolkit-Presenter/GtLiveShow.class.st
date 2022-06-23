@@ -249,7 +249,7 @@ GtLiveShow >> dropdown [
 
 { #category : #accessing }
 GtLiveShow >> dropdownExportStencilFor [
-	| dropdownLook selectionElement |
+	| selectionElement |
 
 	^ selectionElement := BrSlideImageExport new
 		folder: FileLocator home;
