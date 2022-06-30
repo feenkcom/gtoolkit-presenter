@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'explanationModel'
 	],
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #accessing }
@@ -23,7 +23,7 @@ GtExplainerExplanationAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEd
 		padding: (BlInsets left: 4 right: 4);
 		constraintsDo: [ :c | c textFlow doNotFillLine ].
 	
-	^ aTextPieceElement
+	^{ aTextPieceElement }
 ]
 
 { #category : #accessing }
