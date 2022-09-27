@@ -105,7 +105,7 @@ GtSlideShowExamples >> exampleSlideShowInScripter [
 	<gtExample>
 	| aScripter |
 
-	aScripter := BlDevScripter new.
+	aScripter := BlScripter new.
 	aScripter element: self exampleSlideShow asElement.
 
 	^ aScripter

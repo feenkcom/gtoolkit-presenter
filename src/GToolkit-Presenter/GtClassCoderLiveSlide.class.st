@@ -32,7 +32,7 @@ GtClassCoderLiveSlide >> create [
 			c horizontal matchParent ];
 		margin: (BlInsets top: 5 right: 15 bottom: 5 left: 5).
 		
-	aScripter := BlDevScripter new.
+	aScripter := BlScripter new.
 	aScripter element: coderElement.
 	
 	self isHeaderExpanded

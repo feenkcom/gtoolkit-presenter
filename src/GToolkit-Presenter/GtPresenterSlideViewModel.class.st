@@ -115,7 +115,7 @@ GtPresenterSlideViewModel >> privateCreateSlideAtrifact [
 	<return: #GtPresenterSlideArtifact>
 	| aScripter aSlidePreview aSlideElement |
 	
-	aScripter := BlDevScripter new.
+	aScripter := BlScripter new.
 	aScripter extent: self slideExtent.
 	aScripter element: self stencil asElement.
 	
