@@ -186,7 +186,7 @@ GtExplainerExamples >> playgroundWithPreview [
 		matchParent.
 	container explainer isExplanationHolder: true.	
 
-	scripter := BlDevScripter new
+	scripter := BlScripter new
 		element: ((GtPlaygroundLiveSlide new newSnippet: '41 + 1') asElement).
 	subject := scripter elementWithoutParent.
 		

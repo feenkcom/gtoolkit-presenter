@@ -61,7 +61,7 @@ GtPlaygroundLiveSlide >> initialize [
 GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 	| aScripter |
 	
-	aScripter := BlDevScripter new.
+	aScripter := BlScripter new.
 	aScripter
 		substep: 'Playground Element'
 		do: [ :aStep | 
