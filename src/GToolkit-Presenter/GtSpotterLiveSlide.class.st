@@ -8,16 +8,16 @@ I am a spotter live slide. I create a spotter element opened in the default cont
 Class {
 	#name : #GtSpotterLiveSlide,
 	#superclass : #GtLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
 GtSpotterLiveSlide >> create [
 	| aSpotter aSpotterElement container |
-	aSpotter := GtSpotter new.
-	aSpotterElement := GtSpotterElement new.
-	aSpotterElement spotterModel: aSpotter.
-	aSpotterElement searchField requestFocus.
+	aSpotter := GtStreamingSpotter on: GtWorldSpotterSearchStart new.
+	aSpotterElement := GtStreamingSpotterElement new.
+	aSpotterElement spotter: aSpotter.
+"	aSpotterElement searchField requestFocus."
 	aSpotterElement 	
 		size: 600@400;
 		aptitude: BrShadowAptitude;
