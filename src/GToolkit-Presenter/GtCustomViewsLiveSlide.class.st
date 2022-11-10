@@ -8,7 +8,7 @@ I show custom views for different objects.
 Class {
 	#name : #GtCustomViewsLiveSlide,
 	#superclass : #GtInspectorViewsLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -24,7 +24,7 @@ GtCustomViewsLiveSlide >> create [
 	((GtResourcesUtility resourceAtPath: (Path * 'feenkcom' / 'gtoolkit' / 'doc' / 'gtoolkit.png')) gtFigureFor: GtPhlowView empty) . 
 	BlBezierElementExamples new curveWithAnchors gtLiveFor: GtPhlowView empty.
 	(GtGraphCircleNeighbourhoodExamples new emptyNeighborhoodWithThreeCirclesAndSpace gtPreviewFor: GtPhlowView empty) . 
-	(GtWhatMakesBlocSpecialExplanation new sampleText gtTreeFor: GtPhlowView empty)} do: [:view | 
+	(GtWhatMakesBlocSpecialExplanation new sampleText gtTextFor: GtPhlowView empty)} do: [:view | 
 		container addChild: (( view
 			asElementDo: [:e | 
 				BlElement new 
