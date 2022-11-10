@@ -27,6 +27,30 @@ GtLiveSlide >> asCachedElement [
 ]
 
 { #category : #accessing }
+GtLiveSlide >> asElement [
+	| anElement|
+	
+	anElement := super asElement.
+	
+	self shouldPerformAction ifTrue: [
+		(self shouldPerformActionEveryTime)
+			ifTrue: [
+				anElement
+					when: BlElementAddedToSceneGraphEvent
+					do: [:anEvent |
+						anEvent consumed: true.
+						self performActionOn: anElement]]
+			ifFalse: [
+				anElement
+					when: BlElementAddedToSceneGraphEvent
+					doOnce: [:anEvent |
+						anEvent consumed: true.
+						self performActionOn: anElement] ] ].
+	
+	^ anElement
+]
+
+{ #category : #accessing }
 GtLiveSlide >> asPreviewElement [
 	"Answer the receiver's preview element.
 	Must be called from the UI process."
@@ -215,6 +239,11 @@ GtLiveSlide >> run [
 	^ GtSlideRunner new
 		slide: self;
 		run.
+]
+
+{ #category : #accessing }
+GtLiveSlide >> shouldPerformAction [
+	^ onAddedToSceneGraphAction notNil
 ]
 
 { #category : #accessing }
