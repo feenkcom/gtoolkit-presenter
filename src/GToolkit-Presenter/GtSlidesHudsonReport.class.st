@@ -1,7 +1,7 @@
 Class {
 	#name : #GtSlidesHudsonReport,
 	#superclass : #GtExamplesTestingHudsonReport,
-	#category : 'GToolkit-Presenter-Runtime'
+	#category : #'GToolkit-Presenter-Runtime'
 }
 
 { #category : #running }
@@ -53,7 +53,7 @@ GtSlidesHudsonReport >> resultsFileName [
 
 { #category : #running }
 GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
-	| errorDetails stack |
+	| errorDetails stack runStatus |
 	
 	errorDetails := nil.
 	self
@@ -69,12 +69,23 @@ GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 						put: (err messageText ifNil: [ err description ]).
 					stack := self stackTraceString: err of: aSlideBuilder ] ].
 
-	errorDetails ifNotNil: [
-		((errorDetails at: #errorClass) isKindOf: AssertionFailure)
-			ifTrue: [ self writeFailure: errorDetails stack: stack ]
-			ifFalse: [ self writeError: errorDetails stack: stack ] ].
+	errorDetails
+		ifNil: [ runStatus := #success ]
+		ifNotNil: [
+		((errorDetails at: #errorClass) includesBehavior: AssertionFailure)
+			ifTrue: [
+				runStatus := #failure.
+				self writeFailure: errorDetails stack: stack ]
+			ifFalse: [
+				runStatus := #error.
+				self writeError: errorDetails stack: stack ] ].
 	
-	self endTestCase
+	self endTestCase.
+	
+	GtExamplesReportRunExampleSignal new
+		example: aSlideBuilder;
+		runStatus: runStatus;
+		emit.
 ]
 
 { #category : #running }

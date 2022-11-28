@@ -5,7 +5,7 @@ Class {
 		'slideSelector',
 		'slideShowClass'
 	],
-	#category : 'GToolkit-Presenter-Runtime'
+	#category : #'GToolkit-Presenter-Runtime'
 }
 
 { #category : #accessing }
@@ -39,6 +39,11 @@ GtSlideBuilder >> ignoreSlideTest [
 ]
 
 { #category : #accessing }
+GtSlideBuilder >> printClassLabelOn: aStream [
+	aStream print: slideShowClass
+]
+
+{ #category : #accessing }
 GtSlideBuilder >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
@@ -47,6 +52,11 @@ GtSlideBuilder >> printOn: aStream [
 		nextPutAll: '>>#';
 		nextPutAll: slideSelector;
 		nextPutAll: ')'.
+]
+
+{ #category : #accessing }
+GtSlideBuilder >> selector [
+	^ slideSelector
 ]
 
 { #category : #accessing }
