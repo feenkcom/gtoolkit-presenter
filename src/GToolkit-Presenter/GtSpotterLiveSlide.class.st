@@ -14,7 +14,7 @@ Class {
 { #category : #'api - instantiation' }
 GtSpotterLiveSlide >> create [
 	| aSpotter aSpotterElement container |
-	aSpotter := GtStreamingSpotter on: GtWorldSpotterSearchStart new.
+	aSpotter := GtSpotter on: GtWorldSpotterSearchStart new.
 	aSpotterElement := GtStreamingSpotterElement new.
 	aSpotterElement spotter: aSpotter.
 "	aSpotterElement searchField requestFocus."
