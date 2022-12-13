@@ -30,7 +30,7 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 		(aMethod sourceCode 
 			copyFrom: notTemp start to: aMethod ast stop) lines 
 				do: [ :aLine |
-					stream nextPutAll: (aLine removePrefix: String tab) ]
+					stream nextPutAll: (aLine withoutPrefix: String tab) ]
 				separatedBy: [ stream cr ] ]
 ]
 
