@@ -18,6 +18,7 @@ GtPresenterSlideShowElement >> initialize [
 	
 	self layout: BlLinearLayout horizontal.
 	self matchParent.
+	self beFocusable.
 	
 	slideElement := GtPresenterSlideElement new.
 	slideElement matchParent.
