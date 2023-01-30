@@ -20,7 +20,7 @@ GtExplainerExamples >> inspectorContainerElement [
 	subject forceLayout.
 
 	inspectorHeader := subject phlow firstChildWithView.
-	inspectorView := inspectorHeader viewContentElement phlow firstChildWithView.
+	inspectorView := inspectorHeader phlow firstChildWithView.
 	inspectorActionButton := subject phlow firstChildWithAction.
 	
 	inspectorContainer addChild: subject.
