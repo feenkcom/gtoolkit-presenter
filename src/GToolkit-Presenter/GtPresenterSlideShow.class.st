@@ -52,6 +52,7 @@ GtPresenterSlideShow class >> openInSpace: aSlideShowClass [
 	slideshowViewModel := GtPresenterSlideShowViewModel new slideShow: slideshow.
 	
 	BlSpace new
+		withSceneDriller;
 		addChild: (GtPresenterSlideShowElement new slideShowViewModel: slideshowViewModel);
 		show
 ]
