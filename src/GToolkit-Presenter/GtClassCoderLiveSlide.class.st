@@ -47,7 +47,7 @@ GtClassCoderLiveSlide >> create [
 		ifTrue: [
 			aScripter click
 				label: 'Expand certain method in coder';
-				id: GtSourceCoderId index: self expandedMethod;
+				// (GtSourceCoderId indexed: self expandedMethod);
 				play ].
 
 	coderElement := aScripter elementWithoutParent.
