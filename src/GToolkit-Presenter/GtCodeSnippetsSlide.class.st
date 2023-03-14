@@ -42,7 +42,7 @@ GtCodeSnippetsSlide >> addSnippet: aSnippetElement [
 ]
 
 { #category : #accessing }
-GtCodeSnippetsSlide >> addTextSnippetV1: aString [
+GtCodeSnippetsSlide >> addTextSnippet: aString [
 	self addSnippet: (BlTextElement new text: aString asRopedText)
 ]
 
