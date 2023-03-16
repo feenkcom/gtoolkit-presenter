@@ -10,7 +10,8 @@ Class {
 	#superclass : #GtLiveSlide,
 	#instVars : [
 		'texts',
-		'horizontalWeight'
+		'horizontalWeight',
+		'textMargin'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -35,7 +36,7 @@ GtTextLiveSlide >> create [
 			textContainer
 				addChild: (BrEditor new
 						aptitude: (BrGlamorousEditorAptitude new lineSpacing: 5);
-						margin: (BlInsets all: 50);
+						margin: (BlInsets all: self textMargin);
 						hMatchParent;
 						vFitContent;
 						text: aText;
@@ -47,6 +48,11 @@ GtTextLiveSlide >> create [
 { #category : #constant }
 GtTextLiveSlide >> defaultHorizontalWeight [
 	^ 0.6
+]
+
+{ #category : #constant }
+GtTextLiveSlide >> defaultTextMargin [
+	^ 50
 ]
 
 { #category : #acccessing }
@@ -65,6 +71,7 @@ GtTextLiveSlide >> horizontalWeight: aRatio [
 GtTextLiveSlide >> initialize [
 	super initialize.
 	self horizontalWeight: self defaultHorizontalWeight.
+	self textMargin: self defaultTextMargin.
 	texts := OrderedCollection new
 ]
 
@@ -76,4 +83,14 @@ GtTextLiveSlide >> newText: aRopedText [
 { #category : #accessing }
 GtTextLiveSlide >> newTextWithFormat: aRopedText [
 	texts add: aRopedText asRopedText
+]
+
+{ #category : #accessing }
+GtTextLiveSlide >> textMargin [
+	^ textMargin
+]
+
+{ #category : #accessing }
+GtTextLiveSlide >> textMargin: anObject [
+	textMargin := anObject
 ]
