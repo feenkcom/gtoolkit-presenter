@@ -43,13 +43,9 @@ GtCodeSnippetsSlide >> addSnippet: aSnippetElement [
 
 { #category : #accessing }
 GtCodeSnippetsSlide >> addTextSnippet: aString [
-	self addSnippet: (BlTextElement new text: aString asRopedText)
-]
-
-{ #category : #accessing }
-GtCodeSnippetsSlide >> addTextSnippetV2: aString [
 	self
-		addSnippet: (self extractTextCoderSnippetElementFor: (LeTextSnippet string: aString) asPreviewElement )
+		addSnippet: (self
+				extractTextCoderSnippetElementFor: (LeTextSnippet string: aString) asPreviewElement)
 ]
 
 { #category : #'api - instantiation' }
@@ -366,5 +362,5 @@ GtCodeSnippetsSlide >> topMargin: aNumber [
 
 { #category : #accessing }
 GtCodeSnippetsSlide >> typeTextSnippet: aString [
-	self addTextSnippetV2: aString
+	self addTextSnippet: aString
 ]

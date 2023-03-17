@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'startPage'
 	],
-	#category : 'GToolkit-Presenter-GToolkit-Presenter'
+	#category : #'GToolkit-Presenter-GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -19,4 +19,11 @@ GtLepiterPageLiveSlide >> pageNamed: aPageName from: aLepiterBaseName [
 	database := LeDatabasesRegistry default currentLoadedDefaultLogicalDatabase 
 				databaseNamed: aLepiterBaseName.
 	startPage := database pageNamed: aPageName.
+]
+
+{ #category : #accessing }
+GtLepiterPageLiveSlide >> startPage: aLePage [
+	"For dynamically created pages no associated with an actual database."
+
+	startPage := aLePage
 ]
