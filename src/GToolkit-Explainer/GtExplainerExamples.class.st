@@ -15,9 +15,8 @@ GtExplainerExamples >> inspectorContainerElement [
 			c vertical matchParent ];
 		layout: BlLinearLayout horizontal.
 
-	subject := BlUseAsyncFeatures
-		disableDuring: [ (GtABCartoonAddressBookExample new cartoonAddressBook gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ] ].
-	subject forceLayout.
+	subject := (GtABCartoonAddressBookExample new cartoonAddressBook gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ].
+	BlScripter new element: subject; elementWithoutParent.
 
 	inspectorHeader := subject phlow firstChildWithView.
 	inspectorView := inspectorHeader phlow firstChildWithView.
