@@ -11,7 +11,7 @@ BrEditor >> hasValidators [
 { #category : #'*GToolkit-Explainer' }
 BrEditor >> installValidatorsFor: modelCollection [
 	modelCollection do: [ :each | self explainer addValidator: each ].
-	textStyleHandler
+	editorElement textStyleHandler
 		action:
 			[ :anEvent | 
 			self editor stylerStrategy
