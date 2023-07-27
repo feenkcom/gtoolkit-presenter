@@ -32,13 +32,13 @@ GtSlideShowExamples >> create [
 		addSlide:
 			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'Embedding a full Class Coder');
-				element: [ (GtCoder forClass: Boolean) createInPager maximized ];
+				element: [ (GtCoderElement forClass: Boolean) createInPager maximized ];
 				elementWeight: 0.6).
 	show
 		addSlide:
 			(GtTextAndElementLiveSlide new
 				newTextWithFormat: (self heading: 'Coder with a given method expanded');
-				element: [ (GtCoder forMethod: True >> #ifTrue:ifFalse:) createInPager
+				element: [ (GtCoderElement forMethod: True >> #ifTrue:ifFalse:) createInPager
 					"maximized" ];
 				elementWeight: 0.6).
 	show
