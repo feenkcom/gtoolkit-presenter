@@ -18,9 +18,22 @@ TGtSlideShow classSide >> gtOpenActionFor: anAction [
 	<gtAction>
 	<gtClassAction>
 	^ anAction button 
-		tooltip: 'Open slideshow';
-		priority: 1;
+		tooltip: 'Inspect slideshow';
+		priority: 10;
 		id: GtPresenterPreviewShowButtonId;
-		icon: BrGlamorousVectorIcons play;
+		icon: BrGlamorousVectorIcons playinspect;
 		action: [ :aButton | aButton phlow spawnObject: (GtPresenterSlideShow create: self new) ]
+]
+
+{ #category : #accessing }
+TGtSlideShow classSide >> gtOpenSlideshowActionFor: anAction [
+	<gtAction>
+	<gtClassAction>
+	(self methods select: [ :m | m hasPragmaNamed: #gtSlide ]) isEmpty
+		ifTrue: [ ^ anAction noAction ].
+	^ anAction button
+		priority: 11;
+		tooltip: 'Play slideshow in new window';
+		icon: BrGlamorousVectorIcons play;
+		action: [ :aButton | GtPresenterSlideShow openInSpace: self ]
 ]

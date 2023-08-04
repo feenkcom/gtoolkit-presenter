@@ -6,6 +6,8 @@ I am an example live show. I have an example for each of the live slide template
 Class {
 	#name : #GtExampleLiveShow,
 	#superclass : #Object,
+	#traits : 'TGtSlideShow',
+	#classTraits : 'TGtSlideShow classTrait',
 	#category : #'GToolkit-Presenter'
 }
 
