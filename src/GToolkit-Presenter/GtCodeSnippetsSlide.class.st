@@ -11,6 +11,8 @@ GtPresenterSlideShow openInSpace: GtCodeSnippetsSlide
 Class {
 	#name : #GtCodeSnippetsSlide,
 	#superclass : #GtLiveSlide,
+	#traits : 'TGtSlideShow',
+	#classTraits : 'TGtSlideShow classTrait',
 	#instVars : [
 		'snippets',
 		'heading',
