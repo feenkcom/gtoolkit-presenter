@@ -281,6 +281,14 @@ GtProtoLiveSlide >> title [
 			collect).
 ]
 
+{ #category : #decorating }
+GtProtoLiveSlide >> titleWithFooter [
+	^ GtTitleWithFooterLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector new 
+			stack: thisContext stack;
+			collect).
+]
+
 { #category : #'private - subscriptions' }
 GtProtoLiveSlide >> unsubscribeFromSystem [
 	SystemAnnouncer uniqueInstance unsubscribe: self.
