@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'class',
 		'expandHeader',
-		'expandMethod'
+		'expandMethods'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -43,11 +43,10 @@ GtClassCoderLiveSlide >> create [
 				id: GtSourceCoderExpanderToggleId;
 				play ].
 
-	self expandedMethod > 0
-		ifTrue: [
+	self expandedMethods do: [:anIndex |
 			aScripter click
 				label: 'Expand certain method in coder';
-				// (GtSourceCoderId indexed: self expandedMethod);
+				// (GtSourceCoderId indexed: anIndex);
 				play ].
 
 	coderElement := aScripter elementWithoutParent.
@@ -68,18 +67,18 @@ GtClassCoderLiveSlide >> expandHeader: aBoolean [
 
 { #category : #accessing }
 GtClassCoderLiveSlide >> expandMethodAt: aNumber [
-	expandMethod := aNumber.
+	expandMethods add: aNumber
 ]
 
 { #category : #accessing }
-GtClassCoderLiveSlide >> expandedMethod [
-	^ expandMethod.
+GtClassCoderLiveSlide >> expandedMethods [
+	^ expandMethods.
 ]
 
 { #category : #initialization }
 GtClassCoderLiveSlide >> initialize [
 	super initialize.
-	expandMethod := 0.
+	expandMethods := OrderedCollection new.
 	expandHeader := false.
 ]
 
