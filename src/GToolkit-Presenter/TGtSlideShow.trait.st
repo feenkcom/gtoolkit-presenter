@@ -37,3 +37,13 @@ TGtSlideShow classSide >> gtOpenSlideshowActionFor: anAction [
 		icon: BrGlamorousVectorIcons play;
 		action: [ :aButton | GtPresenterSlideShow openInSpace: self ]
 ]
+
+{ #category : #accessing }
+TGtSlideShow >> gtLiveSlideshowFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView explicit 
+		title: 'Slideshow';
+		stencil: [ GtPresenterSlideShow create: self ];
+		actionUpdateButton
+]
