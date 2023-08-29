@@ -2,15 +2,36 @@ Class {
 	#name : #GtLepiterPageLiveSlide,
 	#superclass : #GtLiveSlide,
 	#instVars : [
-		'startPage'
+		'startPage',
+		'maximized'
 	],
 	#category : #'GToolkit-Presenter-GToolkit-Presenter'
 }
 
 { #category : #accessing }
+GtLepiterPageLiveSlide >> beMaximized [
+	maximized := true
+]
+
+{ #category : #accessing }
 GtLepiterPageLiveSlide >> create [
+	| aPager |
 	startPage asPhlowTool asElementDo: [:e | 
-		^ GtPager createWrappedOn: e ]
+		aPager := GtPager createWrappedOn: e.
+		maximized ifTrue: [ aPager maximized ].
+		aPager addAptitude: BrShadowAptitude new beLarge.
+		^ aPager ]
+]
+
+{ #category : #accessing }
+GtLepiterPageLiveSlide >> initialize [
+	super initialize.
+	maximized := false.
+]
+
+{ #category : #accessing }
+GtLepiterPageLiveSlide >> maximized: aBoolean [
+	maximized := aBoolean
 ]
 
 { #category : #accessing }
