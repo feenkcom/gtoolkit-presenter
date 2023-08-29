@@ -121,10 +121,12 @@ GtPresenterSlideShow >> gtSlidesListViewFor: aView [
 	<gtView>
 	<generatedFrom: #'GtRobocoderMetamodelPhlowListViewDerive>>#listForOneTemplate'>
 
-	^ aView list
+	^ aView columnedList
 		priority: 5;
 		title: 'Slides';
-		items: [ self slides slides ]
+		items: [ self slides slides ];
+		column: 'Method' text: [ :each | each stencil definingMethod selector ];
+		column: 'Priority' text: [ :each | each stencil priority ]
 ]
 
 { #category : #initialization }
