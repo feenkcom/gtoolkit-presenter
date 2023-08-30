@@ -1,5 +1,5 @@
 Class {
-	#name : #GtDirectParameterExplanationLinkStyler,
+	#name : #GtPhlowDirectParameterExplanationLinkStyler,
 	#superclass : #GtSourceExplanationLinkStyler,
 	#instVars : [
 		'selectorsDictionary',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #visiting }
-GtDirectParameterExplanationLinkStyler >> highlightNode: aNode [ 
+GtPhlowDirectParameterExplanationLinkStyler >> highlightNode: aNode [ 
 	| anAttribute |
 
 	anAttribute := GtYellowCircleExplanationTextAdornment
@@ -23,20 +23,20 @@ GtDirectParameterExplanationLinkStyler >> highlightNode: aNode [
 ]
 
 { #category : #initialization }
-GtDirectParameterExplanationLinkStyler >> initialize [
+GtPhlowDirectParameterExplanationLinkStyler >> initialize [
 	super initialize.
 
 	selectorsDictionary := Dictionary new
 ]
 
 { #category : #adding }
-GtDirectParameterExplanationLinkStyler >> parameterName: aName withIdentifier: aParameterIdentifier [
+GtPhlowDirectParameterExplanationLinkStyler >> parameterName: aName withIdentifier: aParameterIdentifier [
 	parameterName := aName.
 	parameterIdentifier := aParameterIdentifier
 ]
 
 { #category : #visiting }
-GtDirectParameterExplanationLinkStyler >> visitNamedVariable: aNamedVariable [
+GtPhlowDirectParameterExplanationLinkStyler >> visitNamedVariable: aNamedVariable [
 	super visitNamedVariable: aNamedVariable.
 	
 	(aNamedVariable variableName = parameterName and: [ 
@@ -46,7 +46,7 @@ GtDirectParameterExplanationLinkStyler >> visitNamedVariable: aNamedVariable [
 ]
 
 { #category : #visiting }
-GtDirectParameterExplanationLinkStyler >> visitReturn: aReturn [
+GtPhlowDirectParameterExplanationLinkStyler >> visitReturn: aReturn [
 	super visitReturn: aReturn.
 	
 	(aReturn value isVariable and: [ 
