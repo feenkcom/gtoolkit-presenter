@@ -36,6 +36,16 @@ GtDirectParameterExplanationLinkStyler >> parameterName: aName withIdentifier: a
 ]
 
 { #category : #visiting }
+GtDirectParameterExplanationLinkStyler >> visitNamedVariable: aNamedVariable [
+	super visitNamedVariable: aNamedVariable.
+	
+	(aNamedVariable variableName = parameterName and: [ 
+		aNamedVariable parent notNil and: [
+			aNamedVariable parent isMethodPattern ] ])
+		ifTrue: [ self highlightNode: aNamedVariable ]
+]
+
+{ #category : #visiting }
 GtDirectParameterExplanationLinkStyler >> visitReturn: aReturn [
 	super visitReturn: aReturn.
 	
