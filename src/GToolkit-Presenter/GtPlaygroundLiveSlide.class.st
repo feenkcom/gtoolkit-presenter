@@ -67,16 +67,19 @@ GtPlaygroundLiveSlide >> inspectSnippetAt: aPosition [
 		do: [ :aStep | 
 			aStep set
 				label: 'Playground';
-				element: [ self asElement ] ].
-	aScripter wait forEmptySpaceTaskQueue.
+				element: [ self asElement ];
+			play ].
+	aScripter wait forEmptySpaceTaskQueue;
+			play.
 	aScripter
 		substep: 'Evaluate and inspect snippet'
 		do: [ :aStep | 
 			aStep click
 				label: 'Click on evaluate and inspect button';
-				id: GtSourceCoderDoItAndGoActionId index: aPosition.
-			aStep wait forEmptySpaceTaskQueue ].
-	aScripter syncContinue.
+				id: GtSourceCoderDoItAndGoActionId index: aPosition;
+			play.
+			aStep wait forEmptySpaceTaskQueue;
+			play ].
 	^ aScripter elementWithoutParent
 ]
 
