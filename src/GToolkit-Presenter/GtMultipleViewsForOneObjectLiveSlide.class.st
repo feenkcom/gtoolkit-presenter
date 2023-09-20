@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'containerLayout'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -25,7 +25,7 @@ GtMultipleViewsForOneObjectLiveSlide >> create [
 		layout: containerLayout.
 	{
 		(object gtTextFor: GtPhlowView empty) . 
-		(object gtTreeFor: GtPhlowView empty) . 
+		(object gtTextAttributesFor: GtPhlowView empty) . 
 		(object gtStringFor: GtPhlowView empty).
 		(object gtStoreStringFor: GtPhlowView empty)} do: [:view | 
 		container addChild: (( view
