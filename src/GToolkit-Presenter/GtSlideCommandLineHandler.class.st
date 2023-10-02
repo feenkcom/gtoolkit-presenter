@@ -1,8 +1,13 @@
 Class {
 	#name : #GtSlideCommandLineHandler,
 	#superclass : #GtExamplesCommandLineHandler,
-	#category : 'GToolkit-Presenter-Runtime'
+	#category : #'GToolkit-Presenter-Runtime'
 }
+
+{ #category : #accessing }
+GtSlideCommandLineHandler class >> checksLabel [
+	^ 'Slide'
+]
 
 { #category : #accessing }
 GtSlideCommandLineHandler class >> commandName [
