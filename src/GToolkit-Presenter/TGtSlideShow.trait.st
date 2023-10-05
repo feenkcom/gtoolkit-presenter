@@ -17,12 +17,16 @@ TGtSlideShow classSide >> gtLiveSlideshowFor: aView [
 TGtSlideShow classSide >> gtOpenActionFor: anAction [
 	<gtAction>
 	<gtClassAction>
-	^ anAction button 
+	^ anAction button
 		tooltip: 'Inspect slideshow';
 		priority: 10;
 		id: GtPresenterPreviewShowButtonId;
 		icon: BrGlamorousVectorIcons playinspect;
-		action: [ :aButton | aButton phlow spawnObject: (GtPresenterSlideShow create: self new) ]
+		action: [ :aButton | 
+			aButton phlow
+				spawnObject: ((self inheritsFrom: PrioritySlideshow)
+						ifTrue: [ self new ]
+						ifFalse: [ GtPresenterSlideShow create: self new ]) ]
 ]
 
 { #category : #accessing }
