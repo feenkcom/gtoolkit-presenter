@@ -39,26 +39,29 @@ GtClassCoderLiveSlide >> create [
 	aScripter element: coderElement.
 
 	self isHeaderExpanded
-		ifTrue: [ aScripter click
-				label: 'Expand coder header';
-				onBreadthFirstChildOfClass: GtPharoBehaviorDefinitionCoderElement;
-				id: GtSourceCoderExpanderToggleId;
-				play ].
+		ifTrue: [ aScripter
+				clickStep: [ :s | 
+					s
+						label: 'Expand coder header';
+						onBreadthFirstChildOfClass: GtPharoBehaviorDefinitionCoderElement;
+						id: GtSourceCoderExpanderToggleId ] ].
 
 	self expandedMethods
 		do: [ :anIndex | 
-			aScripter do
-				action: [ | methodsCoderViewModel method |
-					methodsCoderViewModel := coderElement streamingMethodCodersElement
-							streamingCodersViewModel.
-					method := methodsCoderViewModel streamingCodersModel itemsStream toArray
-							wait at: anIndex.
-					methodsCoderViewModel scrollToCompiledMethod: method ];
-				play.
-			aScripter click
-				label: 'Expand certain method in coder';
-				// (GtSourceCoderId indexed: anIndex);
-				play ].
+			aScripter
+				doStep: [ :s | 
+					s
+						action: [ | methodsCoderViewModel method |
+							methodsCoderViewModel := coderElement streamingMethodCodersElement
+									streamingCodersViewModel.
+							method := methodsCoderViewModel streamingCodersModel itemsStream toArray
+									wait at: anIndex.
+							methodsCoderViewModel scrollToCompiledMethod: method ] ].
+			aScripter
+				clickStep: [ :s | 
+					s
+						label: 'Expand certain method in coder';
+						// (GtSourceCoderId indexed: anIndex) ] ].
 
 	coderElement := aScripter elementWithoutParent.
 
