@@ -5,7 +5,7 @@ Class {
 		'isForTarget',
 		'addedLines'
 	],
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #private }
@@ -62,11 +62,11 @@ GtExplainerLinesAptitude >> onHovered: aWidget [
 			| aNewLine |
 			aNewLine := BlLineElement new
 				fromAnchor:
-					(BlNearestPositionTightCircleAnchor
+					(BlNearestPositionEllipseAnchor
 						referenceElement: aWidget
 						relatedTo: explanationTargetElement);
 				toAnchor:
-					(BlNearestPositionTightCircleAnchor
+					(BlNearestPositionEllipseAnchor
 						referenceElement: explanationTargetElement
 						relatedTo: aWidget);
 				zIndex: 10;
