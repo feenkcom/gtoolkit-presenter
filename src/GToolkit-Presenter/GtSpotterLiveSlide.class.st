@@ -1,7 +1,7 @@
 "
 I am a spotter live slide. I create a spotter element opened in the default context.
 
-{{gtMethod:GtExampleLiveShow>>#spotterExampleSlideFor:|expanded=}}
+{{gtMethod:GtTour>>#spotterExampleSlide:|expanded=}}
 
 
 "
