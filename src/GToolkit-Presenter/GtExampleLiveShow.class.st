@@ -226,7 +226,7 @@ GtExampleLiveShow >> slideshowExampleSlideFor: aSlide [
 ]
 
 { #category : #accessing }
-GtExampleLiveShow >> spotterExampleSlideFor: aSlide [
+GtExampleLiveShow >> spotterExampleSlide: aSlide [
 	<gtSlide>
 	^ aSlide spotter
 		priority: 52.
