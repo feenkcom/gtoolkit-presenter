@@ -31,5 +31,6 @@ CompiledMethod >> gtSlideFor: aView [
 			(GtProtoLiveSlide new element
 				element: [ (aSlide asElement size: 1200 @ 900) asScalableElement ])
 				asElement ];
-		view: #gtLiveFor:
+		view: #gtLiveFor:;
+		actionUpdateButton
 ]
