@@ -4,17 +4,7 @@ Trait {
 }
 
 { #category : #viewing }
-TGtSlideShow classSide >> gtLiveSlideshowFor: aView [
-	<gtView>
-	<gtClassView>
-	^ aView explicit 
-		title: 'Slideshow';
-		stencil: [ GtPresenterSlideShow create: self new ];
-		actionUpdateButton
-]
-
-{ #category : #viewing }
-TGtSlideShow classSide >> gtOpenActionFor: anAction [
+TGtSlideShow classSide >> gtInspectSlideshowActionFor: anAction [
 	<gtAction>
 	<gtClassAction>
 	^ anAction button
@@ -27,6 +17,16 @@ TGtSlideShow classSide >> gtOpenActionFor: anAction [
 				spawnObject: ((self inheritsFrom: PrioritySlideshow)
 						ifTrue: [ self new ]
 						ifFalse: [ GtPresenterSlideShow create: self new ]) ]
+]
+
+{ #category : #viewing }
+TGtSlideShow classSide >> gtLiveSlideshowFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView explicit 
+		title: 'Slideshow';
+		stencil: [ GtPresenterSlideShow create: self new ];
+		actionUpdateButton
 ]
 
 { #category : #accessing }
