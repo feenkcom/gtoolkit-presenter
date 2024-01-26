@@ -23,7 +23,7 @@ CompiledMethod >> gtSlideFor: aView [
 	(self hasPragmaNamed: #gtSlide) ifFalse: [ ^ aView empty ].
 	^ aView forward
 		title: 'Slide';
-		priority: 5;
+		priority: 4;
 		object: [ | aSlide |
 			aSlide := self
 					valueWithReceiver: self methodClass new
