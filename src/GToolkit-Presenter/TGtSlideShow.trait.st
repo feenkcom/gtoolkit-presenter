@@ -25,6 +25,7 @@ TGtSlideShow classSide >> gtLiveSlideshowFor: aView [
 	<gtClassView>
 	^ aView explicit 
 		title: 'Slideshow';
+		priority: 35;
 		stencil: [ GtPresenterSlideShow create: self new ];
 		actionUpdateButton
 ]

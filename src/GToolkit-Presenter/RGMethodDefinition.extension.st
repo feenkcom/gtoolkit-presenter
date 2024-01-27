@@ -6,7 +6,7 @@ RGMethodDefinition >> gtSlideFor: aView [
 	(self method hasPragmaNamed: #gtSlide) ifFalse: [ ^ aView empty ].
 	^ aView forward
 		title: 'Slide';
-		priority: 4;
+		priority: 6;
 		object: [ | aSlide |
 			aSlide := self method 
 					valueWithReceiver: self methodClass new
