@@ -7,6 +7,12 @@ CompiledMethod >> asScalableSlide [
 ]
 
 { #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asScalableSlideWithBorder [
+	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
+	^ self asSlide asScalableSlideWithBorder
+]
+
+{ #category : #'*GToolkit-Presenter' }
 CompiledMethod >> asSlide [
 	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
 	^ (self method
