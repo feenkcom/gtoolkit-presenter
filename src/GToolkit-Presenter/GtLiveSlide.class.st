@@ -59,6 +59,12 @@ GtLiveSlide >> asPreviewElement [
 ]
 
 { #category : #accessing }
+GtLiveSlide >> asScalableSlide [
+	^ GtProtoLiveSlide new element
+		element: [ (self asElement size: 1200 @ 900) asScalableElement ]
+]
+
+{ #category : #accessing }
 GtLiveSlide >> cachedElement [
 	^ cachedElement
 ]
