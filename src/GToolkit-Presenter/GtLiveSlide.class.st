@@ -26,7 +26,7 @@ GtLiveSlide >> asCachedElement [
 	^ cachedElement
 ]
 
-{ #category : #accessing }
+{ #category : #converting }
 GtLiveSlide >> asElement [
 	| anElement|
 	
@@ -50,7 +50,7 @@ GtLiveSlide >> asElement [
 	^ anElement
 ]
 
-{ #category : #accessing }
+{ #category : #converting }
 GtLiveSlide >> asPreviewElement [
 	"Answer the receiver's preview element.
 	Must be called from the UI process."
@@ -58,10 +58,19 @@ GtLiveSlide >> asPreviewElement [
 	^ previewElement
 ]
 
-{ #category : #accessing }
+{ #category : #converting }
 GtLiveSlide >> asScalableSlide [
 	^ GtProtoLiveSlide new element
 		element: [ (self asElement size: 1200 @ 900) asScalableElement ]
+]
+
+{ #category : #converting }
+GtLiveSlide >> asScalableSlideWithBorder [
+	^ GtProtoLiveSlide new element
+		element: [ (self asElement
+				size: 1200 @ 900;
+				aptitude: BrGlamorousButtonExteriorAptitude new + BrShadowAptitude new beLarge;
+				yourself) asScalableElement ]
 ]
 
 { #category : #accessing }
