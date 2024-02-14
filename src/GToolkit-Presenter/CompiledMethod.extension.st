@@ -1,6 +1,20 @@
 Extension { #name : #CompiledMethod }
 
 { #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asScalableSlide [
+	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
+	^ self asSlide asScalableSlide
+]
+
+{ #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asSlide [
+	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
+	^ (self method
+		valueWithReceiver: self methodClass new
+		arguments: {GtProtoLiveSlide new})
+]
+
+{ #category : #'*GToolkit-Presenter' }
 CompiledMethod >> gtSlide [
 	<gtCollector>
 	^ thisContext
@@ -12,6 +26,7 @@ CompiledMethod >> gtSlide [
 
 { #category : #'*GToolkit-Presenter' }
 CompiledMethod >> gtSlideBuilder [
+	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
 	^ GtSlideBuilder new
 		slideShowClass: self methodClass;
 		slideSelector: self selector
