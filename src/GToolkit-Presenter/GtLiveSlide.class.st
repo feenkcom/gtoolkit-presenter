@@ -66,14 +66,10 @@ GtLiveSlide >> asScalableSlide [
 
 { #category : #converting }
 GtLiveSlide >> asScalableSlideWithBorder [
-	"For some reason this is failing with instances of GtLepiterPageLiveSlide.
-		(GtExampleLiveShow>>#namedPlaygroundExampleSlideFor:) asScalableSlideWithBorder
-	"
-
 	^ GtProtoLiveSlide new element
 		element: [ (self asElement
 				size: 1200 @ 900;
-				aptitude: BrGlamorousButtonExteriorAptitude new + BrShadowAptitude new beLarge;
+				addAptitude: BrGlamorousButtonExteriorAptitude new + BrShadowAptitude new beLarge;
 				yourself) asScalableElement ]
 ]
 
