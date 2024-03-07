@@ -33,6 +33,16 @@ GtCodeSnippetsSlide >> addCodeSnippet: aSourceString [
 ]
 
 { #category : #accessing }
+GtCodeSnippetsSlide >> addElementSnippet: aString height: elementHeight [
+	self
+		addSnippet: (self
+				extractElementCoderSnippetElementFor: (LeElementSnippet new
+						code: aString;
+						codeVisible: false;
+						elementHeight: elementHeight) asPreviewElement)
+]
+
+{ #category : #accessing }
 GtCodeSnippetsSlide >> addExampleSnippet: exampleMethod [
 	self
 		addSnippet: (self extractCoderElementFor: (GtPharoMethodCoder forMethod: exampleMethod))
@@ -238,9 +248,16 @@ GtCodeSnippetsSlide >> exampleSlideWithOverrides: aSlide [
 
 { #category : #accessing }
 GtCodeSnippetsSlide >> extractCoderElementFor: aCoder [
+	^ self
+		extractCoderSnippetElementFor: aCoder
+		and: GtSourceCoderExpandedContentElement
+]
+
+{ #category : #accessing }
+GtCodeSnippetsSlide >> extractCoderSnippetElementFor: aCoder and: viewModelClass [
 	| editor |
 	editor := (aCoder asElement query
-			// GtSourceCoderExpandedContentElement;
+			// viewModelClass;
 			anyOne)
 			removeFromParent;
 			hMatchParent;
@@ -260,26 +277,13 @@ GtCodeSnippetsSlide >> extractCoderElementFor: aCoder [
 ]
 
 { #category : #accessing }
+GtCodeSnippetsSlide >> extractElementCoderSnippetElementFor: aCoder [
+	^ self extractCoderSnippetElementFor: aCoder and: "LeElementSnippetViewModel" LeElementSnippetElement
+]
+
+{ #category : #accessing }
 GtCodeSnippetsSlide >> extractTextCoderSnippetElementFor: aCoder [
-	| editor |
-	editor := (aCoder asElement query
-			// LeTextCoderSnippetElement;
-			anyOne)
-			removeFromParent;
-			hMatchParent;
-			vFitContent;
-			when: GtPhlowObjectToSpawn
-				do: [ :e | 
-					self inspectorElement removeChildren
-						addChild: ((e object gtViewsFor: GtPhlowView empty)
-								asElementDo: [ :x | 
-									BrVerticalPane new matchParent
-										margin: (BlInsets all: 10);
-										aptitude: BrShadowAptitude;
-										background: Color white;
-										addChild: x ]).
-					e consumed: true ].
-	^ editor
+	^ self extractCoderSnippetElementFor: aCoder and: LeTextCoderSnippetElement
 ]
 
 { #category : #accessing }
