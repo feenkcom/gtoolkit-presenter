@@ -17,24 +17,19 @@ Class {
 { #category : #decorating }
 GtProtoLiveSlide >> classCoder [
 	^ GtClassCoderLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> connector [
 	^ GtConnectorForExampleLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #accessing }
 GtProtoLiveSlide >> custom: aSlide [
-	^ aSlide definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+	^ aSlide
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #accessing }
@@ -52,57 +47,43 @@ GtProtoLiveSlide >> definingMethod: aCompiledMethod [
 { #category : #decorating }
 GtProtoLiveSlide >> devKeyboard [
 	^ GtDevKeyboardLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> editorElement [
 	^ GtEditorElementLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> element [
 	^ GtElementLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> elementAndElement [
 	^ GtElementAndElementLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> empty [
 	^ GtEmptySlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> example [
 	^ GtExampleLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> filePicture [
 	^ GtFilePictureLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #'private - event handling' }
@@ -113,49 +94,37 @@ GtProtoLiveSlide >> hasDefiningMethod [
 { #category : #decorating }
 GtProtoLiveSlide >> headingAndCode [
 	^ GtCodeSnippetsSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new
-				stack: thisContext stack;
-				collect)
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> inspectorViews [
 	^ GtInspectorViewsLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> labelAndElement [
 	^ GtLabelAndElementLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #accessing }
 GtProtoLiveSlide >> lepiterPage [
 	^ GtLepiterPageLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> liveElementTree [
 	^ GtLiveElementTreeLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> mash [
 	^ GtMashExampleLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #accessing }
@@ -203,17 +172,13 @@ GtProtoLiveSlide >> onMethodRemoved: aMethodRemoved [
 { #category : #decorating }
 GtProtoLiveSlide >> paragraph [
 	^ GtParagraphLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> playground [
 	^ GtPlaygroundLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #accessing }
@@ -229,25 +194,19 @@ GtProtoLiveSlide >> priority: anInteger [
 { #category : #decorating }
 GtProtoLiveSlide >> searchFiltersHierarchy [
 	^ GtSearchFilterHierarchyLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> slideshow [
 	^ GtSlideshowLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> spotter [
 	^ GtSpotterLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #'private - subscriptions' }
@@ -260,33 +219,25 @@ GtProtoLiveSlide >> subscribeToSystem [
 { #category : #decorating }
 GtProtoLiveSlide >> text [
 	^ GtTextLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> textAndElement [
 	^ GtTextAndElementLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> title [
 	^ GtTitleLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> titleWithFooter [
 	^ GtTitleWithFooterLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #'private - subscriptions' }
@@ -297,15 +248,11 @@ GtProtoLiveSlide >> unsubscribeFromSystem [
 { #category : #decorating }
 GtProtoLiveSlide >> wardleyMap [
 	^ GtWardleyMapSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect)
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
 GtProtoLiveSlide >> world [
 	^ GtWorldLiveSlide new
-		definingMethod: (GtPhlowDefiningMethodsCollector new 
-			stack: thisContext stack;
-			collect).
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
