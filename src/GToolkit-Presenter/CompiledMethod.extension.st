@@ -7,9 +7,25 @@ CompiledMethod >> asScalableSlide [
 ]
 
 { #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asScalableSlideIn: aSlideshow [
+	self
+		assert: (self hasPragmaNamed: #gtSlide)
+		description: 'This method is only valid for slides.'.
+	^ (self asSlideIn: aSlideshow) asScalableSlide
+]
+
+{ #category : #'*GToolkit-Presenter' }
 CompiledMethod >> asScalableSlideWithBorder [
 	self assert: (self hasPragmaNamed: #gtSlide) description: 'This method is only valid for slides.'.
 	^ self asSlide asScalableSlideWithBorder
+]
+
+{ #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asScalableSlideWithBorderIn: aSlideshow [
+	self
+		assert: (self hasPragmaNamed: #gtSlide)
+		description: 'This method is only valid for slides.'.
+	^ (self asSlideIn: aSlideshow) asScalableSlideWithBorder
 ]
 
 { #category : #'*GToolkit-Presenter' }
@@ -18,6 +34,14 @@ CompiledMethod >> asSlide [
 	^ (self method
 		valueWithReceiver: self methodClass new
 		arguments: {GtProtoLiveSlide new})
+]
+
+{ #category : #'*GToolkit-Presenter' }
+CompiledMethod >> asSlideIn: aSlideshow [
+	self
+		assert: (self hasPragmaNamed: #gtSlide)
+		description: 'This method is only valid for slides.'.
+	^ self method valueWithReceiver: aSlideshow arguments: {GtProtoLiveSlide new}
 ]
 
 { #category : #'*GToolkit-Presenter' }
