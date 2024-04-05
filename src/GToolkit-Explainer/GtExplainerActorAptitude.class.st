@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'explanationModel'
 	],
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #accessing }
@@ -14,7 +14,9 @@ GtExplainerActorAptitude >> explanationModel [
 
 { #category : #accessing }
 GtExplainerActorAptitude >> explanationModel: anObject [
-	explanationModel := anObject
+	explanationModel := anObject.
+
+	self widgetDo: [ :aWidget | aWidget explainer model: self explanationModel ]
 ]
 
 { #category : #'api - hooks' }
