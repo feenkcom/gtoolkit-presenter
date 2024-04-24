@@ -47,6 +47,16 @@ GtPresenterSlide >> gtLiveFor: aView [
 		object: [ self stencil asElement ]
 ]
 
+{ #category : #accessing }
+GtPresenterSlide >> gtSourceFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Source';
+		priority: 20;
+		object: [ self stencil ];
+		view: #gtSourceFor:
+]
+
 { #category : #initialization }
 GtPresenterSlide >> initialize [
 	super initialize.

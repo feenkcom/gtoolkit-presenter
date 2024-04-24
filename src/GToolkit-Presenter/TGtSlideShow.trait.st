@@ -52,3 +52,13 @@ TGtSlideShow >> gtLiveSlideshowFor: aView [
 		stencil: [ GtPresenterSlideShow create: self ];
 		actionUpdateButton
 ]
+
+{ #category : #accessing }
+TGtSlideShow >> gtSlidesFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView forward 
+		title: 'Slides';
+		object: [ GtPresenterSlideShow create: self ];
+		view: #gtSlidesListViewFor:
+]
