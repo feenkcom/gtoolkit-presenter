@@ -86,6 +86,17 @@ GtProtoLiveSlide >> filePicture [
 		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
+{ #category : #accessing }
+GtProtoLiveSlide >> gtSourceFor: aView [
+	<gtView>
+	self definingMethod ifNil: [ ^ aView empty ].
+	^ aView forward
+		title: 'Source';
+		priority: 20;
+		object: [ self definingMethod ];
+		view: #gtSourceFor:
+]
+
 { #category : #'private - event handling' }
 GtProtoLiveSlide >> hasDefiningMethod [
 	^ self definingMethod isNotNil
