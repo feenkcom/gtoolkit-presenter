@@ -1,6 +1,6 @@
 Class {
-	#name : #GtPresenterExplosionElement,
-	#superclass : #BlElement,
+	#name : #GtPresenterElementExplosion,
+	#superclass : #Object,
 	#instVars : [
 		'element',
 		'layers'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-GtPresenterExplosionElement >> explode: anElement [
+GtPresenterElementExplosion >> explode: anElement [
 	| scripter elementLayers explosion eachLayerPreview eachLayerLabel |
 	
 	scripter := BlScripter new
@@ -68,18 +68,18 @@ GtPresenterExplosionElement >> explode: anElement [
 ]
 
 { #category : #accessing }
-GtPresenterExplosionElement >> initialize [
+GtPresenterElementExplosion >> initialize [
 	super initialize.
 	
 	layers := OrderedCollection new
 ]
 
 { #category : #accessing }
-GtPresenterExplosionElement >> layerQuery: anElementQuery [
+GtPresenterElementExplosion >> layerQuery: anElementQuery [
 	self layerQuery: anElementQuery label: ''
 ]
 
 { #category : #accessing }
-GtPresenterExplosionElement >> layerQuery: anElementQuery label: aText [
+GtPresenterElementExplosion >> layerQuery: anElementQuery label: aText [
 	layers add: (anElementQuery -> aText)
 ]
