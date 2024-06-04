@@ -96,6 +96,20 @@ GtPresenterSlideShow >> defaultBackground [
 	^ Color white
 ]
 
+{ #category : #accessing }
+GtPresenterSlideShow >> exportAsPNGsWithSize: extent [
+	| element |
+	^ self slides slides
+		do: [ :aSlide | 
+			element := BrVerticalPane new
+					exact: extent;
+					addChild: aSlide asElement.
+			BlExporter png
+				element: element;
+				background: Color white;
+				export ]
+]
+
 { #category : #'api - accessing' }
 GtPresenterSlideShow >> firstSlide [
 	<return: #GtPresenterSlide>
