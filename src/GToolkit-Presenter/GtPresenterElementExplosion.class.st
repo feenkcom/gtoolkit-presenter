@@ -3,24 +3,34 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'element',
-		'layers'
+		'layers',
+		'baseLabelString',
+		'preferredLayerExtent'
 	],
 	#category : #'GToolkit-Presenter-Views'
 }
 
 { #category : #accessing }
+GtPresenterElementExplosion >> baseLabelString [
+	^ baseLabelString
+]
+
+{ #category : #accessing }
+GtPresenterElementExplosion >> baseLabelString: aString [
+	baseLabelString := aString
+]
+
+{ #category : #accessing }
 GtPresenterElementExplosion >> explode: anElement [
-	| scripter elementLayers explosion eachLayerPreview eachLayerLabel extent |
-	extent := 900 @ 500.
+	| scripter elementLayers explosion eachLayerPreview eachLayerLabel rootExtent |
+	rootExtent := preferredLayerExtent ifNil: [anElement extent].
 	scripter := BlScripter new
-			extent: extent;
+			extent: rootExtent;
 			element: anElement.
 	element := scripter elementWithoutParent.
-
 	explosion := BrVerticalPane new fitContent.
 	explosion clipChildren: false.
 	explosion cellSpacing: 30.
-
 	elementLayers := Stack new.
 	elementLayers push: {element}.
 	layers
@@ -29,17 +39,15 @@ GtPresenterElementExplosion >> explode: anElement [
 			query := eachLayer key.
 			elementLayers
 				push: (elementLayers top flatCollect: [ :each | (query findMany: each) result ]) ].
-
 	eachLayerLabel := Stack new.
-	eachLayerLabel push: 'Frame'.
+	eachLayerLabel push: self baseLabelString.
 	layers do: [ :eachLayer | eachLayerLabel push: eachLayer value ].
-
 	eachLayerPreview := elementLayers
 			with: eachLayerLabel
 			collect: [ :anArrayOfElements :eachLabel | 
 				| container |
 				container := BlElement new
-						size: extent;
+						size: rootExtent;
 						constraintsDo: [ :c | c accountTransformation ];
 						transformDo: [ :t | t skewX: 35 ];
 						addChildren: (anArrayOfElements
@@ -52,7 +60,7 @@ GtPresenterElementExplosion >> explode: anElement [
 									eachElement visibility: BlVisibility hidden.
 
 									eachPreview ]);
-						yourself.		"layout: (BlFitChildrenLayout new addLayout: BlBasicNodeBasedLayout new);"
+						yourself.
 				BrHorizontalPane new
 					fitContent;
 					alignCenter;
@@ -70,7 +78,7 @@ GtPresenterElementExplosion >> explode: anElement [
 { #category : #accessing }
 GtPresenterElementExplosion >> initialize [
 	super initialize.
-	
+	baseLabelString := 'Frame'.
 	layers := OrderedCollection new
 ]
 
@@ -82,4 +90,14 @@ GtPresenterElementExplosion >> layerQuery: anElementQuery [
 { #category : #accessing }
 GtPresenterElementExplosion >> layerQuery: anElementQuery label: aText [
 	layers add: (anElementQuery -> aText)
+]
+
+{ #category : #accessing }
+GtPresenterElementExplosion >> preferredLayerExtent [
+	^ preferredLayerExtent
+]
+
+{ #category : #accessing }
+GtPresenterElementExplosion >> preferredLayerExtent: anObject [
+	preferredLayerExtent := anObject
 ]
