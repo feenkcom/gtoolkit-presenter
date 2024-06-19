@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'json'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -18,14 +18,9 @@ GtWardleyMapSlide >> create [
 	<return: #Object>
 
 	aWardleyMapModel := GtWardleyMapFromDictionaryImporter importMapFromJSONString: self json.
+	aWardleyMapModel isEvolutionAxisVisible: true.
 	aWardleyMapViewModel := GtWardleyMapViewModel new wardleyMapModel: aWardleyMapModel.
 	aWardleyMapElement := GtWardleyMapElement new wardleyMapViewModel: aWardleyMapViewModel.
-	aWardleyMapElement evolutionSections: {
-		'genesis'.
-		'custom built'.
-		'product (+rental)'.
-		'commodity'
-	}.
 	^ aWardleyMapElement
 ]
 
