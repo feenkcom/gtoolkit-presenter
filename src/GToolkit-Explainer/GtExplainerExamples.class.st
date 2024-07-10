@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 GtExplainerExamples >> inspectorContainerElement [
 	<gtExample>
-	| inspectorContainer subject inspectorHeader inspectorView inspectorActionButton |
+	| inspectorContainer subject inspectorWithoutHeader inspectorView inspectorActionButton inspectorLabel |
 	
 	inspectorContainer := BlElement new
 		constraintsDo: [ :c | 
@@ -18,13 +18,14 @@ GtExplainerExamples >> inspectorContainerElement [
 	subject := (GtABCartoonAddressBookExample new cartoonAddressBook gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ].
 	BlScripter new element: subject; elementWithoutParent.
 
-	inspectorHeader := subject phlow firstChildWithView.
-	inspectorView := inspectorHeader phlow firstChildWithView.
+	inspectorLabel := subject children first childNamed: #tabbar.
+	inspectorWithoutHeader := subject phlow firstChildWithView.
+	inspectorView := inspectorWithoutHeader phlow firstChildWithView.
 	inspectorActionButton := subject phlow firstChildWithAction.
 	
 	inspectorContainer addChild: subject.
 
-	inspectorHeader
+	inspectorLabel
 		addChild:
 			(BrButton new
 				constraintsDo: [ :c | c ignoreByLayout ];
@@ -32,7 +33,7 @@ GtExplainerExamples >> inspectorContainerElement [
 				elevation: (BlRelativeElevation elevation: 10);
 				geometry: BlCircleGeometry new;
 				aptitude: (GtExplainerTargetAptitude new explanationModel: #header);
-				relocate: (5 @ inspectorHeader extent y / 2)). 
+				relocate: (5 @ inspectorLabel extent y / 2)). 
 	inspectorView
 		addChild:
 			(BrButton new
