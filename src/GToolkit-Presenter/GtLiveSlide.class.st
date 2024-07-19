@@ -117,6 +117,17 @@ GtLiveSlide >> generateElements [
 			addChild: formElement ]).
 ]
 
+{ #category : #view }
+GtLiveSlide >> gtSlideFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Slide';
+		priority: 6;
+		object: [ self asScalableSlide asElement ];
+		view: #gtLiveFor:;
+		actionUpdateButton
+]
+
 { #category : #initialization }
 GtLiveSlide >> initialize [
 	super initialize.
