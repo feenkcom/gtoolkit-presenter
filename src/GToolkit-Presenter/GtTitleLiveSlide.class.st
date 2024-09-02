@@ -42,11 +42,16 @@ GtTitleLiveSlide >> create [
 ]
 
 { #category : #initialization }
+GtTitleLiveSlide >> defaultTitleBottomPadding [
+	^ 30
+]
+
+{ #category : #initialization }
 GtTitleLiveSlide >> initialize [
 	super initialize.
 	self title: ''.
 	self subtitle: ''.
-	self titleBottomPadding: 10
+	self titleBottomPadding: self defaultTitleBottomPadding
 ]
 
 { #category : #accessing }

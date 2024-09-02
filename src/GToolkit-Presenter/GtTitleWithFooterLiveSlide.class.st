@@ -51,7 +51,7 @@ GtTitleWithFooterLiveSlide >> footerWithFormat: aText [
 	footer := aText
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GtTitleWithFooterLiveSlide >> initialize [
 	super initialize.
 	self subtitleBottomPadding: 10
