@@ -1,42 +1,14 @@
+"
+Superseded by GtTitleWithCenteredTextsSlide. Retain this only for compatibility.
+"
 Class {
 	#name : #GtTitleWithFooterLiveSlide,
-	#superclass : #GtTitleLiveSlide,
+	#superclass : #GtTitleWithCenteredTextsSlide,
 	#instVars : [
-		'footer',
-		'subtitleBottomPadding'
+		'footer'
 	],
 	#category : #'GToolkit-Presenter'
 }
-
-{ #category : #'api - instantiation' }
-GtTitleWithFooterLiveSlide >> create [
-	^ BlElement new
-		constraintsDo: [ :c | 
-			c horizontal matchParent.
-			c vertical matchParent ];
-		layout: BlLinearLayout horizontal;
-		addChild: (BlElement new
-				constraintsDo: [ :c | 
-					c horizontal matchParent.
-					c vertical fitContent.
-					c linear vertical alignCenter ];
-				layout: BlLinearLayout vertical;
-				addChild: (BlTextElement new
-						constraintsDo: [ :c | c linear horizontal alignCenter ];
-						padding: (BlInsets
-								top: 40;
-								bottom: self titleBottomPadding);
-						text: title);
-				addChild: (BlTextElement new
-						constraintsDo: [ :c | c linear horizontal alignCenter ];
-						padding: (BlInsets
-								top: 40;
-								bottom: self subtitleBottomPadding);
-						text: subtitle);
-				addChild: (BlTextElement new
-						constraintsDo: [ :c | c linear horizontal alignCenter ];
-						text: footer))
-]
 
 { #category : #accessing }
 GtTitleWithFooterLiveSlide >> footer: aString [
@@ -48,21 +20,5 @@ GtTitleWithFooterLiveSlide >> footer: aString [
 
 { #category : #accessing }
 GtTitleWithFooterLiveSlide >> footerWithFormat: aText [
-	footer := aText
-]
-
-{ #category : #initialization }
-GtTitleWithFooterLiveSlide >> initialize [
-	super initialize.
-	self subtitleBottomPadding: 10
-]
-
-{ #category : #'api - instantiation' }
-GtTitleWithFooterLiveSlide >> subtitleBottomPadding [
-	^ subtitleBottomPadding
-]
-
-{ #category : #accessing }
-GtTitleWithFooterLiveSlide >> subtitleBottomPadding: anInteger [
-	subtitleBottomPadding := anInteger
+	self newTextWithFormat: aText
 ]
