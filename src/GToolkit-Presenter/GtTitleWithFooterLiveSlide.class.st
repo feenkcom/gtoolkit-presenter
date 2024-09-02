@@ -3,10 +3,7 @@ Superseded by GtTitleWithCenteredTextsSlide. Retain this only for compatibility.
 "
 Class {
 	#name : #GtTitleWithFooterLiveSlide,
-	#superclass : #GtTitleWithCenteredTextsSlide,
-	#instVars : [
-		'footer'
-	],
+	#superclass : #GtTitleWithFootersLiveSlide,
 	#category : #'GToolkit-Presenter'
 }
 
@@ -20,5 +17,5 @@ GtTitleWithFooterLiveSlide >> footer: aString [
 
 { #category : #accessing }
 GtTitleWithFooterLiveSlide >> footerWithFormat: aText [
-	self newTextWithFormat: aText
+	self newFooterWithFormat: aText
 ]

@@ -2,19 +2,18 @@
 Like a title slide but with as many centred texts below as you like.
 "
 Class {
-	#name : #GtTitleWithCenteredTextsSlide,
+	#name : #GtTitleWithFootersLiveSlide,
 	#superclass : #GtTitleLiveSlide,
 	#instVars : [
-		'texts',
-		'textMargin',
 		'subtitleBottomPadding',
-		'textBottomPadding'
+		'footers',
+		'footerBottomPadding'
 	],
 	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
-GtTitleWithCenteredTextsSlide >> create [
+GtTitleWithFootersLiveSlide >> create [
 	| container textContainer |
 	container := BlElement new
 			constraintsDo: [ :c | 
@@ -42,79 +41,79 @@ GtTitleWithCenteredTextsSlide >> create [
 								top: 40;
 								bottom: self subtitleBottomPadding);
 						text: subtitle) ].
-	texts
+	footers
 		do: [ :aText | 
 			textContainer
 				addChild: (BlTextElement new
 						constraintsDo: [ :c | c linear horizontal alignCenter ];
 						padding: (BlInsets
 								top: 40;
-								bottom: self textBottomPadding);
+								bottom: self footerBottomPadding);
 						text: aText) ].
 	container addChild: textContainer.
 	^ container
 ]
 
 { #category : #initialization }
-GtTitleWithCenteredTextsSlide >> defaultSubtitleBottomPadding [
-	^ 40
-]
-
-{ #category : #initialization }
-GtTitleWithCenteredTextsSlide >> defaultTextBottomPadding [
+GtTitleWithFootersLiveSlide >> defaultFooterBottomPadding [
 	^ 10
 ]
 
-{ #category : #acccessing }
-GtTitleWithCenteredTextsSlide >> defaultTextMargin [
-	^ 50
+{ #category : #initialization }
+GtTitleWithFootersLiveSlide >> defaultSubtitleBottomPadding [
+	^ 40
+]
+
+{ #category : #accessing }
+GtTitleWithFootersLiveSlide >> footerBottomPadding [
+	^ footerBottomPadding
+]
+
+{ #category : #accessing }
+GtTitleWithFootersLiveSlide >> footerBottomPadding: anObject [
+	footerBottomPadding := anObject
 ]
 
 { #category : #initialization }
-GtTitleWithCenteredTextsSlide >> initialize [
+GtTitleWithFootersLiveSlide >> initialize [
 	super initialize.
 	self subtitleBottomPadding: self defaultSubtitleBottomPadding.
-	self textBottomPadding: self defaultTextBottomPadding.
-	self textMargin: self defaultTextMargin.
-	texts := OrderedCollection new
+	self footerBottomPadding: self defaultFooterBottomPadding.
+	footers := OrderedCollection new
 ]
 
 { #category : #acccessing }
-GtTitleWithCenteredTextsSlide >> newText: aRopedText [
+GtTitleWithFootersLiveSlide >> newFooter: aRopedText [
+	self
+		newFooterWithFormat: (aRopedText asRopedText
+				glamorousRegularFont;
+				fontSize: 20)
+]
+
+{ #category : #acccessing }
+GtTitleWithFootersLiveSlide >> newFooterWithFormat: aRopedText [
+	footers add: aRopedText asRopedText
+]
+
+{ #category : #acccessing }
+GtTitleWithFootersLiveSlide >> newText: aRopedText [
+	self deprecated: 'use newFooter:'.
+	
 	self newTextWithFormat: (aRopedText asRopedText glamorousRegularFont; fontSize: 20)
 ]
 
 { #category : #acccessing }
-GtTitleWithCenteredTextsSlide >> newTextWithFormat: aRopedText [
-	texts add: aRopedText asRopedText
+GtTitleWithFootersLiveSlide >> newTextWithFormat: aRopedText [
+self deprecated: 'use newFooterWithFormat:'.
+	footers add: aRopedText asRopedText
 ]
 
 { #category : #accessing }
-GtTitleWithCenteredTextsSlide >> subtitleBottomPadding [
+GtTitleWithFootersLiveSlide >> subtitleBottomPadding [
 	^ subtitleBottomPadding
 ]
 
 { #category : #accessing }
-GtTitleWithCenteredTextsSlide >> subtitleBottomPadding: anObject [
+GtTitleWithFootersLiveSlide >> subtitleBottomPadding: anObject [
 	subtitleBottomPadding := anObject
-]
-
-{ #category : #accessing }
-GtTitleWithCenteredTextsSlide >> textBottomPadding [
-	^ textBottomPadding
-]
-
-{ #category : #accessing }
-GtTitleWithCenteredTextsSlide >> textBottomPadding: anObject [
-	textBottomPadding := anObject
-]
-
-{ #category : #acccessing }
-GtTitleWithCenteredTextsSlide >> textMargin [
-	^ textMargin
-]
-
-{ #category : #acccessing }
-GtTitleWithCenteredTextsSlide >> textMargin: aNumber [
-	textMargin := aNumber
 ]

@@ -246,14 +246,14 @@ GtProtoLiveSlide >> title [
 ]
 
 { #category : #decorating }
-GtProtoLiveSlide >> titleWithCenteredTexts [
-	^ GtTitleWithCenteredTextsSlide new
+GtProtoLiveSlide >> titleWithFooter [
+	^ GtTitleWithFooterLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
-GtProtoLiveSlide >> titleWithFooter [
-	^ GtTitleWithFooterLiveSlide new
+GtProtoLiveSlide >> titleWithFooters [
+	^ GtTitleWithFootersLiveSlide new
 		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
