@@ -1,5 +1,5 @@
 "
-Superseded by GtTitleWithCenteredTextsSlide. Retain this only for compatibility.
+Superseded by GtTitleWithFootersLiveSlide. Retain this only for compatibility.
 "
 Class {
 	#name : #GtTitleWithFooterLiveSlide,
