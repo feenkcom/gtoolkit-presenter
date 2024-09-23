@@ -1,6 +1,8 @@
 Class {
 	#name : #GtPresenterSlides,
 	#superclass : #Object,
+	#traits : 'TGtGroupWithItems',
+	#classTraits : 'TGtGroupWithItems classTrait',
 	#instVars : [
 		'announcer',
 		'slides'
@@ -68,6 +70,11 @@ GtPresenterSlides >> includesSlide: aSlide [
 
 	^ self slides anySatisfy: [ :eachSlide |
 		eachSlide == aSlide ]
+]
+
+{ #category : #'api - accessing' }
+GtPresenterSlides >> items [
+	^ self slides
 ]
 
 { #category : #'private - notifying' }
