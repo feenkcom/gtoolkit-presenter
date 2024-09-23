@@ -5,7 +5,9 @@ Class {
 		'previewScale',
 		'slideExtent',
 		'stencil',
-		'announcer'
+		'announcer',
+		'canvasPosition',
+		'canvasExtent'
 	],
 	#category : #'GToolkit-Presenter-Models'
 }
@@ -35,6 +37,12 @@ GtPresenterSlide >> announce: anAnnouncement [
 { #category : #accessing }
 GtPresenterSlide >> asElement [ 
 	^ self stencil asElement
+]
+
+{ #category : #'as yet unclassified' }
+GtPresenterSlide >> gtDisplayOn: stream [
+	stream nextPutAll: 'Presenter slide for '.
+	self stencil gtDisplayOn: stream
 ]
 
 { #category : #accessing }

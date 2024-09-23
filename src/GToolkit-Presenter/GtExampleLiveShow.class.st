@@ -98,7 +98,7 @@ GtExampleLiveShow >> elementExampleSlideFor: aSlide [
 	<gtSlide>
 	^ aSlide element
 		priority: 15;
-		element: [BlElement new background: Color red].
+		element: [BlElement new background: Color yellow].
 ]
 
 { #category : #accessing }
