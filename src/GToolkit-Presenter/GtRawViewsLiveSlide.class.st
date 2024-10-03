@@ -37,5 +37,5 @@ GtRawViewsLiveSlide >> create [
 					matchParent;
 					addChild: e])
 					size: 400@400 ) ].
-	^ container asPannableElement
+	^ container asScalableElement
 ]

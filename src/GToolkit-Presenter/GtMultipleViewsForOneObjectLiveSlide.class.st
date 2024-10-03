@@ -45,7 +45,7 @@ GtMultipleViewsForOneObjectLiveSlide >> create [
 							background: Color white;
 							margin: (BlInsets all: 20);
 							addChild: e)])) ].
-	^ container asPannableElement
+	^ container asScalableElement
 ]
 
 { #category : #accessing }
