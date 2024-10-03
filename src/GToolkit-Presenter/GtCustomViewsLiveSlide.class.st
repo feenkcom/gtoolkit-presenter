@@ -32,5 +32,5 @@ GtCustomViewsLiveSlide >> create [
 					background: Color white;
 					margin: (BlInsets all: 20);
 					addChild: e]) size: 400@400) ].
-	^ container asPannableElement
+	^ container asScalableElement
 ]

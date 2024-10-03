@@ -8,7 +8,7 @@ I show all the visualizations available for various objects.
 Class {
 	#name : #GtAllViewsLiveSlide,
 	#superclass : #GtInspectorViewsLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -32,5 +32,5 @@ GtAllViewsLiveSlide >> create [
 					background: Color white;
 					margin: (BlInsets all: 20);
 					addChild: e]) size: 400@400) ].
-	^ container asPannableElement
+	^ container asScalableElement
 ]
