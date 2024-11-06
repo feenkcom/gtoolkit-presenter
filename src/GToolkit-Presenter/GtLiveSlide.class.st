@@ -255,7 +255,6 @@ GtLiveSlide >> previousStepWith: aSlider [
 
 { #category : #accessing }
 GtLiveSlide >> queueAsyncUpdate: aSpace [
-
 	"Submit a task to cache the receiver's elements"
 
 	| aSliceCommand |
@@ -263,20 +262,15 @@ GtLiveSlide >> queueAsyncUpdate: aSpace [
 
 	aSliceCommand := GtSlideCommand new slide: self.
 
-	BlUseAsyncFeatures
-		ifEnabledDo: [ 
-			BlFrameTelemetry
-				time: [ 
-					'Schedule slide {1} update command in UI pool' format:
-						{ self class name } ]
-				during: [ [ aSliceCommand execute ] asAsyncFuture 
-					await: self futureConfiguration ] ]
-		otherwise: [ 
-			BlFrameTelemetry
-				time: [ 
-					'Execute slide {1} update command directly' format:
-						{ self class name } ]
-				during: [ aSliceCommand execute ] ]
+	BlFrameTelemetry
+		time: [ 
+			'Schedule slide {1} update command in UI pool' format:
+				{ self class name } ]
+		during: [
+			| aPromise |
+			aPromise := [ aSliceCommand execute ] asAsyncFuture 
+				await: self futureConfiguration.
+			aSpace enqueueTask: (BlPromiseTask new promise: aPromise) ]
 ]
 
 { #category : #accessing }
