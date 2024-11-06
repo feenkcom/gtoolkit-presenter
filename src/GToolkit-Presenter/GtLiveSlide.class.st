@@ -13,7 +13,8 @@ Class {
 		'cachedElement',
 		'slideIndex',
 		'slideShow',
-		'isSlideSelected'
+		'isSlideSelected',
+		'futureConfiguration'
 	],
 	#category : #'GToolkit-Presenter'
 }
@@ -81,6 +82,23 @@ GtLiveSlide >> cachedElement [
 { #category : #accessing }
 GtLiveSlide >> cachedElement: anObject [
 	cachedElement := anObject
+]
+
+{ #category : #initialization }
+GtLiveSlide >> defaultFutureConfiguration [
+	^ AsyncFutureExecutionConfiguration new customGroup: #Slide
+]
+
+{ #category : #accessing }
+GtLiveSlide >> futureConfiguration [
+	<return: #AsyncFutureExecutionConfiguration>
+	^ futureConfiguration ifNil: [ 
+		futureConfiguration := self defaultFutureConfiguration ]
+]
+
+{ #category : #accessing }
+GtLiveSlide >> futureConfiguration: aAsyncFutureExecutionConfiguration [
+	futureConfiguration := aAsyncFutureExecutionConfiguration
 ]
 
 { #category : #accessing }
@@ -237,27 +255,14 @@ GtLiveSlide >> previousStepWith: aSlider [
 
 { #category : #accessing }
 GtLiveSlide >> queueAsyncUpdate: aSpace [
-
 	"Submit a task to cache the receiver's elements"
 
-	| aCommand |
+	| aSliceCommand aPromise |
 	cachedElement needsUpdate ifFalse: [ ^ self ].
 
-	aCommand := GtSlideCommand new slide: self.
-
-	BlUseAsyncFeatures
-		ifEnabledDo: [ 
-			BlFrameTelemetry
-				time: [ 
-					'Schedule slide {1} update command in UI pool' format:
-						{ self class name } ]
-				during: [ [ aCommand execute ] asAsyncFuture await ] ]
-		otherwise: [ 
-			BlFrameTelemetry
-				time: [ 
-					'Execute slide {1} update command directly' format:
-						{ self class name } ]
-				during: [ aCommand execute ] ]
+	aSliceCommand := GtSlideCommand new slide: self.
+	aPromise := [ aSliceCommand execute ] asAsyncFuture await: self futureConfiguration.
+	aSpace enqueueTask: (BlPromiseTask new promise: aPromise).
 ]
 
 { #category : #accessing }
