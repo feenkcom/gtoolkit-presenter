@@ -257,20 +257,12 @@ GtLiveSlide >> previousStepWith: aSlider [
 GtLiveSlide >> queueAsyncUpdate: aSpace [
 	"Submit a task to cache the receiver's elements"
 
-	| aSliceCommand |
+	| aSliceCommand aPromise |
 	cachedElement needsUpdate ifFalse: [ ^ self ].
 
 	aSliceCommand := GtSlideCommand new slide: self.
-
-	BlFrameTelemetry
-		time: [ 
-			'Schedule slide {1} update command in UI pool' format:
-				{ self class name } ]
-		during: [
-			| aPromise |
-			aPromise := [ aSliceCommand execute ] asAsyncFuture 
-				await: self futureConfiguration.
-			aSpace enqueueTask: (BlPromiseTask new promise: aPromise) ]
+	aPromise := [ aSliceCommand execute ] asAsyncFuture await: self futureConfiguration.
+	aSpace enqueueTask: (BlPromiseTask new promise: aPromise).
 ]
 
 { #category : #accessing }
