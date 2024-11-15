@@ -16,15 +16,16 @@ GtExplainerExamples >> inspectorContainerElement [
 		layout: BlLinearLayout horizontal.
 
 	subject := (GtABCartoonAddressBookExample new cartoonAddressBook gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ].
-	BlScripter new element: subject; elementWithoutParent.
-
-	inspectorLabel := subject children first childNamed: #tabbar.
-	inspectorWithoutHeader := subject phlow firstChildWithView.
-	inspectorView := inspectorWithoutHeader phlow firstChildWithView.
-	inspectorActionButton := subject phlow firstChildWithAction.
 	
 	inspectorContainer addChild: subject.
+	
+	BlScripter new element: inspectorContainer; elementWithoutParent.
 
+	inspectorLabel := subject children first childNamed: #tabbar.
+	inspectorWithoutHeader := subject phlow firstChildWithViewContent.
+	inspectorView := inspectorWithoutHeader phlow firstChildWithViewContent.
+	inspectorActionButton := subject phlow firstChildWithAction.
+	
 	inspectorLabel
 		addChild:
 			(BrButton new
