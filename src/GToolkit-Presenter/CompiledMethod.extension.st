@@ -38,10 +38,16 @@ CompiledMethod >> asSlide [
 
 { #category : #'*GToolkit-Presenter' }
 CompiledMethod >> asSlideIn: aSlideshow [
+	"NB: the definingMethod: must be set explicitly, or else the wrong one is found."
+	| slide |
 	self
 		assert: (self hasPragmaNamed: #gtSlide)
 		description: 'This method is only valid for slides.'.
-	^ self method valueWithReceiver: aSlideshow arguments: {GtProtoLiveSlide new}
+	slide := self method
+			valueWithReceiver: aSlideshow
+			arguments: {GtProtoLiveSlide new}.
+	slide definingMethod: self method.
+	^ slide
 ]
 
 { #category : #'*GToolkit-Presenter' }
