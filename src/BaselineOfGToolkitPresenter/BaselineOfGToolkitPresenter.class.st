@@ -10,10 +10,10 @@ BaselineOfGToolkitPresenter >> baseline: spec [
 	spec for: #'common' do: [
 		spec
 			baseline: 'Brick' with: [
-				spec repository: 'github://feenkcom/Brick:v0.8.1432/src' ].
+				spec repository: 'github://feenkcom/Brick:v0.8.1433/src' ].
 		spec
 			baseline: 'GToolkit4Pharo' with: [
-				spec repository: 'github://feenkcom/gt4pharo:v0.6.2037/src' ].
+				spec repository: 'github://feenkcom/gt4pharo:v0.6.2038/src' ].
 
 		spec package: 'GToolkit-Presenter' with: [
 			spec requires: #(#Brick) ].
