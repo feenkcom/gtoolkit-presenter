@@ -87,7 +87,7 @@ GtPresenterSlideShowElement >> newSlideShowDropdown [
 		label: 'Slides';
 		icon: BrGlamorousVectorIcons hamburger;
 		aptitude: BrGlamorousButtonWithIconAptitude
-			+ (BrGlamorousWithDropdownAptitude
+			+ (BrGlamorousWithExplicitDropdownAptitude
 				handle: [ 
 					BrButton new
 						aptitude: BrGlamorousButtonRectangularAptitude + BrGlamorousButtonIconAptitude;

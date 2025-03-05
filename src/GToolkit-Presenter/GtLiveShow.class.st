@@ -625,7 +625,7 @@ GtLiveShow >> slidesDropdown [
 		label: 'Slides';
 		aptitude: 
 			BrGlamorousButtonWithIconAptitude
-			+ (BrGlamorousWithDropdownAptitude
+			+ (BrGlamorousWithExplicitDropdownAptitude
 				handle: [ BrButton new
 						aptitude: BrGlamorousButtonWithIconAptitude 
 							- BrGlamorousButtonWithLabelTooltipAptitude
