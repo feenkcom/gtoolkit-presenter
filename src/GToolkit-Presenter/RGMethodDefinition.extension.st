@@ -12,9 +12,9 @@ RGMethodDefinition >> asSlide [
 
 { #category : #'*GToolkit-Presenter' }
 RGMethodDefinition >> gtPlayAction: anAction [
-	"self slides ifEmpty: [ ^ anAction empty ]."
-
 	<gtAction>
+	self isGtSlide ifFalse: [ ^ anAction empty ].
+	
 	^ anAction explicit
 		priority: 20;
 		stencil: [ | button |
@@ -33,7 +33,9 @@ RGMethodDefinition >> gtPlayAction: anAction [
 { #category : #'*GToolkit-Presenter' }
 RGMethodDefinition >> gtSlideFor: aView [
 	<gtView>
-	(self method hasPragmaNamed: #gtSlide) ifFalse: [ ^ aView empty ].
+	
+	self isGtSlide ifFalse: [ ^ aView empty ].
+	
 	^ aView forward
 		title: 'Slide';
 		priority: 6;
