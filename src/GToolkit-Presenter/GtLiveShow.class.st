@@ -613,88 +613,82 @@ GtLiveShow >> slidesDropdown [
 		padding: (BlInsets all: 10).
 	self updatePreviewsContainer.
 	^ dropdown := BrButton new
-		constraintsDo: [:c |
-			c frame horizontal alignRight.
-			c frame vertical alignCenter];
-		margin: (BlInsets all: 10);
-		icon: BrGlamorousIcons hamburger asElement;
-		action: [
-			self shouldPreloadSlides ifFalse: [
-				self shouldPreloadSlides: true.
-				self loadSlides ] ];
-		label: 'Slides';
-		aptitude: 
-			BrGlamorousButtonWithIconAptitude
-			+ (BrGlamorousWithExplicitDropdownAptitude
-				handle: [ BrButton new
-						aptitude: BrGlamorousButtonWithIconAptitude 
-							- BrGlamorousButtonWithLabelTooltipAptitude
-							- BrGlamorousButtonExteriorAptitude;
-						icon: BrGlamorousIcons hamburger asElement;
-						yourself ]
-				content: [ | el |
-					aToolbar := BrToolbar new.
-					aToolbar aptitude: BrGlamorousToolbarAptitude.
-					aToolbar
-						addItem:
-							(BrButton new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude;
-								icon: BrGlamorousIcons play asElement;
-								label: 'Slideshow' asString;
-								action: [ slidesContainer dispatchEvent: BrWithMaximizerAptitudeMaximizeWish new ]);
-						addItem:
-							(BrToggle new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-								icon: BrGlamorousIcons edit asElement;
-								label: 'Update arrows' asString;
-								when: BrToggleActivatedEvent
-									do: [ :anEvent |
-										self slides ifNotEmpty: [
-											arrowsAreVisible := true.
-											self updateArrows ]];
-								when: BrToggleDeactivatedEvent
-									do: [ :anEvent |
-										self slides ifNotEmpty: [
-											arrowsAreVisible := false.
-											self updateArrows ]]);
-						addItem:
-							(BrToggle new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-								icon: BrGlamorousIcons browse asElement;
-								label: 'Browse slide method' asString;
-								when: BrToggleActivatedEvent
-									do: [ :anEvent |
-										slideEditorVisibility := slideEditorVisibility not.
-										self updateSlideEditorState ];
-								when: BrToggleDeactivatedEvent
-									do: [ :anEvent |
-										slideEditorVisibility := slideEditorVisibility not.
-										self updateSlideEditorState ]);
-						addItem:
-							(anExportButton := BrButton new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude;
-								label: 'Export slides' asString;
-								icon: BrGlamorousIcons savetodisk asElement;
-								action: [ :aButton | 
-									self pager addPage: self slidesExportPage.
-									self pager smoothScrollToLast ]).
-					el := BlElement new
-						size: 700 @ 520;
-						addChild: self pager removeFromParent.
-					self pager removeAllPages.
-					self pager addPage: (BrPagerPageElement new
-						weight: 1.0;
-						layout: BlLinearLayout vertical;
-						addChild: previewsContainer asScrollableElement;
-						addChild: aToolbar).
-					el ]);
+			constraintsDo: [ :c | 
+				c frame horizontal alignRight.
+				c frame vertical alignCenter ];
+			margin: (BlInsets all: 10);
+			icon: BrGlamorousIcons hamburger asElement;
+			action: [ self shouldPreloadSlides
+					ifFalse: [ self shouldPreloadSlides: true.
+						self loadSlides ] ];
+			label: 'Slides';
+			aptitude: BrGlamorousButtonWithIconAptitude
+					+ (BrGlamorousWithExplicitDropdownAptitude
+							handle: [ BrButton new
+									aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonWithLabelTooltipAptitude2
+											- BrGlamorousButtonExteriorAptitude;
+									icon: BrGlamorousIcons hamburger asElement;
+									yourself ]
+							content: [ | el |
+								aToolbar := BrToolbar new.
+								aToolbar aptitude: BrGlamorousToolbarAptitude.
+								aToolbar
+									addItem: (BrButton new
+											beSmallSize;
+											aptitude: BrGlamorousButtonWithIconAptitude;
+											icon: BrGlamorousIcons play asElement;
+											label: 'Slideshow' asString;
+											action: [ slidesContainer dispatchEvent: BrWithMaximizerAptitudeMaximizeWish new ]);
+									addItem: (BrToggle new
+											beSmallSize;
+											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
+											icon: BrGlamorousIcons edit asElement;
+											label: 'Update arrows' asString;
+											when: BrToggleActivatedEvent
+												do: [ :anEvent | 
+													self slides
+														ifNotEmpty: [ arrowsAreVisible := true.
+															self updateArrows ] ];
+											when: BrToggleDeactivatedEvent
+												do: [ :anEvent | 
+													self slides
+														ifNotEmpty: [ arrowsAreVisible := false.
+															self updateArrows ] ]);
+									addItem: (BrToggle new
+											beSmallSize;
+											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
+											icon: BrGlamorousIcons browse asElement;
+											label: 'Browse slide method' asString;
+											when: BrToggleActivatedEvent
+												do: [ :anEvent | 
+													slideEditorVisibility := slideEditorVisibility not.
+													self updateSlideEditorState ];
+											when: BrToggleDeactivatedEvent
+												do: [ :anEvent | 
+													slideEditorVisibility := slideEditorVisibility not.
+													self updateSlideEditorState ]);
+									addItem: (anExportButton := BrButton new
+												beSmallSize;
+												aptitude: BrGlamorousButtonWithIconAptitude;
+												label: 'Export slides' asString;
+												icon: BrGlamorousIcons savetodisk asElement;
+												action: [ :aButton | 
+													self pager addPage: self slidesExportPage.
+													self pager smoothScrollToLast ]).
+								el := BlElement new
+										size: 700 @ 520;
+										addChild: self pager removeFromParent.
+								self pager removeAllPages.
+								self pager
+									addPage: (BrPagerPageElement new
+											weight: 1.0;
+											layout: BlLinearLayout vertical;
+											addChild: previewsContainer asScrollableElement;
+											addChild: aToolbar).
+								el ]);
 			constraintsDo: [ :c | c linear horizontal alignRight ];
 			padding: (BlInsets all: 10);
-			yourself.
+			yourself
 ]
 
 { #category : #accessing }

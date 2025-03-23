@@ -261,56 +261,49 @@ GtSlideShow >> slidesDropdown [
 	self slides
 		do: [ :each | 
 			container
-				addChild:
-					(each asPreviewElement
-						when: BlClickEvent
-						do: [ :e | self showSlide: each ]) ].
+				addChild: (each asPreviewElement when: BlClickEvent do: [ :e | self showSlide: each ]) ].
 	previewsContainer := container.
-	^ dropdown := BrButton new 
-		margin: (BlInsets all: 10);
-		icon: BrGlamorousIcons hamburger asElement;
-		label: 'Slides';
-		aptitude: 
-			BrGlamorousButtonWithIconAptitude
-			+ (BrGlamorousWithExplicitDropdownAptitude
-				handle: [ BrButton new
-						aptitude: BrGlamorousButtonWithIconAptitude 
-							- BrGlamorousButtonWithLabelTooltipAptitude
-							- BrGlamorousButtonExteriorAptitude;
-						icon: BrGlamorousIcons hamburger asElement;
-						yourself ]
-				content: [ | el |
-					aToolbar := BrToolbar new.
-					aToolbar aptitude: BrGlamorousToolbarAptitude.
-					aToolbar
-						addItem:
-							(BrToggle new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-								icon: BrGlamorousIcons edit asElement;
-								when: BrToggleActivatedEvent
-									do: [ :anEvent | 
-									arrowsAreVisible := true.
-									self updateArrows ];
-								when: BrToggleDeactivatedEvent
-									do: [ :anEvent | 
-									arrowsAreVisible := false.
-									self updateArrows ]);
-						addItem:
-							(BrButton new
-								beSmallSize;
-								aptitude: BrGlamorousButtonWithIconAptitude;
-								icon: BrGlamorousIcons save asElement;
-								action: [ self exportSlides ]).
-					el := BlElement new
-						size: 700 @ 520;
-						layout: BlLinearLayout vertical;
-						addChild: container asScrollableElement;
-						addChild: aToolbar.
-					el ]);
+	^ dropdown := BrButton new
+			margin: (BlInsets all: 10);
+			icon: BrGlamorousIcons hamburger asElement;
+			label: 'Slides';
+			aptitude: BrGlamorousButtonWithIconAptitude
+					+ (BrGlamorousWithExplicitDropdownAptitude
+							handle: [ BrButton new
+									aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonWithLabelTooltipAptitude2
+											- BrGlamorousButtonExteriorAptitude;
+									icon: BrGlamorousIcons hamburger asElement;
+									yourself ]
+							content: [ | el |
+								aToolbar := BrToolbar new.
+								aToolbar aptitude: BrGlamorousToolbarAptitude.
+								aToolbar
+									addItem: (BrToggle new
+											beSmallSize;
+											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
+											icon: BrGlamorousIcons edit asElement;
+											when: BrToggleActivatedEvent
+												do: [ :anEvent | 
+													arrowsAreVisible := true.
+													self updateArrows ];
+											when: BrToggleDeactivatedEvent
+												do: [ :anEvent | 
+													arrowsAreVisible := false.
+													self updateArrows ]);
+									addItem: (BrButton new
+											beSmallSize;
+											aptitude: BrGlamorousButtonWithIconAptitude;
+											icon: BrGlamorousIcons save asElement;
+											action: [ self exportSlides ]).
+								el := BlElement new
+										size: 700 @ 520;
+										layout: BlLinearLayout vertical;
+										addChild: container asScrollableElement;
+										addChild: aToolbar.
+								el ]);
 			constraintsDo: [ :c | c linear horizontal alignRight ];
 			padding: (BlInsets all: 10);
-			yourself.
+			yourself
 ]
 
 { #category : #accessing }
