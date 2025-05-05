@@ -97,14 +97,15 @@ GtSlideShowExamples >> exampleSlideShow [
 	"Or better: GtSlideShowExamples new openInSpace"
 
 	<gtExample>
+	<return: #GtSlideShow>
 	^ self create
 ]
 
 { #category : #accessing }
 GtSlideShowExamples >> exampleSlideShowInScripter [
 	<gtExample>
+	<return: #BlScripter>
 	| aScripter |
-
 	aScripter := BlScripter new.
 	aScripter element: self exampleSlideShow asElement.
 
