@@ -120,6 +120,12 @@ GtProtoLiveSlide >> labelAndElement [
 		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
+{ #category : #decorating }
+GtProtoLiveSlide >> labelAndScenery [
+	^ GtLabelAndSceneryLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
+]
+
 { #category : #accessing }
 GtProtoLiveSlide >> lepiterPage [
 	^ GtLepiterPageLiveSlide new
@@ -200,6 +206,12 @@ GtProtoLiveSlide >> priority [
 { #category : #accessing }
 GtProtoLiveSlide >> priority: anInteger [
 	priority := anInteger.
+]
+
+{ #category : #decorating }
+GtProtoLiveSlide >> scenery [
+	^ GtSceneryLiveSlide new
+		definingMethod: (GtPhlowDefiningMethodsCollector forContext: thisContext) collect
 ]
 
 { #category : #decorating }
