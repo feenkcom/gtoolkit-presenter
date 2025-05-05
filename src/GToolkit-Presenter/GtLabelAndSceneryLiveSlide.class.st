@@ -1,8 +1,6 @@
 "
 I am a label and scenery live slide. I get a scenery as a method. The element is displayed in the center and the label is positioned on top.
 
-Example: {{gtMethod:name=DemoSlideshow>>#sceneryWithLabel:|expanded}} 
-
 
 "
 Class {
