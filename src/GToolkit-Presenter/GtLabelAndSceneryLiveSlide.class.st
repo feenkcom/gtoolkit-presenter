@@ -16,7 +16,8 @@ Class {
 GtLabelAndSceneryLiveSlide >> create [
 	| container sceneryElement |
 	container := super create.
-	sceneryElement := (scenery methodClass new perform: scenery selector) asElement.
+	"sceneryElement := (scenery methodClass new perform: scenery selector) asElement."
+	sceneryElement := (GtPager createWrappedOn: self sceneryStencil) maximized. 
 	container
 		addChild: (BlElement new
 				constraintsDo: [ :ct | 
@@ -39,4 +40,9 @@ GtLabelAndSceneryLiveSlide >> scenery [
 { #category : #accessing }
 GtLabelAndSceneryLiveSlide >> scenery: aCompiledMethod [
 	scenery := aCompiledMethod
+]
+
+{ #category : #accessing }
+GtLabelAndSceneryLiveSlide >> sceneryStencil [
+	^ scenery methodClass new perform: scenery selector
 ]
