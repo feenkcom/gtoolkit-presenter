@@ -15,7 +15,21 @@ Class {
 
 { #category : #'api - instantiation' }
 GtSceneryLiveSlide >> create [
-	^ scenery methodClass new perform: scenery selector
+	| container sceneryElement |
+	container := BlElement new
+			constraintsDo: [ :c | 
+				c horizontal matchParent.
+				c vertical matchParent ];
+			layout: BlLinearLayout vertical;
+			margin: (BlInsets all: 20);
+			yourself.
+	sceneryElement := (GtPager createWrappedOn: self sceneryStencil) maximized.
+	container
+		addChild: (sceneryElement
+				constraintsDo: [ :c | 
+					c horizontal matchParent.
+					c vertical matchParent ]).
+	^ container
 ]
 
 { #category : #accessing }
@@ -26,4 +40,9 @@ GtSceneryLiveSlide >> scenery [
 { #category : #accessing }
 GtSceneryLiveSlide >> scenery: aCompiledMethod [
 	scenery := aCompiledMethod
+]
+
+{ #category : #accessing }
+GtSceneryLiveSlide >> sceneryStencil [
+	^ scenery methodClass new perform: scenery selector
 ]
