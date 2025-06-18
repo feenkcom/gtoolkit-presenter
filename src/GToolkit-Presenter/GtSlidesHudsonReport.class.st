@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 GtSlidesHudsonReport class >> runPackage: aString [
 	^ self new 
-		initializeWithTestCases: (RPackage organizer packageNamed: aString) gtSlideBuildersAllContained;
+		initializeWithTestCases: (self packageOrganizer packageNamed: aString) gtSlideBuildersAllContained;
 		reportName: aString;
 		run
 ]
