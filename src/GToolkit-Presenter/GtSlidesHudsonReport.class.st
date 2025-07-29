@@ -23,10 +23,9 @@ GtSlidesHudsonReport >> containerNameFor: aSlide [
 	| definingClass |
 	definingClass := aSlide definingMethod.
 
-	^ (definingClass category copyReplaceAll: '-' with: '.'),
+	^ (definingClass protocolName copyReplaceAll: '-' with: '.'),
 		'.',
 		definingClass name
-		
 ]
 
 { #category : #'accessing - test case' }
