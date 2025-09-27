@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'targetElement'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }

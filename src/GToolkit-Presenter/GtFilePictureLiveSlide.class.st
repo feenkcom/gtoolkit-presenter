@@ -13,7 +13,7 @@ Class {
 		'background',
 		'maxScale'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

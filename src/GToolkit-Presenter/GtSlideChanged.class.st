@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'slide'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

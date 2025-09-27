@@ -13,7 +13,7 @@ Class {
 		'slideshow',
 		'text'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }

@@ -8,7 +8,7 @@ I create a keyboard element.
 Class {
 	#name : #GtDevKeyboardLiveSlide,
 	#superclass : #GtLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }

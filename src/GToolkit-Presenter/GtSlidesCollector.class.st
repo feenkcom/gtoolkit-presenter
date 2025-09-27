@@ -1,7 +1,7 @@
 Class {
 	#name : #GtSlidesCollector,
 	#superclass : #GtPhlowCollector,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

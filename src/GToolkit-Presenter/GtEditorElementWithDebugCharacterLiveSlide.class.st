@@ -8,7 +8,7 @@ I show an editor element where each character is displayed alongside its positio
 Class {
 	#name : #GtEditorElementWithDebugCharacterLiveSlide,
 	#superclass : #GtEditorElementLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }

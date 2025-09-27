@@ -5,7 +5,7 @@ Class {
 		'changes',
 		'ombuFile'
 	],
-	#category : 'GToolkit-Presenter-GToolkit-Presenter'
+	#category : #'GToolkit-Presenter-GToolkit-Presenter'
 }
 
 { #category : #accessing }

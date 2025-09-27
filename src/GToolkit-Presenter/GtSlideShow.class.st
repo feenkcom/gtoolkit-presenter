@@ -293,7 +293,7 @@ GtSlideShow >> slidesDropdown [
 									addItem: (BrButton new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude;
-											icon: BrGlamorousIcons save asElement;
+											icon: BrGlamorousIcons savetodisk asElement;
 											action: [ self exportSlides ]).
 								el := BlElement new
 										size: 700 @ 520;
