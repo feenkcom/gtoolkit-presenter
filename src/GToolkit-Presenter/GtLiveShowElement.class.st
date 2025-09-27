@@ -51,7 +51,7 @@ GtLiveShowElement >> buildSlideshowContainerComponents [
 				beNormalSize;
 				aptitude: BrGlamorousButtonWithIconAptitude;
 				label: 'Add new slide' asString;
-				icon: BrGlamorousIcons add asElement;
+				icon: BrGlamorousVectorIcons add asElement;
 				action: [ self createNewEmptySlide ]).
 	
 	slideEditor addChild: aToolbar.

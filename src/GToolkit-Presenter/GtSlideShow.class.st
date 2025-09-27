@@ -265,14 +265,14 @@ GtSlideShow >> slidesDropdown [
 	previewsContainer := container.
 	^ dropdown := BrButton new
 			margin: (BlInsets all: 10);
-			icon: BrGlamorousIcons hamburger asElement;
+			icon: BrGlamorousVectorIcons hamburger asElement;
 			label: 'Slides';
 			aptitude: BrGlamorousButtonWithIconAptitude
 					+ (BrGlamorousWithExplicitDropdownAptitude
 							handle: [ BrButton new
 									aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonWithLabelTooltipAptitude2
 											- BrGlamorousButtonExteriorAptitude;
-									icon: BrGlamorousIcons hamburger asElement;
+									icon: BrGlamorousVectorIcons hamburger asElement;
 									yourself ]
 							content: [ | el |
 								aToolbar := BrToolbar new.
@@ -281,7 +281,7 @@ GtSlideShow >> slidesDropdown [
 									addItem: (BrToggle new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-											icon: BrGlamorousIcons edit asElement;
+											icon: BrGlamorousVectorIcons edit asElement;
 											when: BrToggleActivatedEvent
 												do: [ :anEvent | 
 													arrowsAreVisible := true.
@@ -293,7 +293,7 @@ GtSlideShow >> slidesDropdown [
 									addItem: (BrButton new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude;
-											icon: BrGlamorousIcons savetodisk asElement;
+											icon: BrGlamorousVectorIcons savetodisk asElement;
 											action: [ self exportSlides ]).
 								el := BlElement new
 										size: 700 @ 520;
