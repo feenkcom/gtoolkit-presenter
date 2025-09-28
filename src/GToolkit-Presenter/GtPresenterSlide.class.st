@@ -53,7 +53,7 @@ GtPresenterSlide >> gtLiveFor: aView [
 		title: 'Live';
 		priority: 0;
 		object: [ self stencil asElement ];
-		actionButtonIcon: BrGlamorousIcons inspect label: 'Element' tooltip: 'Inspect the element' action: [:b | b phlow spawnObject: self stencil asElement ]
+		actionButtonIcon: BrGlamorousVectorIcons inspect label: 'Element' tooltip: 'Inspect the element' action: [:b | b phlow spawnObject: self stencil asElement ]
 ]
 
 { #category : #accessing }

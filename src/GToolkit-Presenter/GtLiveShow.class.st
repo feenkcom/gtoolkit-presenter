@@ -160,7 +160,7 @@ GtLiveShow >> buildSlideshowContainerComponents [
 				beNormalSize;
 				aptitude: BrGlamorousButtonWithIconAptitude;
 				label: 'Add new slide' asString;
-				icon: BrGlamorousIcons add asElement;
+				icon: BrGlamorousVectorIcons add asElement;
 				action: [ self createNewEmptySlide ]).
 	
 	slideEditor addChild: aToolbar.
@@ -617,7 +617,7 @@ GtLiveShow >> slidesDropdown [
 				c frame horizontal alignRight.
 				c frame vertical alignCenter ];
 			margin: (BlInsets all: 10);
-			icon: BrGlamorousIcons hamburger asElement;
+			icon: BrGlamorousVectorIcons hamburger asElement;
 			action: [ self shouldPreloadSlides
 					ifFalse: [ self shouldPreloadSlides: true.
 						self loadSlides ] ];
@@ -627,7 +627,7 @@ GtLiveShow >> slidesDropdown [
 							handle: [ BrButton new
 									aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonWithLabelTooltipAptitude2
 											- BrGlamorousButtonExteriorAptitude;
-									icon: BrGlamorousIcons hamburger asElement;
+									icon: BrGlamorousVectorIcons hamburger asElement;
 									yourself ]
 							content: [ | el |
 								aToolbar := BrToolbar new.
@@ -636,13 +636,13 @@ GtLiveShow >> slidesDropdown [
 									addItem: (BrButton new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude;
-											icon: BrGlamorousIcons play asElement;
+											icon: BrGlamorousVectorIcons play asElement;
 											label: 'Slideshow' asString;
 											action: [ slidesContainer dispatchEvent: BrWithMaximizerAptitudeMaximizeWish new ]);
 									addItem: (BrToggle new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-											icon: BrGlamorousIcons edit asElement;
+											icon: BrGlamorousVectorIcons edit asElement;
 											label: 'Update arrows' asString;
 											when: BrToggleActivatedEvent
 												do: [ :anEvent | 
@@ -657,7 +657,7 @@ GtLiveShow >> slidesDropdown [
 									addItem: (BrToggle new
 											beSmallSize;
 											aptitude: BrGlamorousButtonWithIconAptitude + BrGlamorousToggleBackgroundAptitude;
-											icon: BrGlamorousIcons browse asElement;
+											icon: BrGlamorousVectorIcons browse asElement;
 											label: 'Browse slide method' asString;
 											when: BrToggleActivatedEvent
 												do: [ :anEvent | 
@@ -671,7 +671,7 @@ GtLiveShow >> slidesDropdown [
 												beSmallSize;
 												aptitude: BrGlamorousButtonWithIconAptitude;
 												label: 'Export slides' asString;
-												icon: BrGlamorousIcons savetodisk asElement;
+												icon: BrGlamorousVectorIcons savetodisk asElement;
 												action: [ :aButton | 
 													self pager addPage: self slidesExportPage.
 													self pager smoothScrollToLast ]).

@@ -21,7 +21,7 @@ RGMethodDefinition >> gtPlayAction: anAction [
 			button := BrButton new
 					id: GtInspectorInspectButtonId;
 					aptitude: BrGlamorousButtonWithIconAptitude;
-					icon: BrGlamorousIcons play;
+					icon: BrGlamorousVectorIcons play;
 					action: [ :aButton :aModel :anEvent | 
 						BlSpace new
 							addChild: self asScalableSlide asElement;

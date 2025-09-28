@@ -5,7 +5,7 @@ Class {
 		'changes',
 		'ombuFile'
 	],
-	#category : 'GToolkit-Presenter-GToolkit-Presenter'
+	#category : #'GToolkit-Presenter-GToolkit-Presenter'
 }
 
 { #category : #accessing }
@@ -32,7 +32,7 @@ GtEpiceaChangesLiveSlide >> create [
 				beNormalSize;
 				aptitude: BrGlamorousButtonWithIconAndLabelAptitude;
 				label: 'Apply' asString;
-				icon: BrGlamorousIcons accept asElement;
+				icon: BrGlamorousVectorIcons accept asElement;
 				action: [ self changes applyChanges ]).
 	inspectorElement := BlUseAsyncFeatures
 		disableDuring: [ (GtPhlowView empty composite
