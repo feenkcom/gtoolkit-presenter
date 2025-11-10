@@ -10,19 +10,20 @@ GtSlidesCollector >> collect [
 	<gtCollector>
 	| theViews |
 	theViews := self collectPragmas
-		collect: [ :eachPragma | 
-			| aSlide |
-			[ aSlide := thisContext
-				object: self object
-				perform: eachPragma methodSelector
-				withArguments: {GtEmptySlide new}
-				inClass: self object class ] 
-					on: Error 
-					do: [:anException |
+			collect: [ :eachPragma | 
+				| aSlide |
+				[ GtProcessStackOverflowChecker currentCheckerClass
+					checkDuring: [ aSlide := thisContext
+								object: self object
+								perform: eachPragma methodSelector
+								withArguments: {GtEmptySlide new}
+								inClass: self object class ] ]
+					on: Error
+					do: [ :anException | 
 						aSlide := GtLiveSlideWithError new
-							definingMethod: ((self object class >> eachPragma methodSelector) asRingDefinition);
-							error: anException].
-			aSlide ].
+								definingMethod: (self object class >> eachPragma methodSelector) asRingDefinition;
+								error: anException ].
+				aSlide ].
 	self sortByPriority: theViews.
 	^ theViews
 ]
