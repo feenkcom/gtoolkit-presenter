@@ -87,7 +87,7 @@ GtSlideShowStencil >> openSlideshowInNewSpace: aSlideshow [
 		title: 'Space';
 		extent: 1200 @ 600;
 		addChild: aSlideshow makeArrowsVisible create;
-		withHalos;
+		withCommonSettings;
 		show
 ]
 
