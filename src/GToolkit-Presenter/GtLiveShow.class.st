@@ -794,20 +794,22 @@ GtLiveShow >> updateSlide: aSlide [
 { #category : #'api - updating' }
 GtLiveShow >> updateSlideEditorMethod [
 	| methodCoder |
-	(self slideEditor children size > 2) ifTrue: [self slideEditor removeChildAt: 3].
-	methodCoder := ((GtPharoMethodCoder 
+	self slideEditor children size > 2
+		ifTrue: [ self slideEditor removeChildAt: 3 ].
+	methodCoder := (GtPharoMethodCoder
 			forMethod: (self slides at: self currentSlideIndex) definingMethod)
-			asExpandedOnlyElement)
-				vFitContentLimited;
-				hMatchParent.
+			asExpandedOnlyElement
+			vFitContentLimited;
+			hMatchParent.
 	self slideEditor
-		addChild: (
-			(GtPager createWrappedOn: methodCoder)
-				maximized
+		addChild: ((GtPagerSettings usedPager createWrappedOn: methodCoder) maximized
 				background: BrGlamorousColors neutralBackgroundColor;
-				margin: (BlInsets top: 35 right: 5 bottom: 5 left: 5);
-				constraintsDo: [:c |
-					c frame vertical alignTop ]).
+				margin: (BlInsets
+						top: 35
+						right: 5
+						bottom: 5
+						left: 5);
+				constraintsDo: [ :c | c frame vertical alignTop ])
 ]
 
 { #category : #'api - updating' }

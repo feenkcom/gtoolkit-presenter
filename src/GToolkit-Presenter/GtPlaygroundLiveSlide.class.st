@@ -36,18 +36,16 @@ GtPlaygroundLiveSlide >> codeFromMethod: aMethod [
 
 { #category : #'api - instantiation' }
 GtPlaygroundLiveSlide >> create [
-
 	| toolElement |
 	toolElement := LePageToolContentTreeElement new
-		               withTitleOnly;
-		               padding: (BlInsets
-				                top: 0
-				                right: 10
-				                bottom: 0
-				                left: 10);
-		               pageViewModel:
-			               (page asContentUIModel shouldFocusFirstSnippet: true).
-	^ GtPager createWrappedOn: toolElement
+			withTitleOnly;
+			padding: (BlInsets
+					top: 0
+					right: 10
+					bottom: 0
+					left: 10);
+			pageViewModel: (page asContentUIModel shouldFocusFirstSnippet: true).
+	^ GtPagerSettings usedPager createWrappedOn: toolElement
 ]
 
 { #category : #initialization }

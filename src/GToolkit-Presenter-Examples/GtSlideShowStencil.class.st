@@ -72,7 +72,7 @@ GtSlideShowStencil >> methodCoderForMethods: aMethodList [
 
 { #category : #accessing }
 GtSlideShowStencil >> methodSourceWithoutInspectorFor: aMethod [
-	^ GtPager
+	^ GtPagerSettings usedPager
 		createWrappedOn: ((aMethod gtSourceFor: GtPhlowView empty) asElementDo: [ :e | e ])
 ]
 
