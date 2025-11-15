@@ -72,7 +72,7 @@ GtSlideShowStencil >> methodCoderForMethods: aMethodList [
 
 { #category : #accessing }
 GtSlideShowStencil >> methodSourceWithoutInspectorFor: aMethod [
-	^ GtPager
+	^ GtPagerSettings usedPager
 		createWrappedOn: ((aMethod gtSourceFor: GtPhlowView empty) asElementDo: [ :e | e ])
 ]
 
@@ -87,7 +87,7 @@ GtSlideShowStencil >> openSlideshowInNewSpace: aSlideshow [
 		title: 'Space';
 		extent: 1200 @ 600;
 		addChild: aSlideshow makeArrowsVisible create;
-		withHalos;
+		withCommonSettings;
 		show
 ]
 

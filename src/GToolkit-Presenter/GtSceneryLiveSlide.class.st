@@ -23,7 +23,8 @@ GtSceneryLiveSlide >> create [
 			layout: BlLinearLayout vertical;
 			margin: (BlInsets all: 20);
 			yourself.
-	sceneryElement := (GtPager createWrappedOn: self sceneryStencil) maximized.
+	sceneryElement := (GtPagerSettings usedPager
+			createWrappedOn: self sceneryStencil) maximized.
 	container
 		addChild: (sceneryElement
 				constraintsDo: [ :c | 

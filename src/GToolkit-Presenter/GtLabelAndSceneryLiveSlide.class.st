@@ -15,9 +15,9 @@ Class {
 { #category : #'api - instantiation' }
 GtLabelAndSceneryLiveSlide >> create [
 	| container sceneryElement |
-	container := super create.
-	"sceneryElement := (scenery methodClass new perform: scenery selector) asElement."
-	sceneryElement := (GtPager createWrappedOn: self sceneryStencil) maximized. 
+	container := super create.	"sceneryElement := (scenery methodClass new perform: scenery selector) asElement."
+	sceneryElement := (GtPagerSettings usedPager
+			createWrappedOn: self sceneryStencil) maximized.
 	container
 		addChild: (BlElement new
 				constraintsDo: [ :ct | 

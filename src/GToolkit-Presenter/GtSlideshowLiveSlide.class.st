@@ -13,7 +13,7 @@ Class {
 		'slideshow',
 		'text'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
@@ -47,7 +47,7 @@ GtSlideshowLiveSlide >> create [
 			aSpace title: title.
 			aSpace extent: 1200@600.
 			aSpace addChild: slideshow value makeArrowsVisible asElement.
-			aSpace withHalos.
+			aSpace withCommonSettings.
 			card showSpace: aSpace ].
 	
 	textContainer := BlTextElement new

@@ -16,11 +16,10 @@ GtLepiterPageLiveSlide >> beMaximized [
 { #category : #accessing }
 GtLepiterPageLiveSlide >> create [
 	| aPager |
-	startPage asPhlowTool asElementDo: [:e | 
-		aPager := GtPager createWrappedOn: e.
-		maximized ifTrue: [ aPager maximized ].
-		aPager addAptitude: BrShadowAptitude new beLarge.
-		^ aPager ]
+	aPager := GtPagerSettings usedPager createWrappedOn: startPage asPhlowTool.
+	maximized ifTrue: [ aPager maximized ].
+	aPager addAptitude: BrShadowAptitude new beLarge.
+	^ aPager
 ]
 
 { #category : #accessing }
