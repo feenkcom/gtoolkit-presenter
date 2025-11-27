@@ -1,7 +1,7 @@
 Class {
 	#name : #GtCheckedValidatorTargetAptitude,
 	#superclass : #GtValidatorTargetAptitude,
-	#category : 'GToolkit-Explainer-Validator'
+	#category : #'GToolkit-Explainer-Validator'
 }
 
 { #category : #private }

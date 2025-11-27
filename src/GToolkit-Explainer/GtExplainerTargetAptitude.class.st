@@ -6,7 +6,7 @@ Makes the element be a target for an explainer explanation.
 Class {
 	#name : #GtExplainerTargetAptitude,
 	#superclass : #GtExplainerActorAptitude,
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #initialization }

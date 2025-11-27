@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'selectorsDictionary'
 	],
-	#category : 'GToolkit-Explainer-Coder add-on'
+	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #visiting }
