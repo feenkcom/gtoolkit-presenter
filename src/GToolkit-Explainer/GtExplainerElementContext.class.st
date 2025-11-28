@@ -10,7 +10,7 @@ Class {
 		'isValidatorTarget',
 		'validators'
 	],
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #'instance creation' }

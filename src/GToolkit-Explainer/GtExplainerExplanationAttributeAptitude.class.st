@@ -1,7 +1,7 @@
 Class {
 	#name : #GtExplainerExplanationAttributeAptitude,
 	#superclass : #BrStyleCommonAptitude,
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #initialization }

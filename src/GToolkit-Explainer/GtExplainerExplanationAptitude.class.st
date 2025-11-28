@@ -1,7 +1,7 @@
 Class {
 	#name : #GtExplainerExplanationAptitude,
 	#superclass : #GtExplainerActorAptitude,
-	#category : 'GToolkit-Explainer'
+	#category : #'GToolkit-Explainer'
 }
 
 { #category : #initialization }

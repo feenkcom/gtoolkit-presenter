@@ -5,7 +5,7 @@ Class {
 		'identifier',
 		'circleSize'
 	],
-	#category : 'GToolkit-Explainer-Coder add-on'
+	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #'instance creation' }

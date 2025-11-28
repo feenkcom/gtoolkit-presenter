@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'links'
 	],
-	#category : 'GToolkit-Explainer-Coder add-on'
+	#category : #'GToolkit-Explainer-Coder add-on'
 }
 
 { #category : #'as yet unclassified' }

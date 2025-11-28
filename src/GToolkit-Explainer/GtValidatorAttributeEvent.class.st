@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'hasAttribute'
 	],
-	#category : 'GToolkit-Explainer-Validator'
+	#category : #'GToolkit-Explainer-Validator'
 }
 
 { #category : #accessing }
