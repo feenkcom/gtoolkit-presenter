@@ -58,7 +58,7 @@ GtSlidesHudsonReport >> runSlideBuilder: aSlideBuilder [
 	self
 		beginTestCase: aSlideBuilder
 		runBlock: [
-			[ aSlideBuilder build run ]
+			[ aSlideBuilder runUnmanaged ]
 				on: self signalableExceptions
 				do: [ :err | 
 					errorDetails := Dictionary new.
@@ -94,14 +94,20 @@ GtSlidesHudsonReport >> runTestCase: anExample [
 
 { #category : #private }
 GtSlidesHudsonReport >> stackTraceString: err of: aTestCase [
-	^ String streamContents: [ :str | 
-		| context |
-		context := err signalerContext.
-		[ context isNil or: [ context receiver == aTestCase and: [ context methodSelector == #run ] ] ] whileFalse: [
-			[str print: context; lf.]
-				on: Error
-				do: [ str nextPutAll: 'PRINTING ERROR'; lf].
-			context := context sender ] ] 
+	^ String
+		streamContents: [ :str | 
+			| context |
+			context := err signalerContext.
+			[ context isNil
+				or: [ context receiver == aTestCase and: [ context selector == #run ] ] ]
+				whileFalse: [ [ str
+						print: context;
+						lf ]
+						on: Error
+						do: [ str
+								nextPutAll: 'PRINTING ERROR';
+								lf ].
+					context := context sender ] ]
 ]
 
 { #category : #accessing }
