@@ -8,7 +8,7 @@ I create a connector example.
 Class {
 	#name : #GtConnectorForExampleLiveSlide,
 	#superclass : #GtLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }

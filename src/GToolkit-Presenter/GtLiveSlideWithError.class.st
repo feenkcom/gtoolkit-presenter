@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'error'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

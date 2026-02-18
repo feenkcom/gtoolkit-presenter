@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'slideShow'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'hooks - children' }

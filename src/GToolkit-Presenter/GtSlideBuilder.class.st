@@ -54,9 +54,21 @@ GtSlideBuilder >> printOn: aStream [
 		nextPutAll: ')'.
 ]
 
+{ #category : #executing }
+GtSlideBuilder >> runUnmanaged [
+
+	"The ideal case would be to updade the example runner to use runManaged"
+	^ CurrentExecutionEnvironment runUnmanagedExampleEvaluator: self
+]
+
 { #category : #accessing }
 GtSlideBuilder >> selector [
 	^ slideSelector
+]
+
+{ #category : #accessing }
+GtSlideBuilder >> shouldLogWithEpicea [
+	^ self definingMethod isNotNil and: [ self definingMethod hasPragmaNamed: #shouldLogWithEpicea ]
 ]
 
 { #category : #accessing }
@@ -67,4 +79,9 @@ GtSlideBuilder >> slideSelector: aSelector [
 { #category : #accessing }
 GtSlideBuilder >> slideShowClass: aClass [
 	slideShowClass := aClass.
+]
+
+{ #category : #executing }
+GtSlideBuilder >> value [
+	^ self build run
 ]

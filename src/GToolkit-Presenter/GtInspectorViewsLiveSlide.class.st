@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'slideType'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

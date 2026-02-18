@@ -13,7 +13,7 @@ Class {
 		'rightElement',
 		'centerElement'
 	],
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #accessing }

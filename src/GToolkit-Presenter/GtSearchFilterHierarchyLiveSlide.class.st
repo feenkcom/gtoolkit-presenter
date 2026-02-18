@@ -8,7 +8,7 @@ I am a live slide that displays the tree hierarchy of the filters in Gt.
 Class {
 	#name : #GtSearchFilterHierarchyLiveSlide,
 	#superclass : #GtLiveSlide,
-	#category : 'GToolkit-Presenter'
+	#category : #'GToolkit-Presenter'
 }
 
 { #category : #'api - instantiation' }
