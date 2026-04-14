@@ -68,19 +68,19 @@ GtTargetCircleWithUnderlineAdornment >> stylerRule [
 						do: [ :each | 
 							(aText from: each first to: each last)
 								attributes:
-									{(BlTextHighlightAttribute new
+									{(BlTextUnderlayAttribute new
 										paint: BrGlamorousColors textHighlightColor)} ].
 					(aText
 						from: node keywordsIntervals first first
 						to: node keywordsIntervals last last)
 						attributes:
-							{(BlTextUnderlineAttribute new
+							{(BlTextDecorationAttribute new
 								color: BrGlamorousColors textHighlightColor)} ] ]
 		ifFalse: [ GtPharoAstNodeHighlighterStylerRule new
 				nodeClassName: node className asSymbol;
 				styleBlock: [ :aNode :aText | 
 					(aText from: start to: stop)
 						attributes:
-							{(BlTextHighlightAttribute new
+							{(BlTextUnderlayAttribute new
 								paint: BrGlamorousColors textHighlightColor)} ] ]
 ]
