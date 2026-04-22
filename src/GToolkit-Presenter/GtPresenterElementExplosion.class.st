@@ -23,14 +23,14 @@ GtPresenterElementExplosion >> baseLabelString: aString [
 { #category : #accessing }
 GtPresenterElementExplosion >> explode: anElement [
 	| scripter elementLayers explosion eachLayerPreview eachLayerLabel rootExtent |
-	rootExtent := preferredLayerExtent ifNil: [anElement extent].
+	rootExtent := preferredLayerExtent ifNil: [ anElement extent ].
 	scripter := BlScripter new
 			extent: rootExtent;
 			element: anElement.
 	element := scripter elementWithoutParent.
 	explosion := BrVerticalPane new fitContent.
 	explosion clipChildren: false.
-	explosion cellSpacing: 30.
+	explosion cellSpacing: -200.
 	elementLayers := Stack new.
 	elementLayers push: {element}.
 	layers
@@ -45,34 +45,49 @@ GtPresenterElementExplosion >> explode: anElement [
 	eachLayerPreview := elementLayers
 			with: eachLayerLabel
 			collect: [ :anArrayOfElements :eachLabel | 
-				| container |
+				| container wrapper |
 				container := BlElement new
 						size: rootExtent;
-						constraintsDo: [ :c | c accountTransformation ];
-						transformDo: [ :t | t skewX: 35 ];
 						addChildren: (anArrayOfElements
 								collect: [ :eachElement | 
 									| eachPreview |
 									eachPreview := eachElement asSpartaForm asElement.
-									eachPreview relocate: eachElement positionInSpace.
-									eachPreview border: (BlBorder paint: (Color gray alpha: 0.2) width: 2).
+
+									eachPreview
+										border: (BlBorder paint: (Color veryLightGray alpha: 0.2) width: 2).
 
 									eachElement visibility: BlVisibility hidden.
-
+									eachPreview relocate: eachElement positionInSpace.
 									eachPreview ]);
 						yourself.
-				BrHorizontalPane new
+				wrapper := BrHorizontalPane new
+						constraintsDo: [ :c | c accountTransformation ];
+						transformDo: [ :t | 
+							t
+								scaleBy: 0.866 @ 0.6;
+								shearBy: 0.577 @ 0;
+								rotateBy: -30 ];
+						fitContent;
+						alignCenter;
+						addChild: container;
+						addChild: (BrFrame new
+								fitContent;
+								addChild: (BrLabel new
+										aptitude: (BrGlamorousLabelAptitude new
+												bold;
+												fontSize: 50);
+										text: eachLabel;
+										transformDo: [ :t | t rotateBy: 90 ];
+										constraintsDo: [ :c | c accountTransformation ])).
+				BrFrame new
 					fitContent;
-					alignCenter;
-					addChild: (BrFrame new fitContent addChild: container);
-					addChild: (BrLabel new
-							aptitude: (BrGlamorousLabelAptitude new fontSize: 24);
-							text: eachLabel);
-					yourself ].
+					constraintsDo: [ :c | c accountTransformation ];
+					addChild: wrapper ].
 
-	explosion addChildren: eachLayerPreview.
+	explosion
+		addChildren: (eachLayerPreview collectWithIndex: [ :e :index | e zIndex: 0 - index ]).
 
-	^ explosion asScalableElement
+	^ explosion "asScalableElement"
 ]
 
 { #category : #accessing }
