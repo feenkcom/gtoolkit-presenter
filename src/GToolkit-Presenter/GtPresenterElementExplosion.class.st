@@ -30,7 +30,7 @@ GtPresenterElementExplosion >> explode: anElement [
 	element := scripter elementWithoutParent.
 	explosion := BrVerticalPane new fitContent.
 	explosion clipChildren: false.
-	explosion cellSpacing: -200.
+	explosion cellSpacing: 0.
 	elementLayers := Stack new.
 	elementLayers push: {element}.
 	layers
@@ -54,7 +54,7 @@ GtPresenterElementExplosion >> explode: anElement [
 									eachPreview := eachElement asSpartaForm asElement.
 
 									eachPreview
-										border: (BlBorder paint: (Color veryLightGray alpha: 0.2) width: 2).
+										border: (BlBorder paint: (Color veryLightGray alpha: 0.2) width: 4).
 
 									eachElement visibility: BlVisibility hidden.
 									eachPreview relocate: eachElement positionInSpace.
