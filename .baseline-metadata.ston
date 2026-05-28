@@ -1,6 +1,6 @@
 {
 	"repositories" : {
 		"github://feenkcom/Brick/src" : "v0.9.110",
-		"github://feenkcom/gt4pharo/src" : "v0.7.206"
+		"github://feenkcom/gt4pharo/src" : "v0.7.207"
 	}
 }
