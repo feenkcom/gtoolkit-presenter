@@ -13,6 +13,7 @@ RGMethodDefinition >> asSlide [
 { #category : #'*GToolkit-Presenter' }
 RGMethodDefinition >> gtPlayAction: anAction [
 	<gtAction>
+	<gtToolAction>
 	self isGtSlide ifFalse: [ ^ anAction empty ].
 	
 	^ anAction explicit
@@ -33,6 +34,7 @@ RGMethodDefinition >> gtPlayAction: anAction [
 { #category : #'*GToolkit-Presenter' }
 RGMethodDefinition >> gtSlideFor: aView [
 	<gtView>
+	<gtToolView>
 	
 	self isGtSlide ifFalse: [ ^ aView empty ].
 	
