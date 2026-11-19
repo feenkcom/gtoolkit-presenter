@@ -31,7 +31,7 @@ GtLiteralExplanationLinkStyler >> addLiterals: aCollection [
 GtLiteralExplanationLinkStyler >> initialize [
 	super initialize.
 
-	literalsDictionary := Dictionary new
+	literalsDictionary := GtStringContentDictionary new
 ]
 
 { #category : #asserting }

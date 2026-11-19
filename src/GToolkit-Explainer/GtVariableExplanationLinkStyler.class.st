@@ -54,7 +54,7 @@ GtVariableExplanationLinkStyler >> variablesAssociations [
 GtVariableExplanationLinkStyler >> visitVariable: aVariableNode [
 	super visitVariable: aVariableNode.
 	self variablesAssociations do: [:association |
-		(aVariableNode name value asString = association key) ifTrue: [ 
+		(association key sameContentAs: aVariableNode name value) ifTrue: [ 
 			self 
 				attribute: ((self shouldAddUnderline)
 					ifTrue: [ GtTargetCircleWithUnderlineAdornment new
